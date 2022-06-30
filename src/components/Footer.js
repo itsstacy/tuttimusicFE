@@ -11,7 +11,7 @@ function Footer() {
       <div className="footer-box">
       <div className="footer-about">
         <div className="footer-about-about">about</div>
-        <div className="footer-ul">
+        {/* <div className="footer-ul">
         <ul> 
           <li>FE</li>
           <li>권지은</li>
@@ -25,7 +25,7 @@ function Footer() {
           <li>김창규</li>
           <li>박세열</li>
         </ul>
-        </div>
+        </div> */}
         </div>
       </div>
 
@@ -38,7 +38,7 @@ let FOOTER = styled.div`
 width:100%;
 height: 200px;
 background-color:#D9D9D9;
-color: #000;
+color: #4E4E4E;
 display:flex;
 justify-content: center;
 
@@ -59,7 +59,7 @@ justify-content: center;
 }
 
 .footer-logo {
-  font-size:30px;
+  font-size:50px;
   font-weight: bold;
   margin:0 50px;
 }
