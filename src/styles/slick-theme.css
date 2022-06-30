@@ -1,0 +1,75 @@
+@charset 'UTF-8';
+
+/* Arrows */
+.slick-prev:before,
+.slick-prev:after,
+.slick-prev
+{
+    
+    left: -5%;
+
+    position: absolute;
+    top: 40%;
+
+    display: block;
+
+    -webkit-transform: translate(0, -50%);
+    -ms-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    
+    background-color: rgb(228, 228, 228);
+    border-radius:20px;
+    color: white;
+    font-size: 15px;
+    
+    font-weight: bold;
+    padding: 4px;
+    z-index: 10;
+    border: none;
+    outline: none;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    content: "<" !important;
+    margin: 0;
+    padding: 0;
+}
+
+.slick-next:before,
+.slick-next:after,
+.slick-next
+{
+    right: -5%;
+    position: absolute;
+    top: 40%;
+
+    display: block;
+
+    width: 30px;
+    height: 30px;
+    -webkit-transform: translate(0, -50%);
+    -ms-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+
+    cursor: pointer;
+    
+    background-color: rgb(228, 228, 228);
+    border-radius:20px;
+    color: white;
+    font-size: 15px;
+
+    z-index: 10;
+    border: none;
+    outline: none;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    content: ">" !important;
+    margin: 0;
+    padding: 0;
+    
+}

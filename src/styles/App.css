@@ -5,15 +5,140 @@
 }
 
 /* ROOT */
+:root {
+  --container-width: 1280px;
 
+  /* 앨범 커버 이미지 비율 1:1 */
+  --card-size: 190px;
+}
 
 
 /* MAIN PAGE  */
+.main-container {
+  min-height: 100vh;
+}
 
+.main-top {
+  width: 100%;
+}
+
+.main-content {
+  max-width: var(--container-width);
+  margin: 50px auto;
+  position: relative;
+}
+
+.main-top-header {
+  width: 100%;
+  height: 300px;
+  background-color: lightgrey;
+}
+
+.main-list {
+  margin-bottom: 80px;
+  display: flex;
+  flex-direction:column;
+  margin: 0 auto;
+}
+
+.main-list-title {
+  font-size: 25px;
+  margin-left: 10px;
+}
+
+
+.main-card {
+  display: flex;
+  flex-direction: column;
+  width: var(--card-size);
+  padding: 10px;  
+  align-items: center;
+  justify-content: center;
+}
+
+.main-album-art {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius:8px;
+  margin-right: 0;
+  background-color: #7e7e7e;
+}
+
+.main-card-text {
+  width: var(--card-size);
+}
+
+.main-card-title {
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+
+.main-card-artist{
+  font-size: 14px;
+  color: #7e7e7e;
+  margin: 0;
+}
 
 /* MAIN PAGE END */
+
+/* MUSIC FEED */
+.musicfeed-container{
+  max-width: var(--container-width);
+  margin: 50px auto;
+  position: relative;
+}
+
+.feed-category{
+  margin-bottom: 100px;
+}
+
+.genre-text{
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.categories{
+  margin-top: 30px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+}
+
+.category {
+  width:300px;
+  height: 64px;
+  border-radius:10px;
+  font-size: 20px;
+  background-color: #F0F0F0;
+  padding: 20px 30px;
+}
+
+.feed-list {
+  margin-bottom: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  gap:26px; 
+}
+
+.feed-card {
+  display: flex;
+  flex-direction: column;
+  width: var(--card-size);
+  align-items: center;
+  justify-content: center;
+}
+
+/* MUSIC FEED END */
+
+
+
+
 
 /* EDIT PAGE */
 
 
 /* EDIT PAGE END */
+
