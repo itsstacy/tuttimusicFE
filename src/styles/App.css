@@ -19,7 +19,7 @@
 }
 
 .main-top {
-  max-width: 100vw;
+  width: 100%;
 }
 
 .main-content {
@@ -29,9 +29,9 @@
 }
 
 .main-top-header {
-  width: 100vw;
+  width: 100%;
   height: 300px;
-  background-color: grey;
+  background-color: lightgrey;
 }
 
 .main-list {
@@ -66,8 +66,6 @@
 }
 
 .main-card-text {
-  margin-top: 16px;
-  margin-right: 0;
   width: var(--card-size);
 }
 
@@ -79,10 +77,65 @@
 .main-card-artist{
   font-size: 14px;
   color: #7e7e7e;
+  margin: 0;
 }
 
-
 /* MAIN PAGE END */
+
+/* MUSIC FEED */
+.musicfeed-container{
+  max-width: var(--container-width);
+  margin: 50px auto;
+  position: relative;
+}
+
+.feed-category{
+  margin-bottom: 100px;
+}
+
+.genre-text{
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.categories{
+  margin-top: 30px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+}
+
+.category {
+  width:300px;
+  height: 64px;
+  border-radius:10px;
+  font-size: 20px;
+  background-color: #F0F0F0;
+  padding: 20px 30px;
+}
+
+.feed-list {
+  margin-bottom: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  gap:26px; 
+}
+
+.feed-card {
+  display: flex;
+  flex-direction: column;
+  width: var(--card-size);
+  align-items: center;
+  justify-content: center;
+}
+
+/* MUSIC FEED END */
+
+
+
+
 
 /* EDIT PAGE */
 
