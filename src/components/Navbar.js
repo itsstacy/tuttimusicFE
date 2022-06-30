@@ -51,7 +51,7 @@ color: #fff;
   justify-content: space-between;
   align-items: center;
   width:1280px;
-  
+
 }
 
 .logo {
