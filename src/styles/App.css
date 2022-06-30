@@ -5,10 +5,81 @@
 }
 
 /* ROOT */
+:root {
+  --container-width: 1280px;
 
+  /* 앨범 커버 이미지 비율 1:1 */
+  --card-size: 190px;
+}
 
 
 /* MAIN PAGE  */
+.main-container {
+  min-height: 100vh;
+}
+
+.main-top {
+  max-width: 100vw;
+}
+
+.main-content {
+  max-width: var(--container-width);
+  margin: 50px auto;
+  position: relative;
+}
+
+.main-top-header {
+  width: 100vw;
+  height: 300px;
+  background-color: grey;
+}
+
+.main-list {
+  margin-bottom: 80px;
+  display: flex;
+  flex-direction:column;
+  margin: 0 auto;
+}
+
+.main-list-title {
+  font-size: 25px;
+  margin-left: 10px;
+}
+
+
+.main-card {
+  display: flex;
+  flex-direction: column;
+  width: var(--card-size);
+  padding: 10px;  
+  align-items: center;
+  justify-content: center;
+}
+
+.main-album-art {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius:8px;
+  margin-right: 0;
+  background-color: #7e7e7e;
+}
+
+.main-card-text {
+  margin-top: 16px;
+  margin-right: 0;
+  width: var(--card-size);
+}
+
+.main-card-title {
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+
+.main-card-artist{
+  font-size: 14px;
+  color: #7e7e7e;
+}
 
 
 /* MAIN PAGE END */
