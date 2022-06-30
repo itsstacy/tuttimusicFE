@@ -48,9 +48,10 @@ color: #fff;
 .nav-wrap {
   display:flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  
+  width:1280px;
+
 }
 
 .logo {
