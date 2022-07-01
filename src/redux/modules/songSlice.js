@@ -40,11 +40,13 @@ export const postComment = createAsyncThunk("POST/postComment", async (props) =>
     artist: props.artist,
     profileUrl: props.profileUrl,
     comment: props.comment,
-    id: props.feedid
+    id: props.feedid,
+    modifiedAt: props.modifiedAt,
     // timestamp: "방금전",
   }
   const data = {
-    comment: props.comment
+    comment: props.comment,
+    modifiedAt: props.modifiedAt,
   }
   await axios
   .post(`${SERVER_URL}/feeds/`+props.feedid,data,{

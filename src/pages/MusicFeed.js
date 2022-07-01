@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import {getMusicFeed} from "../redux/modules/songSlice"
 
-import ClipLoader from "react-spinners/ClipLoader";
+import BeatLoader from "react-spinners/BeatLoader";
 
 
 function MusicFeed() {
@@ -58,7 +58,7 @@ function MusicFeed() {
 
         {loading? (
           <div className="spinner-wrap">
-          <ClipLoader color={"grey"} loading={loading} size={35}/>
+          <BeatLoader color={"grey"} loading={loading} size={10}/>
         </div>
         ):(
           <>{allList&&allList.map((song,index)=>{
