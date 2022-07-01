@@ -180,7 +180,7 @@ function Upload() {
           <div className="upload-music-box">
           <label className="upload-label-button-music" for="upload-music">
           <FaMusic id="upload-music-icon"/></label>
-          <input type="text" className="upload-input" id="upload-input-music" placeholder="파일을 선택해 주세요." value={musicName}/>
+          <input type="text" className="upload-input" id="upload-input-music" placeholder="음악 파일을 선택해 주세요." value={musicName}/>
           <input type="file" id="upload-music" accept='audio/*' onChange={onLoadMusic}/>
           </div>
           </div>
