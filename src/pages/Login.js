@@ -21,19 +21,18 @@ const Login = () => {
 
   const loginCheck = () => {
       if (email === "" && password === "") {
-          return window.alert("모든 항목을 입력하세요!")
+          return window.alert("모든 항목을 입력하세요")
       }
       if (email === "") {
-          return window.alert("아이디를 입력하세요!")
+          return window.alert("아이디를 입력하세요")
       }
       if (checkEmail(email) === false) {
-          return window.alert("이메일 형식을 확인하세요!")
+          return window.alert("이메일 형식을 확인하세요")
       }
       if (password === "") {
-          return window.alert("비밀번호를 입력하세요!")
+          return window.alert("비밀번호를 입력하세요")
       }
 
-      console.log(email, password)
 
       axios 
           .post("http://52.79.234.195/user/login", {
@@ -52,6 +51,8 @@ const Login = () => {
           })
           .catch((error) => {
               console.log(error)
+              window.alert("로그인 정보를 확인해주세요")
+
           })
   }
 
