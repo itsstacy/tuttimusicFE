@@ -21,7 +21,7 @@ function Upload() {
 
   }
 
-  const JobSelect = () => {
+  const GenreSelect = () => {
     return (
       <>
         <div className="upload-options-container">
@@ -126,7 +126,7 @@ function Upload() {
                   
               </div>
 
-              {genreState ? <JobSelect /> : null}
+              {genreState ? <GenreSelect /> : null}
             </div>
 
         </label>
@@ -184,6 +184,8 @@ function Upload() {
           <input type="file" id="upload-music" accept='audio/*' onChange={onLoadMusic}/>
           </div>
           </div>
+
+          <button className="upload-button">업로드</button>
         
 
 
@@ -320,7 +322,7 @@ input[type=radio] {
     width:180px;
     height:60px;
     line-height: 60px;
-    background-color:#545454;
+    background-color:#7E7E7E;
     border-radius: 10px;
     font-size: 15px;
     color:#fff;
@@ -377,6 +379,17 @@ input[type=radio] {
   #upload-input-music {
     padding: 0 70px;
   }
+
+  .upload-button {
+    width:200px;
+    height: 60px;
+    background-color:#4E4E4E;
+    color:#fff;
+    border:none;
+    border-radius:10px;
+    font-size:22px;
+    margin:0 auto;
+  }
 `
 
 let UploadImagePreview = styled.div`
@@ -395,7 +408,6 @@ let UploadColor = styled.div`
   background-color:${(props) => props.color};
   margin-left: 20px;
   border-radius: 10px;
-  border:1px solid #E8e8e8;
 `
 
 
