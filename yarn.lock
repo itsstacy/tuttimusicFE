@@ -7454,6 +7454,9 @@
     "strip-ansi" "^6.0.1"
     "text-table" "^0.2.0"
 
+<<<<<<< HEAD
+"react-dom@^0.14.0 || ^15.0.1 || ^16.0.0 || ^17.0.0 || ^18.0.0", "react-dom@^16.0.0 || ^17.0.0 || ^18.0.0", "react-dom@^16.8 || ^17.0 || ^18.0", "react-dom@^18.0.0", "react-dom@^18.2.0", "react-dom@>= 16.8.0", "react-dom@>=16.8", "react-dom@>=16.8.0":
+=======
 
 "react-dom@^0.14.0 || ^15.0.1 || ^16.0.0 || ^17.0.0 || ^18.0.0", "react-dom@^16.0.0 || ^17.0.0 || ^18.0.0", "react-dom@^16.8 || ^17.0 || ^18.0", "react-dom@^18.0.0", "react-dom@^18.2.0", "react-dom@>= 16.8.0", "react-dom@>=16.8":
 
@@ -7463,6 +7466,7 @@
 
 "react-dom@^0.14.0 || ^15.0.1 || ^16.0.0 || ^17.0.0 || ^18.0.0", "react-dom@^16.0.0 || ^17.0.0 || ^18.0.0", "react-dom@^16.8 || ^17.0 || ^18.0", "react-dom@^18.0.0", "react-dom@^18.2.0", "react-dom@>= 16.8.0", "react-dom@>=16.8", "react-dom@>=16.8.0":
 
+>>>>>>> 20d383120f1e67b0ea34b1f36022da6c5835278a
   "integrity" "sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g=="
   "resolved" "https://registry.npmjs.org/react-dom/-/react-dom-18.2.0.tgz"
   "version" "18.2.0"
@@ -7597,7 +7601,6 @@
     "json2mq" "^0.2.0"
     "lodash.debounce" "^4.0.8"
     "resize-observer-polyfill" "^1.5.0"
-
 
 "react-spinners@^0.13.2":
   "integrity" "sha512-GrtgDlHHMl9DbPgO9NByRyMDCHbrUoW37xwo+bdac9lPFnwlp7DW5uTykSayf/j47YiBAvrQybS9AuM9T+WLeA=="
