@@ -14,17 +14,22 @@ export const getMainLists = createAsyncThunk("GET/getMainLists", async (token)=>
 })
 
 //GET MUSICFEED (FEED TAB)
-export const getMusicFeed = createAsyncThunk("GET/getMusicFeed", async ()=>{
+export const getMusicFeed = createAsyncThunk("GET/getMusicFeed", async (token)=>{
+  console.log(token);
   return axios
-  .get(`${SERVER_URL}/feeds`,{})
+  .get(`${SERVER_URL}/feeds`,{
+    headers: {Authorization:token? token:""}
+  })
   .then((response)=> response.data.data);
 })
 
 //GET SONG DETAIL
-export const getSongDetail = createAsyncThunk("GET/getSongDetail", async (id)=>{
-  console.log(id.id);
+export const getSongDetail = createAsyncThunk("GET/getSongDetail", async (props)=>{
+  console.log(props);
   return axios
-  .get(`${SERVER_URL}/feeds/`+id.id,{})
+  .get(`${SERVER_URL}/feeds/`+props.id,{
+    headers: {Authorization:props.token? props.token:""}
+  })
   .then((response)=> response.data.data);
 })
 

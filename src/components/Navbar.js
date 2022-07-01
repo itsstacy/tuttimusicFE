@@ -15,9 +15,21 @@ function Navbar() {
         <div className="logo">tutti</div>
         <div className="nav">
           <ul>
-            <li>Home</li>
-            <li>Feed</li>
-            <li>FaceChat</li>
+            <li onClick={()=>{
+              navigate('/')
+            }}>
+              Home
+            </li>
+            <li onClick={()=>{
+              navigate('/musicfeed')
+            }}>
+              Feed
+            </li>
+            <li onClick={()=>{
+              navigate('/facechat')
+            }}>
+              FaceChat
+            </li>
           </ul>
         </div>
         <div className="search">

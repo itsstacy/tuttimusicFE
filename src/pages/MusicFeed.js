@@ -8,13 +8,14 @@ import ClipLoader from "react-spinners/ClipLoader";
 
 
 function MusicFeed() {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(()=>{
+    const token = localStorage.getItem("token");
     setLoading(true);
-    dispatch(getMusicFeed());
+    dispatch(getMusicFeed(token));
     setTimeout(()=> {
       setLoading(false);
     },100)

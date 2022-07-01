@@ -12,7 +12,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 
 
 function Main() {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -93,25 +93,29 @@ function Main() {
             <Slider {...settings}>     
             {latestList&&latestList.map((song,index) =>{
               return(
-                <div className="main-card">
-              <img
-              alt={song.title}
-              className="main-album-art" 
-              src={song.albumImageUrl}
-              />
-              <div className="main-card-text">
-                <p className="main-card-title">
-                {song.title}
-                </p>
-                <p className="main-card-artist">
-                {song.artist}
-                </p>
-              </div>
-            </div>
-              )
-            })}               
-          </Slider>
-          )}
+                <div 
+                className="main-card"
+                onClick={()=>{
+                  navigate('/detail/'+song.id)
+                }}>
+                  <img
+                  alt={song.title}
+                  className="main-album-art" 
+                  src={song.albumImageUrl}
+                  />
+                  <div className="main-card-text">
+                    <p className="main-card-title">
+                    {song.title}
+                    </p>
+                    <p className="main-card-artist">
+                    {song.artist}
+                    </p>
+                  </div>
+                </div>
+                  )
+                })}               
+              </Slider>
+              )}
           
         </div>
         <div className="main-list">
@@ -126,26 +130,29 @@ function Main() {
             <Slider {...settings}>     
             {likeList&&likeList.map((song,index) =>{
               return(
-                <div className="main-card">
-              <img
-              alt={song.title}
-              className="main-album-art" 
-              src={song.albumImageUrl}
-              />
-              <div className="main-card-text">
-                <p className="main-card-title">
-                {song.title}
-                </p>
-                <p className="main-card-artist">
-                {song.artist}
-                </p>
-              </div>
-            </div>
-              )
-            })}               
-          </Slider>
-          )}
-          
+                <div 
+                className="main-card"
+                onClick={()=>{
+                  navigate('/detail/'+song.id)
+                }}>
+                  <img
+                  alt={song.title}
+                  className="main-album-art" 
+                  src={song.albumImageUrl}
+                  />
+                  <div className="main-card-text">
+                    <p className="main-card-title">
+                    {song.title}
+                    </p>
+                    <p className="main-card-artist">
+                    {song.artist}
+                    </p>
+                  </div>
+                </div>
+                  )
+                })}               
+              </Slider>
+              )}          
         </div>
         <div className="main-list">
           <p className="main-list-title">
@@ -159,25 +166,29 @@ function Main() {
             <Slider {...settings}>     
             {genreList&&genreList.map((song,index) =>{
               return(
-                <div className="main-card">
-              <img
-              alt={song.title}
-              className="main-album-art" 
-              src={song.albumImageUrl}
-              />
-              <div className="main-card-text">
-                <p className="main-card-title">
-                {song.title}
-                </p>
-                <p className="main-card-artist">
-                {song.artist}
-                </p>
-              </div>
-            </div>
-              )
-            })}               
-          </Slider>
-          )}
+                <div 
+                className="main-card"
+                onClick={()=>{
+                  navigate('/detail/'+song.id)
+                }}>
+                  <img
+                  alt={song.title}
+                  className="main-album-art" 
+                  src={song.albumImageUrl}
+                  />
+                  <div className="main-card-text">
+                    <p className="main-card-title">
+                    {song.title}
+                    </p>
+                    <p className="main-card-artist">
+                    {song.artist}
+                    </p>
+                  </div>
+                </div>
+                  )
+                })}               
+              </Slider>
+              )}
         </div>
         
       </section>
