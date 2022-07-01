@@ -303,6 +303,7 @@
   outline: none;
   border: none;
   height: 60px;
+  font-size: 18px;
 }
 
 .comment-input::placeholder{
@@ -356,3 +357,239 @@
 
 /* EDIT PAGE END */
 
+
+
+/* MYPAGE */
+.mypage-container {
+  /* display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 50px 0px;
+  gap: 40px;
+  width: 1280px;
+  height: 1459px; */
+
+  max-width: var(--container-width);
+  margin: 50px auto;
+  position: relative;
+}
+
+.mypage-header {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 40px;
+
+  width: 1280px;
+  height: 123px;
+}
+
+.header-porfile-img{
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+
+  background-color: #D9D9D9;
+}
+
+.header-profile-info{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 40px;
+
+  width: 1120px;
+  height: 123px;
+}
+
+.header-artist{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 40px;
+
+  width: 232px;
+  height: 123px;
+}
+
+.header-artist-name {
+  font-size: 20px;
+  font-style: normal;
+  font-weight: bold;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.header-artist-info {
+  font-size: 14px;
+  color: #7e7e7e;
+  margin-top: -20px;
+}
+
+.header-sns {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 18px;
+
+  margin-top: -40px;
+}
+
+.sns-icon {
+  width: 24px;
+  height: 24px;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+
+.header-follow {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 28px;
+
+  width: 225px;
+  height: 22px;
+
+  background-color: #D9D9D9;
+}
+
+
+.mypage-body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 60px;
+
+  width: 1280px;
+  height: 1196px;
+}
+
+.body-bar {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 25px 20px;
+  gap: 61px;
+}
+
+.body-contents {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 80px;
+
+  width: 1280px;
+  height: 1060px;
+}
+
+.body-like {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 39px;
+
+  width: 1280px;
+  height: 317px;
+}
+
+.body-font {
+  font-size: 25px;
+  color: #000000;
+  font-weight: 500;
+}
+
+.body-like-list {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 28px;
+
+  width: 1280px;
+  height: 248px;
+}
+
+.body-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 16px;
+
+  margin-top: -50px;
+
+  width: 190px;
+  height: 248px;
+}
+
+.body-card-img {
+  width: var(--card-size);
+  border-radius: 8px;
+}
+
+.body-title {
+  color: #000000;
+  font-size: 16px;
+
+  margin-top: -15px;
+}
+
+.body-artist {
+  color: #7E7E7E;
+  font-size: 14px;
+
+  margin-top: -15px;
+}
+
+.body-following {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 39px;
+
+  width: 1280px;
+  height: 266px;
+}
+
+.body-following-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+  gap: 20px;
+}
+
+.body-circle {
+  width: 158px;
+  height: 158px;
+  border-radius: 50%;
+
+  margin-top: -50px;
+  
+  background-color: #D9D9D9;
+}
+
+.body-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 39px;
+
+  width: 1280px;
+  height: 317px;
+
+  background-color: #7e7e7e;
+}
+/* MYPAGE END */

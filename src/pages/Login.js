@@ -42,8 +42,12 @@ const Login = () => {
           })
           .then((response) => {
               console.log(response)
-              const token = response.headers.authorization
-              localStorage.setItem("token", token)
+              const token = response.headers.authorization;
+              const artist = response.data.artist;
+              const profileUrl = response.data.profileUrl;
+              localStorage.setItem("token", token);
+              localStorage.setItem("userName", artist);
+              localStorage.setItem("userProfileUrl", profileUrl);
               navigate("/")
           })
           .catch((error) => {
@@ -63,6 +67,7 @@ const Login = () => {
               onChange={(e)=>{
                   setPassword(e.target.value)
               }}
+              type="password"
               placeholder="비밀번호를 입력하세요"/><br/>
           <button onClick={(loginCheck)}>로그인</button>
       </div>

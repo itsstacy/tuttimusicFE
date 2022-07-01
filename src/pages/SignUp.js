@@ -174,7 +174,7 @@ const checkPw = (pw) => {
               onChange={(e)=>{
                   setPassword(e.target.value)
               }}   
-              type="text" 
+              type="password" 
               placeholder="비밀번호를 입력하세요"
               name="password"
               /><br/>
@@ -182,7 +182,7 @@ const checkPw = (pw) => {
               onChange={(e)=>{
                   setPasswordCheck(e.target.value)
               }}
-              type="text" 
+              type="password" 
               placeholder="비밀번호를 다시 입력하세요"/><br/>
           {/* <inputCheck type="checkbox" name=""/>락/메탈
           <inputCheck type="checkbox" name=""/>알앤비

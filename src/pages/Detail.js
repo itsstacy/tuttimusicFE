@@ -1,8 +1,8 @@
-import React, { useEffect, useState} from "react";
+import React, { useEffect, useState, useRef} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 
-import {getSongDetail} from "../redux/modules/songSlice"
+import {getSongDetail,postComment} from "../redux/modules/songSlice"
 
 import {FaRegHeart, FaHeart, FaPlayCircle} from "react-icons/fa";
 import {BiPlus} from "react-icons/bi"
@@ -11,13 +11,15 @@ import ClipLoader from "react-spinners/ClipLoader";
 
 function Detail() {
   const [loading, setLoading] = useState(true);
+  const [token, setToken] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   let params = useParams();
 
+
     useEffect(()=>{
     const token = localStorage.getItem("token");
-    console.log(token);
+    setToken(token);
     setLoading(true);
     const propslist={
       token: token,
@@ -31,14 +33,33 @@ function Detail() {
     window.scrollTo(0,0);
   },[])
 
+  //get lists from songslice
   const detail = useSelector((state)=> state.Song.detail);
-  const comments = useSelector((state)=> state.Song.comments);
+  const commentsList = useSelector((state)=> state.Song.comments);
   console.log(loading);
-  console.log(detail);
-  console.log(comments)
+  console.log(commentsList);
 
+  //get user info from local storage
+  const userName = localStorage.getItem("userName");
+  const userProfileUrl = localStorage.getItem("userProfileUrl");
+  
+  //add a comment
+  const myComment = React.useRef(null);
+  console.log(myComment);
+
+  const addNewComment = () => {
+    dispatch(postComment({
+    artist: userName,
+    profileUrl: userProfileUrl,
+    comment: myComment.current.value,
+    token: token,
+    feedid: detail.id,
+    }));
+  }
+  
   return (
     <div className="detail-container">
+{/* MUSIC DETAIL AREA */}      
       {loading? (
         <div className="spinner-wrap">
           <ClipLoader color={"grey"} loading={loading} size={35}/>
@@ -96,7 +117,7 @@ function Detail() {
 
       )}
         <div className="divider"></div>
-
+{/* COMMENT AREA */}
       {loading? (
         <div className="spinner-wrap">
           <ClipLoader color={"grey"} loading={loading} size={35}/>
@@ -110,64 +131,44 @@ function Detail() {
           <div className="comment-input-wrap">
             <img 
             className="detail-artist-img-sm"
-            alt='Rxbyn'
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQF_h6thkbe0oON25G45kdMJU4UDYyC-1hDLK7uFobW9vL0__oa"
+            alt={userName?userName: "noUser"}
+            src={userProfileUrl? userProfileUrl:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQF_h6thkbe0oON25G45kdMJU4UDYyC-1hDLK7uFobW9vL0__oa"}
             />
             <input 
             className="comment-input"
             type="text"  
             placeholder="댓글을 입력해주세요."
+            ref={myComment}
             />
-            <button className="btn btn-primary">
+            <button 
+            className="btn btn-primary"
+            onClick={()=>{
+              addNewComment()
+            }}>
             등록
             </button>
           </div>
           <div className="all-comments">
-            <div className="comment-wrap">
-              <img 
-              className="detail-artist-img-sm"
-              alt='Rxbyn'
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQF_h6thkbe0oON25G45kdMJU4UDYyC-1hDLK7uFobW9vL0__oa"
-              />
-              <div className="row-wrap">
-                <p className="comment-writer">
-                닉네임<span className="spantime">2시간 전</span>
-                </p>
-                <p className="comment-text">
-                댓글 내용이 들어갑니다. 곡이 너무 좋아요 ~!
-                </p>
-              </div>
-            </div>
-            <div className="comment-wrap">
-              <img 
-              className="detail-artist-img-sm"
-              alt='Rxbyn'
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQF_h6thkbe0oON25G45kdMJU4UDYyC-1hDLK7uFobW9vL0__oa"
-              />
-              <div className="row-wrap">
-                <p className="comment-writer">
-                닉네임<span className="spantime">2시간 전</span>
-                </p>
-                <p className="comment-text">
-                댓글 내용이 들어갑니다. 곡이 너무 좋아요 ~!
-                </p>
-              </div>
-            </div>
-            <div className="comment-wrap">
-              <img 
-              className="detail-artist-img-sm"
-              alt='Rxbyn'
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQF_h6thkbe0oON25G45kdMJU4UDYyC-1hDLK7uFobW9vL0__oa"
-              />
-              <div className="row-wrap">
-                <p className="comment-writer">
-                닉네임<span className="spantime">2시간 전</span>
-                </p>
-                <p className="comment-text">
-                댓글 내용이 들어갑니다. 곡이 너무 좋아요 ~!
-                </p>
-              </div>
-            </div>
+            {commentsList&&commentsList.map((comment,index)=>{
+              return(
+                <div className="comment-wrap">
+                  <img 
+                  className="detail-artist-img-sm"
+                  alt={comment.artist}
+                  src={comment.profileUrl}
+                  />
+                  <div className="row-wrap">
+                    <p className="comment-writer">
+                    {comment.artist}<span className="spantime">2시간 전</span>
+                    </p>
+                    <p className="comment-text">
+                    {comment.comment}
+                    </p>
+                  </div>
+                </div>
+              )
+            })}
+            
           </div>
         </section>  
       )}
