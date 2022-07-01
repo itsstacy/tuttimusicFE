@@ -1,15 +1,23 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import styled from 'styled-components';
 
 import { HexColorPicker } from "react-colorful";
 
 import { FaMusic } from "react-icons/fa"
+import axios from 'axios';
+
+import {SERVER_URL} from "../redux/modules/songSlice";
+
+
 
 
 
 function Upload() {
 
-  const color_ref = React.useRef(null);
+
+  const color_ref = useRef(null);
+  const title_ref = useRef(null);
+  const description_ref = useRef(null);
 
   const [selectGenre, setSelectGenre] = React.useState("장르를 선택해 주세요.");
   const [genreState, setGenreState] = React.useState(false);
@@ -53,10 +61,12 @@ function Upload() {
 
   const [previewImg, setPreviewImg] = React.useState(null);
   const [imgName, setImgName] = React.useState(null);
+  const [imgFile, setImgFlie] = React.useState(null);
 
   const onLoadImage = (e) => {
     let render = new FileReader()
     setImgName(e.target.files[0].name);
+    setImgFlie(e.target.files[0]);
 
     if(e.target.files[0]) {
       render.readAsDataURL(e.target.files[0])
@@ -84,11 +94,50 @@ function Upload() {
   }
 
   const [musicName, setMusicName] = React.useState(null);
-
+  const [musicFile, setMusicFile] = React.useState(null);
   const onLoadMusic = (e) => {
     
     setMusicName(e.target.files[0].name);
- 
+    setMusicFile(e.target.files[0]);
+
+  }
+
+
+
+
+
+  const uploadMusic = () => {
+
+    const token = localStorage.getItem("token");
+
+    const feedRequestDto = {
+      title : title_ref.current.value,
+      description : description_ref.current.value,
+      postType : "postType",
+      genre : selectGenre,
+      color : color
+    }
+
+    const formData = new FormData();
+    formData.append("feedRequestDto", new Blob([JSON.stringify(feedRequestDto)], {type: "application/json"}))
+    formData.append("song", musicFile)
+    formData.append("albumImage", imgFile)
+
+    // console.log("formData ===> ", formData);
+    // console.log("song ===> ", musicFile);
+    // console.log("albumImage ===> ", imgFile);
+
+    axios.post(`${SERVER_URL}/feeds/upload`, formData,{
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: token ? token : ""}
+    })
+    .then((response) => {
+      console.log("res ===> ", response);
+    })
+    .catch((error) => {
+      console.log("err ===> ", error);
+    });
   }
 
   return (
@@ -104,14 +153,14 @@ function Upload() {
 
         <label className="upload-label">
           <span className="upload-label-span">곡명</span>
-          <input type="text" className="upload-input" placeholder="곡명을 입력해 주세요."/>
+          <input type="text" className="upload-input" placeholder="곡명을 입력해 주세요." ref={title_ref}/>
         </label>
 
         {/***** 소개글 *****/}
 
         <label className="upload-label">
           <span className="upload-label-span">소개글</span>
-          <textarea className="upload-input" placeholder="곡에 대해 소개해 주세요."/>
+          <textarea className="upload-input" placeholder="곡에 대해 소개해 주세요." ref={description_ref}/>
         </label>
 
         {/***** 장르 *****/}
@@ -185,7 +234,7 @@ function Upload() {
           </div>
           </div>
 
-          <button className="upload-button">업로드</button>
+          <button className="upload-button" onClick={uploadMusic}>업로드</button>
         
 
 

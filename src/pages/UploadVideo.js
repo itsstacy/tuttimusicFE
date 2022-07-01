@@ -1,15 +1,22 @@
-import React from 'react'
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 
 import { HexColorPicker } from "react-colorful";
 
 import { FaMusic } from "react-icons/fa"
 
+import axios from 'axios';
+
+import {SERVER_URL} from "../redux/modules/songSlice";
+
 
 
 function Upload() {
 
-  const color_ref = React.useRef(null);
+  const color_ref = useRef(null);
+  const title_ref = useRef(null);
+  const description_ref = useRef(null);
+
 
   const [selectGenre, setSelectGenre] = React.useState("장르를 선택해 주세요.");
   const [genreState, setGenreState] = React.useState(false);
@@ -53,10 +60,12 @@ function Upload() {
 
   const [previewImg, setPreviewImg] = React.useState(null);
   const [imgName, setImgName] = React.useState(null);
+  const [imgFile, setImgFlie] = React.useState(null);
 
   const onLoadImage = (e) => {
     let render = new FileReader()
     setImgName(e.target.files[0].name);
+    setImgFlie(e.target.files[0]);
 
     if(e.target.files[0]) {
       render.readAsDataURL(e.target.files[0])
@@ -84,11 +93,43 @@ function Upload() {
   }
 
   const [musicName, setMusicName] = React.useState(null);
+  const [musicFile, setMusicFile] = React.useState(null);
 
   const onLoadMusic = (e) => {
     
     setMusicName(e.target.files[0].name);
+    setMusicFile(e.target.files[0]);
  
+  }
+
+  const uploadVideo = () => {
+
+    const token = localStorage.getItem("token");
+
+    const feedRequestDto = {
+      title : title_ref.current.value,
+      description : description_ref.current.value,
+      postType : "postType",
+      genre : selectGenre,
+      color : color
+    }
+
+    const formData = new FormData();
+    formData.append("feedRequestDto", new Blob([JSON.stringify(feedRequestDto)], {type: "application/json"}))
+    formData.append("song", musicFile)
+    formData.append("albumImage", imgFile)
+
+    axios.post(`${SERVER_URL}/feeds/upload`, formData,{
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: token ? token : ""}
+    })
+    .then((response) => {
+      console.log("res ===> ", response);
+    })
+    .catch((error) => {
+      console.log("err ===> ", error);
+    });
   }
 
   return (
@@ -185,7 +226,7 @@ function Upload() {
           </div>
           </div>
 
-          <button className="upload-button">업로드</button>
+          <button className="upload-button" onClick={uploadVideo}>업로드</button>
         
 
 
