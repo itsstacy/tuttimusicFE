@@ -63,6 +63,7 @@ const Login = () => {
               onChange={(e)=>{
                   setPassword(e.target.value)
               }}
+              type="password"
               placeholder="비밀번호를 입력하세요"/><br/>
           <button onClick={(loginCheck)}>로그인</button>
       </div>
