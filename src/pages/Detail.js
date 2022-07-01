@@ -1,8 +1,32 @@
-import React from 'react';
+import React, { useEffect, useState} from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+
+import songSlice, {getSongDetail} from "../redux/modules/songSlice"
+
 import {FaRegHeart, FaHeart, FaPlayCircle} from "react-icons/fa";
 import {BiPlus} from "react-icons/bi"
 
 function Detail() {
+  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  let params = useParams();
+
+    useEffect(()=>{
+    setLoading(true);
+    dispatch(getSongDetail(params));
+    setTimeout(()=> {
+      setLoading(false);
+    },200)
+    window.scrollTo(0,0);
+  },[])
+
+  const detail = useSelector((state)=> state.Song.detail);
+  const comments = useSelector((state)=> state.Song.comments);
+  console.log(detail);
+  console.log(comments)
+
   return (
     <div className="detail-container">
       <section className="music-detail">
@@ -10,7 +34,7 @@ function Detail() {
           <img
           className="detail-album-art" 
           alt="better off alone"
-          src="https://usercontent.jamendo.com/?type=album&id=472284&width=300&trackid=1921816"
+          src={detail.albumImageUrl}
           />
           <div className="detail-artist-profile">
             <img 
@@ -19,30 +43,32 @@ function Detail() {
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQF_h6thkbe0oON25G45kdMJU4UDYyC-1hDLK7uFobW9vL0__oa"
             />
             <p className="detail-artist">
-            Rxbyn
+            {detail.artist}
             </p>
           </div>
         </div>
         <div className="right-column">
           <div className="detail-info-wrap">
-            <p className="detail-info-title">
-            <span><FaPlayCircle/></span> 곡명
-            </p> 
+            <div className="flex-wrap">
+              <FaPlayCircle/>
+              <p className="detail-info-title">{detail.title}</p>
+            </div> 
             <button className="add-playlist btn">
             <span><BiPlus/></span> 플레이리스트 추가
             </button>
           </div>
           <div className="detail-wavefom">
           </div>
-          <p className="detail-like">
-          <span><FaRegHeart/></span> 175  
-          </p>
+          <div className="flex-wrap">
+            <FaRegHeart/>
+            <p className="detail-like">175</p>
+          </div>
           <p className="detail-song-detail">
-          곡을 소개하는 부분입니다. <br/>
-          곡을 소개해주세요. 곡을 소개하는 부분입니다.<br/>
-          곡을 소개하는 부분입니다. 곡을 소개하는 부분입니다. 곡을 소개하는 부분입니다.<br/>
-          곡을 소개하는 부분입니다.<br/>
-          곡을 소개하는 부분입니다.
+            {detail.description} <br/>
+            곡을 소개해주세요. 곡을 소개하는 부분입니다.<br/>
+            소개글이 길어지면 이렇게 ellipsis처리가 될거에요<br/>
+            곡을 소개하는 부분입니다.<br/>
+            곡을 소개하는 부분입니다.
           </p>
           <p className="detail-more-detail">
           더보기

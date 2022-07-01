@@ -1,10 +1,14 @@
 import React from "react"
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 import { BiSearchAlt2 } from "react-icons/bi"
 import { FaCaretDown } from "react-icons/fa"
 
 function Navbar() {
+  const navigate = useNavigate();
+  
+
   return (
     <NavBar>
       <div className="nav-wrap">
