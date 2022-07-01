@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, current } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const SERVER_URL = "http://52.79.234.195";
+export const SERVER_URL = "http://52.79.234.195";
 
 //GET MAIN POST (HOME TAB)
 export const getMainLists = createAsyncThunk("GET/getMainLists", async (token)=>{
@@ -40,13 +40,11 @@ export const postComment = createAsyncThunk("POST/postComment", async (props) =>
     artist: props.artist,
     profileUrl: props.profileUrl,
     comment: props.comment,
-    id: props.feedid,
-    modifiedAt: props.modifiedAt,
+    id: props.feedid
     // timestamp: "방금전",
   }
   const data = {
-    comment: props.comment,
-    modifiedAt: props.modifiedAt,
+    comment: props.comment
   }
   await axios
   .post(`${SERVER_URL}/feeds/`+props.feedid,data,{
