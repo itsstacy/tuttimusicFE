@@ -1,13 +1,12 @@
 import React, { useEffect, useState, useRef} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-
 import {getSongDetail,postComment} from "../redux/modules/songSlice"
-
-import {FaRegHeart, FaHeart, FaPlayCircle} from "react-icons/fa";
-import {BiPlus} from "react-icons/bi"
-
-import ClipLoader from "react-spinners/ClipLoader";
+import {FaRegHeart, FaHeart} from "react-icons/fa";
+// import {BiPlus} from "react-icons/bi"
+import BeatLoader from "react-spinners/BeatLoader";
+import moment from "moment";
+import Waveform from '../elements/Waveform';
 
 function Detail() {
   const [loading, setLoading] = useState(true);
@@ -16,28 +15,32 @@ function Detail() {
   const navigate = useNavigate();
   let params = useParams();
 
+  console.log(moment.utc("2019-12-04 12:00:24").local().startOf('seconds').fromNow())
+  console.log(moment().format())
+  console.log(moment("2022-07-01T16:08:54+09:00").startOf('hour').fromNow())
+  const currentTime = moment().format()
+  
 
-    useEffect(()=>{
-    const token = localStorage.getItem("token");
-    setToken(token);
-    setLoading(true);
-    const propslist={
-      token: token,
-      id: params.id,
-    }
-    dispatch(getSongDetail(propslist));
-    setTimeout(()=> {
-      setLoading(false);
-      
-    },200)
-    window.scrollTo(0,0);
-  },[])
+  useEffect(()=>{
+  const token = localStorage.getItem("token");
+  setToken(token);
+  setLoading(true);
+  const propslist={
+    token: token,
+    id: params.id,
+  }
+  dispatch(getSongDetail(propslist));
+  setTimeout(()=> {
+    setLoading(false);
+    
+  },200)
+  window.scrollTo(0,0);
+},[])
 
   //get lists from songslice
   const detail = useSelector((state)=> state.Song.detail);
   const commentsList = useSelector((state)=> state.Song.comments);
-  console.log(loading);
-  console.log(commentsList);
+
 
   //get user info from local storage
   const userName = localStorage.getItem("userName");
@@ -54,6 +57,7 @@ function Detail() {
     comment: myComment.current.value,
     token: token,
     feedid: detail.id,
+    modifiedAt: currentTime,
     }));
   }
   
@@ -62,7 +66,7 @@ function Detail() {
 {/* MUSIC DETAIL AREA */}      
       {loading? (
         <div className="spinner-wrap">
-          <ClipLoader color={"grey"} loading={loading} size={35}/>
+          <BeatLoader color={"grey"} loading={loading} size={10}/>
         </div>
       ):(
       <>
@@ -85,17 +89,12 @@ function Detail() {
             </div>
           </div>
           <div className="right-column">
-            <div className="detail-info-wrap">
-              <div className="flex-wrap">
-                <FaPlayCircle/>
-                <p className="detail-info-title">{detail.title}</p>
-              </div> 
-              <button className="add-playlist btn">
-              <span><BiPlus/></span> 플레이리스트 추가
-              </button>
-            </div>
-            <div className="detail-wavefom">
-            </div>
+            
+            <Waveform 
+              songUrl={detail.songUrl} 
+              title={detail.title}
+              loading={loading}/>
+            
             <div className="flex-wrap">
               {detail.flag===false? <FaRegHeart/> : <FaHeart/>}
               <p className="detail-like">{detail.likeCount}</p>
@@ -120,7 +119,7 @@ function Detail() {
 {/* COMMENT AREA */}
       {loading? (
         <div className="spinner-wrap">
-          <ClipLoader color={"grey"} loading={loading} size={35}/>
+          <BeatLoader color={"grey"} loading={loading} size={10}/>
         </div>
       ):(
         <section className="music-comment">
@@ -159,7 +158,10 @@ function Detail() {
                   />
                   <div className="row-wrap">
                     <p className="comment-writer">
-                    {comment.artist}<span className="spantime">2시간 전</span>
+                    {comment.artist}
+                    <span className="spantime">
+                      {moment(`${comment.modifiedAt}`).startOf('minute').fromNow()}
+                    </span>
                     </p>
                     <p className="comment-text">
                     {comment.comment}

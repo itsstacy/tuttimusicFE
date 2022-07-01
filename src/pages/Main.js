@@ -8,7 +8,8 @@ import Slider from "react-slick";
 import "../styles/slick.css";
 import "../styles/slick-theme.css";
 
-import ClipLoader from "react-spinners/ClipLoader";
+import BeatLoader from "react-spinners/BeatLoader";
+
 
 
 function Main() {
@@ -87,7 +88,7 @@ function Main() {
           </p>
           {loading? (
             <div className="spinner-wrap">
-              <ClipLoader color={"grey"} loading={loading} size={35}/>
+              <BeatLoader color={"grey"} loading={loading} size={10}/>
             </div>
           ):(
             <Slider {...settings}>     
@@ -124,7 +125,7 @@ function Main() {
           </p>
           {loading? (
             <div className="spinner-wrap">
-              <ClipLoader color={"grey"} loading={loading} size={35}/>
+              <BeatLoader color={"grey"} loading={loading} size={10}/>
             </div>
           ):(
             <Slider {...settings}>     
@@ -160,7 +161,7 @@ function Main() {
           </p>
           {loading? (
             <div className="spinner-wrap">
-              <ClipLoader color={"grey"} loading={loading} size={35}/>
+              <BeatLoader color={"grey"} loading={loading} size={10}/>
             </div>
           ):(
             <Slider {...settings}>     
