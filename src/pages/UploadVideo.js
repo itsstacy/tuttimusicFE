@@ -96,7 +96,7 @@ function Upload() {
     
     <UpLoad>
       <div className="upload-wrap">
-      <p className="upload-title">곡 업로드</p>
+      <p className="upload-title">영상 업로드</p>
       <p className="upload-subtitle">당신의 음악을 세상에 들려주세요!</p>
       <div className="upload-form">
 
