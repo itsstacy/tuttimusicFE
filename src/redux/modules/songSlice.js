@@ -33,6 +33,28 @@ export const getSongDetail = createAsyncThunk("GET/getSongDetail", async (props)
   .then((response)=> response.data.data);
 })
 
+//POST A COMMENT
+export const postComment = createAsyncThunk("POST/postComment", async (props) => {
+  console.log(props.comment);
+  const commentData = {
+    artist: props.artist,
+    profileUrl: props.profileUrl,
+    comment: props.comment,
+    id: props.feedid
+    // timestamp: "방금전",
+  }
+  const data = {
+    comment: props.comment
+  }
+  await axios
+  .post(`${SERVER_URL}/feeds/`+props.feedid,data,{
+    headers: {Authorization:props.token? props.token:""}
+  })
+  .then((response) => response.data.data);
+
+  return commentData;
+}) 
+
 const SongSlice = createSlice({
   name: "Song",
   initialState: {
@@ -71,6 +93,17 @@ const SongSlice = createSlice({
     },
     [getSongDetail.rejected]: (state, action) => {
       console.log("GET REJECTED");
+    },
+    [postComment.fulfilled]: (state, action) => {
+      console.log("POST FULFILLED");
+      console.log(action.payload);
+      console.log(current(state.comments))
+      // state.detail = action.payload.feed;
+      state.comments = [...current(state.comments),action.payload];
+      console.log(state.comments);
+    },
+    [postComment.rejected]: (state, action) => {
+      console.log("POST REJECTED");
     },
 
   }
