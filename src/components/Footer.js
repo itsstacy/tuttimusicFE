@@ -59,7 +59,7 @@ justify-content: center;
 }
 
 .footer-logo {
-  font-size:50px;
+  font-size:40px;
   font-weight: bold;
   margin:0 50px;
 }
@@ -72,7 +72,7 @@ justify-content: center;
 }
 
 .footer-about-about {
-  font-size:30px;
+  font-size:18px;
   margin:0 50px;
 }
 

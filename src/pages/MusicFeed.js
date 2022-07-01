@@ -1,6 +1,30 @@
-import React from 'react'
+import React, { useEffect, useState} from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
+import {getMusicFeed} from "../redux/modules/songSlice"
+
+import ClipLoader from "react-spinners/ClipLoader";
+
 
 function MusicFeed() {
+  const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  useEffect(()=>{
+    const token = localStorage.getItem("token");
+    setLoading(true);
+    dispatch(getMusicFeed(token));
+    setTimeout(()=> {
+      setLoading(false);
+    },100)
+    window.scrollTo(0,0);
+  },[])
+
+  const allList = useSelector((state) => state.Song.allList);
+  console.log(allList);
+
   return (
     <div className="musicfeed-container">
       <section className="feed-category">
@@ -31,118 +55,38 @@ function MusicFeed() {
       </section>
 
       <section className="feed-list">
-        <div className="feed-card">
-          <img
-          className="main-album-art" 
-          src="https://usercontent.jamendo.com/?type=album&id=472284&width=300&trackid=1921816"
-          />
-          <div className="main-card-text">
-            <p className="main-card-title">
-            better off alone
-            </p>
-            <p className="main-card-artist">
-            RXBYN
-            </p>
-          </div>
+
+        {loading? (
+          <div className="spinner-wrap">
+          <ClipLoader color={"grey"} loading={loading} size={35}/>
         </div>
-        <div className="feed-card">
-          <img
-          className="main-album-art" 
-          src="https://usercontent.jamendo.com/?type=album&id=472284&width=300&trackid=1921816"
-          />
-          <div className="main-card-text">
-            <p className="main-card-title">
-            better off alone
-            </p>
-            <p className="main-card-artist">
-            RXBYN
-            </p>
-          </div>
-        </div>
-        <div className="feed-card">
-          <img
-          className="main-album-art" 
-          src="https://usercontent.jamendo.com/?type=album&id=472284&width=300&trackid=1921816"
-          />
-          <div className="main-card-text">
-            <p className="main-card-title">
-            better off alone
-            </p>
-            <p className="main-card-artist">
-            RXBYN
-            </p>
-          </div>
-        </div>
-        <div className="feed-card">
-          <img
-          className="main-album-art" 
-          src="https://usercontent.jamendo.com/?type=album&id=472284&width=300&trackid=1921816"
-          />
-          <div className="main-card-text">
-            <p className="main-card-title">
-            better off alone
-            </p>
-            <p className="main-card-artist">
-            RXBYN
-            </p>
-          </div>
-        </div>
-        <div className="feed-card">
-          <img
-          className="main-album-art" 
-          src="https://usercontent.jamendo.com/?type=album&id=472284&width=300&trackid=1921816"
-          />
-          <div className="main-card-text">
-            <p className="main-card-title">
-            better off alone
-            </p>
-            <p className="main-card-artist">
-            RXBYN
-            </p>
-          </div>
-        </div>
-        <div className="feed-card">
-          <img
-          className="main-album-art" 
-          src="https://usercontent.jamendo.com/?type=album&id=472284&width=300&trackid=1921816"
-          />
-          <div className="main-card-text">
-            <p className="main-card-title">
-            better off alone
-            </p>
-            <p className="main-card-artist">
-            RXBYN
-            </p>
-          </div>
-        </div>
-        <div className="feed-card">
-          <img
-          className="main-album-art" 
-          src="https://usercontent.jamendo.com/?type=album&id=472284&width=300&trackid=1921816"
-          />
-          <div className="main-card-text">
-            <p className="main-card-title">
-            better off alone
-            </p>
-            <p className="main-card-artist">
-            RXBYN
-            </p>
-          </div>
-        </div>
-        <div className="feed-card">
-          <img
-          className="main-album-art" 
-          src="https://usercontent.jamendo.com/?type=album&id=472284&width=300&trackid=1921816"
-          />
-          <div className="main-card-text">
-            <p className="main-card-title">
-            better off alone
-            </p>
-            <p className="main-card-artist">
-            RXBYN
-            </p>
-          </div>
-        </div>
+        ):(
+          <>{allList&&allList.map((song,index)=>{
+              return(
+                <div 
+                className="feed-card"
+                onClick={()=>{
+                  navigate('/detail/'+song.id)
+                }}>
+                  <img
+                  alt={song.title}
+                  className="main-album-art" 
+                  src={song.albumImageUrl}
+                  />
+                  <div className="main-card-text">
+                    <p className="main-card-title">
+                    {song.title}
+                    </p>
+                    <p className="main-card-artist">
+                    {song.artist}
+                    </p>
+                  </div>
+                </div>
+              )            
+            })}
+          </>
+        )}
+       
       </section>
     
     </div>

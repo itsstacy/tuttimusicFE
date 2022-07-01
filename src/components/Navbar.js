@@ -1,19 +1,35 @@
 import React from "react"
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 import { BiSearchAlt2 } from "react-icons/bi"
 import { FaCaretDown } from "react-icons/fa"
 
 function Navbar() {
+  const navigate = useNavigate();
+  
+
   return (
     <NavBar>
       <div className="nav-wrap">
         <div className="logo">tutti</div>
         <div className="nav">
           <ul>
-            <li>Home</li>
-            <li>Feed</li>
-            <li>FaceChat</li>
+            <li onClick={()=>{
+              navigate('/')
+            }}>
+              Home
+            </li>
+            <li onClick={()=>{
+              navigate('/musicfeed')
+            }}>
+              Feed
+            </li>
+            <li onClick={()=>{
+              navigate('/facechat')
+            }}>
+              FaceChat
+            </li>
           </ul>
         </div>
         <div className="search">
