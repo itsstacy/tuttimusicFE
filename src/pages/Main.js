@@ -1,10 +1,39 @@
-import React from 'react';
+import React, { useEffect, useState} from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
+import {getMainLists} from "../redux/modules/songSlice"
 
 import Slider from "react-slick";
 import "../styles/slick.css";
 import "../styles/slick-theme.css";
 
+import ClipLoader from "react-spinners/ClipLoader";
+
+
 function Main() {
+  const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  useEffect(()=>{
+    const token= localStorage.getItem("token");
+    setLoading(true);
+    dispatch(getMainLists(token));
+    setTimeout(()=> {
+      setLoading(false);
+    },200)
+    window.scrollTo(0,0);
+  },[])
+
+  const genreList = useSelector((state)=> state.Song.genreList);
+  const latestList = useSelector((state)=> state.Song.latestList);
+  const likeList = useSelector((state)=> state.Song.likeList);
+  console.log(genreList);
+  console.log(latestList);
+  console.log(likeList);
+
+  
 
   // slider
   function SamplePrevArrow(props) {
@@ -28,6 +57,7 @@ function Main() {
     );
   }
 
+  // slider settings
   let settings = {
     dots: false,
     infinite: true,
@@ -43,6 +73,7 @@ function Main() {
   };
 
 
+
   return (
     <div className="main-container">
       <section className="main-top">
@@ -54,319 +85,110 @@ function Main() {
           <p className="main-list-title">
             최근 출시한 음악
           </p>
-          <Slider {...settings}>        
-            <div className="main-card">
-              <img
-              className="main-album-art" 
-              src="https://usercontent.jamendo.com/?type=album&id=472284&width=300&trackid=1921816"
-              />
-              <div className="main-card-text">
-                <p className="main-card-title">
-                better off alone
-                </p>
-                <p className="main-card-artist">
-                RXBYN
-                </p>
-              </div>
+          {loading? (
+            <div className="spinner-wrap">
+              <ClipLoader color={"grey"} loading={loading} size={35}/>
             </div>
-            <div className="main-card">
-              <img
-              className="main-album-art" 
-              src="https://usercontent.jamendo.com/?type=album&id=472284&width=300&trackid=1921816"
-              />
-              <div className="main-card-text">
-                <p className="main-card-title">
-                better off alone
-                </p>
-                <p className="main-card-artist">
-                RXBYN
-                </p>
-              </div>
-            </div>
-            <div className="main-card">
-              <img
-              className="main-album-art" 
-              src="https://usercontent.jamendo.com/?type=album&id=472284&width=300&trackid=1921816"
-              />
-              <div className="main-card-text">
-                <p className="main-card-title">
-                better off alone
-                </p>
-                <p className="main-card-artist">
-                RXBYN
-                </p>
-              </div>
-            </div>
-            <div className="main-card">
-              <img
-              className="main-album-art" 
-              src="https://usercontent.jamendo.com/?type=album&id=472284&width=300&trackid=1921816"
-              />
-              <div className="main-card-text">
-                <p className="main-card-title">
-                better off alone
-                </p>
-                <p className="main-card-artist">
-                RXBYN
-                </p>
-              </div>
-            </div><div className="main-card">
-              <img
-              className="main-album-art" 
-              src="https://usercontent.jamendo.com/?type=album&id=472284&width=300&trackid=1921816"
-              />
-              <div className="main-card-text">
-                <p className="main-card-title">
-                better off alone
-                </p>
-                <p className="main-card-artist">
-                RXBYN
-                </p>
-              </div>
-            </div>
-
-            <div className="main-card">
-              <img
-              className="main-album-art" 
-              src="https://usercontent.jamendo.com/?type=album&id=472284&width=300&trackid=1921816"
-              />
-              <div className="main-card-text">
-                <p className="main-card-title">
-                better off alone
-                </p>
-                <p className="main-card-artist">
-                RXBYN
-                </p>
-              </div>
-            </div>
-            <div className="main-card">
-              <img
-              className="main-album-art" 
-              src="https://usercontent.jamendo.com/?type=album&id=472284&width=300&trackid=1921816"
-              />
-              <div className="main-card-text">
-                <p className="main-card-title">
-                better off alone
-                </p>
-                <p className="main-card-artist">
-                RXBYN
-                </p>
-              </div>
-            </div>
-           
-          </Slider>
+          ):(
+            <Slider {...settings}>     
+            {latestList&&latestList.map((song,index) =>{
+              return(
+                <div 
+                className="main-card"
+                onClick={()=>{
+                  navigate('/detail/'+song.id)
+                }}>
+                  <img
+                  alt={song.title}
+                  className="main-album-art" 
+                  src={song.albumImageUrl}
+                  />
+                  <div className="main-card-text">
+                    <p className="main-card-title">
+                    {song.title}
+                    </p>
+                    <p className="main-card-artist">
+                    {song.artist}
+                    </p>
+                  </div>
+                </div>
+                  )
+                })}               
+              </Slider>
+              )}
+          
         </div>
         <div className="main-list">
           <p className="main-list-title">
             좋아요 많이 받은 음악
           </p>
-          <Slider {...settings}>        
-            <div className="main-card">
-              <img
-              className="main-album-art" 
-              src="https://usercontent.jamendo.com/?type=album&id=472284&width=300&trackid=1921816"
-              />
-              <div className="main-card-text">
-                <p className="main-card-title">
-                better off alone
-                </p>
-                <p className="main-card-artist">
-                RXBYN
-                </p>
-              </div>
+          {loading? (
+            <div className="spinner-wrap">
+              <ClipLoader color={"grey"} loading={loading} size={35}/>
             </div>
-            <div className="main-card">
-              <img
-              className="main-album-art" 
-              src="https://usercontent.jamendo.com/?type=album&id=472284&width=300&trackid=1921816"
-              />
-              <div className="main-card-text">
-                <p className="main-card-title">
-                better off alone
-                </p>
-                <p className="main-card-artist">
-                RXBYN
-                </p>
-              </div>
-            </div>
-            <div className="main-card">
-              <img
-              className="main-album-art" 
-              src="https://usercontent.jamendo.com/?type=album&id=472284&width=300&trackid=1921816"
-              />
-              <div className="main-card-text">
-                <p className="main-card-title">
-                better off alone
-                </p>
-                <p className="main-card-artist">
-                RXBYN
-                </p>
-              </div>
-            </div>
-            <div className="main-card">
-              <img
-              className="main-album-art" 
-              src="https://usercontent.jamendo.com/?type=album&id=472284&width=300&trackid=1921816"
-              />
-              <div className="main-card-text">
-                <p className="main-card-title">
-                better off alone
-                </p>
-                <p className="main-card-artist">
-                RXBYN
-                </p>
-              </div>
-            </div><div className="main-card">
-              <img
-              className="main-album-art" 
-              src="https://usercontent.jamendo.com/?type=album&id=472284&width=300&trackid=1921816"
-              />
-              <div className="main-card-text">
-                <p className="main-card-title">
-                better off alone
-                </p>
-                <p className="main-card-artist">
-                RXBYN
-                </p>
-              </div>
-            </div>
-
-            <div className="main-card">
-              <img
-              className="main-album-art" 
-              src="https://usercontent.jamendo.com/?type=album&id=472284&width=300&trackid=1921816"
-              />
-              <div className="main-card-text">
-                <p className="main-card-title">
-                better off alone
-                </p>
-                <p className="main-card-artist">
-                RXBYN
-                </p>
-              </div>
-            </div>
-            <div className="main-card">
-              <img
-              className="main-album-art" 
-              src="https://usercontent.jamendo.com/?type=album&id=472284&width=300&trackid=1921816"
-              />
-              <div className="main-card-text">
-                <p className="main-card-title">
-                better off alone
-                </p>
-                <p className="main-card-artist">
-                RXBYN
-                </p>
-              </div>
-            </div>
-           
-          </Slider>
+          ):(
+            <Slider {...settings}>     
+            {likeList&&likeList.map((song,index) =>{
+              return(
+                <div 
+                className="main-card"
+                onClick={()=>{
+                  navigate('/detail/'+song.id)
+                }}>
+                  <img
+                  alt={song.title}
+                  className="main-album-art" 
+                  src={song.albumImageUrl}
+                  />
+                  <div className="main-card-text">
+                    <p className="main-card-title">
+                    {song.title}
+                    </p>
+                    <p className="main-card-artist">
+                    {song.artist}
+                    </p>
+                  </div>
+                </div>
+                  )
+                })}               
+              </Slider>
+              )}          
         </div>
         <div className="main-list">
           <p className="main-list-title">
             장르 음악
           </p>
-          <Slider {...settings}>        
-            <div className="main-card">
-              <img
-              className="main-album-art" 
-              src="https://usercontent.jamendo.com/?type=album&id=472284&width=300&trackid=1921816"
-              />
-              <div className="main-card-text">
-                <p className="main-card-title">
-                better off alone
-                </p>
-                <p className="main-card-artist">
-                RXBYN
-                </p>
-              </div>
+          {loading? (
+            <div className="spinner-wrap">
+              <ClipLoader color={"grey"} loading={loading} size={35}/>
             </div>
-            <div className="main-card">
-              <img
-              className="main-album-art" 
-              src="https://usercontent.jamendo.com/?type=album&id=472284&width=300&trackid=1921816"
-              />
-              <div className="main-card-text">
-                <p className="main-card-title">
-                better off alone
-                </p>
-                <p className="main-card-artist">
-                RXBYN
-                </p>
-              </div>
-            </div>
-            <div className="main-card">
-              <img
-              className="main-album-art" 
-              src="https://usercontent.jamendo.com/?type=album&id=472284&width=300&trackid=1921816"
-              />
-              <div className="main-card-text">
-                <p className="main-card-title">
-                better off alone
-                </p>
-                <p className="main-card-artist">
-                RXBYN
-                </p>
-              </div>
-            </div>
-            <div className="main-card">
-              <img
-              className="main-album-art" 
-              src="https://usercontent.jamendo.com/?type=album&id=472284&width=300&trackid=1921816"
-              />
-              <div className="main-card-text">
-                <p className="main-card-title">
-                better off alone
-                </p>
-                <p className="main-card-artist">
-                RXBYN
-                </p>
-              </div>
-            </div><div className="main-card">
-              <img
-              className="main-album-art" 
-              src="https://usercontent.jamendo.com/?type=album&id=472284&width=300&trackid=1921816"
-              />
-              <div className="main-card-text">
-                <p className="main-card-title">
-                better off alone
-                </p>
-                <p className="main-card-artist">
-                RXBYN
-                </p>
-              </div>
-            </div>
-
-            <div className="main-card">
-              <img
-              className="main-album-art" 
-              src="https://usercontent.jamendo.com/?type=album&id=472284&width=300&trackid=1921816"
-              />
-              <div className="main-card-text">
-                <p className="main-card-title">
-                better off alone
-                </p>
-                <p className="main-card-artist">
-                RXBYN
-                </p>
-              </div>
-            </div>
-            <div className="main-card">
-              <img
-              className="main-album-art" 
-              src="https://usercontent.jamendo.com/?type=album&id=472284&width=300&trackid=1921816"
-              />
-              <div className="main-card-text">
-                <p className="main-card-title">
-                better off alone
-                </p>
-                <p className="main-card-artist">
-                RXBYN
-                </p>
-              </div>
-            </div>
-           
-          </Slider>
+          ):(
+            <Slider {...settings}>     
+            {genreList&&genreList.map((song,index) =>{
+              return(
+                <div 
+                className="main-card"
+                onClick={()=>{
+                  navigate('/detail/'+song.id)
+                }}>
+                  <img
+                  alt={song.title}
+                  className="main-album-art" 
+                  src={song.albumImageUrl}
+                  />
+                  <div className="main-card-text">
+                    <p className="main-card-title">
+                    {song.title}
+                    </p>
+                    <p className="main-card-artist">
+                    {song.artist}
+                    </p>
+                  </div>
+                </div>
+                  )
+                })}               
+              </Slider>
+              )}
         </div>
         
       </section>
