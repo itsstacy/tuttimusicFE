@@ -303,6 +303,7 @@
   outline: none;
   border: none;
   height: 60px;
+  font-size: 18px;
 }
 
 .comment-input::placeholder{
