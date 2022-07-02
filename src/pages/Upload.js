@@ -112,6 +112,7 @@ function Upload() {
 
     const feedRequestDto = {
       title : title_ref.current.value,
+      musicTitle : musicName,
       description : description_ref.current.value,
       postType : "postType",
       genre : selectGenre,
