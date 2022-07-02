@@ -67,6 +67,8 @@ function Detail() {
   }
 
   const GoDelete = () => { 
+
+  if(window.confirm("삭제하시겠습니까?")) {
     axios.delete(`${SERVER_URL}/feeds/${params.id}`,{
       headers: {
         Authorization: token ? token : ""}
@@ -77,6 +79,10 @@ function Detail() {
     .catch((error) => {
       console.log("err ===> ", error);
     });
+    alert("삭제되었습니다.");
+    navigate("/musicfeed");
+  } 
+
   }
   
   return (

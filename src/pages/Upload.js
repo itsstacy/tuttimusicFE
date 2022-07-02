@@ -1,4 +1,5 @@
-import React, { useRef } from 'react'
+import React, { useRef } from 'react';
+import { useNavigate } from "react-router-dom";
 import styled from 'styled-components';
 
 import { HexColorPicker } from "react-colorful";
@@ -14,6 +15,7 @@ import {SERVER_URL} from "../redux/modules/songSlice";
 
 function Upload() {
 
+  const navigate = useNavigate();
 
   const color_ref = useRef(null);
   const title_ref = useRef(null);
@@ -135,9 +137,12 @@ function Upload() {
     })
     .then((response) => {
       console.log("res ===> ", response);
+      alert(response.data);
+      navigate("/musicfeed")
     })
     .catch((error) => {
       console.log("err ===> ", error);
+      alert("피드 등록 실패")
     });
   }
 

@@ -62,9 +62,12 @@ function Edit() {
     })
     .then((response) => {
       console.log("res ===> ", response);
+      alert(response.data.message);
+      navigate(`/detail/${params.id}`);
     })
     .catch((error) => {
       console.log("err ===> ", error);
+      alert("수정이 안 됩니다..");
     });
   }
 
@@ -349,6 +352,7 @@ input[type=radio] {
 
   #upload-input-music {
     padding: 0 70px;
+    cursor: default;
   }
 
   .upload-button {
