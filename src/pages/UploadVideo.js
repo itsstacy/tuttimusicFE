@@ -11,7 +11,7 @@ import {SERVER_URL} from "../redux/modules/songSlice";
 
 
 
-function Upload() {
+function UploadVideo() {
 
   const color_ref = useRef(null);
   const title_ref = useRef(null);
@@ -454,4 +454,4 @@ let UploadColor = styled.div`
 
 
 
-export default Upload;
+export default UploadVideo;
