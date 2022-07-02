@@ -12,7 +12,13 @@ function Navbar() {
   return (
     <NavBar>
       <div className="nav-wrap">
-        <div className="logo">tutti</div>
+        <div 
+          className="logo"
+          onClick={()=>{
+            navigate('/')
+        }}>
+          tutti
+        </div>
         <div className="nav">
           <ul>
             <li onClick={()=>{
