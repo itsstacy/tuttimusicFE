@@ -57,21 +57,31 @@ const Login = () => {
   }
 
   return (
-      <div>
-          <h3>로그인</h3>
-          <input 
+    <div className='login-container'>
+        <p className='login-title'>tutti</p>
+        <div className='login-info-container'>
+            <div className='login-info-box'>
+                <div className='login-info-input'>
+                <input className='login-email-input'
               onChange={(e)=>{
                   setEmail(e.target.value)
               }}
-              placeholder="이메일을 입력하세요"/><br/>
-          <input 
+              placeholder="이메일 주소를 입력해주세요."/><br/>
+          <input className='login-email-input'
               onChange={(e)=>{
                   setPassword(e.target.value)
               }}
               type="password"
-              placeholder="비밀번호를 입력하세요"/><br/>
-          <button onClick={(loginCheck)}>로그인</button>
-      </div>
+              placeholder="비밀번호를 입력해주세요."/><br/>
+                </div>
+                <div className='login-info-signup'>
+                    <p className='login-tutti-first'>tutti가 처음이신가요?</p>
+                    <p className='login-tutti-signup' onClick={()=>{navigate("/signup")}}>회원가입</p>
+                </div>
+            </div>
+          <button className='login-button' onClick={(loginCheck)}>로그인</button>
+        </div>
+    </div>  
   )
 }
 
