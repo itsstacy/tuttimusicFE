@@ -14,6 +14,7 @@ import MyEdit from "./pages/MyEdit";
 import MyPage from "./pages/MyPage";
 import SearchResult from "./pages/SearchResult";
 import SignUp from './pages/SignUp';
+import UploadChoice from './pages/UploadChoice';
 import Upload from './pages/Upload';
 import UploadVideo from './pages/UploadVideo';
 import UserPage from './pages/UserPage';
@@ -32,7 +33,7 @@ function App() {
             <Route path="/mypage" element={<MyPage />}></Route>
             <Route path="/userpage/:id" element={<UserPage />}></Route>
             <Route path="/myedit" element={<MyEdit />}></Route>
-            <Route path="/upload" element={<Upload />}></Route>
+            <Route path="/upload" element={<UploadChoice />}></Route>
             <Route path="/uploadvideo" element={<UploadVideo />}></Route>
             <Route path="/edit/:id" element={<Edit />}></Route>
             <Route path="/facechat" element={<FaceChat />}></Route>
