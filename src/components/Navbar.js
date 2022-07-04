@@ -31,57 +31,46 @@ function Navbar() {
 
   return (
     <>
-      <NavBar>
-        <div className="nav-wrap">
-          <div className="logo" onClick={() => { navigate('/') }}>tutti</div>
-          <div className="nav">
-            <ul>
-              <li onClick={() => {
-                navigate('/')
-              }}>
-                Home
-              </li>
-              <li onClick={() => {
-                navigate('/musicfeed')
-              }}>
-                Feed
-              </li>
-              <li onClick={() => {
-                navigate('/facechat')
-              }}>
-                Live
-              </li>
-            </ul>
-          </div>
-          <div className="search">
-            <input type="text" placeholder="곡명, 아티스트를 검색하세요." ></input>
-            <BiSearchAlt2 id="search-icon" />
-
-
-          </div>
-          <div className="user-box">
-
-            {token ?
-              <LoginState>
-                <UserImage className="user-image" userProfileUrl={userProfileUrl}></UserImage>
-                <div className="user-name" onClick={() => { setToggleState(!toggleState) }}>{userName}</div>
-                <FaCaretDown id="down-icon" onClick={() => { setToggleState(!toggleState) }}/>
-              </LoginState>
-              :
-              <LogoutState>
-
-                <div className="user-login" onClick={() => { navigate('login') }}>로그인</div>
-                <div className="user-slash"> / </div>
-                <div className="user-signup" onClick={() => { navigate('signup') }}>회원가입</div>
-
-              </LogoutState>}
-
-
-          </div>
-
+    <NavBar>
+      <div className="nav-wrap">
+        <div 
+          className="logo"
+          onClick={()=>{
+            navigate('/')
+        }}>
+          tutti
         </div>
-
-
+        <div className="nav">
+          <ul>
+            <li onClick={()=>{
+              navigate('/')
+            }}>
+              Home
+            </li>
+            <li onClick={()=>{
+              navigate('/musicfeed')
+            }}>
+              Feed
+            </li>
+            <li onClick={()=>{
+              navigate('/facechat')
+            }}>
+              FaceChat
+            </li>
+          </ul>
+        </div>
+        <div className="search">
+          <input type="text" placeholder="곡명, 아티스트를 검색하세요." ></input>
+          <BiSearchAlt2 id="search-icon"/>
+          
+          
+        </div>
+        <div className="user-box">
+          <div className="user-image"></div>
+          <div className="user-name">닉네임</div>
+          <FaCaretDown id="down-icon"/>
+        </div>
+      </div>
 
       </NavBar>
 
