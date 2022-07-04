@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, current } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const SERVER_URL = "http://52.79.234.195";
+export const SERVER_URL = "http://52.79.234.195";
 
 //GET MAIN POST (HOME TAB)
 export const getMainLists = createAsyncThunk("GET/getMainLists", async (token)=>{

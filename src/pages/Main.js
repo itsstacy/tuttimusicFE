@@ -1,5 +1,5 @@
 import React, { useEffect, useState} from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import {getMainLists} from "../redux/modules/songSlice"
@@ -8,7 +8,7 @@ import Slider from "react-slick";
 import "../styles/slick.css";
 import "../styles/slick-theme.css";
 
-import ClipLoader from "react-spinners/ClipLoader";
+import BeatLoader from "react-spinners/BeatLoader";
 
 
 function Main() {
@@ -26,14 +26,13 @@ function Main() {
     window.scrollTo(0,0);
   },[])
 
-  const genreList = useSelector((state)=> state.Song.genreList);
-  const latestList = useSelector((state)=> state.Song.latestList);
-  const likeList = useSelector((state)=> state.Song.likeList);
+  const genreList = useSelector((state)=> state.Song.genreList, shallowEqual);
+  const latestList = useSelector((state)=> state.Song.latestList, shallowEqual);
+  const likeList = useSelector((state)=> state.Song.likeList,shallowEqual);
   console.log(genreList);
   console.log(latestList);
   console.log(likeList);
 
-  
 
   // slider
   function SamplePrevArrow(props) {
@@ -87,7 +86,7 @@ function Main() {
           </p>
           {loading? (
             <div className="spinner-wrap">
-              <ClipLoader color={"grey"} loading={loading} size={35}/>
+              <BeatLoader color={"grey"} loading={loading} size={10}/>
             </div>
           ):(
             <Slider {...settings}>     
@@ -124,7 +123,7 @@ function Main() {
           </p>
           {loading? (
             <div className="spinner-wrap">
-              <ClipLoader color={"grey"} loading={loading} size={35}/>
+              <BeatLoader color={"grey"} loading={loading} size={10}/>
             </div>
           ):(
             <Slider {...settings}>     
@@ -160,7 +159,7 @@ function Main() {
           </p>
           {loading? (
             <div className="spinner-wrap">
-              <ClipLoader color={"grey"} loading={loading} size={35}/>
+              <BeatLoader color={"grey"} loading={loading} size={10}/>
             </div>
           ):(
             <Slider {...settings}>     
