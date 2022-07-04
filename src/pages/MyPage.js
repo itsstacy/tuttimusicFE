@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import '../styles/App.css';
 
 import { FaYoutube } from 'react-icons/fa';
@@ -6,11 +6,20 @@ import { FaYoutube } from 'react-icons/fa';
 import { RiInstagramFill } from 'react-icons/ri'
 
 function MyPage() {
+
+  let [allmucis, setAllmusic] = useState(false);
+  let [likemusic, setLikemusic] = useState(false);
+  let [followmusic, setFollowmusic] = useState(false);
+  let [uploadmusic, setUploadmusic] = useState(false); 
+
+
+
+
   return (
-    // Frame 61
+    // Frame 61 전체 영역
     <div className='mypage-container'>
       
-      {/* Frame 59 */}
+      {/* Frame 59  회원정보 부분*/}
       <div className='mypage-header'>
 
         <div className='header-porfile-img'/>
@@ -24,7 +33,21 @@ function MyPage() {
             <RiInstagramFill className='sns-icon'/><p>instagram_id</p>
             </div>  
           </div>
-            <p className='mypage-follow'>팔로워 : 33 | 팔로잉 : 20</p>
+          <div className='header-follow'>
+                <div className='follow-follower'>
+                  <p>팔로워</p>
+                </div>
+                <div className='follow-follower-count'>
+                  <p>33</p>
+                </div>
+                  <p>|</p>
+                <div className='follow-follower'>
+                  <p>팔로잉</p>
+                </div>
+                <div className='follow-follower-count'>
+                  <p>20</p>
+                </div>
+          </div>
         </div>
 
       </div>
@@ -38,12 +61,9 @@ function MyPage() {
             <p>관심 음악</p>
             <p>팔로잉</p>
             <p>업로드 음악</p>
-        
-        <hr/>
-        
         </div> 
 
-        {/* Frame 52 */}
+        {/* Frame 52 곡 정보 부부 map으로 작업 */}
         <div className='body-contents'>
 
           <div className='body-like'>
