@@ -116,7 +116,7 @@ function Upload() {
       title : title_ref.current.value,
       musicTitle : musicName,
       description : description_ref.current.value,
-      postType : "postType",
+      postType : "audio",
       genre : selectGenre,
       color : color
     }
