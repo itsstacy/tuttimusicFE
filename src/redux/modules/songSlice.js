@@ -40,8 +40,8 @@ export const postComment = createAsyncThunk("POST/postComment", async (props) =>
     artist: props.artist,
     profileUrl: props.profileUrl,
     comment: props.comment,
-    id: props.feedid
-    // timestamp: "방금전",
+    id: props.feedid,
+    modifiedAt:props.modifiedAt,
   }
   const data = {
     comment: props.comment
@@ -54,6 +54,60 @@ export const postComment = createAsyncThunk("POST/postComment", async (props) =>
 
   return commentData;
 }) 
+
+//EDIT A COMMNET
+export const editAComment = createAsyncThunk("PUT/editComment", async (props) => {
+  console.log(props)
+  const editedComment = {
+    feedid: props.feedid,
+    comment: props.comment,
+    commentid: props.commentid,
+    modifiedAt: props.modifiedAt,
+    token: props.token,
+  }
+  const data = {
+    comment: props.comment,
+    modifiedAt: props.modifiedAt,
+  }
+  await axios
+  .put(`${SERVER_URL}/feeds/`+props.feedid+`/`+props.commentid,data, {
+    headers: {Authorization:props.token? props.token:""}
+  })
+  .then((response) => response.data.data)
+
+  return editedComment;
+})
+
+//DELETE A COMMENT
+export const deleteComment = createAsyncThunk("DELETE/deleteComment", async (props) => {
+  console.log(props)
+  const deletedComment ={
+    feedid: props.feedid,
+    commentid: props.commentid,
+  }
+
+  await axios
+  .delete(`${SERVER_URL}/feeds/`+props.feedid+`/`+props.commentid, {
+    headers: {Authorization:props.token? props.token:""}
+  })
+  .then((response) => response.data.data)
+
+  return deletedComment;
+})
+
+
+//LIKE ACTION
+export const likeSong = createAsyncThunk("POST/likeSong", async (props) => {
+  console.log(props)
+  await axios
+  .post(`${SERVER_URL}/like/`+props.feedid,{},{
+    headers: {Authorization:props.token? props.token:""}
+  })
+  .then((response) => response.data.data);
+
+  return props;
+})
+
 
 const SongSlice = createSlice({
   name: "Song",
@@ -103,6 +157,43 @@ const SongSlice = createSlice({
       console.log(state.comments);
     },
     [postComment.rejected]: (state, action) => {
+      console.log("POST REJECTED");
+    },
+    [editAComment.fulfilled]: (state, action) => {
+      console.log("EDIT FULFILLED");
+      console.log(action.payload);
+      console.log(current(state.comments))
+      const new_list = current(state.comments).map((comment,index) => {
+        if (comment.id === action.payload.commentid){
+          return {...comment, comment: action.payload.comment}
+        } else{
+          return comment;
+        }
+      })
+      console.log(new_list);
+      state.comments = new_list;
+    },
+    [editAComment.rejected]: (state, action) =>{
+      console.log("EDIT REJECTED");
+    },
+    [deleteComment.fulfilled]: (state, action) => {
+      console.log("DELETE FULFILLED");
+      console.log(action.payload);
+      console.log(current(state.comments))
+      const new_list = current(state.comments).filter(
+        (comment) => comment.id !== action.payload.commentid
+      );
+      console.log(new_list);
+      state.comments = new_list;
+    },
+    [deleteComment.rejected]: (state, action) =>{
+      console.log("DELETE REJECTED");
+    },
+    [likeSong.fulfilled]: (state, action) => {
+      console.log("POST FULFILLED");
+      console.log(action.payload);
+    },
+    [likeSong.rejected]: (state, action) => {
       console.log("POST REJECTED");
     },
 

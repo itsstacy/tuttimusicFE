@@ -1,13 +1,16 @@
 import React, { useEffect, useState, useRef} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import {getSongDetail,postComment, SERVER_URL} from "../redux/modules/songSlice"
+import {getSongDetail,postComment, SERVER_URL, likeSong} from "../redux/modules/songSlice"
 import {FaRegHeart, FaHeart} from "react-icons/fa";
-// import {BiPlus} from "react-icons/bi"
+import {MdDelete} from "react-icons/md"
 import BeatLoader from "react-spinners/BeatLoader";
+import {BsCheckCircle} from "react-icons/bs";
+import {MdEdit} from "react-icons/md";
 import moment from "moment";
 import Waveform from '../elements/Waveform';
 import axios from "axios";
+import EditComment from "../elements/EditComment";
 
 function Detail() {
   const [loading, setLoading] = useState(true);
@@ -16,11 +19,9 @@ function Detail() {
   const navigate = useNavigate();
   let params = useParams();
 
-  console.log(moment.utc("2019-12-04 12:00:24").local().startOf('seconds').fromNow())
-  console.log(moment().format())
-  console.log(moment("2022-07-01T16:08:54+09:00").startOf('hour').fromNow())
+  // console.log(moment.utc("2019-12-04 12:00:24").local().startOf('seconds').fromNow())
+  // console.log(moment("2022-07-01T16:08:54+09:00").startOf('hour').fromNow())
   const currentTime = moment().format()
-  
 
   useEffect(()=>{
   const token = localStorage.getItem("token");
@@ -33,7 +34,6 @@ function Detail() {
   dispatch(getSongDetail(propslist));
   setTimeout(()=> {
     setLoading(false);
-    
   },200)
   window.scrollTo(0,0);
 },[])
@@ -41,14 +41,15 @@ function Detail() {
   //get lists from songslice
   const detail = useSelector((state)=> state.Song.detail);
   const commentsList = useSelector((state)=> state.Song.comments);
-
+  console.log(detail);
+  console.log(commentsList);
 
   //get user info from local storage
   const userName = localStorage.getItem("userName");
   const userProfileUrl = localStorage.getItem("userProfileUrl");
   
   //add a comment
-  const myComment = React.useRef(null);
+  const myComment = useRef(null);
   console.log(myComment);
 
   const addNewComment = () => {
@@ -62,10 +63,13 @@ function Detail() {
     }));
   }
 
+
+  //go to Edit
   const GoEdit = () => {
     navigate(`/edit/${params.id}`, {state: detail});
   }
 
+  //delete this post
   const GoDelete = () => { 
 
   if(window.confirm("삭제하시겠습니까?")) {
@@ -82,8 +86,22 @@ function Detail() {
     alert("삭제되었습니다.");
     navigate("/musicfeed");
   } 
-
   }
+
+  const ClickEmptyHeart =()=>{
+    dispatch(likeSong({
+      token: token,
+      feedid: detail.id,
+      likeCount: detail.likeCount,
+    }))
+  }
+
+  // const ClickFilledHeart =()=>{
+  //   dispatch(likeSong({
+  //     token: token,
+  //     feedid: detail.id
+  //   }))
+  // }
   
   return (
     <div className="detail-container">
@@ -131,7 +149,13 @@ function Detail() {
               loading={loading}/>
             
             <div className="flex-wrap">
-              {detail.flag===false? <FaRegHeart/> : <FaHeart/>}
+              {detail.flag===false? 
+              <FaRegHeart
+              onClick={
+                ClickEmptyHeart
+              }/> 
+              : <FaHeart
+              />}
               <p className="detail-like">{detail.likeCount}</p>
             </div>
             <p className="detail-song-detail">
@@ -191,16 +215,42 @@ function Detail() {
                   alt={comment.artist}
                   src={comment.profileUrl}
                   />
-                  <div className="row-wrap">
-                    <p className="comment-writer">
+                  <div className="column-wrap">
+                    <EditComment comment={comment} token={token} feedid={detail.id}/>
+                    {/* <p className="comment-writer">
                     {comment.artist}
                     <span className="spantime">
                       {moment(`${comment.modifiedAt}`).startOf('minute').fromNow()}
                     </span>
+                    <MdDelete
+                    className="trashcan"
+                    onClick={()=>{
+                      DeleteComment(comment.id)
+                    }}/>
                     </p>
-                    <p className="comment-text">
-                    {comment.comment}
-                    </p>
+                    <div className="row-wrap">
+                      {editComment === true?
+                      
+                      
+                      : <p className="comment-text">
+                      {comment.comment}
+                      </p>
+                      }
+
+                      {comment.artist === userName?
+                      <>
+                      {editComment === false?
+                      <MdEdit 
+                      className="edit-comment-icon"
+                      onClick={()=>{
+                        setEditComment(true);
+                      }}/>
+                      : <BsCheckCircle/>}
+                      </> 
+                      : null
+                      }
+                    </div> */}
+
                   </div>
                 </div>
               )
