@@ -62,17 +62,21 @@ const Login = () => {
         <div className='login-info-container'>
             <div className='login-info-box'>
                 <div className='login-info-input'>
+
+                    {/* 이메일 부분 */}
                 <input className='login-email-input'
-              onChange={(e)=>{
-                  setEmail(e.target.value)
-              }}
-              placeholder="이메일 주소를 입력해주세요."/><br/>
-          <input className='login-email-input'
-              onChange={(e)=>{
-                  setPassword(e.target.value)
-              }}
-              type="password"
-              placeholder="비밀번호를 입력해주세요."/><br/>
+                    onChange={(e)=>{
+                        setEmail(e.target.value)
+                    }}
+                    placeholder="이메일 주소를 입력해주세요."/>
+
+                    {/* 비밀번호 부분 */}
+                <input className='login-email-input'
+                    onChange={(e)=>{
+                        setPassword(e.target.value)
+                    }}
+                    type="password"
+                    placeholder="비밀번호를 입력해주세요."/>
                 </div>
                 <div className='login-info-signup'>
                     <p className='login-tutti-first'>tutti가 처음이신가요?</p>
