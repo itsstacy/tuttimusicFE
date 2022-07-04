@@ -95,11 +95,17 @@ function Detail() {
       ):(
       <>
         <section className="music-detail">
-
-          {/***** 임시 버튼 *****/}
+        {userName === detail.artist ?  (
+            <>
+            {/***** 임시 버튼 *****/}
           <div className="go-edit" onClick={GoEdit}>수정</div>
           <div className="go-delete" onClick={GoDelete}>삭제</div>
           {/***** 임시 버튼 *****/}
+          </>
+          )
+        
+        : null}
+        
           <div className="left-column">
             <img
             className="detail-album-art" 
