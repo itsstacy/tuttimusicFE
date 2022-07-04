@@ -28,7 +28,7 @@ function Main() {
 
   const genreList = useSelector((state)=> state.Song.genreList, shallowEqual);
   const latestList = useSelector((state)=> state.Song.latestList, shallowEqual);
-  const likeList = useSelector((state)=> state.Song.likeList,shallowEqual );
+  const likeList = useSelector((state)=> state.Song.likeList,shallowEqual);
   console.log(genreList);
   console.log(latestList);
   console.log(likeList);
