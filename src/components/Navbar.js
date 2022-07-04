@@ -68,6 +68,7 @@ function Navbar() {
         <div className="user-box">
         {token ?
               <LoginState>
+                <div className="user-upload" onClick={() => { navigate('upload') }}> 곡 업로드 </div>
                 <UserImage className="user-image" userProfileUrl={userProfileUrl}></UserImage>
                 <div className="user-name" onClick={() => { setToggleState(!toggleState) }}>{userName}</div>
                 <FaCaretDown id="down-icon" onClick={() => { setToggleState(!toggleState) }}/>
@@ -178,9 +179,14 @@ let LoginState = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
 
   div {
     cursor: pointer;
+  }
+
+  .user-upload {
+    margin-right: 40px;
   }
 
   .user-image {
