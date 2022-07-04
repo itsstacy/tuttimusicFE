@@ -112,7 +112,7 @@ function UploadVideo() {
     const feedRequestDto = {
       title : title_ref.current.value,
       description : description_ref.current.value,
-      postType : "postType",
+      postType : "video",
       genre : selectGenre,
       color : color
     }
@@ -183,7 +183,7 @@ function UploadVideo() {
         <div className="upload-image-wrap">
 
         <label className="upload-label">
-          <span className="upload-label-span">앨범 커버</span>
+          <span className="upload-label-span">썸네일</span>
           </label>
           <div className="upload-image-box">
           <UploadImagePreview previewImg={previewImg}></UploadImagePreview>
