@@ -1,12 +1,13 @@
 import React, { useEffect, useState, useRef} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import {getSongDetail,postComment} from "../redux/modules/songSlice"
+import {getSongDetail,postComment, SERVER_URL} from "../redux/modules/songSlice"
 import {FaRegHeart, FaHeart} from "react-icons/fa";
 // import {BiPlus} from "react-icons/bi"
 import BeatLoader from "react-spinners/BeatLoader";
 import moment from "moment";
 import Waveform from '../elements/Waveform';
+import axios from "axios";
 
 function Detail() {
   const [loading, setLoading] = useState(true);
@@ -60,6 +61,29 @@ function Detail() {
     modifiedAt: currentTime,
     }));
   }
+
+  const GoEdit = () => {
+    navigate(`/edit/${params.id}`, {state: detail});
+  }
+
+  const GoDelete = () => { 
+
+  if(window.confirm("삭제하시겠습니까?")) {
+    axios.delete(`${SERVER_URL}/feeds/${params.id}`,{
+      headers: {
+        Authorization: token ? token : ""}
+    })
+    .then((response) => {
+      console.log("res ===> ", response);
+    })
+    .catch((error) => {
+      console.log("err ===> ", error);
+    });
+    alert("삭제되었습니다.");
+    navigate("/musicfeed");
+  } 
+
+  }
   
   return (
     <div className="detail-container">
@@ -71,6 +95,11 @@ function Detail() {
       ):(
       <>
         <section className="music-detail">
+
+          {/***** 임시 버튼 *****/}
+          <div className="go-edit" onClick={GoEdit}>수정</div>
+          <div className="go-delete" onClick={GoDelete}>삭제</div>
+          {/***** 임시 버튼 *****/}
           <div className="left-column">
             <img
             className="detail-album-art" 
