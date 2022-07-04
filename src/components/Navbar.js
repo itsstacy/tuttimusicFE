@@ -66,9 +66,20 @@ function Navbar() {
           
         </div>
         <div className="user-box">
-          <div className="user-image"></div>
-          <div className="user-name">닉네임</div>
-          <FaCaretDown id="down-icon"/>
+        {token ?
+              <LoginState>
+                <UserImage className="user-image" userProfileUrl={userProfileUrl}></UserImage>
+                <div className="user-name" onClick={() => { setToggleState(!toggleState) }}>{userName}</div>
+                <FaCaretDown id="down-icon" onClick={() => { setToggleState(!toggleState) }}/>
+              </LoginState>
+              :
+              <LogoutState>
+
+                <div className="user-login" onClick={() => { navigate('login') }}>로그인</div>
+                <div className="user-slash"> / </div>
+                <div className="user-signup" onClick={() => { navigate('signup') }}>회원가입</div>
+
+              </LogoutState>}
         </div>
       </div>
 
