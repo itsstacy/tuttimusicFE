@@ -1,9 +1,11 @@
-import React from "react"
+import React, {useState} from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import {useDispatch } from "react-redux";
 
 import { BiSearchAlt2 } from "react-icons/bi"
 import { FaCaretDown } from "react-icons/fa"
+import {searchMusic} from "../redux/modules/songSlice";
 
 function Navbar() {
   const navigate = useNavigate();
@@ -27,6 +29,10 @@ function Navbar() {
     setToggleState(false);
     navigate("/mypage");
   }
+
+  //search 
+  const dispatch = useDispatch();
+  const [searchValue, setSearchValue] = useState();
 
 
   return (
@@ -60,8 +66,19 @@ function Navbar() {
           </ul>
         </div>
         <div className="search">
-          <input type="text" placeholder="곡명, 아티스트를 검색하세요." ></input>
-          <BiSearchAlt2 id="search-icon"/>
+          <input 
+          type="text" 
+          placeholder="곡명, 아티스트를 검색하세요." 
+          onChange={(e)=>{
+            setSearchValue(e.target.value)
+          }}></input>
+          <BiSearchAlt2 
+          id="search-icon"
+          onClick={()=>{
+            dispatch(searchMusic(searchValue))
+            navigate('/search')
+          }}
+          />
           
           
         </div>
