@@ -6,7 +6,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Detail from "./pages/Detail";
 import Edit from "./pages/Edit";
-import FaceChat from "./pages/FaceChat";
+import Live from "./pages/Live";
 import Login from "./pages/Login";
 import Main from "./pages/Main";
 import MusicFeed from "./pages/MusicFeed";
@@ -38,7 +38,7 @@ function App() {
             <Route path="/upload/video" element={<UploadVideo />}></Route>
             <Route path="/uploadvideo" element={<UploadVideo />}></Route>
             <Route path="/edit/:id" element={<Edit />}></Route>
-            <Route path="/facechat" element={<FaceChat />}></Route>
+            <Route path="/live" element={<Live />}></Route>
             <Route path="/search" element={<SearchResult />}></Route>
           </Routes>
         </div>
