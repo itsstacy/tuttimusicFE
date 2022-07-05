@@ -65,6 +65,31 @@ function UploadVideo() {
   const [imgName, setImgName] = React.useState(null);
   const [imgFile, setImgFlie] = React.useState(null);
 
+  const [textHeight, setTextHeight] =React.useState(0);
+  const imgName_ref = useRef(null);
+
+  React.useEffect(() => {
+    if (imgName_ref.current.value.length <= 42) {
+      console.log("42 길이" );
+      setTextHeight(19);
+    } else if (42 < imgName_ref.current.value.length && imgName_ref.current.value.length <= 84) {
+      console.log("84 길이" );
+      setTextHeight(34);
+    } else if (84 < imgName_ref.current.value.length && imgName_ref.current.value.length <= 128) {
+      console.log("42 길이" );
+      setTextHeight(49);
+    } else if (128 < imgName_ref.current.value.length && imgName_ref.current.value.length <= 172) {
+      console.log("42 길이" );
+      setTextHeight(64);
+    } else if (172 < imgName_ref.current.value.length && imgName_ref.current.value.length <= 216) {
+      console.log("42 길이" );
+      setTextHeight(79);
+    } else if (216 < imgName_ref.current.value.length && imgName_ref.current.value.length <= 260) {
+      console.log("216 길이" );
+      setTextHeight(94);
+    }
+  })
+
   const onLoadImage = (e) => {
     let render = new FileReader()
     setImgName(e.target.files[0].name);
@@ -99,10 +124,8 @@ function UploadVideo() {
   const [musicFile, setMusicFile] = React.useState(null);
 
   const onLoadMusic = (e) => {
-    
     setMusicName(e.target.files[0].name);
     setMusicFile(e.target.files[0]);
- 
   }
 
   const uploadVideo = () => {
@@ -183,12 +206,16 @@ function UploadVideo() {
         <div className="upload-image-wrap">
 
         <label className="upload-label">
-          <span className="upload-label-span">썸네일</span>
+          <span className="upload-label-span">앨범 커버</span>
           </label>
           <div className="upload-image-box">
           <UploadImagePreview previewImg={previewImg}></UploadImagePreview>
           <label className="upload-label-button" for="upload-image">이미지 업로드</label>
-          <span id="upload-image-span">{imgName}</span>
+          <UploadImageNameWrap className="upload-image-name-wrap" textHeight={textHeight}>
+            <textarea id="upload-image-name" row="1" value={imgName} ref={imgName_ref} spellcheck="false" readOnly></textarea>
+            {/* <textarea id="upload-image-name" ref={imgName_ref} spellCheck="false"></textarea> */}
+
+            </UploadImageNameWrap>
           <input type="file" id="upload-image" accept='image/*' onChange={onLoadImage} />
           </div>
           </div>
@@ -242,6 +269,7 @@ function UploadVideo() {
       </UpLoad>
   )
 }
+
 
 let UpLoad = styled.div`
 display: flex;
@@ -363,6 +391,7 @@ input[type=radio] {
     width:1060px;
     display:flex;
     align-items: flex-end;
+    
   }
 
   .upload-label-button {
@@ -382,8 +411,24 @@ input[type=radio] {
     display:none;
   }
 
-  #upload-image-span {
+  .upload-image-name-wrap {
+    width:310px;
+    vertical-align: middle;
+    display:flex;
+    align-items:flex-end;
+
+  }
+
+  #upload-image-name {
     margin-left:10px;
+    width:310px;
+    height:100%;
+    resize: none;
+    border:none;
+    outline: none;
+    cursor: default;
+    vertical-align: center;
+    
   }
 
   #upload-input-color {
@@ -457,6 +502,9 @@ let UploadColor = styled.div`
   border-radius: 10px;
 `
 
+let UploadImageNameWrap = styled.div`
+height: ${(props) => props.textHeight}px;
+`
 
 
 

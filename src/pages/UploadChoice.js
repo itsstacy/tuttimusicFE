@@ -1,50 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
-
-import Upload from './Upload';
-import UploadVideo from './UploadVideo';
+import { useNavigate } from "react-router-dom";
 
 function UploadChoice() {
 
-  const [choiceState, setChoiceState] = React.useState(true);
-  const [showFile, setShowFile] = React.useState(false);
-  const [showVideo, setShowVideo] = React.useState(false);
+  const navigate = useNavigate();
 
-
-  const ChoiceFile = () => {
-    setChoiceState(false);
-    setShowFile(true);
-  }
-
-  const ChoiceVideo = () => {
-    setChoiceState(false);
-    setShowVideo(true);
-  }
   return (
-    <>
-
-      {choiceState ?
-        <ChoiceWrap>
-          <button className="choice-button" onClick={ChoiceFile}>음악 파일 업로드</button>
-          <button className="choice-button" onClick={ChoiceVideo}>동영상 파일 업로드</button>
-        </ChoiceWrap>
-        :
-        null
-      }
-
-      {showFile ?
-        <Upload />
-        :
-        null
-      }
-
-      {showVideo ?
-        <UploadVideo />
-        :
-        null
-      }
-
-    </>
+    <ChoiceWrap>
+      <button className="choice-button" onClick={() => { navigate("/upload/audio") }}>음악 파일 업로드</button>
+      <button className="choice-button" onClick={() => { navigate("/upload/video") }}>동영상 파일 업로드</button>
+    </ChoiceWrap>
   )
 }
 
@@ -68,4 +34,4 @@ flex-direction: row;
 }
 `
 
-export default UploadChoice
+export default UploadChoice;
