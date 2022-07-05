@@ -109,6 +109,16 @@ export const likeSong = createAsyncThunk("POST/likeSong", async (props) => {
   return props;
 })
 
+//SEARCH MUSIC
+  export const searchMusic = createAsyncThunk("GET/searchMusic", async (props)=>{
+    console.log(props);
+    return await axios
+    .get(`${SERVER_URL}/search?keyword=${props}`, {
+      headers: {Authorization:props.token? props.token:""}
+    })
+    .then((response) => response.data.data)
+  })
+
 const SongSlice = createSlice({
   name: "Song",
   initialState: {
@@ -201,12 +211,19 @@ const SongSlice = createSlice({
         const new_detail = {...current(state.detail), likeCount:action.payload.likeCount-1, flag:false }
         console.log(new_detail)
         state.detail = new_detail;
-      }
-      
+      }      
     },
     [likeSong.rejected]: (state, action) => {
       console.log("POST REJECTED");
     },
+    [searchMusic.fulfilled]: (state, action) => {
+      console.log("GET FULFILLED");
+      console.log(action.payload);
+    },
+    [searchMusic.rejected]: (state, action) => {
+      console.log("GET REJECTED");
+    },
+
 
   }
 })
