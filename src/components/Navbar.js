@@ -76,7 +76,7 @@ function Navbar() {
           id="search-icon"
           onClick={()=>{
             dispatch(searchMusic(searchValue))
-            navigate('/search')
+            navigate('/search', {state: searchValue})
           }}
           />
           

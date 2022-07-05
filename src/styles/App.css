@@ -1405,3 +1405,28 @@
 
 /* LOGIN PAGE END */
 
+/* SEARCH PAGE */
+
+.search-head{
+  font-size:22px;
+  color: #7E7E7E;
+  margin-bottom: 100px;
+}
+
+.bold {
+  font-weight:600;
+  color: black;
+}
+
+.result-name {
+  font-size: 25px;
+  font-weight: 500;
+}
+
+.result-none{
+  font-size: 15px;
+  color: #7E7E7E;
+  margin: 100px auto;
+}
+
+/* SEARCH PAGE END */
