@@ -34,6 +34,8 @@ function App() {
             <Route path="/userpage/:id" element={<UserPage />}></Route>
             <Route path="/myedit" element={<MyEdit />}></Route>
             <Route path="/upload" element={<UploadChoice />}></Route>
+            <Route path="/upload/audio" element={<Upload />}></Route>
+            <Route path="/upload/video" element={<UploadVideo />}></Route>
             <Route path="/uploadvideo" element={<UploadVideo />}></Route>
             <Route path="/edit/:id" element={<Edit />}></Route>
             <Route path="/facechat" element={<FaceChat />}></Route>
