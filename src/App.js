@@ -38,7 +38,7 @@ function App() {
             <Route path="/upload/video" element={<UploadVideo />}></Route>
             <Route path="/uploadvideo" element={<UploadVideo />}></Route>
             <Route path="/edit/:id" element={<Edit />}></Route>
-            <Route path="/facechat" element={<FaceChat />}></Route>
+            <Route path="/live" element={<FaceChat />}></Route>
             <Route path="/search" element={<SearchResult />}></Route>
           </Routes>
         </div>
