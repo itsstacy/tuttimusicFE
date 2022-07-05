@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -12,10 +12,17 @@ const SignUp = () => {
     const [passwordCheck, setPasswordCheck] = useState("");
     const [image, setImage] = useState("");
     const [profileText, setProfileText] = useState("");
+    const [preview, setPreview] = useState(null);
 
-    const [insta, setInsta] = useState("");
-    const [youtube, setYoutube] = useState("");
-  
+    const [insta, setInsta] = useState(null);
+    const [youtube, setYoutube] = useState(null);
+
+    const genreNames = ["발라드", "어쿠스틱", "R&B", "힙합", "댄스", "연주곡"]
+    
+
+
+
+
     //이메일 체크
     const checkEmail = (email) => {
         const regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
@@ -36,18 +43,28 @@ const SignUp = () => {
         }
     }
 
-    //  이미지 올리기
+    //  이미지 올리고 미리보기
     const fileChange = (e) => {
-        console.log(e.target.files[0])
-        if(e.target && e.target.files[0]) {
-            setImage(e.target.files[0])
+        let render = new FileReader()
+        setImage(e.target.files[0])
+
+        if (e.target.files[0]) {
+            render.readAsDataURL(e.target.files[0])
         }
+
+        render.onload = () => {
+            const previewImgUrl = render.result
+
+            if (previewImgUrl) {
+                setPreview([...preview, previewImgUrl])
+            }
+        }
+
+        console.log(e.target.files[0])
 
         
     }
 
-
-    // console.log(email, artist, password, passwordCheck)
 
     //이메일 확인
     const emailCheck = () => {
@@ -80,9 +97,8 @@ const SignUp = () => {
     const artistCheck = () => {
         if (artist === "") {
             return window.alert("닉네임을 입력하세요!")
-        }
-
-        axios
+        } else {
+            axios
             .post("http://52.79.234.195/user/artist",{artist : artist})
             .then((response) => {
                 console.log(response)
@@ -93,6 +109,9 @@ const SignUp = () => {
                 window.alert("중복된 닉네임입니다!")
                 setArtist("")
             })
+        }
+
+        
     }
 
 
@@ -116,22 +135,17 @@ const SignUp = () => {
         if (password !== passwordCheck) {
             return window.alert("비밀번호가 서로 달라요!")
         }
-        
-        //장르 선택 시 해당 값을 보내줘야 함
-
-        //sns 주소 입력 => 해당 값을 보내주고, 
-        //sns 주소 미입력 => null 값을 보내줘야 함
 
 
-        
+        //signupdata로 하나로 만들기 + form데이터 형식으로 보내기
         let signupdata = {
             email : email,
             password : password,
             artist : artist,  
             genre : [null, null, null, null],
             profileText : profileText,
-            instagramUrl : null,
-            youtubeUrl : null
+            instagramUrl : insta,
+            youtubeUrl : youtube
         }
         console.log(signupdata)
 
@@ -151,7 +165,9 @@ const SignUp = () => {
             })
             .catch((error) => {
                 console.log(error)
-            })    
+            })   
+            
+            
     
     }
 
@@ -225,10 +241,6 @@ const SignUp = () => {
                                 placeholder="비밀번호를 입력하세요"
                                 name="password"
                                 />
-                            {/* <div className='signup-pw-check'>
-                                <p className='pw-check'>비밀번호 규칙</p>
-                            </div>     */}
-                                <br/>
                         </div>    
                     </div>
 
@@ -243,7 +255,7 @@ const SignUp = () => {
                         <div className='signup-email-content'>
                             <input className='signup-email-input'
                                     onChange={(e)=>{
-                                        setEmail(e.target.value)
+                                        setArtist(e.target.value)
                                     }}
                                     type="text" 
                                     placeholder="닉네임을 입력하세요"
@@ -254,20 +266,16 @@ const SignUp = () => {
                         
                     </div>
                     
-                    {/* 이미지 업롭드 부분 */}
+                    {/* 이미지 업로드 부분 */}
                     <div className='signup-profile-img-box'>
                         <div className='profile-title-box'>
                             <p className='profile-title'>프로필 이미지</p>
                         </div>
                         <div className='profile-img-form'>
-                            <div className='profile-img-circle' >
-                                {/* 이미지 업로드 => 파일 미리보기 기능 */}
-                            </div>
-                            
-                            <label className="profile-img-button" for="upload-image">이미지 업로드</label>
-                            <input type="file" id="upload-image" accept='image/*' onChange={fileChange} />
+                            <img src={preview} className='profile-img-circle'/>
+                            <label className="profile-img-button" htmlFor="image">이미지 업로드</label>
+                            <input className='img-button' type="file" id="image" accept='image/*' onChange={fileChange} />
 
-                            {/* <input className='profile-img-button' type="file" name="image" onChange={fileChange}/> */}
                         </div>
                     </div>
 
@@ -280,26 +288,19 @@ const SignUp = () => {
                         <div className='genre-container'>
                             <div className='genre-boxes'>
                                 <div className='genre-box'>
-                                    <button className='genre-category'>
-                                        발라드
-                                    </button>
-                                    <button className='genre-category'>
-                                        어쿠스틱
-                                    </button>
-                                    <button className='genre-category'>
-                                        알앤비
-                                    </button>
-                                </div>
-                                <div className='genre-box'>
-                                    <button className='genre-category'>
-                                        힙합
-                                    </button>
-                                    <button className='genre-category'>
-                                        댄스
-                                    </button>
-                                    <button className='genre-category'>
-                                        연주곡
-                                    </button>
+                                    {
+                                        genreNames.map((name, index) => {
+                                            return (
+                                                <button 
+                                                    onClick={()=>console.log(name)}
+                                                    key = {name}
+                                                    className='genre-category'>
+                                                        {name}
+                                                </button>
+                                            )
+                                        }
+                                        )
+                                    }
                                 </div>
                             </div>
                             <div className='genre-info'>
@@ -322,7 +323,6 @@ const SignUp = () => {
                                 placeholder="소개글을 입력하세요"
                                 />
                     </div>
-                    {/* 소개글 : <input type="text" onChange={(e)=>{setProfileText(e.target.value)}}/><br/> */}
                     
                     {/* 인스타 주소 */}
                     <div className='signup-pw-box'>
