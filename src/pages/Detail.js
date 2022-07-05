@@ -1,13 +1,16 @@
 import React, { useEffect, useState, useRef} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import {getSongDetail,postComment, SERVER_URL} from "../redux/modules/songSlice"
+import {getSongDetail,postComment, SERVER_URL, likeSong} from "../redux/modules/songSlice"
 import {FaRegHeart, FaHeart} from "react-icons/fa";
-// import {BiPlus} from "react-icons/bi"
+import {MdDelete} from "react-icons/md"
 import BeatLoader from "react-spinners/BeatLoader";
+import {BsCheckCircle} from "react-icons/bs";
+import {MdEdit} from "react-icons/md";
 import moment from "moment";
 import Waveform from '../elements/Waveform';
 import axios from "axios";
+import EditComment from "../elements/EditComment";
 
 function Detail() {
   const [loading, setLoading] = useState(true);
@@ -16,11 +19,9 @@ function Detail() {
   const navigate = useNavigate();
   let params = useParams();
 
-  console.log(moment.utc("2019-12-04 12:00:24").local().startOf('seconds').fromNow())
-  console.log(moment().format())
-  console.log(moment("2022-07-01T16:08:54+09:00").startOf('hour').fromNow())
+  // console.log(moment.utc("2019-12-04 12:00:24").local().startOf('seconds').fromNow())
+  // console.log(moment("2022-07-01T16:08:54+09:00").startOf('hour').fromNow())
   const currentTime = moment().format()
-  
 
   useEffect(()=>{
   const token = localStorage.getItem("token");
@@ -33,7 +34,6 @@ function Detail() {
   dispatch(getSongDetail(propslist));
   setTimeout(()=> {
     setLoading(false);
-    
   },200)
   window.scrollTo(0,0);
 },[])
@@ -41,31 +41,37 @@ function Detail() {
   //get lists from songslice
   const detail = useSelector((state)=> state.Song.detail);
   const commentsList = useSelector((state)=> state.Song.comments);
-
+  console.log(detail);
+  console.log(commentsList);
 
   //get user info from local storage
   const userName = localStorage.getItem("userName");
   const userProfileUrl = localStorage.getItem("userProfileUrl");
   
   //add a comment
-  const myComment = React.useRef(null);
+  const [myComment, setMyComment] = useState(null);
+  
   console.log(myComment);
 
   const addNewComment = () => {
     dispatch(postComment({
     artist: userName,
     profileUrl: userProfileUrl,
-    comment: myComment.current.value,
+    comment: myComment,
     token: token,
     feedid: detail.id,
     modifiedAt: currentTime,
     }));
+    
   }
 
+
+  //go to Edit
   const GoEdit = () => {
     navigate(`/edit/${params.id}`, {state: detail});
   }
 
+  //delete this post
   const GoDelete = () => { 
 
   if(window.confirm("삭제하시겠습니까?")) {
@@ -82,7 +88,24 @@ function Detail() {
     alert("삭제되었습니다.");
     navigate("/musicfeed");
   } 
+  }
 
+  const ClickEmptyHeart =()=>{
+    dispatch(likeSong({
+      token: token,
+      feedid: detail.id,
+      likeCount: detail.likeCount,
+      isLiked:detail.flag,
+    }))
+  }
+
+  const ClickFilledHeart =()=>{
+    dispatch(likeSong({
+      token: token,
+      feedid: detail.id,
+      likeCount: detail.likeCount,
+      isLiked:detail.flag,
+    }))
   }
   
   return (
@@ -131,7 +154,16 @@ function Detail() {
               loading={loading}/>
             
             <div className="flex-wrap">
-              {detail.flag===false? <FaRegHeart/> : <FaHeart/>}
+              {detail.flag===false? 
+              <FaRegHeart
+              onClick={
+                ClickEmptyHeart
+              }/> 
+              : <FaHeart
+              onClick={
+                ClickFilledHeart
+              }
+              />}
               <p className="detail-like">{detail.likeCount}</p>
             </div>
             <p className="detail-song-detail">
@@ -159,7 +191,7 @@ function Detail() {
       ):(
         <section className="music-comment">
           <p className="detail-info-title">
-          댓글 <span className="spangrey">3</span>
+          댓글 <span className="spangrey">{commentsList&&commentsList.length}</span>
           </p> 
 
           <div className="comment-input-wrap">
@@ -172,12 +204,16 @@ function Detail() {
             className="comment-input"
             type="text"  
             placeholder="댓글을 입력해주세요."
-            ref={myComment}
+            value={myComment}
+            onChange={(e)=>{
+             setMyComment(e.target.value)
+           }}
             />
             <button 
             className="btn btn-primary"
             onClick={()=>{
-              addNewComment()
+              addNewComment();
+              setMyComment("");
             }}>
             등록
             </button>
@@ -191,16 +227,10 @@ function Detail() {
                   alt={comment.artist}
                   src={comment.profileUrl}
                   />
-                  <div className="row-wrap">
-                    <p className="comment-writer">
-                    {comment.artist}
-                    <span className="spantime">
-                      {moment(`${comment.modifiedAt}`).startOf('minute').fromNow()}
-                    </span>
-                    </p>
-                    <p className="comment-text">
-                    {comment.comment}
-                    </p>
+                  <div className="column-wrap">
+                    <EditComment comment={comment} token={token} feedid={detail.id} username={userName}/>
+                    
+
                   </div>
                 </div>
               )

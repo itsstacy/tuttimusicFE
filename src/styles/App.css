@@ -323,11 +323,25 @@
   flex-direction: row;
   gap: 30px;
   align-items: center;
+  width: 100%;
+}
+
+.column-wrap{
+  display: flex;
+  flex-direction: column;
+  width:100%;
+  
 }
 
 .row-wrap{
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  width:100%;
+  align-items:center;
+}
+
+.flex-between{
+  justify-content: space-between;
 }
 
 .comment-writer{
@@ -344,7 +358,75 @@
 .spantime {
   color: #BCBCBC;
   font-size: 14px;
-  margin-left: 7px;
+  margin: 0px 7px;
+}
+
+.trashcan{
+  font-size:19px;
+  vertical-align: bottom;
+}
+
+.edit-comment-input{
+  padding: 15px 30px;
+  margin: 0px 20px 0px 0px;
+  background: #E8E8E8;
+  border-radius: 10px;
+  max-width: 1050px;
+  width: 100%;
+  outline: none;
+  border: none;
+  height: 60px;
+  font-size: 18px;
+}
+
+.edit-comment-icon{
+  display: inline;
+  width: 18px;
+  height: 18px;
+}
+
+.icon-round-button{
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 40px;
+  font-size: 22px;
+  position: relative;
+}
+
+.icon-round-button:hover{
+  background: #E8E8E8;
+}
+
+.relative-wrap{
+  position: relative;
+}
+
+.dropdown-menu{
+  padding: 5px 10px;
+  width: 100px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.dropdown-menu:first-child{
+  padding-bottom: 0px !important;
+}
+
+.dropdown-menu>p{
+  margin: 3px;
+}
+
+.dropdown-box {
+  position: absolute;
+  top:38px;
+  border: 1px solid black;
+  background: white;
+  padding: 0;
+  margin: 0;
 }
 
 /* DETAIL END */
@@ -372,13 +454,6 @@
 }
 
 /* WAVE FORM END */
-
-
-
-/* EDIT PAGE */
-
-
-/* EDIT PAGE END */
 
 
 
@@ -1321,3 +1396,4 @@
 }
 
 /* LOGIN PAGE END */
+
