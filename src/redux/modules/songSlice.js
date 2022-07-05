@@ -116,7 +116,7 @@ export const likeSong = createAsyncThunk("POST/likeSong", async (props) => {
     .get(`${SERVER_URL}/search?keyword=${props}`, {
       headers: {Authorization:props.token? props.token:""}
     })
-    .then((response) => response.data.data)
+    .then((response) => response.data)
   })
 
 const SongSlice = createSlice({
@@ -219,6 +219,9 @@ const SongSlice = createSlice({
     [searchMusic.fulfilled]: (state, action) => {
       console.log("GET FULFILLED");
       console.log(action.payload);
+      state.result_artist = action.payload.artist;
+      state.result_title = action.payload.title;
+      console.log(state.result_artist)
     },
     [searchMusic.rejected]: (state, action) => {
       console.log("GET REJECTED");
