@@ -44,7 +44,8 @@ export const postComment = createAsyncThunk("POST/postComment", async (props) =>
     modifiedAt:props.modifiedAt,
   }
   const data = {
-    comment: props.comment
+    comment: props.comment,
+    modifiedAt:props.modifiedAt,
   }
   await axios
   .post(`${SERVER_URL}/feeds/`+props.feedid,data,{
@@ -107,7 +108,6 @@ export const likeSong = createAsyncThunk("POST/likeSong", async (props) => {
 
   return props;
 })
-
 
 const SongSlice = createSlice({
   name: "Song",
@@ -192,6 +192,17 @@ const SongSlice = createSlice({
     [likeSong.fulfilled]: (state, action) => {
       console.log("POST FULFILLED");
       console.log(action.payload);
+      console.log(current(state.detail))
+      if (action.payload.isLiked === false) {
+        const new_detail = {...current(state.detail), likeCount:action.payload.likeCount+1, flag:true }
+        console.log(new_detail)
+        state.detail = new_detail;
+      } else {
+        const new_detail = {...current(state.detail), likeCount:action.payload.likeCount-1, flag:false }
+        console.log(new_detail)
+        state.detail = new_detail;
+      }
+      
     },
     [likeSong.rejected]: (state, action) => {
       console.log("POST REJECTED");

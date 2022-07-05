@@ -49,18 +49,20 @@ function Detail() {
   const userProfileUrl = localStorage.getItem("userProfileUrl");
   
   //add a comment
-  const myComment = useRef(null);
+  const [myComment, setMyComment] = useState(null);
+  
   console.log(myComment);
 
   const addNewComment = () => {
     dispatch(postComment({
     artist: userName,
     profileUrl: userProfileUrl,
-    comment: myComment.current.value,
+    comment: myComment,
     token: token,
     feedid: detail.id,
     modifiedAt: currentTime,
     }));
+    
   }
 
 
@@ -93,15 +95,18 @@ function Detail() {
       token: token,
       feedid: detail.id,
       likeCount: detail.likeCount,
+      isLiked:detail.flag,
     }))
   }
 
-  // const ClickFilledHeart =()=>{
-  //   dispatch(likeSong({
-  //     token: token,
-  //     feedid: detail.id
-  //   }))
-  // }
+  const ClickFilledHeart =()=>{
+    dispatch(likeSong({
+      token: token,
+      feedid: detail.id,
+      likeCount: detail.likeCount,
+      isLiked:detail.flag,
+    }))
+  }
   
   return (
     <div className="detail-container">
@@ -155,6 +160,9 @@ function Detail() {
                 ClickEmptyHeart
               }/> 
               : <FaHeart
+              onClick={
+                ClickFilledHeart
+              }
               />}
               <p className="detail-like">{detail.likeCount}</p>
             </div>
@@ -183,7 +191,7 @@ function Detail() {
       ):(
         <section className="music-comment">
           <p className="detail-info-title">
-          댓글 <span className="spangrey">3</span>
+          댓글 <span className="spangrey">{commentsList&&commentsList.length}</span>
           </p> 
 
           <div className="comment-input-wrap">
@@ -196,12 +204,16 @@ function Detail() {
             className="comment-input"
             type="text"  
             placeholder="댓글을 입력해주세요."
-            ref={myComment}
+            value={myComment}
+            onChange={(e)=>{
+             setMyComment(e.target.value)
+           }}
             />
             <button 
             className="btn btn-primary"
             onClick={()=>{
-              addNewComment()
+              addNewComment();
+              setMyComment("");
             }}>
             등록
             </button>
@@ -216,40 +228,8 @@ function Detail() {
                   src={comment.profileUrl}
                   />
                   <div className="column-wrap">
-                    <EditComment comment={comment} token={token} feedid={detail.id}/>
-                    {/* <p className="comment-writer">
-                    {comment.artist}
-                    <span className="spantime">
-                      {moment(`${comment.modifiedAt}`).startOf('minute').fromNow()}
-                    </span>
-                    <MdDelete
-                    className="trashcan"
-                    onClick={()=>{
-                      DeleteComment(comment.id)
-                    }}/>
-                    </p>
-                    <div className="row-wrap">
-                      {editComment === true?
-                      
-                      
-                      : <p className="comment-text">
-                      {comment.comment}
-                      </p>
-                      }
-
-                      {comment.artist === userName?
-                      <>
-                      {editComment === false?
-                      <MdEdit 
-                      className="edit-comment-icon"
-                      onClick={()=>{
-                        setEditComment(true);
-                      }}/>
-                      : <BsCheckCircle/>}
-                      </> 
-                      : null
-                      }
-                    </div> */}
+                    <EditComment comment={comment} token={token} feedid={detail.id} username={userName}/>
+                    
 
                   </div>
                 </div>

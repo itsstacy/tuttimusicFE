@@ -7,7 +7,9 @@ import{HiOutlineDotsVertical} from "react-icons/hi" ;
 import {MdEdit} from "react-icons/md";
 
 function EditComment(props) {
+  console.log(props)
   const comment = props.comment
+  const username = props.username
   const dispatch = useDispatch();
   const editedComment = useRef(null);
   const [editing, setEditing] = useState(false);
@@ -24,7 +26,8 @@ function EditComment(props) {
       feedid: props.feedid,
       commentid: comment.id,
     }))
-  } 
+  }
+    setDropdown(false); 
   }
 
   //save edited comment
@@ -37,6 +40,7 @@ function EditComment(props) {
       comment: editValue,
     }))
     setEditing(false);
+    setDropdown(false); 
   }
 
 
@@ -54,6 +58,8 @@ function EditComment(props) {
             <p className="comment-text">
             {comment.comment}
             </p>
+
+            {comment.artist === username?
             <div className="relative-wrap">              
               <div className="icon-round-button"
                 onClick={()=>{
@@ -84,6 +90,10 @@ function EditComment(props) {
                 null
               }
             </div>
+            : null
+            }
+
+
           </div>
         </>
     : 
