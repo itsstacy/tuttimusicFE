@@ -5,11 +5,9 @@ import styled from 'styled-components';
 import { HexColorPicker } from "react-colorful";
 
 import { FaMusic } from "react-icons/fa"
-
 import axios from 'axios';
 
 import {SERVER_URL} from "../redux/modules/songSlice";
-
 
 
 function UploadVideo() {
@@ -19,7 +17,6 @@ function UploadVideo() {
   const color_ref = useRef(null);
   const title_ref = useRef(null);
   const description_ref = useRef(null);
-
 
   const [selectGenre, setSelectGenre] = React.useState("장르를 선택해 주세요.");
   const [genreState, setGenreState] = React.useState(false);
@@ -122,28 +119,40 @@ function UploadVideo() {
 
   const [musicName, setMusicName] = React.useState(null);
   const [musicFile, setMusicFile] = React.useState(null);
-
   const onLoadMusic = (e) => {
+    
     setMusicName(e.target.files[0].name);
     setMusicFile(e.target.files[0]);
+
   }
 
-  const uploadVideo = () => {
 
+
+
+
+  const uploadMusic = () => {
+    
     const token = localStorage.getItem("token");
 
     const feedRequestDto = {
       title : title_ref.current.value,
+      musicTitle : musicName,
       description : description_ref.current.value,
       postType : "video",
       genre : selectGenre,
       color : color
     }
 
+    console.log("feedRequestDto ==> ",feedRequestDto);
+
     const formData = new FormData();
     formData.append("feedRequestDto", new Blob([JSON.stringify(feedRequestDto)], {type: "application/json"}))
     formData.append("song", musicFile)
     formData.append("albumImage", imgFile)
+
+    // console.log("formData ===> ", formData);
+    // console.log("song ===> ", musicFile);
+    // console.log("albumImage ===> ", imgFile);
 
     axios.post(`${SERVER_URL}/feeds/upload`, formData,{
       headers: {
@@ -166,7 +175,7 @@ function UploadVideo() {
     
     <UpLoad>
       <div className="upload-wrap">
-      <p className="upload-title">영상 업로드</p>
+      <p className="upload-title">곡 업로드</p>
       <p className="upload-subtitle">당신의 음악을 세상에 들려주세요!</p>
       <div className="upload-form">
 
@@ -174,14 +183,14 @@ function UploadVideo() {
 
         <label className="upload-label">
           <span className="upload-label-span">곡명</span>
-          <input type="text" className="upload-input" placeholder="곡명을 입력해 주세요."/>
+          <input type="text" className="upload-input" placeholder="곡명을 입력해 주세요." ref={title_ref}/>
         </label>
 
         {/***** 소개글 *****/}
 
         <label className="upload-label">
           <span className="upload-label-span">소개글</span>
-          <textarea className="upload-input" placeholder="곡에 대해 소개해 주세요."/>
+          <textarea className="upload-input" placeholder="곡에 대해 소개해 주세요." ref={description_ref}/>
         </label>
 
         {/***** 장르 *****/}
@@ -206,11 +215,11 @@ function UploadVideo() {
         <div className="upload-image-wrap">
 
         <label className="upload-label">
-          <span className="upload-label-span">앨범 커버</span>
+          <span className="upload-label-span">썸네일</span>
           </label>
           <div className="upload-image-box">
           <UploadImagePreview previewImg={previewImg}></UploadImagePreview>
-          <label className="upload-label-button" for="upload-image">이미지 업로드</label>
+          <label className="upload-label-button" for="upload-image">썸네일 업로드</label>
           <UploadImageNameWrap className="upload-image-name-wrap" textHeight={textHeight}>
             <textarea id="upload-image-name" row="1" value={imgName} ref={imgName_ref} spellcheck="false" readOnly></textarea>
             {/* <textarea id="upload-image-name" ref={imgName_ref} spellCheck="false"></textarea> */}
@@ -219,7 +228,6 @@ function UploadVideo() {
           <input type="file" id="upload-image" accept='image/*' onChange={onLoadImage} />
           </div>
           </div>
-          
           
         
 
@@ -254,12 +262,12 @@ function UploadVideo() {
           <div className="upload-music-box">
           <label className="upload-label-button-music" for="upload-music">
           <FaMusic id="upload-music-icon"/></label>
-          <input type="text" className="upload-input" id="upload-input-music" placeholder="동영상 파일을 선택해 주세요." value={musicName}/>
+          <input type="text" className="upload-input" id="upload-input-music" placeholder="음악 파일을 선택해 주세요." value={musicName}/>
           <input type="file" id="upload-music" accept='video/*' onChange={onLoadMusic}/>
           </div>
           </div>
 
-          <button className="upload-button" onClick={uploadVideo}>업로드</button>
+          <button className="upload-button" onClick={uploadMusic}>업로드</button>
         
 
 
@@ -427,8 +435,7 @@ input[type=radio] {
     border:none;
     outline: none;
     cursor: default;
-    vertical-align: center;
-    
+    vertical-align: center;    
   }
 
   #upload-input-color {
@@ -505,6 +512,8 @@ let UploadColor = styled.div`
 let UploadImageNameWrap = styled.div`
 height: ${(props) => props.textHeight}px;
 `
+
+
 
 
 
