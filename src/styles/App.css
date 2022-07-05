@@ -467,9 +467,11 @@
   width: 1280px;
   height: 1459px; */
 
-  max-width: var(--container-width);
+  max-width: 1280px;
+  width: 100%;
   margin: 50px auto;
   position: relative;
+  
 }
 
 .mypage-header {
@@ -605,6 +607,10 @@
   align-items: flex-start;
   padding: 25px 20px;
   gap: 61px;
+}
+
+.body-bar-menu {
+  cursor: pointer;
 }
 
 .body-contents {
@@ -1266,7 +1272,9 @@
   padding: 60px 0px;
   gap: 90px;
 
-  width: 600px;
+  max-width: 1280px;
+  width: 100%;
+  /* width: 600px; */
   height: 567px;
   
   margin : 0px auto 500px;
