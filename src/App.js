@@ -5,8 +5,9 @@ import { Routes, Route} from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Detail from "./pages/Detail";
+import DetailVideo from './pages/DetailVideo';
 import Edit from "./pages/Edit";
-import FaceChat from "./pages/FaceChat";
+import Live from "./pages/Live";
 import Login from "./pages/Login";
 import Main from "./pages/Main";
 import MusicFeed from "./pages/MusicFeed";
@@ -29,14 +30,17 @@ function App() {
             <Route path="/signup" element={<SignUp />}></Route>
             <Route path="/login" element={<Login />}></Route>
             <Route path="/detail/:id" element={<Detail />}></Route>
+            <Route path="/detail/video/:id" element={<DetailVideo />}></Route>
             <Route path="/musicfeed" element={<MusicFeed />}></Route>
             <Route path="/mypage" element={<MyPage />}></Route>
             <Route path="/userpage/:id" element={<UserPage />}></Route>
             <Route path="/myedit" element={<MyEdit />}></Route>
             <Route path="/upload" element={<UploadChoice />}></Route>
+            <Route path="/upload/audio" element={<Upload />}></Route>
+            <Route path="/upload/video" element={<UploadVideo />}></Route>
             <Route path="/uploadvideo" element={<UploadVideo />}></Route>
             <Route path="/edit/:id" element={<Edit />}></Route>
-            <Route path="/facechat" element={<FaceChat />}></Route>
+            <Route path="/live" element={<Live />}></Route>
             <Route path="/search" element={<SearchResult />}></Route>
           </Routes>
         </div>
