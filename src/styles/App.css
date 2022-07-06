@@ -485,6 +485,7 @@
   width: 100%;
   margin: 50px auto;
   position: relative;
+  min-height: 100vh;
   
 }
 
@@ -525,8 +526,6 @@
   align-items: flex-start;
   padding: 0px;
   gap: 40px;
-
-  width: 232px;
   height: 123px;
 }
 
@@ -609,11 +608,9 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 0px;
   gap: 60px;
 
   width: 1280px;
-  height: 1196px;
 }
 
 .body-bar {
@@ -636,7 +633,6 @@
   gap: 80px;
 
   width: 1280px;
-  height: 1060px;
 }
 
 .body-like {
@@ -647,7 +643,6 @@
   gap: 39px;
 
   width: 1280px;
-  height: 317px;
 }
 
 .body-font {
@@ -664,7 +659,6 @@
   gap: 28px;
 
   width: 1280px;
-  height: 248px;
 }
 
 .body-card {
@@ -677,7 +671,6 @@
   margin-top: -50px;
 
   width: 190px;
-  height: 248px;
 }
 
 .body-card-img {
@@ -707,7 +700,6 @@
   gap: 39px;
 
   width: 1280px;
-  height: 266px;
 }
 
 .body-following-card {
@@ -736,11 +728,28 @@
   gap: 39px;
 
   width: 1280px;
-  height: 317px;
 
   background-color: #7e7e7e;
 }
 
+/* TAB */
+
+.tab-body {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 28px;
+
+  width: 1280px;
+}
+
+.notice-text{
+  color: #7e7e7e;
+  display: block;
+  margin: 50px auto;
+}
 
 /* MYPAGE END */
 

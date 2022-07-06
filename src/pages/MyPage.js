@@ -8,7 +8,12 @@ import { FaYoutube } from 'react-icons/fa';
 import { RiInstagramFill } from 'react-icons/ri'
 import axios from 'axios';
 
-import BeatLoader from "react-spinners/BeatLoader";
+import Tab1 from '../elements/Tab1';
+import Tab2 from '../elements/Tab2';
+import Tab3 from '../elements/Tab3';
+import Tab4 from '../elements/Tab4';
+import Tab5 from '../elements/Tab5';
+import Tab6 from '../elements/Tab6';
 
 function MyPage() {
 
@@ -21,15 +26,12 @@ function MyPage() {
   const [uploadList, setUploadList] = useState([]);
   const [userInfoDto, setUserInfoDto] = useState([]);
 
-
-
   const token = localStorage.getItem("token");
 
   const [loading, setLoading] = useState(true);
 
   useEffect(()=>{
     console.log(token)
-
     setLoading(true);
     
     axios
@@ -59,18 +61,19 @@ function MyPage() {
 
   console.log(loading)
   
+  console.log(tab)
 
   return (
-
-    
-
     // Frame 61 전체 영역
     <div className='mypage-container'>
 
       {/* Frame 59  회원정보 부분*/}
       <div className='mypage-header'>
 
-        <img className='header-porfile-img' src={userInfoDto.profileImage}/>
+        <img 
+        className='header-porfile-img' 
+        src={userInfoDto.profileImage}
+        alt={userInfoDto.artist}/>
 
         <div className='header-profile-info'>
           <div className='header-artist'>
@@ -105,69 +108,29 @@ function MyPage() {
         {/* Fram 54 */}
         <div className='body-bar'>
             <p className='body-bar-menu' onClick={()=>{setTab(0)}}>전체</p>
-            <p className='body-bar-menu'  onClick={()=>{setTab(1)}}>관심 음악</p>
-            <p className='body-bar-menu' onClick={()=>{setTab(2)}}>팔로잉</p>
-            <p className='body-bar-menu' onClick={()=>{setTab(3)}}>업로드 음악</p>
+            <p className='body-bar-menu'  onClick={()=>{setTab(1)}}>관심음악</p>
+            <p className='body-bar-menu' onClick={()=>{setTab(2)}}>관심영상</p>
+            <p className='body-bar-menu' onClick={()=>{setTab(3)}}>팔로잉</p>
+            <p className='body-bar-menu' onClick={()=>{setTab(4)}}>업로드음악</p>
+            <p className='body-bar-menu' onClick={()=>{setTab(5)}}>업로드영상</p>
             {/* <TabContent tab={tab}/> */}
         </div> 
 
-        {/* Frame 52 곡 정보 부부 map으로 작업 */}
-        {/* 각 탭을 눌렀을 떄 바뀌는 부분 */}
         <div className='body-contents'>
-
-          
-          <div className='body-like'>
-            <p className='body-font'>관심 음악</p>
-
-              {/* 로딩 중 스피너 나오는 부분 */}
-              {loading? (
-              <div className="spinner-wrap">
-                <BeatLoader color={"grey"} loading={loading} size={10}/>
-              </div>
-                ):(
-              <div className='body-like-list'>
-                    {
-                      //앞에 LikeList는 가져오는 컴포넌트, 두번째 likeList는 변수명 {}=> 내려줄 값, state값(props값)
-                    <LikeList likeList={likeList}/>
-                    } 
-                    
-              </div>     
-              )}  
-          </div>
-      
-
-          
-          <div className='body-following'>
-            <p className='body-font'>팔로잉</p>
-              {loading? (
-              <div className="spinner-wrap">
-                <BeatLoader color={"grey"} loading={loading} size={10}/>
-              </div>
-            ):(
-                <div className='body-like-list'>
-                <FollowingList followingList={followingList}/>
-                </div>
-                )}
-            
-          </div>
-          
-
-          
-          <div className='body-like'>
-            <p className='body-font'>업로드한 음악</p>
-              {loading? (
-              <div className="spinner-wrap">
-                <BeatLoader color={"grey"} loading={loading} size={10}/>
-              </div>
-            ):(
-                <div className='body-like-list'>
-                      <UploadList uploadList={uploadList}/>
-                    </div>
-                )}
-            
-          </div>
-
-
+          {tab ===0?
+          (<Tab1 followingList={followingList} likeList={likeList} uploadList={uploadList} />)
+          :tab ===1?
+          (<Tab2/>)
+          :tab ===2?
+          (<Tab3/>)
+          :tab ===3?
+          (<Tab4/>)
+          :tab ===4?
+          (<Tab5/>)
+          :tab ===5?
+          (<Tab6/>)
+          : null
+          }
         </div>
       </div>
     </div>
