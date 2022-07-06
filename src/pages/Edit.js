@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import styled from 'styled-components';
@@ -21,7 +21,14 @@ function Edit() {
 
   React.useEffect(() => {
     setColor(detail.color);
+    if (detail.postType === "audio") {
+      setType(true);
+    } else if (detail.postType === "video") {
+      setType(false);
+    }
   },[])
+
+  const [type, setType] = useState(true);
 
 
   const color_ref = useRef(null);
@@ -114,10 +121,12 @@ function Edit() {
         <div className="upload-image-wrap">
 
         <label className="upload-label">
-          <span className="upload-label-span">앨범 커버</span>
+          <span className="upload-label-span">
+            {type ? "앨범 커버" : "썸네일"}
+            </span>
           </label>
           <div className="upload-image-box">
-          <UploadImagePreview previewImg={previewImg}></UploadImagePreview>
+          <UploadImagePreview previewImg={previewImg} type={type}></UploadImagePreview>
           </div>
           </div>
           
@@ -368,7 +377,7 @@ input[type=radio] {
 `
 
 let UploadImagePreview = styled.div`
-  width:290px;
+  width: ${(props) => (props.type ? "290px" : "480px")};
   height:290px;
   background-color:#E8E8E8;
   border-radius: 10px;

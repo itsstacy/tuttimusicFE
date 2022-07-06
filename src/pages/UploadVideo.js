@@ -21,7 +21,7 @@ function UploadVideo() {
   const [selectGenre, setSelectGenre] = React.useState("장르를 선택해 주세요.");
   const [genreState, setGenreState] = React.useState(false);
   
-  const genreList = ["발라드", "R&B", "힙합", "댄스곡", "연주곡"]
+  const genreList = ["발라드", "어쿠스틱","R&B", "힙합", "댄스", "연주곡"]
 
   const genreOpenClose = () => {
     setGenreState(!genreState);
@@ -175,7 +175,7 @@ function UploadVideo() {
     
     <UpLoad>
       <div className="upload-wrap">
-      <p className="upload-title">곡 업로드</p>
+      <p className="upload-title">영상 업로드</p>
       <p className="upload-subtitle">당신의 음악을 세상에 들려주세요!</p>
       <div className="upload-form">
 
@@ -219,7 +219,7 @@ function UploadVideo() {
           </label>
           <div className="upload-image-box">
           <UploadImagePreview previewImg={previewImg}></UploadImagePreview>
-          <label className="upload-label-button" for="upload-image">썸네일 업로드</label>
+          <label className="upload-label-button" for="upload-image">이미지 업로드</label>
           <UploadImageNameWrap className="upload-image-name-wrap" textHeight={textHeight}>
             <textarea id="upload-image-name" row="1" value={imgName} ref={imgName_ref} spellcheck="false" readOnly></textarea>
             {/* <textarea id="upload-image-name" ref={imgName_ref} spellCheck="false"></textarea> */}
@@ -492,8 +492,8 @@ input[type=radio] {
 `
 
 let UploadImagePreview = styled.div`
-  width:290px;
-  height:290px;
+  width:480px;
+  height:270px;
   background-color:#E8E8E8;
   border-radius: 10px;
   background-image:url(${(props) => props.previewImg});

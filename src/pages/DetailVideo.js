@@ -8,9 +8,9 @@ import BeatLoader from "react-spinners/BeatLoader";
 import {BsCheckCircle} from "react-icons/bs";
 import {MdEdit} from "react-icons/md";
 import moment from "moment";
-import Waveform from '../elements/Waveform';
 import axios from "axios";
 import EditComment from "../elements/EditComment";
+import EditDelete from "../elements/EditDelete";
 
 function DetailVideo() {
   const [loading, setLoading] = useState(true);
@@ -117,17 +117,38 @@ function DetailVideo() {
         </div>
       ):(
       <>
+        <section className="music-video">
+        <video controls controlsList="nodownload">
+        <source src={detail.songUrl} type="video/mp4"/>
+        브라우저가 video 태그를 지원하지 않습니다.
+      </video>
+      <div class="music-video-title-wrap">
+      <div className="music-video-title">{detail.title}</div>
+      <div className="music-video-edit-box">
+      {userName === detail.artist ?  
+          <EditDelete detail={detail} token={token} id={params.id}/>
+          : null}
+      
+      </div>
+          </div>
+      </section>
+      <div className="flex-wrap">
+              {detail.flag===false? 
+              <FaRegHeart
+              onClick={
+                ClickEmptyHeart
+              }/> 
+              : <FaHeart
+              onClick={
+                ClickFilledHeart
+              }
+              />}
+              <p className="detail-like">{detail.likeCount}</p>
+            </div>
         <section className="music-detail">
-        {userName === detail.artist ?  (
-            <>
-            {/***** 임시 버튼 *****/}
-          <div className="go-edit" onClick={GoEdit}>수정</div>
-          <div className="go-delete" onClick={GoDelete}>삭제</div>
-          {/***** 임시 버튼 *****/}
-          </>
-          )
         
-        : null}
+        
+        
         
           <div className="left-column">
             <div className="detail-artist-profile">
@@ -142,22 +163,7 @@ function DetailVideo() {
             </div>
           </div>
           <div className="right-column">
-            
-      
-            
-            <div className="flex-wrap">
-              {detail.flag===false? 
-              <FaRegHeart
-              onClick={
-                ClickEmptyHeart
-              }/> 
-              : <FaHeart
-              onClick={
-                ClickFilledHeart
-              }
-              />}
-              <p className="detail-like">{detail.likeCount}</p>
-            </div>
+
             <p className="detail-song-detail">
               {detail.description} <br/>
               곡을 소개해주세요. 곡을 소개하는 부분입니다.<br/>
@@ -170,13 +176,6 @@ function DetailVideo() {
             </p>
           </div>
         </section>
-        <section className="music-video">
-          <div className="music-video-title">{detail.title}</div>
-        <video controls controlsList="nodownload">
-        <source src={detail.songUrl} type="video/mp4"/>
-        브라우저가 video 태그를 지원하지 않습니다.
-      </video>
-      </section>
 
     
       </>
