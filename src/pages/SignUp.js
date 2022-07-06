@@ -13,6 +13,7 @@ const SignUp = () => {
     const [image, setImage] = useState("");
     const [profileText, setProfileText] = useState("");
     const [preview, setPreview] = useState(null);
+    //초기값을 null로 해야 사각형이 안나옴!
 
     const [insta, setInsta] = useState(null);
     const [youtube, setYoutube] = useState(null);
