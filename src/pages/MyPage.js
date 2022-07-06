@@ -1,5 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import '../styles/App.css';
+import LikeList from '../elements/LikeList'
+import FollowingList from '../elements/FollowingList';
+import UploadList from '../elements/UploadList';
 
 import { FaYoutube } from 'react-icons/fa';
 import { RiInstagramFill } from 'react-icons/ri'
@@ -9,13 +12,14 @@ import BeatLoader from "react-spinners/BeatLoader";
 
 function MyPage() {
 
-  // let [tab, setTab] = useState(0);
+  const [tab, setTab] = useState(0);
+
   const [data, setData] = useState(null);
 
-  const [followingList, setFollowingList] = useState(null);
-  const [likeList, setLikeList] = useState(null);
-  const [uploadList, setUploadList] = useState(null);
-  const [userInfoDto, setUserInfoDto] = useState(null);
+  const [followingList, setFollowingList] = useState([]);
+  const [likeList, setLikeList] = useState([]);
+  const [uploadList, setUploadList] = useState([]);
+  const [userInfoDto, setUserInfoDto] = useState([]);
 
 
 
@@ -26,8 +30,8 @@ function MyPage() {
   useEffect(()=>{
     console.log(token)
 
-
     setLoading(true);
+    
     axios
     .get("http://52.79.234.195/user/mypage", {
       headers: {Authorization:token? token:""}
@@ -36,8 +40,11 @@ function MyPage() {
       setData(response.data.data)
       setFollowingList(response.data.data.followingList)
       setUploadList(response.data.data.uploadList)
-      setUserInfoDto(response.data.data.userinfo)
+      setUserInfoDto(response.data.data.userInfoDto)
       setLikeList(response.data.data.likeList)
+
+      console.log(response.data.data.userInfoDto)
+      
     })
     .catch((error)=>{
       console.log(error)
@@ -51,7 +58,7 @@ function MyPage() {
   },[])
 
   console.log(loading)
-
+  
 
   return (
 
@@ -63,15 +70,15 @@ function MyPage() {
       {/* Frame 59  회원정보 부분*/}
       <div className='mypage-header'>
 
-        <div className='header-porfile-img'/>
+        <img className='header-porfile-img' src={userInfoDto.profileImage}/>
 
         <div className='header-profile-info'>
           <div className='header-artist'>
-            <p className='header-artist-name'>닉네임</p>
-            <p className='header-artist-info'>자신을 소개하는 내용이 들어갑니다.</p>  
+            <p className='header-artist-name'>{userInfoDto.artist}</p>
+            <p className='header-artist-info'>{userInfoDto.profileText}</p>  
             <div className='header-sns'>
-            <FaYoutube className='sns-icon'/><p>youtube_id</p>
-            <RiInstagramFill className='sns-icon'/><p>instagram_id</p>
+            <FaYoutube className='sns-icon'/><p>{userInfoDto.youtubeUrl}</p>
+            <RiInstagramFill className='sns-icon'/><p>{userInfoDto.instagramUrl}</p>
             </div>  
           </div>
           <div className='header-follow'>
@@ -79,14 +86,13 @@ function MyPage() {
                   <p>팔로워</p>
                 </div>
                 <div className='follow-follower-count'>
-                  <p>33</p>
+                  <p>{userInfoDto.followerCount}</p>
                 </div>
-                  <p>|</p>
                 <div className='follow-follower'>
                   <p>팔로잉</p>
                 </div>
                 <div className='follow-follower-count'>
-                  <p>20</p>
+                  <p>{userInfoDto.followingCount}</p>
                 </div>
           </div>
         </div>
@@ -98,19 +104,21 @@ function MyPage() {
 
         {/* Fram 54 */}
         <div className='body-bar'>
-            <p className='body-bar-menu'>전체</p>
-            <p className='body-bar-menu'>관심 음악</p>
-            <p className='body-bar-menu'>팔로잉</p>
-            <p className='body-bar-menu'>업로드 음악</p>
-            
+            <p className='body-bar-menu' onClick={()=>{setTab(0)}}>전체</p>
+            <p className='body-bar-menu'  onClick={()=>{setTab(1)}}>관심 음악</p>
+            <p className='body-bar-menu' onClick={()=>{setTab(2)}}>팔로잉</p>
+            <p className='body-bar-menu' onClick={()=>{setTab(3)}}>업로드 음악</p>
+            {/* <TabContent tab={tab}/> */}
         </div> 
 
         {/* Frame 52 곡 정보 부부 map으로 작업 */}
+        {/* 각 탭을 눌렀을 떄 바뀌는 부분 */}
         <div className='body-contents'>
 
           
           <div className='body-like'>
             <p className='body-font'>관심 음악</p>
+
               {/* 로딩 중 스피너 나오는 부분 */}
               {loading? (
               <div className="spinner-wrap">
@@ -118,22 +126,11 @@ function MyPage() {
               </div>
                 ):(
               <div className='body-like-list'>
-                    {/* <div className='body-card'>
-                      <img src="https://music-phinf.pstatic.net/20210825_63/1629883297884wU7In_PNG/VIBE_%BF%A9%B8%A7_%BB%C7%BC%DB%BB%C7%BC%DB%C0%BD%BE%C7%C1%A6%BD%C0%B1%E2.png" className='body-card-img'/>
-                      <p className='body-title'>Title</p>
-                      <p className='body-artist'>Artist</p>
-                    </div> */}
                     {
-                    likeList&&likeList.map((song, Index)=>{
-                      return(
-                        <div className='body-card'>
-                          <img src={song.albumImageUrl} className='body-card-img'/>
-                          <p className='body-title'>{song.title}</p>
-                          <p className='body-artist'>{song.artist}</p>
-                        </div>
-                      )
-                    })
+                      //앞에 LikeList는 가져오는 컴포넌트, 두번째 likeList는 변수명 {}=> 내려줄 값, state값(props값)
+                    <LikeList likeList={likeList}/>
                     } 
+                    
               </div>     
               )}  
           </div>
@@ -147,23 +144,8 @@ function MyPage() {
                 <BeatLoader color={"grey"} loading={loading} size={10}/>
               </div>
             ):(
-                // <div className='body-like-list'>
-                //       <div className='body-following-card'>
-                //         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKJd5EPOWibW59EuALDpuzpnCRLhHfDp0udw&usqp=CAU" className='body-circle'/>
-                //         <p className='body-title'>Artist</p>            
-                //       </div>
-                //   </div>
                 <div className='body-like-list'>
-                {
-                  followingList.map((song, index)=>{
-                    return(
-                            <div className='body-following-card'>
-                              <img src={song.profileImage} className='body-circle'/>
-                              <p className='body-title'>{song.artist}</p>            
-                            </div>
-                    )
-                  })
-                } 
+                <FollowingList followingList={followingList}/>
                 </div>
                 )}
             
@@ -179,22 +161,7 @@ function MyPage() {
               </div>
             ):(
                 <div className='body-like-list'>
-                      {/* <div className='body-card'>
-                        <img src="https://music-phinf.pstatic.net/20210825_63/1629883297884wU7In_PNG/VIBE_%BF%A9%B8%A7_%BB%C7%BC%DB%BB%C7%BC%DB%C0%BD%BE%C7%C1%A6%BD%C0%B1%E2.png" className='body-card-img'/>
-                        <p className='body-title'>Title</p>
-                        <p className='body-artist'>Artist</p>
-                      </div> */}
-                      {
-                        uploadList.map((song, index)=>{
-                          return(
-                            <div className='body-card'>
-                              <img src={song.albumImageUrl} className='body-card-img'/>
-                              <p className='body-title'>{song.title}</p>
-                              <p className='body-artist'>{song.artist}</p>
-                            </div> 
-                          )
-                        })
-                      }
+                      <UploadList uploadList={uploadList}/>
                     </div>
                 )}
             
@@ -206,5 +173,30 @@ function MyPage() {
     </div>
   )
 }
+
+
+// function TabContent({tab}) {
+//   if (tab == 0) {
+//     return(
+//       <>
+//       <LikeList/> 
+//       <FollowingList/>
+//       <UploadList/>
+//       </>
+//     )
+    
+//   } 
+//   if (tab == 1) {
+//     return <LikeList/> 
+//   } 
+//   if (tab == 2) {
+//     return <FollowingList/>
+//   }
+//   if (tab == 3) {
+//     return <UploadList/>
+//   }
+// }
+
+
 
 export default MyPage;
