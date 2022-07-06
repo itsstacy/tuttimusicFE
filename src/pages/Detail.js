@@ -11,6 +11,7 @@ import moment from "moment";
 import Waveform from '../elements/Waveform';
 import axios from "axios";
 import EditComment from "../elements/EditComment";
+import EditDelete from "../elements/EditDelete";
 
 function Detail() {
   const [loading, setLoading] = useState(true);
@@ -66,30 +67,6 @@ function Detail() {
   }
 
 
-  //go to Edit
-  const GoEdit = () => {
-    navigate(`/edit/${params.id}`, {state: detail});
-  }
-
-  //delete this post
-  const GoDelete = () => { 
-
-  if(window.confirm("삭제하시겠습니까?")) {
-    axios.delete(`${SERVER_URL}/feeds/${params.id}`,{
-      headers: {
-        Authorization: token ? token : ""}
-    })
-    .then((response) => {
-      console.log("res ===> ", response);
-    })
-    .catch((error) => {
-      console.log("err ===> ", error);
-    });
-    alert("삭제되었습니다.");
-    navigate("/musicfeed");
-  } 
-  }
-
   const ClickEmptyHeart =()=>{
     dispatch(likeSong({
       token: token,
@@ -118,16 +95,9 @@ function Detail() {
       ):(
       <>
         <section className="music-detail">
-        {userName === detail.artist ?  (
-            <>
-            {/***** 임시 버튼 *****/}
-          <div className="go-edit" onClick={GoEdit}>수정</div>
-          <div className="go-delete" onClick={GoDelete}>삭제</div>
-          {/***** 임시 버튼 *****/}
-          </>
-          )
-        
-        : null}
+        {userName === detail.artist ?  
+          <EditDelete detail={detail} token={token} id={params.id}/>
+          : null}
         
           <div className="left-column">
             <img
