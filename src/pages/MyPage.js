@@ -84,21 +84,6 @@ function MyPage() {
                 <p className='body-title'>Title</p>
                 <p className='body-artist'>Artist</p>
               </div>
-              <div className='body-card'>
-                <img src="https://music-phinf.pstatic.net/20210825_63/1629883297884wU7In_PNG/VIBE_%BF%A9%B8%A7_%BB%C7%BC%DB%BB%C7%BC%DB%C0%BD%BE%C7%C1%A6%BD%C0%B1%E2.png" className='body-card-img'/>
-                <p className='body-title'>Title</p>
-                <p className='body-artist'>Artist</p>
-              </div>
-              <div className='body-card'>
-                <img src="https://music-phinf.pstatic.net/20210825_63/1629883297884wU7In_PNG/VIBE_%BF%A9%B8%A7_%BB%C7%BC%DB%BB%C7%BC%DB%C0%BD%BE%C7%C1%A6%BD%C0%B1%E2.png" className='body-card-img'/>
-                <p className='body-title'>Title</p>
-                <p className='body-artist'>Artist</p>
-              </div>
-              <div className='body-card'>
-                <img src="https://music-phinf.pstatic.net/20210825_63/1629883297884wU7In_PNG/VIBE_%BF%A9%B8%A7_%BB%C7%BC%DB%BB%C7%BC%DB%C0%BD%BE%C7%C1%A6%BD%C0%B1%E2.png" className='body-card-img'/>
-                <p className='body-title'>Title</p>
-                <p className='body-artist'>Artist</p>
-              </div>
             </div>
           </div>
 
