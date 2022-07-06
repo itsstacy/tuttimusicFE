@@ -1,8 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import '../styles/App.css';
-import LikeList from '../elements/LikeList'
-import FollowingList from '../elements/FollowingList';
-import UploadList from '../elements/UploadList';
 
 import { FaYoutube } from 'react-icons/fa';
 import { RiInstagramFill } from 'react-icons/ri'
@@ -136,30 +133,5 @@ function MyPage() {
     </div>
   )
 }
-
-
-// function TabContent({tab}) {
-//   if (tab == 0) {
-//     return(
-//       <>
-//       <LikeList/> 
-//       <FollowingList/>
-//       <UploadList/>
-//       </>
-//     )
-    
-//   } 
-//   if (tab == 1) {
-//     return <LikeList/> 
-//   } 
-//   if (tab == 2) {
-//     return <FollowingList/>
-//   }
-//   if (tab == 3) {
-//     return <UploadList/>
-//   }
-// }
-
-
 
 export default MyPage;
