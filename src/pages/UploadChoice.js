@@ -25,7 +25,7 @@ function UploadChoice() {
 }
 
 let ChoiceWrap = styled.div`
-width:1280px;
+width:1050px;
 height: 680px;
 margin: 60px auto;
 display: flex;
