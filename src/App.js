@@ -33,7 +33,7 @@ function App() {
             <Route path="/detail/video/:id" element={<DetailVideo />}></Route>
             <Route path="/musicfeed" element={<MusicFeed />}></Route>
             <Route path="/mypage" element={<MyPage />}></Route>
-            <Route path="/userpage/:id" element={<UserPage />}></Route>
+            <Route path="/userpage/:artist" element={<UserPage />}></Route>
             <Route path="/myedit" element={<MyEdit />}></Route>
             <Route path="/upload" element={<UploadChoice />}></Route>
             <Route path="/upload/audio" element={<Upload />}></Route>

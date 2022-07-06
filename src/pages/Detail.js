@@ -43,6 +43,7 @@ function Detail() {
   const commentsList = useSelector((state)=> state.Song.comments);
   console.log(detail);
   console.log(commentsList);
+  
 
   //get user info from local storage
   const userName = localStorage.getItem("userName");
@@ -135,7 +136,11 @@ function Detail() {
             alt="better off alone"
             src={detail.albumImageUrl}
             />
-            <div className="detail-artist-profile">
+            <div 
+            className="detail-artist-profile"
+            onClick={()=>{
+              navigate(`/userpage/${detail.artist}`)
+            }}>
               <img 
               className="detail-artist-img"
               alt={detail.artist}
