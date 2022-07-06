@@ -5,6 +5,7 @@ import { Routes, Route} from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Detail from "./pages/Detail";
+import DetailVideo from './pages/DetailVideo';
 import Edit from "./pages/Edit";
 import Live from "./pages/Live";
 import Login from "./pages/Login";
@@ -29,6 +30,7 @@ function App() {
             <Route path="/signup" element={<SignUp />}></Route>
             <Route path="/login" element={<Login />}></Route>
             <Route path="/detail/:id" element={<Detail />}></Route>
+            <Route path="/detail/video/:id" element={<DetailVideo />}></Route>
             <Route path="/musicfeed" element={<MusicFeed />}></Route>
             <Route path="/mypage" element={<MyPage />}></Route>
             <Route path="/userpage/:id" element={<UserPage />}></Route>
