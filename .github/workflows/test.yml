@@ -25,6 +25,8 @@ jobs:
 
       - name: Build                   # React Build
         run: npm run build
+        env: 
+          CI: false
         
       - name: Deploy                  # Upload build file to S3
         env:
