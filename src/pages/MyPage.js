@@ -19,7 +19,7 @@ function MyPage() {
   const [followingList, setFollowingList] = useState([]);
   const [likeList, setLikeList] = useState([]);
   const [uploadList, setUploadList] = useState([]);
-  const [userInfoDto, setUserInfoDto] = useState(null);
+  const [userInfoDto, setUserInfoDto] = useState([]);
 
 
 
@@ -40,8 +40,11 @@ function MyPage() {
       setData(response.data.data)
       setFollowingList(response.data.data.followingList)
       setUploadList(response.data.data.uploadList)
-      setUserInfoDto(response.data.data.userinfo)
+      setUserInfoDto(response.data.data.userInfoDto)
       setLikeList(response.data.data.likeList)
+
+      console.log(response.data.data.userInfoDto)
+      
     })
     .catch((error)=>{
       console.log(error)
@@ -55,7 +58,7 @@ function MyPage() {
   },[])
 
   console.log(loading)
-
+  
 
   return (
 
@@ -67,15 +70,15 @@ function MyPage() {
       {/* Frame 59  회원정보 부분*/}
       <div className='mypage-header'>
 
-        <div className='header-porfile-img'/>
+        <img className='header-porfile-img' src={userInfoDto.profileImage}/>
 
         <div className='header-profile-info'>
           <div className='header-artist'>
-            <p className='header-artist-name'>닉네임</p>
-            <p className='header-artist-info'>자신을 소개하는 내용이 들어갑니다.</p>  
+            <p className='header-artist-name'>{userInfoDto.artist}</p>
+            <p className='header-artist-info'>{userInfoDto.profileText}</p>  
             <div className='header-sns'>
-            <FaYoutube className='sns-icon'/><p>유튜브</p>
-            <RiInstagramFill className='sns-icon'/><p>인스타</p>
+            <FaYoutube className='sns-icon'/><p>{userInfoDto.youtubeUrl}</p>
+            <RiInstagramFill className='sns-icon'/><p>{userInfoDto.instagramUrl}</p>
             </div>  
           </div>
           <div className='header-follow'>
@@ -83,13 +86,13 @@ function MyPage() {
                   <p>팔로워</p>
                 </div>
                 <div className='follow-follower-count'>
-                  <p>33</p>
+                  <p>{userInfoDto.followerCount}</p>
                 </div>
                 <div className='follow-follower'>
                   <p>팔로잉</p>
                 </div>
                 <div className='follow-follower-count'>
-                  <p>20</p>
+                  <p>{userInfoDto.followingCount}</p>
                 </div>
           </div>
         </div>
@@ -109,6 +112,7 @@ function MyPage() {
         </div> 
 
         {/* Frame 52 곡 정보 부부 map으로 작업 */}
+        {/* 각 탭을 눌렀을 떄 바뀌는 부분 */}
         <div className='body-contents'>
 
           
