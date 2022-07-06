@@ -12,9 +12,6 @@ import Waveform from '../elements/Waveform';
 import axios from "axios";
 import EditComment from "../elements/EditComment";
 
-import styled from "styled-components";
-import ReactPlayer from "react-player/streamable";
-
 function DetailVideo() {
   const [loading, setLoading] = useState(true);
   const [token, setToken] = useState(null);
@@ -174,6 +171,7 @@ function DetailVideo() {
           </div>
         </section>
         <section className="music-video">
+          <div className="music-video-title">{detail.title}</div>
         <video controls controlsList="nodownload">
         <source src={detail.songUrl} type="video/mp4"/>
         브라우저가 video 태그를 지원하지 않습니다.

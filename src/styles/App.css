@@ -284,6 +284,16 @@
   margin-top:20px;
 }
 
+.music-video-title {
+  margin-bottom:20px;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.music-video video {
+  width:1280px;
+}
+
 /* COMMENT */
 
 .comment-input-wrap{
