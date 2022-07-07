@@ -8,8 +8,18 @@ import { FaYoutube } from 'react-icons/fa';
 import { RiInstagramFill } from 'react-icons/ri'
 import axios from 'axios';
 
+
+
+import Tab1 from '../elements/Tab1';
+import Tab2 from '../elements/Tab2';
+import Tab3 from '../elements/Tab3';
+import Tab4 from '../elements/Tab4';
+import Tab5 from '../elements/Tab5';
+import Tab6 from '../elements/Tab6';
+
 import BeatLoader from "react-spinners/BeatLoader";
 import { useNavigate } from 'react-router-dom';
+
 
 function MyPage() {
 
@@ -23,6 +33,7 @@ function MyPage() {
   const [likeList, setLikeList] = useState([]);
   const [uploadList, setUploadList] = useState([]);
   const [userInfoDto, setUserInfoDto] = useState([]);
+
 
   console.log(userInfoDto);
 
