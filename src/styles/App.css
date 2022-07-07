@@ -796,9 +796,10 @@
   padding: 0px;
   gap: 60px;
 
-  width: 134px;
+  margin-bottom: -60px;
+
+  width: 200px;
   height: 78px;
-  
 
 }
 
@@ -818,6 +819,9 @@
   line-height: 19px;
   font-style: normal;
   font-weight: 400;
+
+  width: 500px;
+  height: 19px;
 
   margin-top: -80px;
 
@@ -877,7 +881,7 @@
 }
 
 .signup-email-title {
-  width: 52px;
+  width: 120px;
   height: 24px;
 
   font-style: normal;
@@ -1001,7 +1005,7 @@
   padding: 15px 30px;
   gap: 10px;
 
-  margin-left: -20px;
+  margin-left: -10px;
 
   width: 840px;
   height: 60px;
@@ -1193,6 +1197,8 @@
   align-items: flex-start;
   padding: 0px;
   gap: 10px;
+
+  margin-left: -20px;
 
   width: 840px;
   height: 202px;
@@ -1473,3 +1479,42 @@
 }
 
 /* SEARCH PAGE END */
+
+
+/* MYEDIT PAGE */
+
+.myedit-email {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px 10px;
+  gap: 10px;
+
+  margin-top: 0px;
+
+  width: 840px;
+  height: 24px;
+
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 24px;
+
+  color: #000000;
+}
+
+.myedit-artist-title {
+  width: 200px;
+  height: 24px;
+
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 24px;
+
+  margin-top: 0px;
+
+  color: #000000;
+}
+
+/* MYEDIT PAGE END */

@@ -5,6 +5,7 @@ import { FaYoutube } from 'react-icons/fa';
 import { RiInstagramFill } from 'react-icons/ri'
 import axios from 'axios';
 
+
 import Tab1 from '../elements/Tab1';
 import Tab2 from '../elements/Tab2';
 import Tab3 from '../elements/Tab3';
@@ -12,7 +13,13 @@ import Tab4 from '../elements/Tab4';
 import Tab5 from '../elements/Tab5';
 import Tab6 from '../elements/Tab6';
 
+import BeatLoader from "react-spinners/BeatLoader";
+import { useNavigate } from 'react-router-dom';
+
+
 function MyPage() {
+
+  const navigate = useNavigate();
 
   const [tab, setTab] = useState(0);
 
@@ -22,6 +29,11 @@ function MyPage() {
   const [likeList, setLikeList] = useState([]);
   const [uploadList, setUploadList] = useState([]);
   const [userInfoDto, setUserInfoDto] = useState([]);
+
+
+
+  console.log(userInfoDto);
+
 
   const token = localStorage.getItem("token");
 
@@ -61,8 +73,13 @@ function MyPage() {
   console.log(tab)
 
   return (
+
+
     // Frame 61 전체 영역
     <div className='mypage-container'>
+
+      {/* navigate 함수로 myedit 페이지로 갈 때, userInfoDto에 담아져있는 데이터를 state로 가져감 */}
+      <button onClick={()=>{navigate('/myedit', {state : userInfoDto})}}>회원 정보 수정</button>
 
       {/* Frame 59  회원정보 부분*/}
       <div className='mypage-header'>
