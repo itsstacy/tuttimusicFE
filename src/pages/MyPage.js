@@ -9,8 +9,11 @@ import { RiInstagramFill } from 'react-icons/ri'
 import axios from 'axios';
 
 import BeatLoader from "react-spinners/BeatLoader";
+import { useNavigate } from 'react-router-dom';
 
 function MyPage() {
+
+  const navigate = useNavigate();
 
   const [tab, setTab] = useState(0);
 
@@ -21,6 +24,7 @@ function MyPage() {
   const [uploadList, setUploadList] = useState([]);
   const [userInfoDto, setUserInfoDto] = useState([]);
 
+  console.log(userInfoDto);
 
 
   const token = localStorage.getItem("token");
@@ -62,10 +66,12 @@ function MyPage() {
 
   return (
 
-    
 
     // Frame 61 전체 영역
     <div className='mypage-container'>
+
+      {/* navigate 함수로 myedit 페이지로 갈 때, userInfoDto에 담아져있는 데이터를 state로 가져감 */}
+      <button onClick={()=>{navigate('/myedit', {state : userInfoDto})}}>회원 정보 수정</button>
 
       {/* Frame 59  회원정보 부분*/}
       <div className='mypage-header'>
