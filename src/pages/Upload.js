@@ -24,7 +24,7 @@ function Upload() {
   const [selectGenre, setSelectGenre] = React.useState("장르를 선택해 주세요.");
   const [genreState, setGenreState] = React.useState(false);
   
-  const genreList = ["발라드", "R&B", "힙합", "댄스곡", "연주곡"]
+  const genreList = ["발라드", "어쿠스틱","R&B", "힙합", "댄스", "연주곡"]
 
   const genreOpenClose = () => {
     setGenreState(!genreState);
