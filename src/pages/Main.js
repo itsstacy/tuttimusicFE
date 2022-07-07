@@ -22,7 +22,7 @@ function Main() {
     dispatch(getMainLists(token));
     setTimeout(()=> {
       setLoading(false);
-    },1000)
+    },300)
     window.scrollTo(0,0);
   },[])
 
@@ -72,6 +72,21 @@ function Main() {
     infinite: true,
     speed: 500,
     slidesToShow: 6,
+    slidesToScroll: 1,
+    arrows: true,
+    // variableWidth: true,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />
+    // autoplay: true,
+    // autoplaySpeed: 3500,
+  };
+
+  // slider settings ->video
+  let settings2 = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
     slidesToScroll: 1,
     arrows: true,
     // variableWidth: true,
@@ -201,24 +216,24 @@ function Main() {
         </div>
         <div className="main-list">
           <p className="main-list-title">
-            장르 음악
+            영상
           </p>
           {loading? (
             <div className="spinner-wrap">
               <BeatLoader color={"grey"} loading={loading} size={10}/>
             </div>
           ):(
-            <Slider {...settings}>     
+            <Slider {...settings2}>     
             {videoList&&videoList.map((song,index) =>{
               return(
                 <div 
-                className="main-card"
+                className="video-card"
                 onClick={()=>{
-                  navigate('/detail/'+song.id)
+                  navigate('/detail/video/'+song.id)
                 }}>
                   <img
                   alt={song.title}
-                  className="main-album-art" 
+                  className="main-thumbnail" 
                   src={song.albumImageUrl}
                   />
                   <div className="main-card-text">

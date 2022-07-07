@@ -11,6 +11,7 @@
 
   /* 앨범 커버 이미지 비율 1:1 */
   --card-size: 190px;
+  --video-size: 304px;
 }
 
 .divider {
@@ -81,12 +82,49 @@
   justify-content: center;
 }
 
+.video-card {
+  display: flex;
+  flex-direction: column;
+  width: var(--video-size);
+  padding: 10px;  
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.mypage-video-card{
+  display: flex;
+  flex-direction: column;
+  width:295px;
+  padding: 0px;  
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 .main-album-art {
   width: var(--card-size);
   height: var(--card-size);
   object-fit: cover;
   border-radius:8px;
   margin-right: 0;
+  background-color: #7e7e7e;
+}
+
+.main-thumbnail {
+  width: var(--video-size);
+  height: 171px;
+  object-fit: cover;
+  border-radius:8px;
+  margin-right: 0;
+  background-color: #7e7e7e;
+}
+
+.mypage-main-thumbnail {
+  width: 100%;
+  height: 171px;
+  object-fit: cover;
+  border-radius:8px;
   background-color: #7e7e7e;
 }
 
@@ -611,10 +649,9 @@
   flex-direction: column;
   align-items: flex-start;
   padding: 0px;
-  gap: 60px;
-
+  gap: 30px;
   width: 1280px;
-  height: 1196px;
+  min-height: 60vh;
 }
 
 .body-bar {
@@ -637,7 +674,6 @@
   gap: 80px;
 
   width: 1280px;
-  height: 1060px;
 }
 
 .body-like {
@@ -648,7 +684,6 @@
   gap: 39px;
 
   width: 1280px;
-  height: 317px;
 }
 
 .body-font {
@@ -661,11 +696,19 @@
   display: flex;
   flex-direction: row;
   align-items: flex-start;
+  flex-wrap: wrap;
   padding: 0px;
   gap: 28px;
-
   width: 1280px;
-  height: 248px;
+}
+
+.body-like-list{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 1280px;
+  padding: 0px;
 }
 
 .body-card {
@@ -678,7 +721,6 @@
   margin-top: -50px;
 
   width: 190px;
-  height: 248px;
 }
 
 .body-card-img {
@@ -717,6 +759,7 @@
   align-items: center;
   padding: 0px;
   gap: 20px;
+  margin-top: 39px;
 }
 
 .body-circle {
@@ -742,6 +785,22 @@
   background-color: #7e7e7e;
 }
 
+
+/* TAB */
+.tab-body{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 28px;
+
+  width: 1280px;
+}
+
+.no-content {
+  margin: 100px auto;
+}
 
 /* MYPAGE END */
 
