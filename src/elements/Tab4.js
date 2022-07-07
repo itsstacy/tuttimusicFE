@@ -43,26 +43,21 @@ function Tab4() {
             <BeatLoader color={"grey"} loading={loading} size={10}/>
         </div>  
         :list&&list.length === 0 ? 
-        <p className='notice-text'>팔로잉하는 아티스트가 없어요 😭</p>
+        <p className='no-content'>팔로잉하는 아티스트가 없어요 😭</p>
         : 
-        list&&list.map((song, Index)=>{
+        <div className='tab-body'>
+        {list&&list.map((song, Index)=>{
             return(
-                <div className='main-card'>
+                <div className='body-following-card'>
                     <img 
-                    src={song.albumImageUrl} 
-                    className='main-album-art'
-                    alt={song.title}/>
-                    <div className="main-card-text">
-                        <p className="main-card-title">
-                        {song.title}
-                        </p>
-                        <p className="main-card-artist">
-                        {song.artist}
-                        </p>
-                    </div>
+                    src={song.profileImage} 
+                    className='body-circle'
+                    alt={song.artist}/>
+                    <p className='body-title'>{song.artist}</p>            
                 </div>
-                );
-            })
+                )
+            })}
+        </div>
         } 
         </>
         )

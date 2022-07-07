@@ -15,8 +15,7 @@ export const getMainLists = createAsyncThunk("GET/getMainLists", async (token)=>
 
 //GET MUSICFEED (FEED TAB)
 export const getMusicFeed = createAsyncThunk("GET/getMusicFeed", async (props)=>{
-  
-  console.log(props.type)
+  console.log(props)
   return axios
   .get(`${SERVER_URL}/feeds?postType=${props.type}&genre=`+props.genre,{
     headers: {Authorization:props.token? props.token:""}
@@ -155,7 +154,7 @@ const SongSlice = createSlice({
       console.log("GET REJECTED");
     },
     [getMusicFeed.fulfilled]: (state, action) => {
-      console.log("GET FULFILLED");
+      console.log("GET MUSIC FEED FULFILLED");
       console.log(action.payload);
       state.allList = [...action.payload];
     },

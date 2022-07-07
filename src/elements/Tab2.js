@@ -45,7 +45,7 @@ useEffect(()=>{
             <BeatLoader color={"grey"} loading={loading} size={10}/>
         </div>    
         :list&&list.length === 0 ? 
-        <p>관심 음악이 없어요 😭</p>
+        <p className='no-content'>관심 음악이 없어요 😭</p>
         :
         <div className='tab-body'>
             {list&&list.map((song, Index)=>{

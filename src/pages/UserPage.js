@@ -130,11 +130,8 @@ function UserPage() {
         </div>
 
       </div>
-      
-      {/* Frame 60 */}
-      <div className='mypage-body'>
 
-        {/* Fram 54 */}
+      <div className='mypage-body'>
         <div className='body-bar'>
             <p className='body-bar-menu' onClick={()=>{setTab(0)}}>전체</p>
             <p className='body-bar-menu'  onClick={()=>{setTab(1)}}>관심음악</p>
