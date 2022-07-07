@@ -528,6 +528,7 @@
 
   width: 232px;
   height: 123px;
+  min-width: 250px;
 }
 
 .header-artist-name {

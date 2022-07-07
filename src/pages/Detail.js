@@ -35,7 +35,7 @@ function Detail() {
   dispatch(getSongDetail(propslist));
   setTimeout(()=> {
     setLoading(false);
-  },200)
+  },300)
   window.scrollTo(0,0);
 },[])
 
