@@ -309,10 +309,6 @@
   width:1280px;
 }
 
-.follow-button{
-  width: 80px;
-  margin-left: 30px;
-}
 
 /* COMMENT */
 
@@ -547,6 +543,7 @@
   padding: 0px;
   gap: 40px;
   height: 123px;
+  min-width: 250px;
 }
 
 .header-artist-name {

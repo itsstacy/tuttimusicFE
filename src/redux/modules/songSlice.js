@@ -14,11 +14,12 @@ export const getMainLists = createAsyncThunk("GET/getMainLists", async (token)=>
 })
 
 //GET MUSICFEED (FEED TAB)
-export const getMusicFeed = createAsyncThunk("GET/getMusicFeed", async (token)=>{
-  console.log(token);
+export const getMusicFeed = createAsyncThunk("GET/getMusicFeed", async (props)=>{
+  
+  console.log(props.type)
   return axios
-  .get(`${SERVER_URL}/feeds`,{
-    headers: {Authorization:token? token:""}
+  .get(`${SERVER_URL}/feeds?postType=${props.type}&genre=`+props.genre,{
+    headers: {Authorization:props.token? props.token:""}
   })
   .then((response)=> response.data.data);
 })
@@ -110,14 +111,24 @@ export const likeSong = createAsyncThunk("POST/likeSong", async (props) => {
 })
 
 //SEARCH MUSIC
-  export const searchMusic = createAsyncThunk("GET/searchMusic", async (props)=>{
-    console.log(props);
-    return await axios
-    .get(`${SERVER_URL}/search?keyword=${props}`, {
-      headers: {Authorization:props.token? props.token:""}
-    })
-    .then((response) => response.data)
+export const searchMusic = createAsyncThunk("GET/searchMusic", async (props)=>{
+  console.log(props);
+  return await axios
+  .get(`${SERVER_URL}/search?keyword=${props}`, {
+    headers: {Authorization:props.token? props.token:""}
   })
+  .then((response) => response.data)
+})
+
+//FOLLOW
+export const followAnArtist = createAsyncThunk("POST/followAnArtist", async (props)=>{
+  await axios
+  .post(`${SERVER_URL}/follow?artist=${props.artist}`,{}, {
+    headers: {Authorization:props.token? props.token:""}
+  })
+  .then((response) => response.data.data);
+  return props;
+})
 
 const SongSlice = createSlice({
   name: "Song",
@@ -138,6 +149,7 @@ const SongSlice = createSlice({
       state.genreList = [...action.payload.genreList];
       state.latestList = [...action.payload.latestList];
       state.likeList = [...action.payload.likeList];
+      state.videoList = [...action.payload.videoList];
     },
     [getMainLists.rejected]: (state, action) => {
       console.log("GET REJECTED");
@@ -226,7 +238,14 @@ const SongSlice = createSlice({
     [searchMusic.rejected]: (state, action) => {
       console.log("GET REJECTED");
     },
-
+    [followAnArtist.fulfilled]: (state, action) =>{
+      console.log("POST FULFILLED");
+      console.log(action.payload);
+      console.log(current(state))
+    },
+    [followAnArtist.rejected]: (state, action) =>{
+      console.log("POST REJECTED");
+    }
 
   }
 })
