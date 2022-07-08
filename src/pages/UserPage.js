@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import styled from 'styled-components';
 import '../styles/App.css';
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -14,7 +15,8 @@ import Tab5 from '../elements/Tab5';
 import Tab6 from '../elements/Tab6';
 
 import { useDispatch } from "react-redux";
-import { FollowAnArtist } from "../redux/modules/songSlice"
+import { followAnArtist } from "../redux/modules/songSlice"
+import { style } from 'wavesurfer.js';
 
 function UserPage() {
   const navigate = useNavigate();
@@ -29,25 +31,27 @@ function UserPage() {
   const [likeList, setLikeList] = useState([]);
   const [uploadList, setUploadList] = useState([]);
   const [userInfoDto, setUserInfoDto] = useState([]);
+  const [isFollow, setIsFollow] = useState(null);
+  const [count, setCount] = useState(null);
 
   const token = localStorage.getItem("token");
 
   const [loading, setLoading] = useState(true);
 
   useEffect(()=>{
-    console.log(token)
     setLoading(true);
     axios
     .get("http://52.79.234.195/user/profile/"+params.artist, {
       headers: {Authorization:token? token:""}
     })
     .then((response)=>{
-      setData(response.data.data)
       setFollowingList(response.data.data.followingList)
       setUploadList(response.data.data.uploadList)
       setUserInfoDto(response.data.data.userInfoDto)
       setLikeList(response.data.data.likeList)
-      console.log(response.data.data.userInfoDto)
+      setIsFollow(response.data.isFollow)
+      console.log(response.data.data.userInfoDto.followerCount)
+      setCount(response.data.data.userInfoDto.followerCount)
     })
     .catch((error)=>{
       console.log(error)
@@ -62,9 +66,16 @@ function UserPage() {
   const FollowThisArtist =()=>{
     const data = {
       token: token,
-      artist: userInfoDto.artist
+      artist: userInfoDto.artist,
     }
-    dispatch(data);
+    dispatch(followAnArtist(data));
+    if (isFollow===false) {
+      setCount(count+1)
+    } else {
+      setCount(count-1)
+    }
+    setIsFollow(!isFollow);
+
   }
 
   return (
@@ -80,15 +91,21 @@ function UserPage() {
         alt={userInfoDto.artist}/>
         <div className='header-profile-info'>
           <div className='header-artist'>
+            <div className='row-wrap'>
             <p className='header-artist-name'>{userInfoDto.artist}
-            <button 
-            className='follow-button'
+            </p>
+            <Button 
+            isFollow ={isFollow}
             onClick={()=>{
               FollowThisArtist()
-            }}
-            >follow
-            </button>
-            </p>
+            }}            
+            >
+            {isFollow===false?
+            "Follow"
+            : "Following"
+            }
+            </Button>  
+            </div>
             <p className='header-artist-info'>{userInfoDto.profileText}</p>  
             <div className='header-sns'>
             <FaYoutube className='sns-icon'/><p>{userInfoDto.youtubeUrl}</p>
@@ -101,7 +118,7 @@ function UserPage() {
                   <p>팔로워</p>
                 </div>
                 <div className='follow-follower-count'>
-                  <p>{userInfoDto.followerCount}</p>
+                  <p>{count}</p>
                 </div>
                 <div className='follow-follower'>
                   <p>팔로잉</p>
@@ -113,11 +130,8 @@ function UserPage() {
         </div>
 
       </div>
-      
-      {/* Frame 60 */}
-      <div className='mypage-body'>
 
-        {/* Fram 54 */}
+      <div className='mypage-body'>
         <div className='body-bar'>
             <p className='body-bar-menu' onClick={()=>{setTab(0)}}>전체</p>
             <p className='body-bar-menu'  onClick={()=>{setTab(1)}}>관심음악</p>
@@ -150,3 +164,15 @@ function UserPage() {
 }
 
 export default UserPage;
+
+const Button = styled.div`
+  border: 1px solid black;
+  display: inline;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  margin-left: 30px;
+  
+`

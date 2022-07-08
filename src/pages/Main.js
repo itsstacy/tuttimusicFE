@@ -26,14 +26,24 @@ function Main() {
     window.scrollTo(0,0);
   },[])
 
-  const genreList = useSelector((state)=> state.Song.genreList, shallowEqual);
-  const latestList = useSelector((state)=> state.Song.latestList, shallowEqual);
-  const likeList = useSelector((state)=> state.Song.likeList,shallowEqual);
+  // const genreList = useSelector((state)=> state.Song.genreList, shallowEqual);
+  // const genreList = useSelector((state)=> state.Song.latestList, shallowEqual);
+  // const genreList = useSelector((state)=> state.Song.likeList,shallowEqual);
+  // const videoList = useSelector((state)=> state.Song.videoList,shallowEqual);
+  // console.log(genreList);
+  // console.log(latestList);
+  // console.log(videoList);
+
+  const [genreList, latestList,likeList, videoList] = useSelector((state) => [
+    state.Song.genreList,
+    state.Song.latestList,
+    state.Song.likeList,
+    state.Song.videoList
+  ])
+
   console.log(genreList);
   console.log(latestList);
-  console.log(likeList);
-
-
+  console.log(videoList);
   // slider
   function SamplePrevArrow(props) {
     const { className, style, onClick } = props;
@@ -62,6 +72,21 @@ function Main() {
     infinite: true,
     speed: 500,
     slidesToShow: 6,
+    slidesToScroll: 1,
+    arrows: true,
+    // variableWidth: true,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />
+    // autoplay: true,
+    // autoplaySpeed: 3500,
+  };
+
+  // slider settings ->video
+  let settings2 = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
     slidesToScroll: 1,
     arrows: true,
     // variableWidth: true,
@@ -107,7 +132,7 @@ function Main() {
                     {song.title}
                     </p>
                     <p className="main-card-artist">
-                    {song.artist}
+                    {song.userArtist}
                     </p>
                   </div>
                 </div>
@@ -144,7 +169,7 @@ function Main() {
                     {song.title}
                     </p>
                     <p className="main-card-artist">
-                    {song.artist}
+                    {song.userArtist}
                     </p>
                   </div>
                 </div>
@@ -180,7 +205,43 @@ function Main() {
                     {song.title}
                     </p>
                     <p className="main-card-artist">
-                    {song.artist}
+                    {song.userArtist}
+                    </p>
+                  </div>
+                </div>
+                  )
+                })}               
+              </Slider>
+              )}
+        </div>
+        <div className="main-list">
+          <p className="main-list-title">
+            영상
+          </p>
+          {loading? (
+            <div className="spinner-wrap">
+              <BeatLoader color={"grey"} loading={loading} size={10}/>
+            </div>
+          ):(
+            <Slider {...settings2}>     
+            {videoList&&videoList.map((song,index) =>{
+              return(
+                <div 
+                className="video-card"
+                onClick={()=>{
+                  navigate('/detail/video/'+song.id)
+                }}>
+                  <img
+                  alt={song.title}
+                  className="main-thumbnail" 
+                  src={song.albumImageUrl}
+                  />
+                  <div className="main-card-text">
+                    <p className="main-card-title">
+                    {song.title}
+                    </p>
+                    <p className="main-card-artist">
+                    {song.userArtist}
                     </p>
                   </div>
                 </div>

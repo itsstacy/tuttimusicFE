@@ -41,25 +41,25 @@ useEffect(()=>{
             <BeatLoader color={"grey"} loading={loading} size={10}/>
         </div>    
         :list&&list.length === 0 ? 
-        <p>업로드한 영상이 없어요 😭</p>
+        <p className='no-content'>업로드한 영상이 없어요 😭</p>
         : 
         <div className='tab-body'>
             {list&&list.map((song, Index)=>{
                 return(
-                    <div className='main-card'>
+                    <div className='mypage-video-card'>
                         <img 
                         src={song.albumImageUrl} 
-                        className='main-album-art'
+                        className='mypage-main-thumbnail'
                         alt={song.title}/>
                         <div className="main-card-text">
-                            <p className="main-card-title">
-                            {song.title}
-                            </p>
-                            <p className="main-card-artist">
-                            {song.artist}
-                            </p>
-                        </div>
+                        <p className="main-card-title">
+                        {song.title}
+                        </p>
+                        <p className="main-card-artist">
+                        {song.artist}
+                        </p>
                     </div>
+                </div>
                     );
             })}
         </div>

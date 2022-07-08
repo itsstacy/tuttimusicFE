@@ -2,6 +2,8 @@ import React, {useState} from 'react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+import styled from 'styled-components';
+
 const SignUp = () => {
 
     const navigate = useNavigate();
@@ -127,6 +129,13 @@ const SignUp = () => {
             return window.alert("모든 항목을 입력하세요!");    
         }
 
+        const nullList = [null, null, null, null]
+
+        if (genre.toString() === nullList.toString()) {
+          return window.alert("장르를 최소 1개 선택해 주세요.")
+          
+        }
+
       //비밀번호 양식이 다를 때
         if (checkPw(password) === false || checkPw(passwordCheck) === false) {
             return window.alert("비밀번호는 8~20글자 영문+숫자 조합입니다!")
@@ -143,10 +152,11 @@ const SignUp = () => {
             email : email,
             password : password,
             artist : artist,  
-            genre : [null, null, null, null],
+            genre : genre,
             profileText : profileText,
             instagramUrl : insta,
-            youtubeUrl : youtube
+            youtubeUrl : youtube,
+            genreSelected : clickGenre
         }
         console.log(signupdata)
 
@@ -171,6 +181,36 @@ const SignUp = () => {
             
     
     }
+
+    const [genre, setGenre] = useState([null, null, null, null]);
+    const [clickGenre, setClickGenre] = useState([false, false, false, false, false, false]);
+    
+  const genrePick = (name, index) => {
+    // indexOf 함수는 해당 배열에서 특정 값을 찾을 때 인덱스 숫자로 위치를 알려주고 없으면 -1을 반환
+    // genre 배열에서 null값이 없어서 -1을 반환할 때 name(장르 이름)으로 가득 찬 상태이므로 알림창 띄우기
+    if (genre.indexOf(null) === -1 &&  genre.indexOf(name) === -1) {
+      return window.alert("장르는 최대 4개까지 선택 가능합니다.")
+    } else if (genre.indexOf(name) === -1) {
+      genre.pop();
+      genre.unshift(name);
+      console.log("genre", genre);
+    } else {
+      genre.splice(genre.indexOf(name), 1);
+      genre.push(null);
+      console.log("genre", genre);
+    }
+
+    // genre가 null값의 배열이므로 마지막 null을 지우고 맨 앞에 name(장르 이름)을 넣는 형태
+
+    setClickGenre([
+      ...clickGenre.slice(0, index),
+      !clickGenre[index],
+      ...clickGenre.slice(index+1),
+    ]);
+    console.log("clickGenre ==> ", clickGenre)
+
+  }
+
 
     return (
         <div className='signup-container'>
@@ -283,26 +323,27 @@ const SignUp = () => {
                     {/* 선호 장르 부분 */}
                     <div className='signup-genre-box'>
                         <div className='signup-genre-title-box'>
-                        <p className='signup-genre-title'>선호 장르</p>
+                            <p className='signup-genre-title'>선호 장르</p>
                         </div>
 
                         <div className='genre-container'>
                             <div className='genre-boxes'>
-                                <div className='genre-box'>
+                                <GenreBox className='genre-box' clickGenre={clickGenre}>
                                     {
                                         genreNames.map((name, index) => {
                                             return (
                                                 <button 
-                                                    onClick={()=>console.log(name)}
+                                                    onClick={()=>
+                                                        genrePick(name, index)}
                                                     key = {name}
-                                                    className='genre-category'>
+                                                    className={'genre-category genre'+ index}>
                                                         {name}
                                                 </button>
                                             )
                                         }
                                         )
                                     }
-                                </div>
+                                </GenreBox>
                             </div>
                             <div className='genre-info'>
                                 <p className='genre-info-comment'>최대 4개까지 선택 가능합니다.</p>
@@ -363,5 +404,32 @@ const SignUp = () => {
         </div>
     )
 }   
+
+const GenreBox = styled.div`
+    .genre0{
+        background-color:${(props) => (props.clickGenre[0] ? '#545454' : '#DADADA')};
+        color:${(props) => (props.clickGenre[0] ? '#fff' : '#000')};
+    }
+    .genre1{
+        background-color:${(props) => (props.clickGenre[1] ? '#545454' : '#DADADA')};
+        color:${(props) => (props.clickGenre[1] ? '#fff' : '#000')};
+    }
+    .genre2{
+        background-color:${(props) => (props.clickGenre[2] ? '#545454' : '#DADADA')};
+        color:${(props) => (props.clickGenre[2] ? '#fff' : '#000')};
+    }
+    .genre3{
+        background-color:${(props) => (props.clickGenre[3] ? '#545454' : '#DADADA')};
+        color:${(props) => (props.clickGenre[3] ? '#fff' : '#000')};
+    }
+    .genre4{
+        background-color:${(props) => (props.clickGenre[4] ? '#545454' : '#DADADA')};
+        color:${(props) => (props.clickGenre[4] ? '#fff' : '#000')};
+    }
+    .genre5{
+        background-color:${(props) => (props.clickGenre[5] ? '#545454' : '#DADADA')};
+        color:${(props) => (props.clickGenre[5] ? '#fff' : '#000')};
+    }
+`
 
 export default SignUp;

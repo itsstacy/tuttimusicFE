@@ -1,5 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import '../styles/App.css';
+import LikeList from '../elements/LikeList'
+import FollowingList from '../elements/FollowingList';
+import UploadList from '../elements/UploadList';
 
 import { FaYoutube } from 'react-icons/fa';
 import { RiInstagramFill } from 'react-icons/ri'
@@ -12,7 +15,13 @@ import Tab4 from '../elements/Tab4';
 import Tab5 from '../elements/Tab5';
 import Tab6 from '../elements/Tab6';
 
+import BeatLoader from "react-spinners/BeatLoader";
+import { useNavigate } from 'react-router-dom';
+
+
 function MyPage() {
+
+  const navigate = useNavigate();
 
   const [tab, setTab] = useState(0);
 
@@ -20,8 +29,14 @@ function MyPage() {
 
   const [followingList, setFollowingList] = useState([]);
   const [likeList, setLikeList] = useState([]);
+  const [likeVideoList, setLikeVideoList] = useState([]);
   const [uploadList, setUploadList] = useState([]);
+  const [uploadVideoList, setUploadVideoList] = useState([]);
   const [userInfoDto, setUserInfoDto] = useState([]);
+
+
+  console.log(userInfoDto);
+
 
   const token = localStorage.getItem("token");
 
@@ -29,6 +44,7 @@ function MyPage() {
 
   useEffect(()=>{
     console.log(token)
+
     setLoading(true);
     
     axios
@@ -39,8 +55,10 @@ function MyPage() {
       setData(response.data.data)
       setFollowingList(response.data.data.followingList)
       setUploadList(response.data.data.uploadList)
+      setUploadVideoList(response.data.data.uploadVideoList)
       setUserInfoDto(response.data.data.userInfoDto)
       setLikeList(response.data.data.likeList)
+      setLikeVideoList(response.data.data.likeVideoList)
 
       console.log(response.data.data.userInfoDto)
       
@@ -56,13 +74,17 @@ function MyPage() {
     window.scrollTo(0,0);
   },[])
 
-  console.log(loading)
+  console.log(data)
   
-  console.log(tab)
 
   return (
+
+
     // Frame 61 전체 영역
     <div className='mypage-container'>
+
+      {/* navigate 함수로 myedit 페이지로 갈 때, userInfoDto에 담아져있는 데이터를 state로 가져감 */}
+      <button onClick={()=>{navigate('/myedit', {state : userInfoDto})}}>회원 정보 수정</button>
 
       {/* Frame 59  회원정보 부분*/}
       <div className='mypage-header'>
@@ -99,10 +121,7 @@ function MyPage() {
 
       </div>
       
-      {/* Frame 60 */}
       <div className='mypage-body'>
-
-        {/* Fram 54 */}
         <div className='body-bar'>
             <p className='body-bar-menu' onClick={()=>{setTab(0)}}>전체</p>
             <p className='body-bar-menu'  onClick={()=>{setTab(1)}}>관심음악</p>
@@ -115,7 +134,7 @@ function MyPage() {
 
         <div className='body-contents'>
           {tab ===0?
-          (<Tab1 followingList={followingList} likeList={likeList} uploadList={uploadList} />)
+          (<Tab1 followingList={followingList} likeList={likeList} uploadList={uploadList} likeVideoList={likeVideoList} uploadVideoList={uploadVideoList} />)
           :tab ===1?
           (<Tab2/>)
           :tab ===2?
@@ -133,5 +152,30 @@ function MyPage() {
     </div>
   )
 }
+
+
+// function TabContent({tab}) {
+//   if (tab == 0) {
+//     return(
+//       <>
+//       <LikeList/> 
+//       <FollowingList/>
+//       <UploadList/>
+//       </>
+//     )
+    
+//   } 
+//   if (tab == 1) {
+//     return <LikeList/> 
+//   } 
+//   if (tab == 2) {
+//     return <FollowingList/>
+//   }
+//   if (tab == 3) {
+//     return <UploadList/>
+//   }
+// }
+
+
 
 export default MyPage;

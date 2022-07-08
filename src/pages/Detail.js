@@ -12,6 +12,7 @@ import Waveform from '../elements/Waveform';
 import axios from "axios";
 import EditComment from "../elements/EditComment";
 import EditDelete from "../elements/EditDelete";
+import { IconContext } from "react-icons";
 
 function Detail() {
   const [loading, setLoading] = useState(true);
@@ -35,7 +36,7 @@ function Detail() {
   dispatch(getSongDetail(propslist));
   setTimeout(()=> {
     setLoading(false);
-  },200)
+  },300)
   window.scrollTo(0,0);
 },[])
 
@@ -96,9 +97,7 @@ function Detail() {
       ):(
       <>
         <section className="music-detail">
-        {userName === detail.artist ?  
-          <EditDelete detail={detail} token={token} id={params.id}/>
-          : null}
+        
         
           <div className="left-column">
             <img
@@ -122,7 +121,19 @@ function Detail() {
             </div>
           </div>
           <div className="right-column">
-            
+          <div className="detail-info-wrap">
+            <div className="flex-wrap between">
+              <p className="detail-info-title">{detail.title}</p>
+            </div> 
+            <div className="flex-wrap">
+              {userName === detail.artist ?  
+              <EditDelete detail={detail} token={token} id={params.id}/>
+              : null}
+            </div>
+            {/* <button className="add-playlist btn">
+            <span><BiPlus/></span> 플레이리스트 추가
+            </button> */}
+          </div>
             <Waveform 
               songUrl={detail.songUrl} 
               title={detail.title}
@@ -130,15 +141,25 @@ function Detail() {
             
             <div className="flex-wrap">
               {detail.flag===false? 
-              <FaRegHeart
-              onClick={
+              <IconContext.Provider value={{ className: "heart" }}>
+                <div>
+                <FaRegHeart
+                onClick={
                 ClickEmptyHeart
-              }/> 
-              : <FaHeart
-              onClick={
-                ClickFilledHeart
+                }/> 
+                </div>
+              </IconContext.Provider>
+              : 
+              <IconContext.Provider value={{ color: "red", className: "heart" }}>
+                <div>
+                <FaHeart
+                onClick={
+                  ClickFilledHeart
+                }              
+                  />
+                </div>
+              </IconContext.Provider>
               }
-              />}
               <p className="detail-like">{detail.likeCount}</p>
             </div>
             <p className="detail-song-detail">
@@ -165,7 +186,7 @@ function Detail() {
         </div>
       ):(
         <section className="music-comment">
-          <p className="detail-info-title">
+          <p className="detail-comment-title" >
           댓글 <span className="spangrey">{commentsList&&commentsList.length}</span>
           </p> 
 

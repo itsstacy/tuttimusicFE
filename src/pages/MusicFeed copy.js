@@ -21,7 +21,7 @@ function MusicFeed() {
     const data= {
       token:token,
       type: _type,
-      genre: "",
+      genre: null,
     }
     dispatch(getMusicFeed(data));
     setTimeout(()=> {
@@ -32,40 +32,38 @@ function MusicFeed() {
 
   const allList = useSelector((state) => state.Song.allList);
   console.log(allList);
-  
-  const ClickType =(props)=>{
-    setGenre(null);
-    // if (props ==="오디오"){
-    //   setType("audio");
-    // } 
-    // if (props ==="영상"){
-    //   setType("video");
-    // } 
-    
-    
-    console.log(_type);
-      const data2= {
+
+  // const ClickType =(type)=>{
+  //   setGenre(null);
+  //   if (type ==="오디오"){
+  //     setType("audio");
+  //   } else{
+  //     setType("video");
+  //   }
+  //   console.log(type);
+  //     const data2= {
+  //       token: token,
+  //       type: _type,
+  //       genre: null,
+  //     }
+  //     dispatch(getMusicFeed(data2))
+  //   }
+
+  const ClickGenre =(genre)=>{
+    setGenre(genre);
+    console.log(genre);
+      const data3= {
         token: token,
-        type: props,
-        genre: "",
+        type: _type,
+        genre: _genre,
       }
-      dispatch(getMusicFeed(data2))
+      dispatch(getMusicFeed(data3))
     }
 
-  const ClickGenre =(props)=>{
-    const data3= {
-      token: token,
-      type: _type,
-      genre: props,
-    }
-    dispatch(getMusicFeed(data3))
-  }
-
-  const typeList =[
-    {type: "오디오", eng: "audio"},
-    {type: "영상", eng: "video"},
-  ]
-  
+  // const typeList =[
+  //   {type: "오디오"},
+  //   {type: "영상"},
+  // ]
   const genreList = [
     {genre: "발라드"},
     {genre: "어쿠스틱"},
@@ -77,7 +75,7 @@ function MusicFeed() {
 
   return (
     <div className="musicfeed-container">
-      <section className="feed-category">
+       {/* <section className="feed-category">
         <p className="genre-text">
           유형
         </p>
@@ -87,15 +85,14 @@ function MusicFeed() {
             <div 
             className="category"
             onClick={()=>{
-              setType(type.eng)
-              ClickType(type.eng)
+              ClickType(type.type)
             }}>
             {type.type}
           </div>
             )
           })}
         </div>
-      </section>
+      </section> */}
       <section className="feed-category">
         <p className="genre-text">
           장르
@@ -106,7 +103,6 @@ function MusicFeed() {
             <div 
             className="category"
             onClick={()=>{
-              setGenre(genre.genre)
               ClickGenre(genre.genre)
             }}>
             {genre.genre}
@@ -114,7 +110,6 @@ function MusicFeed() {
             )
           })}
         </div>
-
       </section>
 
       <section className="feed-list">
@@ -123,9 +118,7 @@ function MusicFeed() {
           <div className="spinner-wrap">
           <BeatLoader color={"grey"} loading={loading} size={10}/>
         </div>
-        ):_type === "audio" ?
-
-        (
+        ):(
           <>{allList&&allList.map((song,index)=>{
               return(
                 <div 
@@ -150,36 +143,7 @@ function MusicFeed() {
               )            
             })}
           </>
-        )
-        :
-        (
-          <>{allList&&allList.map((song,index)=>{
-              return(
-                <div 
-                className="video-card"
-                onClick={()=>{
-                  navigate('/detail/'+song.id)
-                }}>
-                  <img
-                  alt={song.title}
-                  className="main-thumbnail" 
-                  src={song.albumImageUrl}
-                  />
-                  <div className="main-card-text">
-                    <p className="main-card-title">
-                    {song.title}
-                    </p>
-                    <p className="main-card-artist">
-                    {song.artist}
-                    </p>
-                  </div>
-                </div>
-              )            
-            })}
-          </>
-        )
-      
-      }
+        )}
        
       </section>
     
