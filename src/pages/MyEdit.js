@@ -90,14 +90,14 @@ const myinfoEdit = () => {
         <div className='signup-info'>
 
           {/* 닉네임  */}
-          <div className='signup-email-box'>
+          <div className='signup-pw-box'>
             
-            <div className='signup-email-title-box'>
-              <p className='signup-email-title'>닉네임</p>
+            <div className='signup-pw-title-box'>
+              <p className='signup-pw-title'>닉네임</p>
             </div>
 
             <div className='signup-email-content'>
-              <input className='signup-email-input'
+              <input className='signup-pw-input'
                 type="text" 
                 value={userInfo.artist}
                 readOnly/>
