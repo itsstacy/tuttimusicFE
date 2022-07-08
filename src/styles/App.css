@@ -11,7 +11,7 @@
 
   /* 앨범 커버 이미지 비율 1:1 */
   --card-size: 190px;
-  --video-size: 304px;
+  --video-size: 300px;
 }
 
 .divider {
@@ -177,7 +177,7 @@
 }
 
 .category {
-  width:240px;
+  width:238px;
   height: 64px;
   border-radius:10px;
   font-size: 16px;
@@ -248,6 +248,7 @@
   width: 80px;
   height: 80px;
   border-radius: 50%;
+  object-fit: cover;
 }
 
 .detail-artist{
@@ -362,6 +363,7 @@
   width: 60px;
   height: 60px;
   border-radius: 50%;
+  object-fit: cover;
 }
 
 .comment-input{
@@ -1520,6 +1522,12 @@
 .result-name {
   font-size: 25px;
   font-weight: 500;
+}
+
+.result-sub-name {
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 20px;
 }
 
 .result-none{

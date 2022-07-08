@@ -42,7 +42,7 @@ function MusicFeed() {
     //   setType("video");
     // } 
     
-    setType(props)
+    
     console.log(_type);
       const data2= {
         token: token,
@@ -52,13 +52,11 @@ function MusicFeed() {
       dispatch(getMusicFeed(data2))
     }
 
-  const ClickGenre =(genre)=>{
-    setGenre(genre);
-    console.log(genre);
+  const ClickGenre =(props)=>{
     const data3= {
       token: token,
       type: _type,
-      genre: _genre,
+      genre: props,
     }
     dispatch(getMusicFeed(data3))
   }
@@ -89,6 +87,7 @@ function MusicFeed() {
             <div 
             className="category"
             onClick={()=>{
+              setType(type.eng)
               ClickType(type.eng)
             }}>
             {type.type}
@@ -107,6 +106,7 @@ function MusicFeed() {
             <div 
             className="category"
             onClick={()=>{
+              setGenre(genre.genre)
               ClickGenre(genre.genre)
             }}>
             {genre.genre}

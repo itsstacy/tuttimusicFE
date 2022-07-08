@@ -22,7 +22,7 @@ function Main() {
     dispatch(getMainLists(token));
     setTimeout(()=> {
       setLoading(false);
-    },300)
+    },200)
     window.scrollTo(0,0);
   },[])
 
