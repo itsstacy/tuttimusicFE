@@ -11,10 +11,10 @@ const formWaveSurferOptions = ref => ({
   waveColor:"grey",
   progressColor: "orange",
   cursorColor: "orange",
-  barWidth: 3,
-  barRadius: 0,
+  barWidth:3,
+  barRadius: 2,
   responsive: true,
-  height:100,
+  height:120,
   //normalize by the maximum peak instead of 1.0
   normalize: true,
   //improve rendering speed of large waveforms
@@ -76,42 +76,44 @@ function Waveform(props) {
       </div>
     ):(
     <>
-      <div className="detail-info-wrap">
-        <div className="flex-wrap">
-          <button 
-            className="play-button btn"
-            onClick={handlePlayPause}>
-            {!playing ? <ImPlay3/> : <IoMdPause/> }
-          </button>
-          <p className="detail-info-title">{props.title}</p>
+      <div className="detail-info-wrap mgtop50">
+        <div className="flex-wrap between">          
+          <div className="flex-wrap">
+            <button 
+              className="play-button btn"
+              onClick={handlePlayPause}>
+              {!playing ? <ImPlay3/> : <IoMdPause/> }
+            </button>
+          </div>
+          <div className="flex-wrap">
+            <div className="controls">
+              {volume > 0.01 && volume < 0.5 ? <FaVolumeDown/> 
+              : volume > 0.5? <FaVolumeUp/>
+              : <FaVolumeOff/>}
+              <input
+                className="volume-control"
+                type="range"
+                id="volume"
+                name="volume"
+                // volume 0 = 1
+                min="0.01"
+                max="1"
+                step="0.025"
+                onChange={onvolumechange}
+                defaultValue={volume}
+              />            
+            </div>
+          </div>
         </div> 
         {/* <button className="add-playlist btn">
         <span><BiPlus/></span> 플레이리스트 추가
         </button> */}
       </div>
+
       <div className="detail-wavefom">
 
         <div id="waveform" ref={waveformRef}/>
-        <div className="controls">
-          
-
-          {volume > 0.01 && volume < 0.5 ? <FaVolumeDown/> 
-          : volume > 0.5? <FaVolumeUp/>
-          : <FaVolumeOff/>}
-          <input
-            className="volume-control"
-            type="range"
-            id="volume"
-            name="volume"
-            // volume 0 = 1
-            min="0.01"
-            max="1"
-            step="0.025"
-            onChange={onvolumechange}
-            defaultValue={volume}
-          />
-          
-        </div>
+        
       </div>
     </>
     )}
