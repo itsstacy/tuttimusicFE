@@ -836,7 +836,7 @@
 
   max-width: 1280px;
   width: 100%;
-  height: 1759px;
+  
 
   margin : 80px auto;
 }
@@ -848,10 +848,9 @@
   padding: 0px;
   gap: 60px;
 
-  margin-bottom: -60px;
+  margin-bottom: 0px;
 
   width: 200px;
-  height: 78px;
 
 }
 
@@ -873,7 +872,6 @@
   font-weight: 400;
 
   width: 500px;
-  height: 19px;
 
   margin-top: -80px;
 
@@ -917,7 +915,6 @@
   width: 1060px;
   height: 60px;
 
-  /* background-color: #434343; */
 }
 
 .signup-email-title-box {
@@ -928,17 +925,14 @@
   gap: 6px;
 
   width: 63px;
-  height: 24px;
-
 }
 
 .signup-email-title {
   width: 120px;
-  height: 24px;
 
   font-style: normal;
   font-weight: 400;
-  font-size: 17px;
+  font-size: 20px;
   line-height: 24px;
 
   margin-top: 0px;
@@ -984,7 +978,6 @@
   gap: 10px;
 
   width: 120px;
-  height: 60px;
 
   background: #545454;
   border-radius: 10px;
@@ -992,7 +985,7 @@
   color: #FFFFFF;
   font-style: normal;
   font-weight: 400;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 30px;
 
   outline: none;
@@ -1021,17 +1014,15 @@
   padding: 0px;
   gap: 6px;
 
-  width: 81px;
-  height: 24px;
+  width: 150px;
 }
 
 .signup-pw-title {
-  width: 70px;
-  height: 24px;
+  width: 150px;
 
   font-style: normal;
   font-weight: 400;
-  font-size: 17px;
+  font-size: 20px;
   line-height: 24px;
 
   margin-top: 0px;
@@ -1057,7 +1048,7 @@
   padding: 15px 30px;
   gap: 10px;
 
-  margin-left: -10px;
+  margin-left: -88px;
 
   width: 840px;
   height: 60px;
@@ -1078,6 +1069,8 @@
 
   width: 350px;
   height: 19px;
+
+  margin-left: -10px;
 }
 
 .pw-check {
@@ -1090,7 +1083,7 @@
   line-height: 19px;
 
   margin-top: 0px;
-  margin-left: -30px;
+  margin-left: -90px;
 
   color: #7E7E7E;
 }
@@ -1141,14 +1134,13 @@
   padding: 0px;
   gap: 6px;
 
-  width: 120px;
-  height: 24px;
+  width: 130px;
 }
 
 .profile-title {
   font-style: normal;
   font-weight: 400;
-  font-size: 17px;
+  font-size: 20px;
   line-height: 24px;
 
   margin-top: 0px;
@@ -1171,6 +1163,9 @@
   width: 200px;
   height: 200px;
   border-radius: 50%;
+
+  background-size: cover;
+  background-position: center center;
 
   align-items: flex-start;
 
@@ -1225,16 +1220,14 @@
   gap: 6px;
 
   width: 86px;
-  height: 24px;
 }
 
 .signup-genre-title {
-  width: 75px;
-  height: 24px;
+  width: 86px;
 
   font-style: normal;
   font-weight: 400;
-  font-size: 17px;
+  font-size: 20px;
   line-height: 24px;
 
   margin-top: 0px;
@@ -1275,7 +1268,7 @@
   padding: 0px;
   gap: 46px;
 
-  width: 840px;
+  width: 800px;
   height: 51px;
 
   flex-wrap: wrap;
