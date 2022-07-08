@@ -41,7 +41,6 @@ const myinfoEdit = () => {
       formData.append("file", image)
       formData.append("updateData", new Blob([JSON.stringify(updateData)], {type: "application/json"}))
 
-  console.log(editList);
 
   axios
   .put("http://52.79.234.195/user/mypage", formData, {
