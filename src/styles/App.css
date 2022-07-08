@@ -22,6 +22,13 @@
   width: 98%;
 }
 
+.vertical-divider {
+  border-left: 1px solid #D9D9D9;
+  height: 100%;
+  height: 15px;
+  margin: 0px 10px;
+}
+
 .btn {
   outline: none;
   border: none;
@@ -261,9 +268,19 @@
   align-items: center;
   justify-content: space-between;
   height: 40px;
+  width: 100%;
+}
+
+.mgtop50 {
+  margin-top: 50px;
 }
 
 .detail-info-title{
+  font-size: 26px;
+  padding-bottom: 5px;
+}
+
+.detail-comment-title{
   font-size: 20px;
   padding-bottom: 5px;
 }
@@ -272,6 +289,15 @@
   display: flex;
   align-items: center;
   gap:5px;
+}
+
+.between{
+  justify-content: space-between;
+}
+
+.small-button{
+  font-size: 15px;
+  color: #7E7E7E;
 }
 
 .add-playlist{
@@ -284,12 +310,12 @@
   border-radius: 10px;
   height: 120px;
   width: 100%;
-  margin: 80px auto 25px auto;
+  margin: 20px auto 10px auto;
 }
 
 .detail-like{
-  font-size: 15px;
-  margin: 0;
+  font-size: 18px;
+  margin: 0px 0px 3px 5px;
 }
 
 .detail-song-detail{
@@ -349,6 +375,10 @@
 .follow-button{
   width: 80px;
   margin-left: 30px;
+}
+
+.heart{
+  font-size: 25px;
 }
 
 /* COMMENT */
@@ -505,8 +535,8 @@
 
 /* WAVE FORM */
 .play-button {
-  width: 20px;
-  height: 20px;
+  width: 37.5px;
+  height: 37.5px;
   color: #fff;
   background-color: black;
   border-radius:50%;
@@ -514,10 +544,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 20px;
 }
 
 .volume-control{
-  width: 100px;
+  width: 140px;
   margin-left: 10px;
 }
 
