@@ -131,8 +131,19 @@ function UploadVideo() {
 
 
   const uploadMusic = () => {
+
+    if (title_ref.current.value === "") {
+      return window.alert("곡명을 채워 주세요.")
+    } else if (description_ref.current.value === "") {
+      return window.alert ("소개글을 채워 주세요.")
+    } else if (selectGenre === "장르를 선택해 주세요.") {
+      return window.alert ("장르를 선택해 주세요.")
+    } else if (musicName === null) {
+      return window.alert ("파일을 첨부해 주세요.")
+    }
     
     const token = localStorage.getItem("token");
+
 
     const feedRequestDto = {
       title : title_ref.current.value,
@@ -150,9 +161,7 @@ function UploadVideo() {
     formData.append("song", musicFile)
     formData.append("albumImage", imgFile)
 
-    // console.log("formData ===> ", formData);
-    // console.log("song ===> ", musicFile);
-    // console.log("albumImage ===> ", imgFile);
+
 
     axios.post(`${SERVER_URL}/feeds/upload`, formData,{
       headers: {
@@ -161,12 +170,13 @@ function UploadVideo() {
     })
     .then((response) => {
       console.log("res ===> ", response);
-      alert(response.data);
+      alert("피드가 등록되었습니다.");
       navigate("/musicfeed")
+      window.scrollTo(0, 0);
     })
     .catch((error) => {
       console.log("err ===> ", error);
-      alert("피드 등록 실패")
+      alert("피드 등록에 실패했습니다.")
     });
   }
 
