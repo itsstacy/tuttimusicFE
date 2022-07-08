@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import Styled from 'styled-components';
+
 import styled from 'styled-components';
 
 const SignUp = () => {
@@ -17,44 +17,13 @@ const SignUp = () => {
     const [preview, setPreview] = useState(null);
     //초기값을 null로 해야 사각형이 안나옴!
 
-    const [genreList, setGenreList] = useState([]);
-
-    const genre = [null, null, null, null];
-
-    // const [genre0, setGenre0] = useState(false);
-    // const [genre1, setGenre1] = useState(false);
-    // const [genre2, setGenre2] = useState(false);
-    // const [genre3, setGenre3] = useState(false);
-    // const [genre4, setGenre4] = useState(false);
-    // const [genre5, setGenre5] = useState(false);
-    
     const [insta, setInsta] = useState(null);
     const [youtube, setYoutube] = useState(null);
 
     const genreNames = ["발라드", "어쿠스틱", "R&B", "힙합", "댄스", "연주곡"]
     
-    const clickGenreList = [false, false, false, false, false, false];
-
-    const [clickGenre, setClickGenre] = useState([false, false, false, false, false, false]);
 
 
-    const genrePick = (name, index) => {
-        // indexOf 함수는 해당 배열에서 특정 값을 찾을 때 인덱스 숫자로 위치를 알려주고 없으면 -1을 반환
-        // genre 배열에서 null값이 없어서 -1을 반환할 때 name(장르 이름)으로 가득 찬 상태이므로 알림창 띄우기
-        if(genre.indexOf(null) === -1) {
-            return window.alert("장르는 최대 4개까지 선택 가능합니다.")
-        } 
-
-        // genre가 null값의 배열이므로 마지막 null을 지우고 맨 앞에 name(장르 이름)을 넣는 형태
-        genre.pop(); 
-        genre.unshift(name);
-
-        console.log(clickGenre)
-        console.log(clickGenreList)
-        clickGenreList.splice(index,1,(!clickGenreList[index]))
-        setClickGenre(clickGenreList)
-        console.log("genre",genre)
-    }
 
 
     //이메일 체크
@@ -160,6 +129,13 @@ const SignUp = () => {
             return window.alert("모든 항목을 입력하세요!");    
         }
 
+        const nullList = [null, null, null, null]
+
+        if (genre.toString() === nullList.toString()) {
+          return window.alert("장르를 최소 1개 선택해 주세요.")
+          
+        }
+
       //비밀번호 양식이 다를 때
         if (checkPw(password) === false || checkPw(passwordCheck) === false) {
             return window.alert("비밀번호는 8~20글자 영문+숫자 조합입니다!")
@@ -176,10 +152,11 @@ const SignUp = () => {
             email : email,
             password : password,
             artist : artist,  
-            genre : [null, null, null, null],
+            genre : genre,
             profileText : profileText,
             instagramUrl : insta,
-            youtubeUrl : youtube
+            youtubeUrl : youtube,
+            genreSelected : clickGenre
         }
         console.log(signupdata)
 
@@ -205,6 +182,36 @@ const SignUp = () => {
     
     }
 
+    const [genre, setGenre] = useState([null, null, null, null]);
+    const [clickGenre, setClickGenre] = useState([false, false, false, false, false, false]);
+    
+  const genrePick = (name, index) => {
+    // indexOf 함수는 해당 배열에서 특정 값을 찾을 때 인덱스 숫자로 위치를 알려주고 없으면 -1을 반환
+    // genre 배열에서 null값이 없어서 -1을 반환할 때 name(장르 이름)으로 가득 찬 상태이므로 알림창 띄우기
+    if (genre.indexOf(null) === -1 &&  genre.indexOf(name) === -1) {
+      return window.alert("장르는 최대 4개까지 선택 가능합니다.")
+    } else if (genre.indexOf(name) === -1) {
+      genre.pop();
+      genre.unshift(name);
+      console.log("genre", genre);
+    } else {
+      genre.splice(genre.indexOf(name), 1);
+      genre.push(null);
+      console.log("genre", genre);
+    }
+
+    // genre가 null값의 배열이므로 마지막 null을 지우고 맨 앞에 name(장르 이름)을 넣는 형태
+
+    setClickGenre([
+      ...clickGenre.slice(0, index),
+      !clickGenre[index],
+      ...clickGenre.slice(index+1),
+    ]);
+    console.log("clickGenre ==> ", clickGenre)
+
+  }
+
+
     return (
         <div className='signup-container'>
             <div className='signup-title-box'>
@@ -227,7 +234,7 @@ const SignUp = () => {
                                         setEmail(e.target.value)
                                     }}
                                     type="text" 
-                                    placeholder="실제 사용 중인 이메일을 입력해주세요"
+                                    placeholder="실제 사용 중인 이메일을 입력하세요"
                                     name="email"
                             />
                             <button className='signup-email-button' onClick={(emailCheck)}>인증</button><br/>
@@ -249,12 +256,13 @@ const SignUp = () => {
                                     setPassword(e.target.value)
                                 }}   
                                 type="password" 
-                                placeholder="비밀번호를 입력해주세요."
+                                placeholder="비밀번호를 입력하세요"
                                 name="password"
                                 />
                             <div className='signup-pw-check'>
                                 <p className='pw-check'>비밀번호 규칙 : 8~20글자 영문+숫자 조합</p>
                             </div>    
+                                <br/>
                         </div>    
                     </div>
 
@@ -271,7 +279,7 @@ const SignUp = () => {
                                     setPasswordCheck(e.target.value)
                                 }}   
                                 type="password" 
-                                placeholder="비밀번호를 입력해주세요."
+                                placeholder="비밀번호를 입력하세요"
                                 name="password"
                                 />
                         </div>    
@@ -291,7 +299,8 @@ const SignUp = () => {
                                         setArtist(e.target.value)
                                     }}
                                     type="text" 
-                                    placeholder="닉네임을 입력해주세요."
+                                    placeholder="닉네임을 입력하세요"
+                                    name="email"
                             />
                             <button className='signup-artist-button' onClick={(artistCheck)}>중복 확인</button><br/>
                         </div>
@@ -353,7 +362,7 @@ const SignUp = () => {
                                     setProfileText(e.target.value)
                                 }}   
                                 type="text" 
-                                placeholder="자신을 간단히 소개해주세요."
+                                placeholder="소개글을 입력하세요"
                                 />
                     </div>
                     
@@ -368,7 +377,7 @@ const SignUp = () => {
                                     setInsta(e.target.value)
                                 }}   
                                 type="text" 
-                                placeholder="URL을 입력해주세요."
+                                placeholder="URL을 입력하세요"
                                 />
                     </div>
 
@@ -383,7 +392,7 @@ const SignUp = () => {
                                     setYoutube(e.target.value)
                                 }}   
                                 type="text" 
-                                placeholder="URL을 입력해주세요."
+                                placeholder="URL을 입력하세요"
                                 />
                     </div>
 
@@ -398,7 +407,28 @@ const SignUp = () => {
 
 const GenreBox = styled.div`
     .genre0{
-        background-color:${(props) => (props.clickGenre[0] ? 'red' : 'blue')};
+        background-color:${(props) => (props.clickGenre[0] ? '#545454' : '#DADADA')};
+        color:${(props) => (props.clickGenre[0] ? '#fff' : '#000')};
+    }
+    .genre1{
+        background-color:${(props) => (props.clickGenre[1] ? '#545454' : '#DADADA')};
+        color:${(props) => (props.clickGenre[1] ? '#fff' : '#000')};
+    }
+    .genre2{
+        background-color:${(props) => (props.clickGenre[2] ? '#545454' : '#DADADA')};
+        color:${(props) => (props.clickGenre[2] ? '#fff' : '#000')};
+    }
+    .genre3{
+        background-color:${(props) => (props.clickGenre[3] ? '#545454' : '#DADADA')};
+        color:${(props) => (props.clickGenre[3] ? '#fff' : '#000')};
+    }
+    .genre4{
+        background-color:${(props) => (props.clickGenre[4] ? '#545454' : '#DADADA')};
+        color:${(props) => (props.clickGenre[4] ? '#fff' : '#000')};
+    }
+    .genre5{
+        background-color:${(props) => (props.clickGenre[5] ? '#545454' : '#DADADA')};
+        color:${(props) => (props.clickGenre[5] ? '#fff' : '#000')};
     }
 `
 
