@@ -13,7 +13,7 @@ function MyEdit() {
 
   const [userInfoDto, setUserInfoDto] = useState();
   const [image, setImage] = useState("");
-  const [preview, setPreview] = useState(null);  
+  const [preview, setPreview] = useState(userInfo.profileImage);  
 
   //수정할 값들
   const [profileText, setProfileText] = useState("");
@@ -27,24 +27,30 @@ function MyEdit() {
 const myinfoEdit = () => {
   const token = localStorage.getItem("token");
 
-  const editList = {
+  const updateData = {
     profileText : profileText,
     instagramUrl : insta,
     youtubeUrl : youtube,
     genre : [null, null, null, null],
   }
+  console.log(updateData)
+
+  let formData = new FormData();
+      formData.append("file", image)
+      formData.append("updateData", new Blob([JSON.stringify(updateData)], {type: "application/json"}))
 
   axios
-  .put("http://52.79.234.195/user/mypage", editList, {
+  .put("http://52.79.234.195/user/mypage", formData, {
     headers: {Authorization:token? token:""}
   })
   .then((response) => {
     console.log(response)
     alert("수정이 완료됐어요")
+    navigate('/mypage')
   })
   .catch((error) => {
     console.log(error)
-    // alert("수정되지 않았습니다")
+    alert("수정되지 않았습니다")
   })
 }
 
@@ -65,7 +71,7 @@ const myinfoEdit = () => {
       const previewImgUrl = render.result
 
     if (previewImgUrl) {
-      setPreview([...preview, previewImgUrl])
+      setPreview(previewImgUrl)
     }
     }
     console.log(e.target.files[0])   
@@ -83,51 +89,6 @@ const myinfoEdit = () => {
       <div className='signup-info-box'>
         <div className='signup-info'>
 
-          {/* 이메일 => 고정 값 */}
-          {/* <div className='signup-email-box'>
-            <div className='signup-email-title-box'>
-              <p className='signup-email-title'>이메일</p>
-            </div>
-            <div className='signup-email-content'>
-              <p className='myedit-email'>이메일은 수정 불가!</p>
-            </div>
-          </div> */}
-
-          {/* 비밀번호 */}
-          {/* <div className='signup-pw-box'>
-
-            <div className='signup-pw-title-box'>
-              <p className='signup-pw-title'>비밀번호</p>
-            </div>
-
-            <div className='signup-pw-content'>
-              <input className='signup-pw-input' 
-                type="password"
-                placeholder='비밀번호는 수정이 불가능해요.'
-                readOnly/> */}
-              {/* <div className='signup-pw-check'>
-                <p className='pw-check'>비밀번호 규칙 : 8~20글자 영문+숫자 조합</p>
-              </div>  */}
-            {/* </div> 
-
-          </div> */}
-
-          {/* 비밀번호 확인  */}
-          {/* <div className='signup-pw-box'>
-
-            <div className='signup-pw-title-box'>
-              <p className='signup-pw-title'>비밀번호 확인</p>
-            </div>
-
-            <div className='signup-pw-content'>
-              <input className='signup-pw-input'
-                type="password"
-                placeholder='비밀번호는 수정이 불가능해요.'
-                readOnly/>
-            </div>
-
-          </div> */}
-
           {/* 닉네임  */}
           <div className='signup-email-box'>
             
@@ -136,13 +97,10 @@ const myinfoEdit = () => {
             </div>
 
             <div className='signup-email-content'>
-              {/* <p className='myedit-artist-title'>기존의 닉네임이 떠야 함</p> */}
               <input className='signup-email-input'
                 type="text" 
                 value={userInfo.artist}
-                readOnly
-              />
-              {/* <button className='signup-artist-button'>중복 확인</button><br/> */}
+                readOnly/>
             </div>
 
           </div>
@@ -155,7 +113,7 @@ const myinfoEdit = () => {
             </div>
 
             <div className='profile-img-form'>
-              <img src={userInfo.profileImage} className='profile-img-circle'/>
+              <img src={preview} className='profile-img-circle'/>
               <label className="profile-img-button" htmlFor="image">이미지 업로드</label>
               <input className='img-button' type="file" id="image" accept='image/*' onChange={fileChange} />
             </div>
