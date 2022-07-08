@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, {useEffect, useState} from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
 
 function MyEdit() {
 
@@ -9,16 +10,17 @@ function MyEdit() {
   //mypage의 담아져있던 데이터(userInfoDto 값을 state로!)를 받아와서 받아 온 state를 userInfo로 지정  
   const {state} = useLocation();
   const userInfo = state;
-  console.log(userInfo);
+
+  // console.log(userInfo);
 
   const [userInfoDto, setUserInfoDto] = useState();
   const [image, setImage] = useState("");
   const [preview, setPreview] = useState(userInfo.profileImage);  
 
   //수정할 값들
-  const [profileText, setProfileText] = useState("");
-  const [insta, setInsta] = useState(null);
-  const [youtube, setYoutube] = useState(null);
+  const [profileText, setProfileText] = useState(userInfo.profileText);
+  const [insta, setInsta] = useState(userInfo.instagramUrl);
+  const [youtube, setYoutube] = useState(userInfo.youtubeUrl);
 
   const genreNames = ["발라드", "어쿠스틱", "R&B", "힙합", "댄스", "연주곡"]
 
@@ -31,13 +33,15 @@ const myinfoEdit = () => {
     profileText : profileText,
     instagramUrl : insta,
     youtubeUrl : youtube,
-    genre : [null, null, null, null],
+    genre : genre
   }
   console.log(updateData)
 
   let formData = new FormData();
       formData.append("file", image)
       formData.append("updateData", new Blob([JSON.stringify(updateData)], {type: "application/json"}))
+
+  console.log(editList);
 
   axios
   .put("http://52.79.234.195/user/mypage", formData, {
@@ -75,6 +79,35 @@ const myinfoEdit = () => {
     }
     }
     console.log(e.target.files[0])   
+}
+
+const [genre, setGenre] = useState(userInfo.genre);
+const [clickGenre, setClickGenre] = useState(userInfo.genreSelected);
+
+const genrePick = (name, index) => {
+// indexOf 함수는 해당 배열에서 특정 값을 찾을 때 인덱스 숫자로 위치를 알려주고 없으면 -1을 반환
+// genre 배열에서 null값이 없어서 -1을 반환할 때 name(장르 이름)으로 가득 찬 상태이므로 알림창 띄우기
+if (genre.indexOf(null) === -1 &&  genre.indexOf(name) === -1) {
+  return window.alert("장르는 최대 4개까지 선택 가능합니다.")
+} else if (genre.indexOf(name) === -1) {
+  genre.pop();
+  genre.unshift(name);
+  console.log("genre", genre);
+} else {
+  genre.splice(genre.indexOf(name), 1);
+  genre.push(null);
+  console.log("genre", genre);
+}
+
+// genre가 null값의 배열이므로 마지막 null을 지우고 맨 앞에 name(장르 이름)을 넣는 형태
+
+setClickGenre([
+  ...clickGenre.slice(0, index),
+  !clickGenre[index],
+  ...clickGenre.slice(index+1),
+]);
+console.log("clickGenre ==> ", clickGenre)
+
 }
 
 
@@ -129,19 +162,22 @@ const myinfoEdit = () => {
 
             <div className='genre-container'>
               <div className='genre-boxes'>
-                <div className='genre-box'>
+                <GenreBox className='genre-box' clickGenre={clickGenre}>
                   {
                     genreNames.map((name, index) => {
                       return (
-                        <button onClick={()=>{console.log(name)}}
-                          key = {name}
-                          className='genre-category'>
-                            {name}
+                        <button
+                          onClick={() =>
+                            genrePick(name, index)}
+                          key={name}
+                          className={'genre-category genre' + index}>
+                          {name}
                         </button>
                       )
-                    })
+                    }
+                    )
                   }
-                </div>
+                </GenreBox>
               </div>
             </div>
 
@@ -206,5 +242,33 @@ const myinfoEdit = () => {
     </div>
   )
 }
+
+const GenreBox = styled.div`
+    .genre0{
+        background-color:${(props) => (props.clickGenre[0] ? '#545454' : '#DADADA')};
+        color:${(props) => (props.clickGenre[0] ? '#fff' : '#000')};
+    }
+    .genre1{
+        background-color:${(props) => (props.clickGenre[1] ? '#545454' : '#DADADA')};
+        color:${(props) => (props.clickGenre[1] ? '#fff' : '#000')};
+    }
+    .genre2{
+        background-color:${(props) => (props.clickGenre[2] ? '#545454' : '#DADADA')};
+        color:${(props) => (props.clickGenre[2] ? '#fff' : '#000')};
+    }
+    .genre3{
+        background-color:${(props) => (props.clickGenre[3] ? '#545454' : '#DADADA')};
+        color:${(props) => (props.clickGenre[3] ? '#fff' : '#000')};
+    }
+    .genre4{
+        background-color:${(props) => (props.clickGenre[4] ? '#545454' : '#DADADA')};
+        color:${(props) => (props.clickGenre[4] ? '#fff' : '#000')};
+    }
+    .genre5{
+        background-color:${(props) => (props.clickGenre[5] ? '#545454' : '#DADADA')};
+        color:${(props) => (props.clickGenre[5] ? '#fff' : '#000')};
+    }
+`
+
 
 export default MyEdit;
