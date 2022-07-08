@@ -49,6 +49,12 @@ function Edit() {
 
   const EditMusic = () => {
 
+    if (title_ref.current.value === "") {
+      return window.alert("곡명을 채워 주세요.")
+    } else if (description_ref.current.value === "") {
+      return window.alert ("소개글을 채워 주세요.")
+    } 
+
     const token = localStorage.getItem("token");
 
     console.log("토큰", token)
@@ -69,12 +75,13 @@ function Edit() {
     })
     .then((response) => {
       console.log("res ===> ", response);
-      alert(response.data.message);
+      alert("피드 수정을 완료했습니다.");
       navigate(`/detail/${params.id}`);
+      window.scrollTo(0, 0);
     })
     .catch((error) => {
       console.log("err ===> ", error);
-      alert("수정이 안 됩니다..");
+      alert("수정에 실패했습니다.");
     });
   }
 
