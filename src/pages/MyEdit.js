@@ -33,7 +33,8 @@ const myinfoEdit = () => {
     profileText : profileText,
     instagramUrl : insta,
     youtubeUrl : youtube,
-    genre : genre
+    genre : genre,
+    genreSelected : clickGenre
   }
   console.log(updateData)
 
