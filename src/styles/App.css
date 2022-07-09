@@ -442,6 +442,13 @@
   align-items:center;
 }
 
+.row-wrap-left{
+  display: flex;
+  flex-direction: row;
+  width:100%;
+  gap: 20px;
+}
+
 .flex-between{
   justify-content: space-between;
 }
