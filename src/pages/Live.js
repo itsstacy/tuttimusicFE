@@ -5,6 +5,7 @@ function Live() {
   return (
     <LiveWrap>
       <div className="live-box">
+      <div className="live-box-left">
         <div className="live-view">라이브 송출 화면 div </div>
         
         <div className="live-info">
@@ -18,15 +19,14 @@ function Live() {
             <div id="live-info-title-sub">안녕하세요 귀여운 차차입니다ㅎㅎ</div>
           </div>
         </div>
+        </div>
+
+        <div className="live-box-right">
 
         <div className="live-chat">
           <div id="live-chat-title">실시간 채팅</div>
 
-          <div className="live-chat-box">
-            <div id="live-chat-user-image" className="live-info-image-me"></div>
-            <input type="text" id="live-chat-user-input" placeholder="채팅을 입력해 주세요."></input>
-            <button id="live-chat-user-button">등록</button>
-          </div>
+          
 
           <div className="live-chat-list">
 
@@ -41,8 +41,14 @@ function Live() {
               </div>
 
             </div>
+
+            <div className="live-chat-box">
+            <input type="text" id="live-chat-user-input" placeholder="채팅을 입력해 주세요."></input>
+            <button id="live-chat-user-button">등록</button>
+          </div>
           </div>
 
+        </div>
         </div>
       </div>
 
@@ -59,12 +65,12 @@ justify-content: center;
 .live-box {
   width:1280px;
   display:flex;
-  flex-direction: column;
+  flex-direction: row;
 }
 
 .live-view {
-  width:1280px;
-  height:720px;
+  width:880px;
+  height:495px;
   background-color:#D9D9D9;
   margin-bottom: 40px;
   text-align: center;
@@ -74,8 +80,7 @@ justify-content: center;
   display: flex;
   flex-direction: row;
   padding-bottom: 40px;
-  border-bottom: 1px solid #D9D9D9;
-  margin-bottom: 70px;
+  margin-bottom: 30px;
 }
 
 #live-info-image {
@@ -123,6 +128,9 @@ justify-content: center;
 .live-chat {
   display: flex;
   flex-direction:column;
+  width:380px;
+  height:685px;
+  margin-left:10px;
 }
 
 #live-chat-title {
@@ -135,22 +143,19 @@ justify-content: center;
   flex-direction: row;
   justify-content: space-between;
   margin-bottom: 50px;
+  
 }
 
-#live-chat-user-image {
-  width: 60px;
-  height: 60px;
-  border-radius: 60px;
-  background-color:#D9D9D9;
-}
+
 
 #live-chat-user-input {
-  width:1050px;
+  width:240px;
   background-color: #E8E8E8;
   border:none;
   outline: none;
   padding: 15px 30px;
   border-radius: 10px;
+  font-size: 15px;
 }
 
 #live-chat-user-button {
@@ -162,6 +167,7 @@ justify-content: center;
   outline:none;
   border-radius: 10px;
   text-align: center;
+  font-size: 15px;
 }
 
 .live-chat-list {
@@ -173,10 +179,19 @@ justify-content: center;
   display: flex;
   flex-direction: row;
   margin-bottom: 25px;
+  height:485px;
+}
+
+.live-chat-user-image-other {
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  background-color:#D9D9D9;
+
 }
 
 .live-chat-list-info-wrap {
-  margin-left: 30px;
+  margin-left: 10px;
 }
 
 .live-chat-list-info {
@@ -184,6 +199,7 @@ justify-content: center;
   flex-direction: row;
   align-items: center;
 }
+
 
 #live-chat-list-name {
   font-size: 17px;
