@@ -8,6 +8,7 @@ import Detail from "./pages/Detail";
 import DetailVideo from './pages/DetailVideo';
 import Edit from "./pages/Edit";
 import Live from "./pages/Live";
+import CreateLive from './pages/CreateLive';
 import Login from "./pages/Login";
 import Main from "./pages/Main";
 import MusicFeed from "./pages/MusicFeed";
@@ -42,6 +43,7 @@ function App() {
             <Route path="/uploadvideo" element={<UploadVideo />}></Route>
             <Route path="/edit/:id" element={<Edit />}></Route>
             <Route path="/live" element={<Live />}></Route>
+            <Route path="/createlive" element={<CreateLive />}></Route>
             <Route path="/search" element={<SearchResult />}></Route>
             <Route path="/facechatlist" element={<FaceChatList/>}></Route>
           </Routes>
