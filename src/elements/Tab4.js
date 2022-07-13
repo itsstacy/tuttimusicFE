@@ -17,7 +17,7 @@ function Tab4() {
         setLoading(true);
 
         axios
-        .get("http://52.79.234.195/user/mypage/follows", {
+        .get("https://seyeolpersonnal.shop/user/mypage/follows", {
             headers: {Authorization:token? token:""}
         })
         .then((response)=>{
