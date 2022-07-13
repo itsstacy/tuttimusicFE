@@ -19,6 +19,7 @@ import UploadChoice from './pages/UploadChoice';
 import Upload from './pages/Upload';
 import UploadVideo from './pages/UploadVideo';
 import UserPage from './pages/UserPage';
+import FaceChatList from './pages/FaceChatList';
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
             <Route path="/edit/:id" element={<Edit />}></Route>
             <Route path="/live" element={<Live />}></Route>
             <Route path="/search" element={<SearchResult />}></Route>
+            <Route path="/facechatlist" element={<FaceChatList/>}></Route>
           </Routes>
         </div>
       <Footer/>
