@@ -18,7 +18,7 @@ useEffect(()=>{
     setLoading(true);
 
     axios
-    .get("http://52.79.234.195/user/mypage/hearts", {
+    .get("https://seyeolpersonnal.shop/user/mypage/hearts", {
         headers: {Authorization:token? token:""}
     })
     .then((response)=>{

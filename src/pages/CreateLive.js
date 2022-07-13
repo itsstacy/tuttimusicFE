@@ -107,9 +107,6 @@ function CreateLive() {
   }
 
 
-
-
-
   const uploadMusic = () => {
 
     if (title_ref.current.value === "") {
@@ -153,6 +150,14 @@ function CreateLive() {
     });
   }
 
+  const startLive = () => {
+    //rest api: send photo, live name, desc, streamer info 
+
+    navigate('live/')
+
+  }
+
+
   return (
     <CreateLiveWrap>
       <div className="upload-wrap">
@@ -194,7 +199,11 @@ function CreateLive() {
           </div>
           </div>
 
-          <button className="upload-button">라이브 시작</button>
+          <button 
+          className="upload-button"
+          onClick={()=>{
+            startLive()
+          }}>라이브 시작</button>
 
       </div>
       </div>
@@ -209,6 +218,7 @@ let CreateLiveWrap = styled.div`
 display: flex;
 justify-content: center;
 align-items: center;
+margin-bottom: 80px;
 
 `
 

@@ -1,8 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import '../styles/App.css';
-import LikeList from '../elements/LikeList'
-import FollowingList from '../elements/FollowingList';
-import UploadList from '../elements/UploadList';
+
 
 import { FaYoutube } from 'react-icons/fa';
 import { RiInstagramFill } from 'react-icons/ri'
@@ -70,7 +68,7 @@ function MyPage() {
     console.log(1)
     setTimeout(()=> {
       setLoading(false);
-    },500)
+    },300)
     window.scrollTo(0,0);
   },[])
 

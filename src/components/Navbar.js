@@ -59,7 +59,7 @@ function Navbar() {
               Feed
             </li>
             <li onClick={()=>{
-              navigate('/live')
+              navigate('/facechatlist')
             }}>
               LIVE
             </li>
