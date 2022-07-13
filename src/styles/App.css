@@ -1616,7 +1616,6 @@
 
 
 
-
 /* FACECHATLIST PAGE  */
 
 .facechat-list {
@@ -1634,7 +1633,7 @@
   margin: 0px auto;
 }
 
-.live-list-title {
+.facechat-list-title {
   width: 200px;
   
   font-style: normal;
@@ -1645,7 +1644,7 @@
   color: #000000;
 }
 
-.live-list-container {
+.facechat-list-container {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -1656,7 +1655,7 @@
   height: 1036px;
 }
 
-.live-list {
+.facechat-live-list {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -1670,7 +1669,7 @@
 
 }
 
-.live-box {
+.facechat-live-box {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -1681,16 +1680,16 @@
   height: 229px;
 }
 
-.live-box-thumbnail {
+/* .facechat-live-thumbnail {
   width: 304px;
   height: 171px;
 
   border-radius: 8px;
 
   background-color: #A8A8A8;
-}
+} */
 
-.live-box-info {
+.facechat-live-info {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -1701,7 +1700,7 @@
   height: 42px;
 }
 
-.live-box-pofileimg {
+.facechat-live-pofileimg {
   width: 42px;
   height: 42px;
 
@@ -1710,7 +1709,7 @@
   background-color: #D9D9D9;
 }
 
-.live-box-info-box {
+.facechat-info-box {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -1720,7 +1719,7 @@
   width: 34px;
 }
 
-.live-box-info-title {
+.facechat-info-title {
   width: 33px;
 
   font-style: normal;
@@ -1733,7 +1732,7 @@
   color: #000000;
 }
 
-.live-box-info-artist {
+.facechat-info-artist {
   width: 34px;
 
   font-style: normal;
@@ -1747,6 +1746,7 @@
 }
 
 /* FACECHATLIST PAGE END */
+
 
 /* Upload start */
 

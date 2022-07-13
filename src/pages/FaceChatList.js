@@ -8,20 +8,20 @@ function FaceChatList() {
     return(
         <div>
             <div className="facechat-list">
-                <div className="live-list-title">라이브 중인 채널</div>
+                <div className="facechat-list-title">라이브 중인 채널</div>
 
-                <div className="live-list-container">
-                    <div className="live-list">
+                <div className="facechat-list-container">
+                    <div className="facechat-live-list">
                         {
                             liveList.map((live, index) => {
                                 return (
-                                    <div className="live-box">
-                                        <div className="live-box-thumbnail"/>
-                                        <div className="live-box-info">
-                                            <div className="live-box-pofileimg"/>
-                                            <div className="live-box-info-box">
-                                                <p className="live-box-info-title">Title</p>
-                                                <p className="live-box-info-artist">Artist</p>
+                                    <div className="facechat-live-box">
+                                        <div className="main-thumbnail"/>
+                                        <div className="facechat-live-info">
+                                            <div className="facechat-live-pofileimg"/>
+                                            <div className="facechat-info-box">
+                                                <p className="facechat-info-title">Title</p>
+                                                <p className="facechat-info-artist">Artist</p>
                                             </div>
                                         </div>
                                     </div>
