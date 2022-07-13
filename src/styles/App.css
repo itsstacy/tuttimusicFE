@@ -273,6 +273,7 @@
 
 .mgtop50 {
   margin-top: 50px;
+  justify-content: space-between;
 }
 
 .detail-info-title{
@@ -377,9 +378,7 @@
   margin-left: 30px;
 }
 
-.heart{
-  font-size: 25px;
-}
+
 
 /* COMMENT */
 
@@ -541,6 +540,10 @@
 /* DETAIL END */
 
 /* WAVE FORM */
+
+.wave-flex-wrap {
+  margin-right:10px;
+}
 .play-button {
   width: 37.5px;
   height: 37.5px;
@@ -554,13 +557,23 @@
   font-size: 20px;
 }
 
+#play-btn {
+  margin-left:2px;
+}
+
 .volume-control{
   width: 140px;
   margin-left: 10px;
 }
 
-.controls{
-  margin-top: 10px;
+
+.heart{
+  font-size: 25px;
+  margin-top:5px;
+}
+
+.wave-left-wrap {
+  display: flex;
 }
 
 /* WAVE FORM END */
@@ -1616,6 +1629,7 @@
 
 
 
+
 /* FACECHATLIST PAGE  */
 
 .facechat-list {
@@ -1633,7 +1647,7 @@
   margin: 0px auto;
 }
 
-.facechat-list-title {
+.live-list-title {
   width: 200px;
   
   font-style: normal;
@@ -1644,7 +1658,7 @@
   color: #000000;
 }
 
-.facechat-list-container {
+.live-list-container {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -1655,7 +1669,7 @@
   height: 1036px;
 }
 
-.facechat-live-list {
+.live-list {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -1669,7 +1683,7 @@
 
 }
 
-.facechat-live-box {
+.live-box {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -1680,16 +1694,16 @@
   height: 229px;
 }
 
-/* .facechat-live-thumbnail {
+.live-box-thumbnail {
   width: 304px;
   height: 171px;
 
   border-radius: 8px;
 
   background-color: #A8A8A8;
-} */
+}
 
-.facechat-live-info {
+.live-box-info {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -1700,7 +1714,7 @@
   height: 42px;
 }
 
-.facechat-live-pofileimg {
+.live-box-pofileimg {
   width: 42px;
   height: 42px;
 
@@ -1709,7 +1723,7 @@
   background-color: #D9D9D9;
 }
 
-.facechat-info-box {
+.live-box-info-box {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -1719,7 +1733,7 @@
   width: 34px;
 }
 
-.facechat-info-title {
+.live-box-info-title {
   width: 33px;
 
   font-style: normal;
@@ -1732,7 +1746,7 @@
   color: #000000;
 }
 
-.facechat-info-artist {
+.live-box-info-artist {
   width: 34px;
 
   font-style: normal;
@@ -1746,7 +1760,6 @@
 }
 
 /* FACECHATLIST PAGE END */
-
 
 /* Upload start */
 
