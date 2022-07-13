@@ -94,7 +94,7 @@ function UserPage() {
             <div className='row-wrap'>
             <p className='header-artist-name'>{userInfoDto.artist}
             </p>
-            <Button 
+            {/* <Button 
             isFollow ={isFollow}
             onClick={()=>{
               FollowThisArtist()
@@ -104,28 +104,48 @@ function UserPage() {
             "Follow"
             : "Following"
             }
-            </Button>  
+            </Button>   */}
             </div>
             <p className='header-artist-info'>{userInfoDto.profileText}</p>  
-            <div className='header-sns'>
+            {/* <div className='header-sns'>
             <FaYoutube className='sns-icon'/><p>{userInfoDto.youtubeUrl}</p>
             <RiInstagramFill className='sns-icon'/><p>{userInfoDto.instagramUrl}</p>
-            </div>  
+            </div>   */}
+            <div className='header-sns'>
+              {userInfoDto.youtubeUrl ? <div><FaYoutube className='sns-icon'/><p>{userInfoDto.youtubeUrl}</p></div> : null}
+              {userInfoDto.instagramUrl ? <div><RiInstagramFill className='sns-icon'/><p>{userInfoDto.instagramUrl}</p></div> : null}
+            </div>
             
           </div>
-          <div className='header-follow'>
-                <div className='follow-follower'>
-                  <p>팔로워</p>
-                </div>
-                <div className='follow-follower-count'>
-                  <p>{count}</p>
-                </div>
-                <div className='follow-follower'>
-                  <p>팔로잉</p>
-                </div>
-                <div className='follow-follower-count'>
-                  <p>{userInfoDto.followingCount}</p>
-                </div>
+
+          <div className='header-follow-container'>
+            <div className='header-follow'>
+                  <div className='follow-follower'>
+                    <p>팔로워</p>
+                  </div>
+                  <div className='follow-follower-count'>
+                    <p>{count}</p>
+                  </div>
+                  <div className='follow-follower'>
+                    <p>팔로잉</p>
+                  </div>
+                  <div className='follow-follower-count'>
+                    <p>{userInfoDto.followingCount}</p>
+                  </div>
+            </div>
+
+            <button 
+            className='follow-follower-button'
+            isFollow ={isFollow}
+            onClick={()=>{
+              FollowThisArtist()
+            }}            
+            >
+            {isFollow===false?
+            <p className='follow-follower-button-text'>팔로우</p>
+            : <p className='follow-follower-button-text'>팔로잉</p>
+            }
+            </button>
           </div>
         </div>
 

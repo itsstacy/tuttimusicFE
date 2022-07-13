@@ -658,6 +658,11 @@
   margin-right: -10px;
 }
 
+.header-follow-container {
+  width: 225px;
+  height: 123px;
+}
+
 .header-follow {
   display: flex;
   flex-direction: row;
@@ -679,8 +684,6 @@
 
   width: 82px;
   height: 22px;
-  
-  margin-top: -20px;
 
   font-style: normal;
   font-weight: 400;
@@ -696,10 +699,43 @@
   font-size: 18px;
   line-height: 22px;
 
-  margin-top: -20px;
   margin-left: -40px;
 
   color: #000000;
+}
+
+.follow-follower-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 30px;
+  gap: 10px;
+
+  width: 177px;
+  height: 50px;
+
+  margin-left: auto;
+  margin-top: 50px;
+
+  background-color: #7E7E7E;
+  border-radius: 10px;
+
+  outline: none;
+  border: none;
+}
+
+.follow-follower-button-text {
+  width: 95px;
+
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+
+  color: #FFFFFF;
+
+  cursor: pointer;
 }
 
 .mypage-body {
@@ -911,7 +947,7 @@
 
   width: 500px;
 
-  margin-top: -80px;
+  margin-top: -50px;
 
   color: #7E7E7E;
 
