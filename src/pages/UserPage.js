@@ -41,7 +41,7 @@ function UserPage() {
   useEffect(()=>{
     setLoading(true);
     axios
-    .get("http://52.79.234.195/user/profile/"+params.artist, {
+    .get("https://seyeolpersonnal.shop/user/profile/"+params.artist, {
       headers: {Authorization:token? token:""}
     })
     .then((response)=>{

@@ -83,7 +83,7 @@ const SignUp = () => {
         let emailList = {email : email}
 
         axios
-            .post("http://52.79.234.195/user/email",emailList)
+            .post("https://seyeolpersonnal.shop/user/email",emailList)
             .then((response) => {
                 console.log(response)
                 if(response)
@@ -102,7 +102,7 @@ const SignUp = () => {
             return window.alert("닉네임을 입력하세요!")
         } else {
             axios
-            .post("http://52.79.234.195/user/artist",{artist : artist})
+            .post("https://seyeolpersonnal.shop/user/artist",{artist : artist})
             .then((response) => {
                 console.log(response)
                 if(response){window.alert("사용 가능한 닉네임입니다!")}    
@@ -168,7 +168,7 @@ const SignUp = () => {
 
 
         axios
-            .post("http://52.79.234.195/user/signup", formData)
+            .post("https://seyeolpersonnal.shop/user/signup", formData)
             .then((response) => {
                 console.log(response)
                 window.alert("가입이 완료되었어요!")

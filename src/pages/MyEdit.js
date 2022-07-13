@@ -51,7 +51,7 @@ console.log("formData", formData);
 
 
   axios
-  .put("http://52.79.234.195/user/mypage", formData, {
+  .put("https://seyeolpersonnal.shop/user/mypage", formData, {
     headers: {Authorization:token? token:""}
   })
   .then((response) => {

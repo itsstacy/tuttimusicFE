@@ -48,7 +48,7 @@ function MyPage() {
     setLoading(true);
     
     axios
-    .get("http://52.79.234.195/user/mypage", {
+    .get("https://seyeolpersonnal.shop/user/mypage", {
       headers: {Authorization:token? token:""}
     })
     .then((response)=>{
