@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import {useDispatch } from "react-redux";
 
 import { BiSearchAlt2 } from "react-icons/bi"
@@ -9,6 +9,7 @@ import {searchMusic} from "../redux/modules/songSlice";
 
 function Navbar() {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const token = localStorage.getItem("token");
 
@@ -33,6 +34,18 @@ function Navbar() {
   //search 
   const dispatch = useDispatch();
   const [searchValue, setSearchValue] = useState();
+
+
+
+React.useEffect(()=>{
+  if (location.pathname === "/upload") {
+  // (  || "/upload/video" || "/upload/audio" || "/mypage" )
+    if (!token) {
+      window.alert("로그인이 필요합니다.");
+      navigate("/");
+    }
+  }
+},[])
 
 
   return (
