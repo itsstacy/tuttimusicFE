@@ -15,13 +15,14 @@ function CreateLive() {
   const title_ref = useRef(null);
   const description_ref = useRef(null);
 
-
   const [previewImg, setPreviewImg] = React.useState(null);
   const [imgName, setImgName] = React.useState(null);
   const [imgFile, setImgFlie] = React.useState(null);
 
   const [textHeight, setTextHeight] =React.useState(0);
   const imgName_ref = useRef(null);
+
+  const userName = localStorage.getItem("userName");
 
   React.useEffect(() => {
     console.log(imgName_ref.current.value.length)
@@ -107,25 +108,23 @@ function CreateLive() {
   }
 
 
-  const uploadMusic = () => {
+  const startLive = () => {
 
     if (title_ref.current.value === "") {
-      return window.alert("곡명을 채워 주세요.")
+      return window.alert("라이브 제목을 채워 주세요.")
     } else if (description_ref.current.value === "") {
       return window.alert ("소개글을 채워 주세요.")
     } else if (musicName === null) {
-      return window.alert ("파일을 첨부해 주세요.")
+      return window.alert ("썸네일을 첨부해 주세요.")
     }
+    
     
 
     const token = localStorage.getItem("token");
 
     const feedRequestDto = {
-      title : title_ref.current.value,
-      musicTitle : musicName,
+      roomTitle : title_ref.current.value,
       description : description_ref.current.value,
-      postType : "audio",
-      color : color
     }
 
     const formData = new FormData();
@@ -133,30 +132,21 @@ function CreateLive() {
     formData.append("song", musicFile)
     formData.append("albumImage", imgFile)
     
-    axios.post(`${SERVER_URL}/feeds/upload`, formData,{
+    axios.post(`${SERVER_URL}/chatRoom`, formData,{
       headers: {
         "Content-Type": "multipart/form-data",
         Authorization: token ? token : ""}
     })
     .then((response) => {
       console.log("res ===> ", response);
-      alert("피드가 등록되었습니다.");
-      navigate("/musicfeed")
+      navigate(`live/${userName}`);
       window.scrollTo(0, 0);
     })
     .catch((error) => {
       console.log("err ===> ", error);
-      alert("피드 등록에 실패했습니다.")
+      navigate('/facechatlist');
     });
   }
-
-  const startLive = () => {
-    //rest api: send photo, live name, desc, streamer info 
-
-    navigate('live/')
-
-  }
-
 
   return (
     <CreateLiveWrap>
