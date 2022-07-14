@@ -42,7 +42,7 @@ function App() {
             <Route path="/upload/video" element={<UploadVideo />}></Route>
             <Route path="/uploadvideo" element={<UploadVideo />}></Route>
             <Route path="/edit/:id" element={<Edit />}></Route>
-            <Route path="/live/:id" element={<Live />}></Route>
+            <Route path="/live/:artist" element={<Live />}></Route>
             <Route path="/createlive" element={<CreateLive />}></Route>
             <Route path="/search" element={<SearchResult />}></Route>
             <Route path="/facechatlist" element={<FaceChatList/>}></Route>

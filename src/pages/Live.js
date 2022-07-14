@@ -8,76 +8,81 @@ import Subscribers from '../elements/Subscribers';
 import Chatbox from "../elements/Chatbox";
 
 
-// FACECHAT
-
-
-
-
-// TEXTCHAT
-
-
 function Live() {
   const navigate = useNavigate();
+
+  //PARAMS=STREAMER'S NAME
   let params = useParams();
+  console.log(params);
   
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState(null);
 
-  const useName = localStorage.getItem("useName");
+  const userName = localStorage.getItem("userName");
   const token = localStorage.getItem("token");
 
   useEffect(()=>{
-    console.log(token)
+    console.log(token);
     setLoading(true);
 
-    // axios
-    // .get("https://seyeolpersonnal.shop/", {
-    //   headers: {Authorization:token? token:""}
-    // })
-    // .then((response)=>{
-    //   setData(response.data.data)
-    
-    //   console.log(response.data.data.userInfoDto)
-      
-    // })
-    // .catch((error)=>{
-    //   console.log(error)
-    // })
+    axios
+    .get(`https://seyeolpersonnal.shop/chatRoom/${params.artist}`, {
+      headers: {Authorization:token? token:""}
+    })
+    .then((response)=>{
+      console.log(response.data.liveRoomListDto);
+      setData(response.data.liveRoomListDto);      
+    })
+    .catch((error)=>{
+      console.log(error)
+    })
 
     setTimeout(()=> {
       setLoading(false);
     },300)
     window.scrollTo(0,0);
 
-
   },[])
 
+  console.log(data)
 
   return (
-    <div className="live-wrap">
+  <div className="live-wrap">  
+  {loading? (
+      <div className="spinner-wrap">
+        <BeatLoader color={"grey"} loading={loading} size={10}/>
+      </div>
+    ):(
       <div className="live-box">
       <div className="live-box-left">
         <div className="live-view">
-          <Streamer session="session1" streamer="streamer1"/>
-          <Subscribers session="session1" subscriber="username"/>
+          {/* {data.artist===userName?
+          <Streamer session={data.artist} streamer={data.artist}/>
+          :
+          <Subscribers session={data.artist} subscriber={userName}/>
+          } */}         
+          
         </div>
         <div className="live-info">
-        <div id="live-info-image"></div>
+        <img 
+        id="live-info-image"
+        src={data.profileImageUrl}
+        alt={data.artist}
+        />
           <div className="live-info-user">
-            <div id="live-info-user-name">닉네임</div>
+            <div id="live-info-user-name">{data.artist}</div>
             <div id="live-info-user-live">LIVE</div>
           </div>
           <div className="live-info-title">
-            <div id="live-info-title-main">차차의 라이브</div>
-            <div id="live-info-title-sub">안녕하세요 귀여운 차차입니다ㅎㅎ</div>
+            <div id="live-info-title-main">{data.roomTitle}</div>
+            <div id="live-info-title-sub">{data.description}</div>
           </div>
         </div>
         </div>
-
         <div className="live-box-right">
-
+          <Chatbox streamer={data.artist} session={data.artist} subscriber={userName} />
         <div className="live-chat">
-          <Chatbox streamer="streamer1"/>
+          
           <div id="live-chat-title">실시간 채팅</div>
           <div className="live-chat-list">
             <div className="live-chat-list-box">
@@ -99,8 +104,9 @@ function Live() {
         </div>
         </div>
       </div>
-
-
+    )}    
+    
+      
     </div>
   )
 }

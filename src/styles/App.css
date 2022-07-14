@@ -1782,10 +1782,8 @@
 .live-box-pofileimg {
   width: 42px;
   height: 42px;
-
   border-radius: 50px 50px;
-
-  background-color: #D9D9D9;
+  object-fit: cover;
 }
 
 .live-box-info-box {
@@ -1793,15 +1791,12 @@
   flex-direction: column;
   align-items: flex-start;
   padding: 0px;
-  gap: 6px;
-
-  width: 34px;
+  gap: 3px;
 }
 
-.live-box-info-title {
-  width: 33px;
 
-  font-style: normal;
+.facechat-info-title {
+
   font-weight: 500;
   font-size: 16px;
   line-height: 19px;
@@ -1811,15 +1806,12 @@
   color: #000000;
 }
 
-.live-box-info-artist {
-  width: 34px;
 
-  font-style: normal;
+.facechat-info-artist {
+
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
-
-  margin-top: -20px;
 
   color: #7E7E7E;
 }
@@ -2299,6 +2291,7 @@ input[type=radio] {
   border-radius: 80px;
   background-color:#D9D9D9;
   margin-right:20px;
+  object-fit: cover;
 }
 
 .live-info-user {
