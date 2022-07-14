@@ -230,8 +230,10 @@ const SongSlice = createSlice({
     [searchMusic.fulfilled]: (state, action) => {
       console.log("GET FULFILLED");
       console.log(action.payload);
-      state.result_artist = action.payload.artist;
-      state.result_title = action.payload.title;
+      state.result_musicArtist = action.payload.musicArtist;
+      state.result_musicTitle = action.payload.musicTitle;
+      state.result_videoArtist = action.payload.videoArtist;
+      state.result_videoTitle = action.payload.videoTitle;
       console.log(state.result_artist)
     },
     [searchMusic.rejected]: (state, action) => {

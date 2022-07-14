@@ -1633,12 +1633,15 @@
 .result-name {
   font-size: 25px;
   font-weight: 500;
+
+  margin: 30px 0px;
 }
 
 .result-sub-name {
   font-size: 16px;
   font-weight: 400;
   margin-bottom: 20px;
+  
 }
 
 .result-none{
