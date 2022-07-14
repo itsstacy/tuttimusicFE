@@ -128,9 +128,15 @@ function Upload() {
 
 
 
-
+const [submit, setSubmit] = React.useState(false);
 
   const uploadMusic = () => {
+
+    if (submit == true) {
+      return;
+    }
+
+    setSubmit(true);
 
     if (title_ref.current.value === "") {
       return window.alert("곡명을 채워 주세요.")
@@ -165,6 +171,7 @@ function Upload() {
         Authorization: token ? token : ""}
     })
     .then((response) => {
+      setSubmit(false);
       console.log("res ===> ", response);
       alert("피드가 등록되었습니다.");
       navigate("/musicfeed")
