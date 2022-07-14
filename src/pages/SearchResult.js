@@ -20,7 +20,7 @@ function SearchResult() {
         '{keyword}'</span>에 대한 검색 결과입니다.
       </p>
       <p className="result-name">
-        곡명
+        곡
       </p>
       <p className="result-sub-name">
         곡명으로 검색
