@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from "react-router-dom";
 
 import BeatLoader from "react-spinners/BeatLoader";
 
 function Tab1(props) {
+
+  const navigate = useNavigate();
 
   const [loading, setLoading] = useState(true);
   const likeList = props.likeList;
@@ -20,6 +23,14 @@ function Tab1(props) {
 
     window.scrollTo(0, 0);
   }, [])
+
+
+  // artist 클릭 시 새로고침 하면서 navigate 하는 함수
+
+  const ClickArtist = (artist) => {
+    navigate(`/userpage/${artist}`);
+    window.location.reload();
+  }
 
 
   return (
@@ -41,12 +52,15 @@ function Tab1(props) {
                       <img
                         src={song.albumImageUrl}
                         className='main-album-art'
-                        alt={song.title} />
-                      <div className="main-card-text">
-                        <p className="main-card-title">
+                        alt={song.title} 
+                        onClick={() => {navigate(`/detail/${song.feedId}`)}}/>
+                      <div className="main-card-text" >
+                        <p className="main-card-title" 
+                        onClick={() => {navigate(`/detail/${song.feedId}`)}}>
                           {song.title}
                         </p>
-                        <p className="main-card-artist">
+                        <p className="main-card-artist"
+                          onClick={() => {navigate(`/userpage/${song.artist}`)}}>
                           {song.artist}
                         </p>
                       </div>
@@ -77,12 +91,15 @@ function Tab1(props) {
                       <img
                         src={song.albumImageUrl}
                         className='mypage-main-thumbnail'
-                        alt={song.title} />
+                        alt={song.title} 
+                        onClick={() => {navigate(`/detail/video/${song.feedId}`)}}/>
                       <div className="main-card-text">
-                        <p className="main-card-title">
+                        <p className="main-card-title" 
+                        onClick={() => {navigate(`/detail/video/${song.feedId}`)}}>
                           {song.title}
                         </p>
-                        <p className="main-card-artist">
+                        <p className="main-card-artist"
+                        onClick={() => {navigate(`/userpage/${song.artist}`)}}>
                           {song.artist}
                         </p>
                       </div>
@@ -112,8 +129,10 @@ function Tab1(props) {
                       <img
                         src={song.profileImage}
                         className='body-circle'
-                        alt={song.artist} />
-                      <p className='body-title'>{song.artist}</p>
+                        alt={song.artist} 
+                        onClick={() => {navigate(`/userpage/${song.artist}`)}}/>
+                      <p className='body-title'
+                      onClick={() => {navigate(`/userpage/${song.artist}`)}}>{song.artist}</p>
                     </div>
                   )
                 })
@@ -141,9 +160,11 @@ function Tab1(props) {
                       <img
                         src={song.albumImageUrl}
                         className='main-album-art'
-                        alt={song.title} />
+                        alt={song.title} 
+                        onClick={() => {navigate(`/detail/${song.feedId}`)}}/>
                       <div className="main-card-text">
-                        <p className="main-card-title">
+                        <p className="main-card-title"
+                          onClick={() => {navigate(`/detail/${song.feedId}`)}}>
                           {song.title}
                         </p>
                         <p className="main-card-artist">
@@ -176,9 +197,9 @@ function Tab1(props) {
                       <img
                         src={song.albumImageUrl}
                         className='mypage-main-thumbnail'
-                        alt={song.title} />
+                        alt={song.title} onClick={() => {navigate(`/detail/video/${song.feedId}`)}}/>
                       <div className="main-card-text">
-                        <p className="main-card-title">
+                        <p className="main-card-title" onClick={() => {navigate(`/detail/video/${song.feedId}`)}}>
                           {song.title}
                         </p>
                         <p className="main-card-artist">
