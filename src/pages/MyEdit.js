@@ -56,13 +56,13 @@ console.log("formData", formData);
   })
   .then((response) => {
     console.log(response)
-    alert("수정이 완료됐어요")
+    alert("수정이 완료되었습니다.")
     navigate('/mypage')
   })
   .catch((error) => {
     console.log(error)
 
-    alert("수정되지 않았습니다")
+    alert("수정되지 않았습니다.")
     
   })
 }
@@ -128,8 +128,8 @@ console.log("clickGenre ==> ", clickGenre)
         <p className='signup-subtitle'>장르, 소개글, 인스타그램 주소와 유튜브 주소만 수정 가능합니다.</p>
       </div>
 
-      <div className='signup-info-box'>
-        <div className='signup-info'>
+      <div className='signup-info-box myedit-info'>
+        <div className='signup-info '>
 
           {/* 닉네임  */}
           <div className='signup-pw-box'>

@@ -4,7 +4,8 @@ import '../styles/App.css';
 import { useNavigate, useParams } from "react-router-dom";
 
 import { FaYoutube } from 'react-icons/fa';
-import { RiInstagramFill } from 'react-icons/ri'
+import { RiInstagramFill } from 'react-icons/ri';
+import { BsPersonPlus, BsPersonCheck } from 'react-icons/bs';
 import axios from 'axios';
 
 import Tab1 from '../elements/Tab1';
@@ -27,6 +28,8 @@ function UserPage() {
   const [tab, setTab] = useState(0);
   const [data, setData] = useState(null);
 
+  const [likeVideoList, setLikeVideoList] = useState([]);
+  const [uploadVideoList, setUploadVideoList] = useState([]);
   const [followingList, setFollowingList] = useState([]);
   const [likeList, setLikeList] = useState([]);
   const [uploadList, setUploadList] = useState([]);
@@ -45,6 +48,9 @@ function UserPage() {
       headers: {Authorization:token? token:""}
     })
     .then((response)=>{
+      console.log(response.data.data);
+      setUploadVideoList(response.data.data.uploadVideoList)
+      setLikeVideoList(response.data.data.likeVideoList)
       setFollowingList(response.data.data.followingList)
       setUploadList(response.data.data.uploadList)
       setUserInfoDto(response.data.data.userInfoDto)
@@ -94,7 +100,7 @@ function UserPage() {
             <div className='row-wrap'>
             <p className='header-artist-name'>{userInfoDto.artist}
             </p>
-            <Button 
+            {/* <Button 
             isFollow ={isFollow}
             onClick={()=>{
               FollowThisArtist()
@@ -104,28 +110,48 @@ function UserPage() {
             "Follow"
             : "Following"
             }
-            </Button>  
+            </Button>   */}
             </div>
             <p className='header-artist-info'>{userInfoDto.profileText}</p>  
-            <div className='header-sns'>
+            {/* <div className='header-sns'>
             <FaYoutube className='sns-icon'/><p>{userInfoDto.youtubeUrl}</p>
             <RiInstagramFill className='sns-icon'/><p>{userInfoDto.instagramUrl}</p>
-            </div>  
+            </div>   */}
+            <div className='header-sns'>
+              {userInfoDto.youtubeUrl ? <FaYoutube className='sns-icon' onClick={()=>{window.open(userInfoDto.youtubeUrl)}}/> : null}
+              {userInfoDto.instagramUrl ? <RiInstagramFill className='sns-icon' onClick={()=>{window.open(userInfoDto.instagramUrl)}}/> : null}
+            </div>
             
           </div>
-          <div className='header-follow'>
-                <div className='follow-follower'>
-                  <p>팔로워</p>
-                </div>
-                <div className='follow-follower-count'>
-                  <p>{count}</p>
-                </div>
-                <div className='follow-follower'>
-                  <p>팔로잉</p>
-                </div>
-                <div className='follow-follower-count'>
-                  <p>{userInfoDto.followingCount}</p>
-                </div>
+
+          <div className='header-follow-container'>
+            <div className='header-follow'>
+                  <div className='follow-follower'>
+                    <p>팔로워</p>
+                  </div>
+                  <div className='follow-follower-count'>
+                    <p>{count}</p>
+                  </div>
+                  <div className='follow-follower'>
+                    <p>팔로잉</p>
+                  </div>
+                  <div className='follow-follower-count'>
+                    <p>{userInfoDto.followingCount}</p>
+                  </div>
+            </div>
+
+            <button 
+            className='follow-follower-button'
+            isFollow ={isFollow}
+            onClick={()=>{
+              FollowThisArtist()
+            }}            
+            >
+            {isFollow===false?
+            <div className='icon-separate'><BsPersonPlus className='follow-follower-icon'/><p className='follow-follower-button-text'>팔로우</p></div>
+            : <div className='icon-separate'><BsPersonCheck className='follow-follower-icon'/><p className='follow-follower-button-text'>팔로잉</p></div>
+            }
+            </button>
           </div>
         </div>
 
@@ -144,7 +170,7 @@ function UserPage() {
 
         <div className='body-contents'>
           {tab ===0?
-          (<Tab1 followingList={followingList} likeList={likeList} uploadList={uploadList} />)
+          (<Tab1 followingList={followingList} likeList={likeList} uploadList={uploadList} likeVideoList={likeVideoList} uploadVideoList={uploadVideoList} />)
           :tab ===1?
           (<Tab2/>)
           :tab ===2?

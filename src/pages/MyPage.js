@@ -3,7 +3,8 @@ import '../styles/App.css';
 
 
 import { FaYoutube } from 'react-icons/fa';
-import { RiInstagramFill } from 'react-icons/ri'
+import { RiInstagramFill } from 'react-icons/ri';
+import { FiSettings } from 'react-icons/fi';
 import axios from 'axios';
 
 import Tab1 from '../elements/Tab1';
@@ -81,9 +82,6 @@ function MyPage() {
     // Frame 61 전체 영역
     <div className='mypage-container'>
 
-      {/* navigate 함수로 myedit 페이지로 갈 때, userInfoDto에 담아져있는 데이터를 state로 가져감 */}
-      <button onClick={()=>{navigate('/myedit', {state : userInfoDto})}}>회원 정보 수정</button>
-
       {/* Frame 59  회원정보 부분*/}
       <div className='mypage-header'>
 
@@ -96,12 +94,15 @@ function MyPage() {
           <div className='header-artist'>
             <p className='header-artist-name'>{userInfoDto.artist}</p>
             <p className='header-artist-info'>{userInfoDto.profileText}</p>  
+
             <div className='header-sns'>
-            <FaYoutube className='sns-icon'/><p>{userInfoDto.youtubeUrl}</p>
-            <RiInstagramFill className='sns-icon'/><p>{userInfoDto.instagramUrl}</p>
-            </div>  
+              {userInfoDto.youtubeUrl ? <FaYoutube className='sns-icon' onClick={()=>{window.open(userInfoDto.youtubeUrl)}}/> : null}
+              {userInfoDto.instagramUrl ? <RiInstagramFill className='sns-icon' onClick={()=>{window.open(userInfoDto.instagramUrl)}}/> : null}
+            </div>
           </div>
-          <div className='header-follow'>
+
+          <div className='header-follow-container'>
+            <div className='header-follow'>
                 <div className='follow-follower'>
                   <p>팔로워</p>
                 </div>
@@ -114,7 +115,15 @@ function MyPage() {
                 <div className='follow-follower-count'>
                   <p>{userInfoDto.followingCount}</p>
                 </div>
+            </div>
+
+             {/* navigate 함수로 myedit 페이지로 갈 때, userInfoDto에 담아져있는 데이터를 state로 가져감 */}
+            <button className='follow-follower-button' onClick={()=>{navigate('/myedit', {state : userInfoDto})}}>
+              <FiSettings className='follow-follower-icon'/><p className='follow-follower-button-text'>프로필 설정</p>
+            </button>
+
           </div>
+          
         </div>
 
       </div>
