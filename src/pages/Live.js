@@ -56,9 +56,12 @@ function Live() {
       <div className="live-box">
       <div className="live-box-left">
         <div className="live-view">
+          {/* {data.artist===userName?
+          <Streamer session={data.artist} streamer={data.artist}/>
+          :
+          <Subscribers session={data.artist} subscriber={userName}/>
+          } */}         
           
-          {/* <Streamer session={data.artist} streamer={data.artist}/>
-          <Subscribers session={data.artist} subscriber={userName}/> */}
         </div>
         <div className="live-info">
         <img 

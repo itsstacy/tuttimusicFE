@@ -33,9 +33,9 @@ const Chatbox = (props) => {
     // const registerUser=()=>{
     //     connect();
     // }
-    
+    // https://15.164.102.62/wss
     const connect =()=>{
-        let Sock = new SockJS('https://15.164.102.62/wss');
+        let Sock = new SockJS('http://13.124.152.65/ws');
         stompClient = over(Sock);
         stompClient.connect({},onConnected, onError);
     }
