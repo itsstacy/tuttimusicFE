@@ -704,6 +704,11 @@
   color: #000000;
 }
 
+.follow-follower-icon {
+  width: 20px;
+  height: 20px;
+}
+
 .follow-follower-button {
   display: flex;
   flex-direction: row;

@@ -4,7 +4,8 @@ import '../styles/App.css';
 import { useNavigate, useParams } from "react-router-dom";
 
 import { FaYoutube } from 'react-icons/fa';
-import { RiInstagramFill } from 'react-icons/ri'
+import { RiInstagramFill } from 'react-icons/ri';
+import { BsPersonPlus, BsPersonCheck } from 'react-icons/bs';
 import axios from 'axios';
 
 import Tab1 from '../elements/Tab1';
@@ -142,8 +143,8 @@ function UserPage() {
             }}            
             >
             {isFollow===false?
-            <p className='follow-follower-button-text'>팔로우</p>
-            : <p className='follow-follower-button-text'>팔로잉</p>
+            <div><BsPersonPlus className='follow-follower-icon'/><p className='follow-follower-button-text'>팔로우</p></div>
+            : <div><BsPersonCheck/><p className='follow-follower-button-text'>팔로잉</p></div>
             }
             </button>
           </div>
