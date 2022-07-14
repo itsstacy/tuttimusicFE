@@ -194,8 +194,8 @@ class Streamers extends Component {
         this.setState({
             session: undefined,
             subscribers: [],
-            mySessionId: 'SessionA',
-            myUserName: 'Participant' + Math.floor(Math.random() * 100),
+            mySessionId: this.props.session,
+            myUserName: this.props.streamer,
             mainStreamManager: undefined,
             publisher: undefined
         });
@@ -272,25 +272,7 @@ class Streamers extends Component {
                                     value="Switch Camera"
                                 />
                             </div>
-                        ) :  <p>No mainStreamManager</p>}
-                        <div id="video-container" className="col-md-6">
-                            
-                            {/* {this.state.publisher !== undefined ? (
-                                <><p>publisher</p>
-                                <div className="stream-container col-md-6 col-xs-6" onClick={() => this.handleMainVideoStream(this.state.publisher)}>
-                                    
-                                    <UserVideoComponent
-                                        streamManager={this.state.publisher} />
-                                </div></>
-                            ) : <p>No publisher</p>} */}
-                            {/* {this.state.subscribers.map((sub, i) => (
-                                <>
-                                <div key={i} className="stream-container col-md-6 col-xs-6" onClick={() => this.handleMainVideoStream(sub)}>
-                                    
-                                    <UserVideoComponent streamManager={sub} />
-                                </div></>
-                            ))} */}
-                        </div>
+                        ) :  <p>No mainStreamManager</p>}                           
                     </div>
                 ) : <p>No subscribers</p>}
             </div>
@@ -306,7 +288,6 @@ class Streamers extends Component {
         return new Promise((resolve, reject) => {
             var data = JSON.stringify({ 
                 customSessionId: sessionId,
-                role:"MODERATOR",
             });
             axios
                 .post(OPENVIDU_SERVER_URL + '/openvidu/api/sessions', data, {

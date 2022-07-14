@@ -10,6 +10,8 @@ import Chatbox from "../elements/Chatbox";
 
 function Live() {
   const navigate = useNavigate();
+
+  //PARAMS=STREAMER'S NAME
   let params = useParams();
   console.log(params);
   
@@ -24,11 +26,12 @@ function Live() {
     setLoading(true);
 
     axios
-    .get(`https://seyeolpersonnal.shop/chatRoom/${params}`, {
+    .get(`https://seyeolpersonnal.shop/chatRoom/${params.artist}`, {
       headers: {Authorization:token? token:""}
     })
     .then((response)=>{
-      setData(response.data.data)      
+      console.log(response.data.liveRoomListDto);
+      setData(response.data.liveRoomListDto);      
     })
     .catch((error)=>{
       console.log(error)
@@ -38,7 +41,6 @@ function Live() {
       setLoading(false);
     },300)
     window.scrollTo(0,0);
-
 
   },[])
 
@@ -54,11 +56,16 @@ function Live() {
       <div className="live-box">
       <div className="live-box-left">
         <div className="live-view">
-          <Streamer session="session1" streamer={data.artist}/>
-          <Subscribers session="session1" subscriber={userName}/>
+          
+          {/* <Streamer session={data.artist} streamer={data.artist}/>
+          <Subscribers session={data.artist} subscriber={userName}/> */}
         </div>
         <div className="live-info">
-        <div id="live-info-image"></div>
+        <img 
+        id="live-info-image"
+        src={data.profileImageUrl}
+        alt={data.artist}
+        />
           <div className="live-info-user">
             <div id="live-info-user-name">{data.artist}</div>
             <div id="live-info-user-live">LIVE</div>
@@ -70,8 +77,9 @@ function Live() {
         </div>
         </div>
         <div className="live-box-right">
+          <Chatbox streamer={data.artist} session={data.artist} subscriber={userName} />
         <div className="live-chat">
-          <Chatbox streamer="streamer1"/>
+          
           <div id="live-chat-title">실시간 채팅</div>
           <div className="live-chat-list">
             <div className="live-chat-list-box">
