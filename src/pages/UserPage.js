@@ -113,8 +113,8 @@ function UserPage() {
             <RiInstagramFill className='sns-icon'/><p>{userInfoDto.instagramUrl}</p>
             </div>   */}
             <div className='header-sns'>
-              {userInfoDto.youtubeUrl ? <div><FaYoutube className='sns-icon'/><p>{userInfoDto.youtubeUrl}</p></div> : null}
-              {userInfoDto.instagramUrl ? <div><RiInstagramFill className='sns-icon'/><p>{userInfoDto.instagramUrl}</p></div> : null}
+              {userInfoDto.youtubeUrl ? <FaYoutube className='sns-icon' onClick={()=>{window.open(userInfoDto.youtubeUrl)}}/> : null}
+              {userInfoDto.instagramUrl ? <RiInstagramFill className='sns-icon' onClick={()=>{window.open(userInfoDto.instagramUrl)}}/> : null}
             </div>
             
           </div>
@@ -143,8 +143,8 @@ function UserPage() {
             }}            
             >
             {isFollow===false?
-            <div><BsPersonPlus className='follow-follower-icon'/><p className='follow-follower-button-text'>팔로우</p></div>
-            : <div><BsPersonCheck/><p className='follow-follower-button-text'>팔로잉</p></div>
+            <div className='icon-separate'><BsPersonPlus className='follow-follower-icon'/><p className='follow-follower-button-text'>팔로우</p></div>
+            : <div className='icon-separate'><BsPersonCheck className='follow-follower-icon'/><p className='follow-follower-button-text'>팔로잉</p></div>
             }
             </button>
           </div>

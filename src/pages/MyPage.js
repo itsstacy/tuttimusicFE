@@ -94,14 +94,10 @@ function MyPage() {
           <div className='header-artist'>
             <p className='header-artist-name'>{userInfoDto.artist}</p>
             <p className='header-artist-info'>{userInfoDto.profileText}</p>  
-            {/* <div className='header-sns'>
-            <FaYoutube className='sns-icon'/><p>{userInfoDto.youtubeUrl}</p>
-            <RiInstagramFill className='sns-icon'/><p>{userInfoDto.instagramUrl}</p>
-            </div>   */}
 
             <div className='header-sns'>
-              {userInfoDto.youtubeUrl ? <div><FaYoutube className='sns-icon'/><p>{userInfoDto.youtubeUrl}</p></div> : null}
-              {userInfoDto.instagramUrl ? <div><RiInstagramFill className='sns-icon'/><p>{userInfoDto.instagramUrl}</p></div> : null}
+              {userInfoDto.youtubeUrl ? <FaYoutube className='sns-icon' onClick={()=>{window.open(userInfoDto.youtubeUrl)}}/> : null}
+              {userInfoDto.instagramUrl ? <RiInstagramFill className='sns-icon' onClick={()=>{window.open(userInfoDto.instagramUrl)}}/> : null}
             </div>
           </div>
 
