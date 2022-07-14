@@ -15,8 +15,8 @@ const Chatbox = (props) => {
         username: '',
         receivername: '',
         connected: false,
-        message: ''
-    });
+        message: ''    });
+
 
     console.log(publicChats)
     useEffect(()=>{
@@ -34,8 +34,10 @@ const Chatbox = (props) => {
     //     connect();
     // }
     // https://15.164.102.62/wss
+    // http://13.124.152.65/ws
+
     const connect =()=>{
-        let Sock = new SockJS('http://13.124.152.65/ws');
+        let Sock = new SockJS('https://15.164.102.62/wss');
         stompClient = over(Sock);
         stompClient.connect({},onConnected, onError);
     }
