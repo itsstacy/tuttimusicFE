@@ -45,7 +45,13 @@ function FaceChatList() {
     return(
         <div>
             <div className="facechat-list">
-                <div className="facechat-list-title">라이브 중인 채널</div>
+                <div className='facechat-header'>
+                    <div className="facechat-list-title">
+                        라이브 중인 채널
+                    </div>
+                    <button className='facechat-button btn'>라이브 시작하기</button>   
+                </div>
+                
                 {loading? (
                 <div className="spinner-wrap">
                     <BeatLoader color={"grey"} loading={loading} size={10}/>
