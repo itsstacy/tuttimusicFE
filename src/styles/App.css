@@ -1651,6 +1651,10 @@
   color: #000000;
 }
 
+.myedit-info {
+  height:1100px;
+}
+
 .myedit-artist-title {
   width: 200px;
   height: 24px;
