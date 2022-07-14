@@ -8,6 +8,7 @@ import Detail from "./pages/Detail";
 import DetailVideo from './pages/DetailVideo';
 import Edit from "./pages/Edit";
 import Live from "./pages/Live";
+import CreateLive from './pages/CreateLive';
 import Login from "./pages/Login";
 import Main from "./pages/Main";
 import MusicFeed from "./pages/MusicFeed";
@@ -19,6 +20,7 @@ import UploadChoice from './pages/UploadChoice';
 import Upload from './pages/Upload';
 import UploadVideo from './pages/UploadVideo';
 import UserPage from './pages/UserPage';
+import FaceChatList from './pages/FaceChatList';
 
 function App() {
   return (
@@ -40,8 +42,10 @@ function App() {
             <Route path="/upload/video" element={<UploadVideo />}></Route>
             <Route path="/uploadvideo" element={<UploadVideo />}></Route>
             <Route path="/edit/:id" element={<Edit />}></Route>
-            <Route path="/live" element={<Live />}></Route>
+            <Route path="/live/:id" element={<Live />}></Route>
+            <Route path="/createlive" element={<CreateLive />}></Route>
             <Route path="/search" element={<SearchResult />}></Route>
+            <Route path="/facechatlist" element={<FaceChatList/>}></Route>
           </Routes>
         </div>
       <Footer/>

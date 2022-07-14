@@ -1,8 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import '../styles/App.css';
-import LikeList from '../elements/LikeList'
-import FollowingList from '../elements/FollowingList';
-import UploadList from '../elements/UploadList';
+
 
 import { FaYoutube } from 'react-icons/fa';
 import { RiInstagramFill } from 'react-icons/ri'
@@ -48,7 +46,7 @@ function MyPage() {
     setLoading(true);
     
     axios
-    .get("http://52.79.234.195/user/mypage", {
+    .get("https://seyeolpersonnal.shop/user/mypage", {
       headers: {Authorization:token? token:""}
     })
     .then((response)=>{
@@ -70,7 +68,7 @@ function MyPage() {
     console.log(1)
     setTimeout(()=> {
       setLoading(false);
-    },500)
+    },300)
     window.scrollTo(0,0);
   },[])
 
@@ -82,9 +80,6 @@ function MyPage() {
 
     // Frame 61 전체 영역
     <div className='mypage-container'>
-
-      {/* navigate 함수로 myedit 페이지로 갈 때, userInfoDto에 담아져있는 데이터를 state로 가져감 */}
-      <button onClick={()=>{navigate('/myedit', {state : userInfoDto})}}>회원 정보 수정</button>
 
       {/* Frame 59  회원정보 부분*/}
       <div className='mypage-header'>
@@ -98,12 +93,19 @@ function MyPage() {
           <div className='header-artist'>
             <p className='header-artist-name'>{userInfoDto.artist}</p>
             <p className='header-artist-info'>{userInfoDto.profileText}</p>  
-            <div className='header-sns'>
+            {/* <div className='header-sns'>
             <FaYoutube className='sns-icon'/><p>{userInfoDto.youtubeUrl}</p>
             <RiInstagramFill className='sns-icon'/><p>{userInfoDto.instagramUrl}</p>
-            </div>  
+            </div>   */}
+
+            <div className='header-sns'>
+              {userInfoDto.youtubeUrl ? <div><FaYoutube className='sns-icon'/><p>{userInfoDto.youtubeUrl}</p></div> : null}
+              {userInfoDto.instagramUrl ? <div><RiInstagramFill className='sns-icon'/><p>{userInfoDto.instagramUrl}</p></div> : null}
+            </div>
           </div>
-          <div className='header-follow'>
+
+          <div className='header-follow-container'>
+            <div className='header-follow'>
                 <div className='follow-follower'>
                   <p>팔로워</p>
                 </div>
@@ -116,7 +118,15 @@ function MyPage() {
                 <div className='follow-follower-count'>
                   <p>{userInfoDto.followingCount}</p>
                 </div>
+            </div>
+
+             {/* navigate 함수로 myedit 페이지로 갈 때, userInfoDto에 담아져있는 데이터를 state로 가져감 */}
+            <button className='follow-follower-button' onClick={()=>{navigate('/myedit', {state : userInfoDto})}}>
+              <p className='follow-follower-button-text'>프로필 설정</p>
+            </button>
+
           </div>
+          
         </div>
 
       </div>

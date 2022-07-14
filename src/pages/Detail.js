@@ -137,9 +137,11 @@ function Detail() {
             <Waveform 
               songUrl={detail.songUrl} 
               title={detail.title}
+              detail={detail}
+              token={token}
               loading={loading}/>
             
-            <div className="flex-wrap">
+            {/* <div className="flex-wrap">
               {detail.flag===false? 
               <IconContext.Provider value={{ className: "heart" }}>
                 <div>
@@ -161,7 +163,8 @@ function Detail() {
               </IconContext.Provider>
               }
               <p className="detail-like">{detail.likeCount}</p>
-            </div>
+            </div> */}
+            
             <p className="detail-song-detail">
               {detail.description} <br/>
               곡을 소개해주세요. 곡을 소개하는 부분입니다.<br/>

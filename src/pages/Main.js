@@ -18,21 +18,13 @@ function Main() {
 
   useEffect(()=>{
     const token= localStorage.getItem("token");
-    setLoading(true);
     dispatch(getMainLists(token));
     setTimeout(()=> {
       setLoading(false);
     },200)
     window.scrollTo(0,0);
-  },[])
 
-  // const genreList = useSelector((state)=> state.Song.genreList, shallowEqual);
-  // const genreList = useSelector((state)=> state.Song.latestList, shallowEqual);
-  // const genreList = useSelector((state)=> state.Song.likeList,shallowEqual);
-  // const videoList = useSelector((state)=> state.Song.videoList,shallowEqual);
-  // console.log(genreList);
-  // console.log(latestList);
-  // console.log(videoList);
+  },[])
 
   const [genreList, latestList,likeList, videoList] = useSelector((state) => [
     state.Song.genreList,
@@ -44,6 +36,7 @@ function Main() {
   console.log(genreList);
   console.log(latestList);
   console.log(videoList);
+  
   // slider
   function SamplePrevArrow(props) {
     const { className, style, onClick } = props;
@@ -95,7 +88,6 @@ function Main() {
     // autoplay: true,
     // autoplaySpeed: 3500,
   };
-
 
 
   return (
@@ -222,9 +214,40 @@ function Main() {
             <div className="spinner-wrap">
               <BeatLoader color={"grey"} loading={loading} size={10}/>
             </div>
-          ):(
+          ): videoList&&videoList.length < 4?
+          (
+          <div className="row-wrap-left">
+            {videoList.map((song,index) =>{
+              return(
+                
+                  <div 
+                  className="video-card"
+                  onClick={()=>{
+                    navigate('/detail/video/'+song.id)
+                  }}>
+                    <img
+                    alt={song.title}
+                    className="main-thumbnail" 
+                    src={song.albumImageUrl}
+                    />
+                    <div className="main-card-text">
+                      <p className="main-card-title">
+                      {song.title}
+                      </p>
+                      <p className="main-card-artist">
+                      {song.userArtist}
+                      </p>
+                    </div>
+                  </div>
+                
+                  )
+                })
+            }   
+          </div>           
+          ):
+          (
             <Slider {...settings2}>     
-            {videoList&&videoList.map((song,index) =>{
+            {loading ===false&&videoList&&videoList.map((song,index) =>{
               return(
                 <div 
                 className="video-card"

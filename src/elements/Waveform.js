@@ -1,5 +1,10 @@
 
 import React, { useEffect, useRef, useState } from "react";
+import { useDispatch } from "react-redux";
+import {likeSong} from "../redux/modules/songSlice";
+import {FaRegHeart, FaHeart} from "react-icons/fa";
+import { IconContext } from "react-icons";
+
 import WaveSurfer from "wavesurfer.js";
 import {ImPlay3} from "react-icons/im";
 import {IoMdPause} from "react-icons/io";
@@ -22,6 +27,9 @@ const formWaveSurferOptions = ref => ({
 });
 
 function Waveform(props) {
+
+  const dispatch = useDispatch();
+
   const waveformRef = useRef(null);
   const wavesurfer = useRef(null);
   const [playing, setPlay] = useState(false);
@@ -68,6 +76,25 @@ function Waveform(props) {
     }
   }
 
+  const ClickEmptyHeart =()=>{
+    dispatch(likeSong({
+      token: props.token,
+      feedid: props.detail.id,
+      likeCount: props.detail.likeCount,
+      isLiked: props.detail.flag,
+    }))
+  }
+
+  const ClickFilledHeart =()=>{
+    dispatch(likeSong({
+      token: props.token,
+      feedid: props.detail.id,
+      likeCount: props.detail.likeCount,
+      isLiked: props.detail.flag,
+    }))
+  }
+  
+
   return (
     <>
       {props.loading ? (
@@ -77,15 +104,40 @@ function Waveform(props) {
     ):(
     <>
       <div className="detail-info-wrap mgtop50">
-        <div className="flex-wrap between">          
-          <div className="flex-wrap">
+          <div className="wave-left-wrap">        
+          <div className="flex-wrap wave-flex-wrap">
             <button 
               className="play-button btn"
               onClick={handlePlayPause}>
-              {!playing ? <ImPlay3/> : <IoMdPause/> }
+              {!playing ? <ImPlay3 id="play-btn" /> : <IoMdPause/> }
             </button>
           </div>
           <div className="flex-wrap">
+              {props.detail.flag===false? 
+              <IconContext.Provider value={{ className: "heart" }}>
+                <div>
+                <FaRegHeart
+                onClick={
+                ClickEmptyHeart
+                }/> 
+                </div>
+              </IconContext.Provider>
+              : 
+              <IconContext.Provider value={{ color: "red", className: "heart" }}>
+                <div>
+                <FaHeart
+                onClick={
+                  ClickFilledHeart
+                }              
+                  />
+                </div>
+              </IconContext.Provider>
+              }
+              <p className="detail-like">{props.detail.likeCount}</p>
+            </div>
+            </div>  
+
+          <div className="flex-wrap wave-right-wrap">
             <div className="controls">
               {volume > 0.01 && volume < 0.5 ? <FaVolumeDown/> 
               : volume > 0.5? <FaVolumeUp/>
@@ -103,7 +155,6 @@ function Waveform(props) {
                 defaultValue={volume}
               />            
             </div>
-          </div>
         </div> 
         {/* <button className="add-playlist btn">
         <span><BiPlus/></span> 플레이리스트 추가

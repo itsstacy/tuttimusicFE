@@ -14,7 +14,7 @@ function MyEdit() {
   // console.log(userInfo);
 
   const [userInfoDto, setUserInfoDto] = useState();
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState(null);
   const [preview, setPreview] = useState(userInfo.profileImage);  
 
   //수정할 값들
@@ -33,17 +33,25 @@ const myinfoEdit = () => {
     profileText : profileText,
     instagramUrl : insta,
     youtubeUrl : youtube,
-    genre : genre
+    genre : genre,
+    genreSelected : clickGenre
   }
   console.log(updateData)
+  console.log("image",image);
+
 
   let formData = new FormData();
-      formData.append("file", image)
+
+  if (image !== null ) {
+    formData.append("file", image)
+  }
       formData.append("updateData", new Blob([JSON.stringify(updateData)], {type: "application/json"}))
+
+console.log("formData", formData);
 
 
   axios
-  .put("http://52.79.234.195/user/mypage", formData, {
+  .put("https://seyeolpersonnal.shop/user/mypage", formData, {
     headers: {Authorization:token? token:""}
   })
   .then((response) => {
@@ -53,7 +61,9 @@ const myinfoEdit = () => {
   })
   .catch((error) => {
     console.log(error)
+
     alert("수정되지 않았습니다")
+    
   })
 }
 

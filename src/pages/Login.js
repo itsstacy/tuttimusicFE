@@ -35,7 +35,7 @@ const Login = () => {
 
 
         axios 
-            .post("http://52.79.234.195/user/login", {
+            .post("https://seyeolpersonnal.shop/user/login", {
                 email : email,
                 password : password,
             })

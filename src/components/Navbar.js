@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import {useDispatch } from "react-redux";
 
 import { BiSearchAlt2 } from "react-icons/bi"
@@ -9,6 +9,7 @@ import {searchMusic} from "../redux/modules/songSlice";
 
 function Navbar() {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const token = localStorage.getItem("token");
 
@@ -35,6 +36,18 @@ function Navbar() {
   const [searchValue, setSearchValue] = useState();
 
 
+
+React.useEffect(()=>{
+  if (location.pathname === "/upload") {
+  // (  || "/upload/video" || "/upload/audio" || "/mypage" )
+    if (!token) {
+      window.alert("로그인이 필요합니다.");
+      navigate("/");
+    }
+  }
+},[])
+
+
   return (
     <>
     <NavBar>
@@ -59,7 +72,7 @@ function Navbar() {
               Feed
             </li>
             <li onClick={()=>{
-              navigate('/live')
+              navigate('/facechatlist')
             }}>
               LIVE
             </li>
@@ -84,34 +97,34 @@ function Navbar() {
         </div>
         <div className="user-box">
         {token ?
-              <LoginState>
+              <div className="login-state">
                 <div className="user-upload" onClick={() => { navigate('upload') }}> 곡 업로드 </div>
                 <UserImage className="user-image" userProfileUrl={userProfileUrl}></UserImage>
                 <div className="user-name" onClick={() => { setToggleState(!toggleState) }}>{userName}</div>
                 <FaCaretDown id="down-icon" onClick={() => { setToggleState(!toggleState) }}/>
-              </LoginState>
+              </div>
               :
-              <LogoutState>
+              <div className="logout-state">
 
                 <div className="user-login" onClick={() => { navigate('login') }}>로그인</div>
                 <div className="user-slash"> / </div>
                 <div className="user-signup" onClick={() => { navigate('signup') }}>회원가입</div>
 
-              </LogoutState>}
+              </div>}
         </div>
       </div>
 
       </NavBar>
 
       {toggleState ?
-        <ToggleWrap>
+        <div className="toggle-wrap">
           <div className="user-toggle-box">
             <ul className="user-login-toggle">
               <li onClick={ClickMyPage}>마이 페이지</li>
               <li onClick={ClickLogout}>로그아웃</li>
             </ul>
           </div>
-        </ToggleWrap>
+        </div>
         :
         null}
 
@@ -129,99 +142,8 @@ height: 80px;
 background-color:#4E4E4E;
 color: #fff;
 
-
-.nav-wrap {
-  display:flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  width:1280px;
-
-}
-
-.logo {
-  width:120px;
-  font-size:30px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.nav ul {
-  list-style:none;
-  margin:0;
-  padding:0;
-}
-
-.nav ul li {
-  width:50px;
-  float:left;
-  margin-right: 40px;
-  cursor: pointer;
-}
-
-.search {
-  position:relative;
-}
-
-.search input {
-  width:500px;
-  height:40px;
-  border-radius:10px;
-  border:none;
-  padding: 0 50px 0 20px;
-  outline:none;
-}
-
-#search-icon {
-  font-size: 24px;
-  position:absolute;
-  right:20px;
-  top:8px;
-  color:#BCBCBC;
-  cursor: pointer;
-}
-
-.user-box {
-  width:390px;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-}
-
-
-
 `
 
-let LoginState = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-
-  div {
-    cursor: pointer;
-  }
-
-  .user-upload {
-    margin-right: 40px;
-  }
-
-  .user-image {
-  width: 40px;
-  height: 40px; 
-  background-color:#D9D9D9;
-  border-radius:40px;
-  margin-right: 12px;
-  cursor: pointer;
-}
-
-#down-icon {
-  font-size:16px;
-  margin-left:5px;
-  cursor: pointer;
-}
-
-`
 
 let UserImage = styled.div`
   background-image:url(${(props) => props.userProfileUrl});
@@ -229,60 +151,6 @@ let UserImage = styled.div`
   background-position: 50% 50%;
 `
 
-let ToggleWrap = styled.div`
-position: absolute;
-width:100%;
-display: flex;
-justify-content: center;
-
-  .user-toggle-box {
-  width:1280px;
-  display: flex;
-  justify-content: flex-end;
-  }
-
-  .user-login-toggle {
-    width:140px;
-    background-color: #7E7E7E;
-    list-style: none;
-    padding: 20px;
-    margin-top: 10px;
-    text-align: center;
-    border-radius: 10px;
-    color:#fff;
-    z-index: 999;
-  }
-
-  .user-login-toggle li {
-    margin-bottom: 20px;
-    cursor: pointer;
-  }
-
-  .user-login-toggle li:last-child {
-    margin-bottom:0;
-  }
-
-
-
-`
-
-let LogoutState = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-left: 100px;
-  font-size: 16px;
-
-  div {
-    cursor: pointer;
-  }
-
-  .user-slash {
-    margin:0 10px;
-  }
-
-  
-`
 
 
 export default Navbar;

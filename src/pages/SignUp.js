@@ -59,7 +59,7 @@ const SignUp = () => {
             const previewImgUrl = render.result
 
             if (previewImgUrl) {
-                setPreview([...preview, previewImgUrl])
+                setPreview(previewImgUrl)
             }
         }
 
@@ -83,7 +83,7 @@ const SignUp = () => {
         let emailList = {email : email}
 
         axios
-            .post("http://52.79.234.195/user/email",emailList)
+            .post("https://seyeolpersonnal.shop/user/email",emailList)
             .then((response) => {
                 console.log(response)
                 if(response)
@@ -102,7 +102,7 @@ const SignUp = () => {
             return window.alert("닉네임을 입력하세요!")
         } else {
             axios
-            .post("http://52.79.234.195/user/artist",{artist : artist})
+            .post("https://seyeolpersonnal.shop/user/artist",{artist : artist})
             .then((response) => {
                 console.log(response)
                 if(response){window.alert("사용 가능한 닉네임입니다!")}    
@@ -168,7 +168,7 @@ const SignUp = () => {
 
 
         axios
-            .post("http://52.79.234.195/user/signup", formData)
+            .post("https://seyeolpersonnal.shop/user/signup", formData)
             .then((response) => {
                 console.log(response)
                 window.alert("가입이 완료되었어요!")
@@ -225,7 +225,7 @@ const SignUp = () => {
                     <div className='signup-email-box'>
 
                         <div className='signup-email-title-box'>
-                            <p className='signup-email-title'>이메일</p>
+                            <p className='signup-email-title'>이메일*</p>
                         </div>
                         
                         <div className='signup-email-content'>
@@ -247,7 +247,7 @@ const SignUp = () => {
                     <div className='signup-pw-box'>
 
                         <div className='signup-pw-title-box'>
-                            <p className='signup-pw-title'>비밀번호</p>
+                            <p className='signup-pw-title'>비밀번호*</p>
                         </div>
 
                         <div className='signup-pw-content'>
@@ -270,7 +270,7 @@ const SignUp = () => {
                     <div className='signup-pw-box'>
 
                         <div className='signup-pw-title-box'>
-                            <p className='signup-pw-title'>비밀번호 확인</p>
+                            <p className='signup-pw-title'>비밀번호 확인*</p>
                         </div>
 
                         <div className='signup-pw-content'>
@@ -290,7 +290,7 @@ const SignUp = () => {
                     <div className='signup-email-box'>
 
                         <div className='signup-email-title-box'>
-                            <p className='signup-email-title'>닉네임</p>
+                            <p className='signup-email-title'>닉네임*</p>
                         </div>
                         
                         <div className='signup-email-content'>
@@ -310,7 +310,7 @@ const SignUp = () => {
                     {/* 이미지 업로드 부분 */}
                     <div className='signup-profile-img-box'>
                         <div className='profile-title-box'>
-                            <p className='profile-title'>프로필 이미지</p>
+                            <p className='profile-title'>프로필 이미지*</p>
                         </div>
                         <div className='profile-img-form'>
                             <img src={preview} className='profile-img-circle'/>
@@ -323,7 +323,7 @@ const SignUp = () => {
                     {/* 선호 장르 부분 */}
                     <div className='signup-genre-box'>
                         <div className='signup-genre-title-box'>
-                            <p className='signup-genre-title'>선호 장르</p>
+                            <p className='signup-genre-title'>선호 장르*</p>
                         </div>
 
                         <div className='genre-container'>
@@ -354,7 +354,7 @@ const SignUp = () => {
                     {/* 소개글 부분 */}
                     <div className='signup-pw-box'>
                         <div className='signup-pw-title-box'>
-                            <p className='signup-pw-title'>소개글</p>
+                            <p className='signup-pw-title'>소개글*</p>
                         </div>
                         
                         <input className='signup-pw-input'
