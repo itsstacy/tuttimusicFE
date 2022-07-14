@@ -38,13 +38,13 @@ function Navbar() {
 
 
 React.useEffect(()=>{
-  if (location.pathname === "/upload") {
-  // (  || "/upload/video" || "/upload/audio" || "/mypage" )
-    if (!token) {
-      window.alert("로그인이 필요합니다.");
-      navigate("/");
+  if (!token) {
+    if (location.pathname === "/upload") {
+      window.alert("로그인이 필요합니다.")
+      navigate(-1);
     }
   }
+
 },[])
 
 
