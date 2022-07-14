@@ -4,7 +4,8 @@ import '../styles/App.css';
 import { useNavigate, useParams } from "react-router-dom";
 
 import { FaYoutube } from 'react-icons/fa';
-import { RiInstagramFill } from 'react-icons/ri'
+import { RiInstagramFill } from 'react-icons/ri';
+import { BsPersonPlus, BsPersonCheck } from 'react-icons/bs';
 import axios from 'axios';
 
 import Tab1 from '../elements/Tab1';
@@ -117,8 +118,8 @@ function UserPage() {
             <RiInstagramFill className='sns-icon'/><p>{userInfoDto.instagramUrl}</p>
             </div>   */}
             <div className='header-sns'>
-              {userInfoDto.youtubeUrl ? <div><FaYoutube className='sns-icon'/><p>{userInfoDto.youtubeUrl}</p></div> : null}
-              {userInfoDto.instagramUrl ? <div><RiInstagramFill className='sns-icon'/><p>{userInfoDto.instagramUrl}</p></div> : null}
+              {userInfoDto.youtubeUrl ? <FaYoutube className='sns-icon' onClick={()=>{window.open(userInfoDto.youtubeUrl)}}/> : null}
+              {userInfoDto.instagramUrl ? <RiInstagramFill className='sns-icon' onClick={()=>{window.open(userInfoDto.instagramUrl)}}/> : null}
             </div>
             
           </div>
@@ -147,8 +148,8 @@ function UserPage() {
             }}            
             >
             {isFollow===false?
-            <p className='follow-follower-button-text'>팔로우</p>
-            : <p className='follow-follower-button-text'>팔로잉</p>
+            <div className='icon-separate'><BsPersonPlus className='follow-follower-icon'/><p className='follow-follower-button-text'>팔로우</p></div>
+            : <div className='icon-separate'><BsPersonCheck className='follow-follower-icon'/><p className='follow-follower-button-text'>팔로잉</p></div>
             }
             </button>
           </div>
