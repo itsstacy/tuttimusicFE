@@ -45,6 +45,16 @@
   line-height: 30px;
 }
 
+.primary {
+  background-color:#8A51FB;
+  color:#f0f0f0;
+}
+
+.secondary {
+  background-color:#F0EEFF;
+  color:#8A51FB;
+}
+
 
 /* MAIN PAGE  */
 .main-container {
@@ -756,16 +766,11 @@
   align-items: center;
   padding: 10px 10px;
   gap: 10px;
-
   width: 177px;
   height: 50px;
-
   margin-left: auto;
   margin-top: 50px;
-
-  background-color: #7E7E7E;
   border-radius: 10px;
-
   outline: none;
   border: none;
 }
@@ -1097,30 +1102,22 @@
   border: none;
 }
 
-.signup-email-button {
+.signup-button {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   padding: 15px 30px;
   gap: 10px;
-
   width: 120px;
-
-  background: #545454;
   border-radius: 10px;
-
-  color: #FFFFFF;
   font-style: normal;
   font-weight: 400;
   font-size: 15px;
   line-height: 30px;
-
   outline: none;
   border: none;
-
   cursor: pointer;
-  
 }
 
 .signup-pw-box {
@@ -1216,33 +1213,6 @@
   color: #7E7E7E;
 }
 
-.signup-artist-button {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 10px 20px;
-  gap: 10px;
-
-  width: 120px;
-  height: 60px;
-
-  background: #545454;
-  border-radius: 10px;
-
-  font-style: normal;
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 30px;
-
-  color: #FFFFFF;
-
-  outline: none;
-  border: none;
-
-  cursor: pointer;
-}
-
 .signup-profile-img-box {
   display: flex;
   flex-direction: row;
@@ -1313,20 +1283,13 @@
   align-items: center;
   padding: 15px 30px;
   gap: 10px;
-
   width: 180px;
   height: 60px;
-
-  background: #545454;
   border-radius: 10px;
-
   font-style: normal;
   font-weight: 400;
   font-size: 15px;
   line-height: 30px;
-
-  color: #FFFFFF;
-
   cursor: pointer;
 }
 
@@ -1465,25 +1428,16 @@
   align-items: center;
   padding: 0px;
   gap: 10px;
-
   margin: auto;
-
   width: 200px;
   height: 60px;
-
-  background: #4E4E4E;
   border-radius: 10px;
-
   font-style: normal;
   font-weight: 400;
   font-size: 15px;
   line-height: 26px;
-
-  color: #FFFFFF;
-
   outline: none;
   border: none;
-
   cursor: pointer;
 }
 
@@ -1611,23 +1565,15 @@
   align-items: center;
   padding: 0px;
   gap: 10px;
-
   width: 200px;
   height: 60px;
-
-  background: #4E4E4E;
   border-radius: 10px;
-
   font-style: normal;
   font-weight: 400;
   font-size: 15px;
   line-height: 19px;
-
-  color: #FFFFFF;
-
   outline: none;
   border: none;
-
   cursor: pointer;
 }
 
@@ -1744,10 +1690,7 @@
 .facechat-button {
   width: 208px;
   height: 50px;
-
-  background-color: #414141;
   border-radius: 10px;
-
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -1857,6 +1800,10 @@
   line-height: 17px;
 
   color: #7E7E7E;
+}
+
+#broadcast-icon {
+  font-size: 20px;
 }
 
 /* FACECHATLIST PAGE END */
@@ -1983,14 +1930,13 @@ input[type=radio] {
   width: 180px;
   height: 60px;
   line-height: 60px;
-  background-color: #7E7E7E;
   border-radius: 10px;
   font-size: 15px;
-  color: #fff;
   text-align: center;
   margin-left: 40px;
   cursor: pointer;
 }
+
 
 #upload-image {
   display: none;
@@ -2055,7 +2001,7 @@ input[type=radio] {
 
 #upload-music-icon {
   font-size: 24px;
-  color: #4E4E4E;
+  color: #8A51FB;
   position: absolute;
   z-index: 22;
   margin-top: 18px;
@@ -2074,8 +2020,6 @@ input[type=radio] {
 .upload-button {
   width: 200px;
   height: 60px;
-  background-color: #4E4E4E;
-  color: #fff;
   border: none;
   border-radius: 10px;
   font-size: 22px;
@@ -2388,6 +2332,28 @@ input[type=radio] {
   margin-bottom: 20px;
   padding: 20px;
   
+}
+
+
+
+#live-chat-user-input {
+  width:240px;
+  background-color: #E8E8E8;
+  border:none;
+  outline: none;
+  padding: 15px 30px;
+  border-radius: 10px;
+  font-size: 15px;
+}
+
+#live-chat-user-button {
+  width:120px;
+  height: 60px;
+  border:none;
+  outline:none;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 15px;
 }
 
 .live-chat-list {

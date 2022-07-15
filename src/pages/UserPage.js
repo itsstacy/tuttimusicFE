@@ -141,7 +141,7 @@ function UserPage() {
             </div>
 
             <button 
-            className='follow-follower-button'
+            className='primary follow-follower-button'
             isFollow ={isFollow}
             onClick={()=>{
               FollowThisArtist()

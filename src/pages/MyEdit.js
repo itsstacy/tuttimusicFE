@@ -156,7 +156,7 @@ console.log("clickGenre ==> ", clickGenre)
 
             <div className='profile-img-form'>
               <img src={preview} className='profile-img-circle'/>
-              <label className="profile-img-button" htmlFor="image">이미지 업로드</label>
+              <label className="secondary profile-img-button" htmlFor="image">이미지 업로드</label>
               <input className='img-button' type="file" id="image" accept='image/*' onChange={fileChange} />
             </div>
 
@@ -247,7 +247,7 @@ console.log("clickGenre ==> ", clickGenre)
 
         
       </div>
-        <button className='signup-button-box' onClick={myinfoEdit}>저장</button>
+        <button className='primary signup-button-box' onClick={myinfoEdit}>저장</button>
     </div>
   )
 }
