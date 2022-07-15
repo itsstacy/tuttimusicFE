@@ -216,7 +216,7 @@ const SignUp = () => {
         <div className='signup-container'>
             <div className='signup-title-box'>
                 <p className='signup-title'>회원가입</p>
-                <p className='signup-subtitle'>추가 설명</p>
+                <p className='signup-subtitle'>tutti 회원이 되어 주세요!</p>
             </div>
             <div className='signup-info-box'>
                 <div className='signup-info'>

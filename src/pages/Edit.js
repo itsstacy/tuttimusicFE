@@ -76,7 +76,13 @@ function Edit() {
     .then((response) => {
       console.log("res ===> ", response);
       alert("피드 수정을 완료했습니다.");
-      navigate(`/detail/${params.id}`);
+
+      if (detail.postType === "audio") {
+        navigate(`/detail/${params.id}`);
+      } else if (detail.postType === "video") {
+        navigate(`/detail/video/${params.id}`);
+      }
+     
       window.scrollTo(0, 0);
     })
     .catch((error) => {

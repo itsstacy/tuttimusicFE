@@ -24,7 +24,7 @@ function Waveform(props) {
   const wavesurfer = useRef(null);
   const [playing, setPlay] = useState(false);
   const [volume, setVolume] = useState(0.5);
-  console.log(props.songUrl);
+  // console.log(props.songUrl);
 
   // create new WaveSurfer
   // https://wavesurfer-js.org/docs/methods.html

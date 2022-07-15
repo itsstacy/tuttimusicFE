@@ -51,7 +51,9 @@ export const postComment = createAsyncThunk("POST/postComment", async (props) =>
   .post(`${SERVER_URL}/feeds/`+props.feedid,data,{
     headers: {Authorization:props.token? props.token:""}
   })
-  .then((response) => response.data.data);
+  .then((response) => {
+    console.log("댓글 작성 시 리스폰스 ==> ",response);
+  });
 
   return commentData;
 }) 
