@@ -134,7 +134,7 @@ function CreateLive() {
     })
     .then((response) => {
       console.log("res ===> ", response);
-      // navigate(`live/${userName}`);
+      navigate(`live/${userName}`);
       window.scrollTo(0, 0);
     })
     .catch((error) => {
