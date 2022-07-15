@@ -49,7 +49,7 @@ function FaceChatList() {
                     <div className="facechat-list-title">
                         라이브 중인 채널
                     </div>
-                    <button className='facechat-button btn'>라이브 시작하기</button>   
+                    <button className='primary facechat-button btn'>라이브 시작하기</button>   
                 </div>
                 
                 {loading? (

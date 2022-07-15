@@ -175,7 +175,7 @@ function Edit() {
           </div>
           </div>
 
-          <button className="upload-button" onClick={EditMusic}>수정 업로드</button>
+          <button className="primary upload-button" onClick={EditMusic}>수정 업로드</button>
         
 
 

@@ -209,7 +209,7 @@ function DetailVideo() {
            }}
             />
             <button 
-            className="btn btn-primary"
+            className="primarybtn btn-primary"
             onClick={()=>{
               addNewComment();
               setMyComment("");

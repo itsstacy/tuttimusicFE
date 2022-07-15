@@ -98,7 +98,7 @@ function Live() {
             </div>
             <div className="live-chat-box">
             <input type="text" id="live-chat-user-input" placeholder="채팅을 입력해 주세요."></input>
-            <button id="live-chat-user-button">등록</button>
+            <button id="primary live-chat-user-button">등록</button>
           </div>
           </div>
         </div>

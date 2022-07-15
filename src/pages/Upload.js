@@ -132,7 +132,7 @@ const [submit, setSubmit] = React.useState(false);
 
   const uploadMusic = () => {
 
-    if (submit == true) {
+    if (submit === true) {
       return;
     }
 
@@ -232,7 +232,7 @@ const [submit, setSubmit] = React.useState(false);
           </label>
           <div className="upload-image-box">
           <UploadImagePreview previewImg={previewImg} className="uploa-image-preview"></UploadImagePreview>
-          <label className="upload-label-button" for="upload-image">이미지 업로드</label>
+          <label className="secondary upload-label-button" for="upload-image">이미지 업로드</label>
           <UploadImageNameWrap className="upload-image-name-wrap" textHeight={textHeight}>
             <textarea id="upload-image-name" row="1" value={imgName} ref={imgName_ref} spellcheck="false" readOnly></textarea>
             {/* <textarea id="upload-image-name" ref={imgName_ref} spellCheck="false"></textarea> */}
@@ -273,14 +273,14 @@ const [submit, setSubmit] = React.useState(false);
           <span className="upload-label-span">파일</span>
           </label>
           <div className="upload-music-box">
-          <label className="upload-label-button-music" for="upload-music">
+          <label className="secondary upload-label-button-music" for="upload-music">
           <FaMusic id="upload-music-icon"/></label>
           <input type="text" className="upload-input" id="upload-input-music" placeholder="음악 파일을 선택해 주세요." value={musicName}/>
           <input type="file" id="upload-music" accept='audio/*' onChange={onLoadMusic}/>
           </div>
           </div>
 
-          <button className="upload-button" onClick={uploadMusic}>업로드</button>
+          <button className="primary upload-button" onClick={uploadMusic}>업로드</button>
         
 
 

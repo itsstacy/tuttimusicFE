@@ -209,7 +209,7 @@ function Detail() {
            }}
             />
             <button 
-            className="btn btn-primary"
+            className="primary btn btn-primary"
             onClick={()=>{
               addNewComment();
               setMyComment("");
