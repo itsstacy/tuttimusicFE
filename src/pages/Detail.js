@@ -43,8 +43,9 @@ function Detail() {
   //get lists from songslice
   const detail = useSelector((state)=> state.Song.detail);
   const commentsList = useSelector((state)=> state.Song.comments);
-  console.log(detail);
-  console.log(commentsList);
+  
+  // console.log(detail);
+  // console.log(commentsList);
   
 
   //get user info from local storage
@@ -54,7 +55,7 @@ function Detail() {
   //add a comment
   const [myComment, setMyComment] = useState(null);
   
-  console.log(myComment);
+  // console.log(myComment);
 
   const addNewComment = () => {
     dispatch(postComment({
