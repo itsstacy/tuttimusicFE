@@ -107,7 +107,7 @@ function Detail() {
             />
             <div 
             className="detail-artist-profile"
-            onClick={()=>{
+            onClick={()=>{ detail.artist === localStorage.getItem("userName") ? navigate("/mypage") :
               navigate(`/userpage/${detail.artist}`)
             }}>
               <img 
@@ -209,7 +209,7 @@ function Detail() {
            }}
             />
             <button 
-            className="btn btn-primary"
+            className="primary btn btn-primary"
             onClick={()=>{
               addNewComment();
               setMyComment("");

@@ -158,7 +158,7 @@ function MusicFeed() {
                 <div 
                 className="video-card"
                 onClick={()=>{
-                  navigate('/detail/'+song.id)
+                  navigate('/detail/video/'+song.id)
                 }}>
                   <img
                   alt={song.title}

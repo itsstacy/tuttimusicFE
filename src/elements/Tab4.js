@@ -1,11 +1,15 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
+import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { slidesOnLeft } from 'react-slick/lib/utils/innerSliderUtils';
 
 import BeatLoader from "react-spinners/BeatLoader";
 
 
 function Tab4() {
+  const navigate = useNavigate();
+  const params = useParams();
+  const location = useLocation();
 
     const [list, setList] = useState([]);
 
@@ -16,7 +20,8 @@ function Tab4() {
     useEffect(()=>{
         setLoading(true);
 
-        axios
+        if (location.pathname === "/mypage") {
+          axios
         .get("https://seyeolpersonnal.shop/user/mypage/follows", {
             headers: {Authorization:token? token:""}
         })
@@ -27,6 +32,20 @@ function Tab4() {
         .catch((error)=>{
             console.log(error)
         })
+    
+        } else {
+          axios
+        .get("https://seyeolpersonnal.shop/user/profile/"+params.artist+"/follows", {
+            headers: {Authorization:token? token:""}
+        })
+        .then((response)=>{
+            setList(response.data.data)
+            console.log(response.data.data)
+        })
+        .catch((error)=>{
+            console.log(error)
+        })
+      }
     
         setTimeout(()=> {
             setLoading(false);
@@ -48,7 +67,8 @@ function Tab4() {
         <div className='tab-body'>
         {list&&list.map((song, Index)=>{
             return(
-                <div className='body-following-card'>
+                <div className='body-following-card'
+                onClick={() => {navigate(`/userpage/${song.artist}`)}}>
                     <img 
                     src={song.profileImage} 
                     className='body-circle'

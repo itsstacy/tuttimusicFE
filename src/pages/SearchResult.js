@@ -8,10 +8,10 @@ function SearchResult() {
   const location = useLocation();
   const keyword= location.state
 
-    const artistList = useSelector((state)=> state.Song.result_artist)
-    const titleList = useSelector((state)=> state.Song.result_title)
-    console.log(titleList)
-    console.log(artistList) 
+    const musicArtist = useSelector((state)=> state.Song.result_musicArtist)
+    const musicTitle = useSelector((state)=> state.Song.result_musicTitle)
+    const videoArtist = useSelector((state)=> state.Song.result_videoArtist)
+    const videoTitle = useSelector((state)=> state.Song.result_videoTitle)
 
 
   return (
@@ -20,15 +20,15 @@ function SearchResult() {
         '{keyword}'</span>에 대한 검색 결과입니다.
       </p>
       <p className="result-name">
-        곡명
+        곡
       </p>
       <p className="result-sub-name">
         곡명으로 검색
       </p>
-      {titleList&&titleList.length > 0 ?
+      {musicTitle&&musicTitle.length > 0 ?
       <>
         <section className="feed-list">
-          {titleList.map((song,index)=>{
+          {musicTitle.map((song,index)=>{
           return(
           <div 
           className="feed-card"
@@ -45,7 +45,7 @@ function SearchResult() {
               {song.title}
               </p>
               <p className="main-card-artist">
-              {song.userArtist}
+              {song.artist}
               </p>
             </div>
           </div>
@@ -68,10 +68,10 @@ function SearchResult() {
       <p className="result-sub-name">
         아티스트명으로 검색
       </p>
-      {artistList&&artistList.length > 0 ?
+      {musicArtist&&musicArtist.length > 0 ?
         <>
           <section className="feed-list">
-            {artistList.map((song,index)=>{
+            {musicArtist.map((song,index)=>{
             return(
             <div 
             className="feed-card"
@@ -88,7 +88,7 @@ function SearchResult() {
                 {song.title}
                 </p>
                 <p className="main-card-artist">
-                {song.userArtist}
+                {song.artist}
                 </p>
               </div>
             </div>
@@ -113,10 +113,10 @@ function SearchResult() {
       <p className="result-sub-name">
         곡명으로 검색
       </p>
-      {titleList&&titleList.length > 0 ?
+      {videoTitle&&videoTitle.length > 0 ?
       <>
         <section className="feed-list">
-          {titleList.map((song,index)=>{
+          {videoTitle.map((song,index)=>{
           return(
           <div 
           className="feed-card"
@@ -133,7 +133,7 @@ function SearchResult() {
               {song.title}
               </p>
               <p className="main-card-artist">
-              {song.userArtist}
+              {song.artist}
               </p>
             </div>
           </div>
@@ -156,10 +156,10 @@ function SearchResult() {
       <p className="result-sub-name">
         아티스트명으로 검색
       </p>
-      {artistList&&artistList.length > 0 ?
+      {videoArtist&&videoArtist.length > 0 ?
         <>
           <section className="feed-list">
-            {artistList.map((song,index)=>{
+            {videoArtist.map((song,index)=>{
             return(
             <div 
             className="feed-card"
@@ -176,7 +176,7 @@ function SearchResult() {
                 {song.title}
                 </p>
                 <p className="main-card-artist">
-                {song.userArtist}
+                {song.artist}
                 </p>
               </div>
             </div>

@@ -3,7 +3,8 @@ import '../styles/App.css';
 
 
 import { FaYoutube } from 'react-icons/fa';
-import { RiInstagramFill } from 'react-icons/ri'
+import { RiInstagramFill } from 'react-icons/ri';
+import { FiSettings } from 'react-icons/fi';
 import axios from 'axios';
 
 import Tab1 from '../elements/Tab1';
@@ -93,14 +94,10 @@ function MyPage() {
           <div className='header-artist'>
             <p className='header-artist-name'>{userInfoDto.artist}</p>
             <p className='header-artist-info'>{userInfoDto.profileText}</p>  
-            {/* <div className='header-sns'>
-            <FaYoutube className='sns-icon'/><p>{userInfoDto.youtubeUrl}</p>
-            <RiInstagramFill className='sns-icon'/><p>{userInfoDto.instagramUrl}</p>
-            </div>   */}
 
             <div className='header-sns'>
-              {userInfoDto.youtubeUrl ? <div><FaYoutube className='sns-icon'/><p>{userInfoDto.youtubeUrl}</p></div> : null}
-              {userInfoDto.instagramUrl ? <div><RiInstagramFill className='sns-icon'/><p>{userInfoDto.instagramUrl}</p></div> : null}
+              {userInfoDto.youtubeUrl ? <FaYoutube className='sns-icon sns-youtube' onClick={()=>{window.open(userInfoDto.youtubeUrl)}}/> : null}
+              {userInfoDto.instagramUrl ? <RiInstagramFill className='sns-icon sns-instagram' onClick={()=>{window.open(userInfoDto.instagramUrl)}}/> : null}
             </div>
           </div>
 
@@ -121,8 +118,8 @@ function MyPage() {
             </div>
 
              {/* navigate 함수로 myedit 페이지로 갈 때, userInfoDto에 담아져있는 데이터를 state로 가져감 */}
-            <button className='follow-follower-button' onClick={()=>{navigate('/myedit', {state : userInfoDto})}}>
-              <p className='follow-follower-button-text'>프로필 설정</p>
+            <button className='primary follow-follower-button' onClick={()=>{navigate('/myedit', {state : userInfoDto})}}>
+              <FiSettings className='follow-follower-icon'/><p className='follow-follower-button-text'>프로필 설정</p>
             </button>
 
           </div>

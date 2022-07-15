@@ -237,7 +237,7 @@ const SignUp = () => {
                                     placeholder="실제 사용 중인 이메일을 입력하세요"
                                     name="email"
                             />
-                            <button className='signup-email-button' onClick={(emailCheck)}>인증</button><br/>
+                            <button className='secondary signup-button' onClick={(emailCheck)}>인증</button><br/>
                         </div>
                         
                     </div>
@@ -302,7 +302,7 @@ const SignUp = () => {
                                     placeholder="닉네임을 입력하세요"
                                     name="email"
                             />
-                            <button className='signup-artist-button' onClick={(artistCheck)}>중복 확인</button><br/>
+                            <button className='secondary signup-button' onClick={(artistCheck)}>중복 확인</button><br/>
                         </div>
                         
                     </div>
@@ -314,7 +314,7 @@ const SignUp = () => {
                         </div>
                         <div className='profile-img-form'>
                             <img src={preview} className='profile-img-circle'/>
-                            <label className="profile-img-button" htmlFor="image">이미지 업로드</label>
+                            <label className="secondary profile-img-button" htmlFor="image">이미지 업로드</label>
                             <input className='img-button' type="file" id="image" accept='image/*' onChange={fileChange} />
 
                         </div>
@@ -399,7 +399,7 @@ const SignUp = () => {
                     
                 </div>
         </div>
-            <button className='signup-button-box' 
+            <button className='primary signup-button-box' 
                 onClick={(signupCheck)}>회원가입</button>
         </div>
     )
