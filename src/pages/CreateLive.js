@@ -134,7 +134,8 @@ function CreateLive() {
     })
     .then((response) => {
       console.log("res ===> ", response);
-      navigate(`live/${userName}`);
+      // navigate(`live/${userName}`);
+      navigate('/facechatlist');
       window.scrollTo(0, 0);
     })
     .catch((error) => {
