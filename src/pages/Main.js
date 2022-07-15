@@ -171,9 +171,16 @@ function Main() {
               )}          
         </div>
         <div className="main-list">
+
+          <div className="main-list-header">
           <p className="main-list-title">
             장르 음악
           </p>
+          <p className="main-list-subtitle">
+            {/* {loading ? null : genreList[0].genre} */}
+            {genreList&&genreList ? genreList[0].genre : null}
+          </p>
+          </div>
           {loading? (
             <div className="spinner-wrap">
               <BeatLoader color={"grey"} loading={loading} size={10}/>
