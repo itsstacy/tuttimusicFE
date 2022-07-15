@@ -2,6 +2,7 @@ import axios from 'axios';
 import { OpenVidu } from 'openvidu-browser';
 import React, { Component } from 'react';
 import UserVideoComponent from './UserVideoComponent';
+import BeatLoader from "react-spinners/BeatLoader";
 
 const OPENVIDU_SERVER_URL = 'https://' + "rnrn.shop" ;
 const OPENVIDU_SERVER_SECRET = 'qlalfqjsgh';
@@ -245,13 +246,13 @@ class Streamers extends Component {
         return (
             <div className="container">
                 {this.state.session === undefined ? (
-                    null
-                ) : <p>LIVE</p>}
+                <div className="spinner-wrap">
+                <BeatLoader color={"grey"} loading={true} size={10}/>
+                </div>
+                ) : null}
 
                 {this.state.session !== undefined ? (
                     <div id="session">
-                        <div id="session-header">
-                            <h1 id="session-title">{mySessionId}</h1>
                             <input
                                 className="btn btn-large btn-danger"
                                 type="button"
@@ -259,7 +260,6 @@ class Streamers extends Component {
                                 onClick={this.leaveSession}
                                 value="Leave session"
                             />
-                        </div>
 
                         {this.state.mainStreamManager !== undefined ? (
                             <div id="main-video" className="col-md-6">
