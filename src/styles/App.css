@@ -261,6 +261,11 @@ font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, '
   cursor: pointer;
 }
 
+.click-category {
+  background-color: #E8E4FF;
+  color:#8A51FB;
+}
+
 /* MUSIC FEED END */
 
 /* DETAIL  */
