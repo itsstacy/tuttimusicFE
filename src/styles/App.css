@@ -565,11 +565,10 @@
   margin-left:2px;
 }
 
-.volume-control{
-  width: 140px;
-  margin-left: 10px;
+.controls {
+  display: flex;
+  align-items: center;
 }
-
 
 .heart{
   font-size: 25px;
