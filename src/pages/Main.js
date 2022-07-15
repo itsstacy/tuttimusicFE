@@ -124,7 +124,7 @@ function Main() {
                     {song.title}
                     </p>
                     <p className="main-card-artist">
-                    {song.userArtist}
+                    {song.artist}
                     </p>
                   </div>
                 </div>
@@ -161,7 +161,7 @@ function Main() {
                     {song.title}
                     </p>
                     <p className="main-card-artist">
-                    {song.userArtist}
+                    {song.artist}
                     </p>
                   </div>
                 </div>
@@ -204,7 +204,7 @@ function Main() {
                     {song.title}
                     </p>
                     <p className="main-card-artist">
-                    {song.userArtist}
+                    {song.artist}
                     </p>
                   </div>
                 </div>
@@ -242,7 +242,7 @@ function Main() {
                       {song.title}
                       </p>
                       <p className="main-card-artist">
-                      {song.userArtist}
+                      {song.artist}
                       </p>
                     </div>
                   </div>
@@ -271,7 +271,7 @@ function Main() {
                     {song.title}
                     </p>
                     <p className="main-card-artist">
-                    {song.userArtist}
+                    {song.artist}
                     </p>
                   </div>
                 </div>
