@@ -1023,7 +1023,7 @@ font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, '
 }
 
 .signup-title {
-  font-size: 30px;  
+  font-size: 36px;  
   line-height: 43px;
   font-style: normal;
   font-weight: bold;
@@ -1111,10 +1111,9 @@ font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, '
 .signup-email-content {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   align-items: flex-start;
   padding: 0px;
-  gap: 20px;
-
   width: 840px;
   height: 60px;
 
@@ -1126,30 +1125,28 @@ font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, '
   align-items: flex-start;
   padding: 15px 30px;
   gap: 10px;
-
   width: 700px;
   height: 60px;
-
   background: #E8E8E8;
   border-radius: 10px;
-
   outline: none;
   border: none;
+  font-size:18px;
+  margin-right: 20px;
 }
 
 .signup-button {
   display: flex;
-  flex-direction: row;
+  width:120px;
+  height:60px;
   justify-content: center;
   align-items: center;
-  padding: 15px 30px;
   gap: 10px;
   width: 120px;
   border-radius: 10px;
   font-style: normal;
   font-weight: 400;
-  font-size: 15px;
-  line-height: 30px;
+  font-size: 18px;
   outline: none;
   border: none;
   cursor: pointer;
@@ -1207,17 +1204,14 @@ font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, '
   align-items: flex-start;
   padding: 25px 30px;
   gap: 10px;
-
   margin-left: -80px;
-
   width: 840px;
   height: 60px;
-
   background: #E8E8E8;
   border-radius: 10px;
-
   outline: none;
   border: none;
+  font-size:18px;
 }
 
 .signup-pw-check {
@@ -1323,7 +1317,7 @@ font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, '
   border-radius: 10px;
   font-style: normal;
   font-weight: 400;
-  font-size: 15px;
+  font-size: 16px;
   line-height: 30px;
   cursor: pointer;
 }
@@ -1551,15 +1545,13 @@ font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, '
   align-items: flex-start;
   padding: 15px 30px;
   gap: 10px;
-
   width: 600px;
   height: 60px;
-
   background: #E8E8E8;
   border-radius: 10px;
-
   outline: none;
   border: none;
+  font-size:18px;
 }
 
 .login-info-signup {
@@ -1576,7 +1568,7 @@ font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, '
 .login-tutti-first {
   font-style: normal;
   font-weight: 400;
-  font-size: 12px;
+  font-size: 15px;
   line-height: 18px;
   
 }
@@ -1584,7 +1576,7 @@ font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, '
 .login-tutti-signup {
   font-style: normal;
   font-weight: 600;
-  font-size: 12px;
+  font-size: 15px;
   line-height: 18px;
   color: #414141;
 
@@ -1605,7 +1597,7 @@ font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, '
   border-radius: 10px;
   font-style: normal;
   font-weight: 400;
-  font-size: 15px;
+  font-size: 16px;
   line-height: 19px;
   outline: none;
   border: none;
