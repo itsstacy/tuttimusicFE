@@ -2,6 +2,7 @@ import axios from 'axios';
 import { OpenVidu } from 'openvidu-browser';
 import React, { Component } from 'react';
 import UserVideoComponent from './UserVideoComponent';
+import BeatLoader from "react-spinners/BeatLoader";
 
 const OPENVIDU_SERVER_URL = 'https://' + "rnrn.shop" ;
 
@@ -231,48 +232,22 @@ class Subscribers extends Component {
     }
 
     render() {
-        const mySessionId = this.state.mySessionId;
-        const myUserName = this.state.myUserName;
-
+        
         return (
             <div className="container">
                 {this.state.session === undefined ? (
-                  null
-                ) : <p>LIVE</p>}
+                <div className="spinner-wrap">
+                <BeatLoader color={"grey"} loading={true} size={10}/>
+                </div>
+                ) : null}
 
                 {this.state.session !== undefined ? (
                     <div id="session">
-                        <div id="session-header">
-                            <h1 id="session-title">{mySessionId}</h1>
-                            <input
-                                className="btn btn-large btn-danger"
-                                type="button"
-                                id="buttonLeaveSession"
-                                onClick={this.leaveSession}
-                                value="Leave session"
-                            />
-                        </div>
-
-                        {this.state.mainStreamManager !== undefined ? (
-                            <div id="main-video" className="col-md-6">                                
-                            </div>
-                        ) :  null}
-                        
-                        <div id="video-container" className="col-md-6">
-                            
-                            {this.state.publisher !== undefined ? (
-                                <div>
-                                </div>
-                            ) : null}
-
                             {this.state.subscribers.map((sub, i) => (
-                                <><p>subscribers</p>
-                                <div key={i} className="stream-container col-md-6 col-xs-6" onClick={() => this.handleMainVideoStream(sub)}>
-                                    
+                                <div id="main-video" className="col-md-6">                                    
                                     <UserVideoComponent streamManager={sub} />
-                                </div></>
-                            ))}
-                        </div>
+                                </div>
+                            ))}                       
                     </div>
                 ) : null}
             </div>
