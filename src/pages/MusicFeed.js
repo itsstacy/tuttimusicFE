@@ -67,13 +67,22 @@ function MusicFeed() {
   ]
   
   const genreList = [
-    {genre: "발라드"},
-    {genre: "어쿠스틱"},
-    {genre: "알앤비"},
-    {genre: "힙합"},
-    {genre: "댄스"},
-    {genre: "연주곡"},
+    {genre: "발라드",
+    postGenre: "발라드"},
+    {genre: "어쿠스틱",
+    postGenre: "어쿠스틱"},
+    {genre: "R&B",
+    postGenre: "R%26B"},
+    {genre: "힙합",
+    postGenre: "힙합"},
+    {genre: "댄스",
+    postGenre: "댄스"},
+    {genre: "연주곡",
+    postGenre: "연주곡"},
   ]
+
+  const [typeBtn, setTypeBtn] = useState(0);
+  const [genreBtn, setGenreBtn] = useState(false);
 
   return (
     <div className="musicfeed-container">
@@ -85,10 +94,13 @@ function MusicFeed() {
           {typeList.map((type,index)=>{
             return (
             <div 
-            className="category"
+            value={index}
+            className={`category ${index === typeBtn ? `click-category` : ''}`}
             onClick={()=>{
               setType(type.eng)
               ClickType(type.eng)
+              setTypeBtn(index)
+              setGenreBtn(null)
             }}>
             {type.type}
           </div>
@@ -104,10 +116,12 @@ function MusicFeed() {
           {genreList.map((genre,index)=>{
             return (
             <div 
-            className="category"
+            value={index}
+            className={`category ${index === genreBtn ? `click-category` : ''}`}
             onClick={()=>{
               setGenre(genre.genre)
-              ClickGenre(genre.genre)
+              ClickGenre(genre.postGenre)
+              setGenreBtn(index)
             }}>
             {genre.genre}
           </div>
