@@ -67,6 +67,12 @@
   background-color: lightgrey;
 }
 
+.main-list-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 .main-list {
   margin-bottom: 80px;
   display: flex;
@@ -77,6 +83,13 @@
 .main-list-title {
   font-size: 25px;
   margin-left: 10px;
+}
+
+.main-list-subtitle {
+  font-size: 16px;
+  margin-left: 20px;
+  color: #7e7e7e;
+
 }
 
 
