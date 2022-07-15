@@ -51,6 +51,7 @@ font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, '
   padding: 15px 40px;
   height: 60px;
   line-height: 30px;
+  outline:none;
 }
 
 .primary {
@@ -75,8 +76,9 @@ font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, '
 
 .main-content {
   max-width: var(--container-width);
-  margin: 50px auto;
+  margin: auto;
   position: relative;
+  padding-bottom: 80px;
 }
 
 .main-top-header {
@@ -102,12 +104,14 @@ font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, '
   font-size: 25px;
   margin-left: 10px;
   margin-bottom: 40px;
+  margin-top: 60px;
 }
 
 .main-list-subtitle {
   font-size: 16px;
   margin-left: 20px;
   margin-bottom: 40px;
+  margin-top: 60px;
   color: #7e7e7e;
 
 }
@@ -338,7 +342,7 @@ font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, '
 
 .detail-comment-title{
   font-size: 20px;
-  padding-bottom: 5px;
+  padding-bottom: 35px;
 }
 
 .flex-wrap{

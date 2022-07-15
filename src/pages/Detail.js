@@ -167,10 +167,10 @@ function Detail() {
             
             <p className="detail-song-detail">
               {detail.description} <br/>
-              곡을 소개해주세요. 곡을 소개하는 부분입니다.<br/>
+              {/* 곡을 소개해주세요. 곡을 소개하는 부분입니다.<br/>
               소개글이 길어지면 이렇게 ellipsis처리가 될거에요<br/>
               곡을 소개하는 부분입니다.<br/>
-              곡을 소개하는 부분입니다.
+              곡을 소개하는 부분입니다. */}
             </p>
             <p className="detail-more-detail">
             더보기
