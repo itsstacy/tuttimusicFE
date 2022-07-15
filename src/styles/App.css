@@ -4,6 +4,12 @@
   box-sizing: border-box;
 }
 
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+* { 
+font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+}
+
 /* ROOT */
 :root {
   --container-width: 1280px;
@@ -51,7 +57,7 @@
 }
 
 .secondary {
-  background-color:#F0EEFF;
+  background-color:#E8E4FF;
   color:#8A51FB;
 }
 
@@ -1697,7 +1703,7 @@
   align-items: center;
   padding: 10px 10px;
   gap: 10px;
-
+  font-size: 18px;
   cursor: pointer;
 }
 
