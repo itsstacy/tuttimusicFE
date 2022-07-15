@@ -11,20 +11,10 @@ import {IoMdPause} from "react-icons/io";
 import {FaVolumeUp, FaVolumeOff, FaVolumeDown} from "react-icons/fa";
 import BeatLoader from "react-spinners/BeatLoader";
 
-const formWaveSurferOptions = ref => ({
-  container: ref,
-  waveColor:"grey",
-  progressColor: "orange",
-  cursorColor: "orange",
-  barWidth:3,
-  barRadius: 2,
-  responsive: true,
-  height:120,
-  //normalize by the maximum peak instead of 1.0
-  normalize: true,
-  //improve rendering speed of large waveforms
-  partialRender: true
-});
+import styled from "styled-components";
+
+import {Range, getTrackBackground} from "react-range";
+
 
 function Waveform(props) {
 
@@ -38,9 +28,25 @@ function Waveform(props) {
 
   // create new WaveSurfer
   // https://wavesurfer-js.org/docs/methods.html
+
+  const formWaveSurferOptions = ref => ({
+    container: ref,
+    waveColor:"grey",
+    progressColor: props.detail.color,
+    cursorColor: props.detail.color,
+    barWidth:3,
+    barRadius: 2,
+    responsive: true,
+    height:120,
+    //normalize by the maximum peak instead of 1.0
+    normalize: true,
+    //improve rendering speed of large waveforms
+    partialRender: true
+  });
+
+  
   useEffect(()=>{
     setPlay(false);
-
     const options = formWaveSurferOptions(waveformRef.current);
     console.log(waveformRef.current);
     wavesurfer.current = WaveSurfer.create(options);
@@ -105,16 +111,16 @@ function Waveform(props) {
     <>
       <div className="detail-info-wrap mgtop50">
           <div className="wave-left-wrap">        
-          <div className="flex-wrap wave-flex-wrap">
+          <WaveFlexWrap className="flex-wrap wave-flex-wrap" color={props.detail.color}>
             <button 
               className="play-button btn"
               onClick={handlePlayPause}>
               {!playing ? <ImPlay3 id="play-btn" /> : <IoMdPause/> }
             </button>
-          </div>
+          </WaveFlexWrap>
           <div className="flex-wrap">
               {props.detail.flag===false? 
-              <IconContext.Provider value={{ className: "heart" }}>
+              <IconContext.Provider value={{ color: props.detail.color, className: "heart" }}>
                 <div>
                 <FaRegHeart
                 onClick={
@@ -123,7 +129,7 @@ function Waveform(props) {
                 </div>
               </IconContext.Provider>
               : 
-              <IconContext.Provider value={{ color: "red", className: "heart" }}>
+              <IconContext.Provider value={{ color: props.detail.color, className: "heart" }}>
                 <div>
                 <FaHeart
                 onClick={
@@ -138,10 +144,10 @@ function Waveform(props) {
             </div>  
 
           <div className="flex-wrap wave-right-wrap">
-            <div className="controls">
-              {volume > 0.01 && volume < 0.5 ? <FaVolumeDown/> 
-              : volume > 0.5? <FaVolumeUp/>
-              : <FaVolumeOff/>}
+            <Controls className="controls" color={props.detail.color}>
+              {volume > 0.01 && volume < 0.5 ? <FaVolumeDown id="volume-icon"/> 
+              : volume > 0.5? <FaVolumeUp id="volume-icon"/>
+              : <FaVolumeOff id="volume-icon"/>}
               <input
                 className="volume-control"
                 type="range"
@@ -153,8 +159,8 @@ function Waveform(props) {
                 step="0.025"
                 onChange={onvolumechange}
                 defaultValue={volume}
-              />            
-            </div>
+              />       
+            </Controls>
         </div> 
         {/* <button className="add-playlist btn">
         <span><BiPlus/></span> 플레이리스트 추가
@@ -171,5 +177,51 @@ function Waveform(props) {
     </>
   )
 }
+
+let WaveFlexWrap = styled.div`
+.play-button {
+  background-color: ${(props) => props.color};
+}
+`
+
+let Controls = styled.div`
+display: flex;
+align-items: center;
+
+#volume-icon {
+  color:  ${(props) => props.color};
+}
+
+input[type=range] {
+  width:140px;
+  -webkit-appearance: none;
+  margin-left:5px;
+}
+
+input[type=range]:focus {
+  outline: none;
+}
+/*webkit (Chrome)의 경우*/
+input[type=range]::-webkit-slider-runnable-track {
+  width: 140px;
+  height: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  animate: 0.2s;
+  background: ${(props) => props.color};
+}
+input[type=range]::-webkit-slider-thumb {
+  border: 1px solid ${(props) => props.color};
+  border-radius: 20px;
+  height: 20px;
+  width: 20px;
+  background: #ffffff;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -5px; 
+}
+
+
+`
 
 export default Waveform;

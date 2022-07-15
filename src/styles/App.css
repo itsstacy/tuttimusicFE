@@ -277,6 +277,8 @@
 
 .detail-artist{
   font-size: 18px;
+  width:70px;
+  text-align: center;
 }
 
 .detail-info-wrap{
@@ -365,6 +367,8 @@
 
 .music-video {
   margin-top:20px;
+  display: flex;
+  flex-direction: column;
 }
 
 .music-video-title-wrap {
@@ -578,11 +582,10 @@
   margin-left:2px;
 }
 
-.volume-control{
-  width: 140px;
-  margin-left: 10px;
+.controls {
+  display: flex;
+  align-items: center;
 }
-
 
 .heart{
   font-size: 25px;
