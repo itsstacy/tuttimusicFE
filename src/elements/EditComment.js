@@ -7,7 +7,7 @@ import{HiOutlineDotsVertical} from "react-icons/hi" ;
 import {MdEdit} from "react-icons/md";
 
 function EditComment(props) {
-  console.log(props)
+  // console.log(props)
   const comment = props.comment
   const username = props.username
   const dispatch = useDispatch();

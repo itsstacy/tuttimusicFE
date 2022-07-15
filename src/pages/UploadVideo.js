@@ -239,7 +239,7 @@ function UploadVideo() {
           <UploadImagePreview previewImg={previewImg} className="upload-image-preview"></UploadImagePreview >
           <label className="secondary upload-label-button" for="upload-image">이미지 업로드</label>
           <UploadImageNameWrap className="upload-image-name-wrap" textHeight={textHeight}>
-            <textarea id="upload-image-name" row="1" value={imgName} ref={imgName_ref} spellcheck="false" readOnly></textarea>
+            {/* <textarea id="upload-image-name" row="1" value={imgName} ref={imgName_ref} spellcheck="false" readOnly></textarea> */}
             {/* <textarea id="upload-image-name" ref={imgName_ref} spellCheck="false"></textarea> */}
 
             </UploadImageNameWrap>

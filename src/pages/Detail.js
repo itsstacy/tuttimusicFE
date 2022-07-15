@@ -43,8 +43,9 @@ function Detail() {
   //get lists from songslice
   const detail = useSelector((state)=> state.Song.detail);
   const commentsList = useSelector((state)=> state.Song.comments);
-  console.log(detail);
-  console.log(commentsList);
+  
+  // console.log(detail);
+  // console.log(commentsList);
   
 
   //get user info from local storage
@@ -54,7 +55,7 @@ function Detail() {
   //add a comment
   const [myComment, setMyComment] = useState(null);
   
-  console.log(myComment);
+  // console.log(myComment);
 
   const addNewComment = () => {
     dispatch(postComment({
@@ -167,10 +168,10 @@ function Detail() {
             
             <p className="detail-song-detail">
               {detail.description} <br/>
-              곡을 소개해주세요. 곡을 소개하는 부분입니다.<br/>
+              {/* 곡을 소개해주세요. 곡을 소개하는 부분입니다.<br/>
               소개글이 길어지면 이렇게 ellipsis처리가 될거에요<br/>
               곡을 소개하는 부분입니다.<br/>
-              곡을 소개하는 부분입니다.
+              곡을 소개하는 부분입니다. */}
             </p>
             <p className="detail-more-detail">
             더보기
