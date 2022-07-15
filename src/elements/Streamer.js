@@ -22,20 +22,22 @@ class Streamers extends Component {
             publisher: undefined,
             subscribers: [],
             streamers: [],
+            havePermissions: false,
         };
 
         this.joinSession = this.joinSession.bind(this);
         this.leaveSession = this.leaveSession.bind(this);
         this.switchCamera = this.switchCamera.bind(this);
         this.handleChangeSessionId = this.handleChangeSessionId.bind(this);
-        this.handleChangeUserName = this.handleChangeUserName.bind(this);
         this.handleMainVideoStream = this.handleMainVideoStream.bind(this);
         this.onbeforeunload = this.onbeforeunload.bind(this);
+        this.giveAccess = this.giveAccess.bind(this);
     }
 
     componentDidMount() {
         window.addEventListener('beforeunload', this.onbeforeunload);
-        this.joinSession();
+        this.giveAccess();
+        
         
     } 
 
@@ -53,18 +55,21 @@ class Streamers extends Component {
         });
     }
 
-    handleChangeUserName(e) {
-        this.setState({
-            myUserName: e.target.value,
-        });
-    }
-
     handleMainVideoStream(stream) {
         if (this.state.mainStreamManager !== stream) {
             this.setState({
                 mainStreamManager: stream
             });
         }
+    }
+
+    giveAccess() {
+        const permissions = navigator.mediaDevices.getUserMedia({audio: true, video: true})
+        
+        permissions.then((stream) => {
+            alert('방송을 시작합니다!');
+            this.joinSession();
+        })
     }
 
     deleteSubscriber(streamManager) {
@@ -240,9 +245,7 @@ class Streamers extends Component {
   
 
     render() {
-        const mySessionId = this.state.mySessionId;
-        const myUserName = this.state.myUserName;
-
+        
         return (
             <div className="container">
                 {this.state.session === undefined ? (
@@ -253,24 +256,32 @@ class Streamers extends Component {
 
                 {this.state.session !== undefined ? (
                     <div id="session">
-                            <input
-                                className="btn btn-large btn-danger"
-                                type="button"
+                            {/* <button
+                                className="btn-live"
+                                onClick={this.giveAccess}
+                            >
+                            방송 시작하기
+                            </button> */}
+                            <button
+                                className="btn-live"
                                 id="buttonLeaveSession"
                                 onClick={this.leaveSession}
-                                value="Leave session"
-                            />
+                            >
+                            방송 끝내기
+                            </button>
+                            
+                            <button
+                                className="btn-live"
+                                id="buttonSwitchCamera"
+                                onClick={this.switchCamera}
+                            >
+                            카메라 바꾸기
+                            </button>
 
                         {this.state.mainStreamManager !== undefined ? (
                             <div id="main-video" className="col-md-6">
                                 <UserVideoComponent streamManager={this.state.mainStreamManager} />
-                                <input
-                                    className="btn btn-large btn-success"
-                                    type="button"
-                                    id="buttonSwitchCamera"
-                                    onClick={this.switchCamera}
-                                    value="Switch Camera"
-                                />
+                                
                             </div>
                         ) :  <p>No mainStreamManager</p>}                           
                     </div>

@@ -185,7 +185,35 @@ function Main() {
             <div className="spinner-wrap">
               <BeatLoader color={"grey"} loading={loading} size={10}/>
             </div>
+          ): genreList&&genreList.length < 6?
+          (
+            <div className="row-wrap-left">
+            {genreList&&genreList.map((song,index) =>{
+              return(
+                <div 
+                className="main-card"
+                onClick={()=>{
+                  navigate('/detail/'+song.id)
+                }}>
+                  <img
+                  alt={song.title}
+                  className="main-album-art" 
+                  src={song.albumImageUrl}
+                  />
+                  <div className="main-card-text">
+                    <p className="main-card-title">
+                    {song.title}
+                    </p>
+                    <p className="main-card-artist">
+                    {song.artist}
+                    </p>
+                  </div>
+                </div>
+                  )
+                })}
+            </div>
           ):(
+
             <Slider {...settings}>     
             {genreList&&genreList.map((song,index) =>{
               return(
