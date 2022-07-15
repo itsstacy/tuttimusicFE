@@ -96,8 +96,8 @@ function MyPage() {
             <p className='header-artist-info'>{userInfoDto.profileText}</p>  
 
             <div className='header-sns'>
-              {userInfoDto.youtubeUrl ? <FaYoutube className='sns-icon' onClick={()=>{window.open(userInfoDto.youtubeUrl)}}/> : null}
-              {userInfoDto.instagramUrl ? <RiInstagramFill className='sns-icon' onClick={()=>{window.open(userInfoDto.instagramUrl)}}/> : null}
+              {userInfoDto.youtubeUrl ? <FaYoutube className='sns-icon sns-youtube' onClick={()=>{window.open(userInfoDto.youtubeUrl)}}/> : null}
+              {userInfoDto.instagramUrl ? <RiInstagramFill className='sns-icon sns-instagram' onClick={()=>{window.open(userInfoDto.instagramUrl)}}/> : null}
             </div>
           </div>
 

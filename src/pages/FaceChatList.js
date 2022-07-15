@@ -50,7 +50,7 @@ function FaceChatList() {
                     <div className="facechat-list-title">
                         라이브 중인 채널
                     </div>
-                    <button className='primary facechat-button btn'><BsBroadcast id="broadcast-icon"/>라이브 시작하기</button>   
+                    <button className='primary facechat-button btn' onClick={() => navigate("/createlive")}><BsBroadcast id="broadcast-icon"/>라이브 시작하기</button>   
                 </div>
                 
                 {loading? (
