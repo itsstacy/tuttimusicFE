@@ -1,11 +1,13 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react';
-import { useParams, useLocation } from "react-router-dom";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
 
 import BeatLoader from "react-spinners/BeatLoader";
 
 
 function Tab3() {
+
+  const navigate = useNavigate();
   const params = useParams();
   const location = useLocation();
 
@@ -71,12 +73,15 @@ useEffect(()=>{
                     <img 
                     src={song.albumImageUrl} 
                     className='mypage-main-thumbnail'
-                    alt={song.title}/>
+                    alt={song.title}
+                    onClick={() => {navigate(`/detail/video/${song.feedId}`)}}/>
                     <div className="main-card-text">
-                        <p className="main-card-title">
+                        <p className="main-card-title"
+                        onClick={() => {navigate(`/detail/video/${song.feedId}`)}}>
                         {song.title}
                         </p>
-                        <p className="main-card-artist">
+                        <p className="main-card-artist"
+                        onClick={() => {navigate(`/userpage/${song.artist}`)}}>
                         {song.artist}
                         </p>
                     </div>

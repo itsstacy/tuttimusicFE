@@ -174,7 +174,7 @@ function CreateLive() {
           </label>
           <div className="upload-image-box">
           <UploadImagePreview previewImg={previewImg}></UploadImagePreview>
-          <label className="upload-label-button" for="upload-image">이미지 업로드</label>
+          <label className="secondary upload-label-button" for="upload-image">이미지 업로드</label>
           <UploadImageNameWrap className="upload-image-name-wrap" textHeight={textHeight}>
             <textarea id="upload-image-name" row="1" value={imgName} ref={imgName_ref} spellcheck="false" readOnly></textarea>
 
@@ -185,7 +185,7 @@ function CreateLive() {
           </div>
 
           <button 
-          className="upload-button"
+          className="primary upload-button"
           onClick={()=>{
             startLive()
           }}>라이브 시작</button>

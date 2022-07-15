@@ -1,12 +1,13 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react';
-import { useParams, useLocation } from "react-router-dom";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { slidesOnLeft } from 'react-slick/lib/utils/innerSliderUtils';
 
 import BeatLoader from "react-spinners/BeatLoader";
 
 
 function Tab4() {
+  const navigate = useNavigate();
   const params = useParams();
   const location = useLocation();
 
@@ -66,7 +67,8 @@ function Tab4() {
         <div className='tab-body'>
         {list&&list.map((song, Index)=>{
             return(
-                <div className='body-following-card'>
+                <div className='body-following-card'
+                onClick={() => {navigate(`/userpage/${song.artist}`)}}>
                     <img 
                     src={song.profileImage} 
                     className='body-circle'

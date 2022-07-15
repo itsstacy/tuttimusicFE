@@ -139,8 +139,8 @@ display:flex;
 justify-content: center;
 width:100%;
 height: 80px;
-background-color:#4E4E4E;
-color: #fff;
+background-color:#1A1B1E;
+color: #f0f0f0;
 
 `
 
