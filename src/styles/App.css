@@ -1698,6 +1698,7 @@
   padding: 10px 10px;
   gap: 10px;
 
+  cursor: pointer;
 }
 
 .facechat-list-title {
