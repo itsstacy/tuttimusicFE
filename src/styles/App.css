@@ -14,6 +14,8 @@ font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, '
 :root {
   --container-width: 1280px;
   --primary-button: #545454;
+  --primary-color: #8A51FB;
+  --secondary-color: #E8E4FF;
 
   /* 앨범 커버 이미지 비율 1:1 */
   --card-size: 190px;
@@ -178,6 +180,16 @@ font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, '
   font-size: 16px;
   margin-bottom: 6px;
   cursor: pointer;
+
+  white-space: pre-wrap;
+  
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  word-wrap:break-word; 
+  line-height: 22px;
 }
 
 .main-card-artist{
@@ -249,6 +261,11 @@ font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, '
   cursor: pointer;
 }
 
+.click-category {
+  background-color: #E8E4FF;
+  color:#8A51FB;
+}
+
 /* MUSIC FEED END */
 
 /* DETAIL  */
@@ -297,7 +314,6 @@ font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, '
 
 .detail-artist{
   font-size: 18px;
-  width:70px;
   text-align: center;
 }
 
@@ -1743,7 +1759,7 @@ font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, '
   flex-direction: row;
   align-items: flex-start;
   padding: 0px;
-  gap: 40px 16px;
+  gap: 25px;
 
   width: 1280px;
   height: 229px;
@@ -1757,7 +1773,7 @@ font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, '
   flex-direction: column;
   align-items: flex-start;
   padding: 0px;
-  gap: 20px;
+  gap: 5px;
 }
 
 .live-box-thumbnail {
@@ -1792,6 +1808,7 @@ font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, '
   flex-direction: column;
   align-items: flex-start;
   padding: 0px;
+  min-width: 150px;
   gap: 3px;
 }
 
@@ -2526,6 +2543,15 @@ input[type=radio] {
 .live-box-left{
   display: flex;
   flex-direction: column;
+}
+
+.btn-live{
+  padding: 10px 20px;
+  border-radius: 10px;
+  margin: 10px;
+  background-color: var(--secondary-color);
+  border: none;
+  outline: none;
 }
   
   /* LIVE CHAT ROOM END */
