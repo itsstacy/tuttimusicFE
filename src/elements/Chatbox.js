@@ -133,7 +133,7 @@ const Chatbox = (props) => {
                                             src={chat.profileImage} 
                                             alt={chat.senderName} />
                                             <div className="chat-name">{chat.senderName}</div>
-                                            <div className="live-chat-list-time">2시간 전</div>
+                                            {/* <div className="live-chat-list-time">2시간 전</div> */}
                                         </div>
                                         <div className="message-data">{chat.message}</div>
                                     </div>
