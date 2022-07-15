@@ -118,7 +118,7 @@ function MyPage() {
             </div>
 
              {/* navigate 함수로 myedit 페이지로 갈 때, userInfoDto에 담아져있는 데이터를 state로 가져감 */}
-            <button className='follow-follower-button' onClick={()=>{navigate('/myedit', {state : userInfoDto})}}>
+            <button className='primary follow-follower-button' onClick={()=>{navigate('/myedit', {state : userInfoDto})}}>
               <FiSettings className='follow-follower-icon'/><p className='follow-follower-button-text'>프로필 설정</p>
             </button>
 

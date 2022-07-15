@@ -3,6 +3,7 @@ import React, {useEffect, useState} from 'react';
 
 import {SERVER_URL} from "../redux/modules/songSlice";
 import BeatLoader from "react-spinners/BeatLoader";
+import { BsBroadcast } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 
 
@@ -45,7 +46,13 @@ function FaceChatList() {
     return(
         <div>
             <div className="facechat-list">
-                <div className="facechat-list-title">라이브 중인 채널</div>
+                <div className='facechat-header'>
+                    <div className="facechat-list-title">
+                        라이브 중인 채널
+                    </div>
+                    <button className='primary facechat-button btn'><BsBroadcast id="broadcast-icon"/>라이브 시작하기</button>   
+                </div>
+                
                 {loading? (
                 <div className="spinner-wrap">
                     <BeatLoader color={"grey"} loading={loading} size={10}/>

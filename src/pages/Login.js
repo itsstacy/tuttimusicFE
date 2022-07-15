@@ -83,7 +83,7 @@ const Login = () => {
                         <p className='login-tutti-signup' onClick={()=>{navigate("/signup")}}>회원가입</p>
                     </div>
                 </div>
-            <button className='login-button' onClick={(loginCheck)}>로그인</button>
+            <button className='primary login-button' onClick={(loginCheck)}>로그인</button>
             </div>
         </div>  
     )
