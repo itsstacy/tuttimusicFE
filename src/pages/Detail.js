@@ -208,12 +208,6 @@ function Detail() {
             onChange={(e)=>{
               setMyComment(e.target.value)
             }}
-              onKeyPress = {(e)=>{
-                if (e.key === 'Enter') {
-                  addNewComment();
-                  setMyComment("");  
-                }
-            }}
             />
             <button 
             className="primary btn btn-primary"
