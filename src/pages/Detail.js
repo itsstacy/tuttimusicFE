@@ -2,8 +2,6 @@ import React, { useEffect, useState, useRef} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import {getSongDetail,postComment, SERVER_URL, likeSong} from "../redux/modules/songSlice"
-import {FaRegHeart, FaHeart} from "react-icons/fa";
-import {MdDelete} from "react-icons/md"
 import BeatLoader from "react-spinners/BeatLoader";
 import {BsCheckCircle} from "react-icons/bs";
 import {MdEdit} from "react-icons/md";
