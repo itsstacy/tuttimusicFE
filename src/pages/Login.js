@@ -68,12 +68,22 @@ const Login = () => {
                         onChange={(e)=>{
                             setEmail(e.target.value)
                         }}
+                        onKeyPress = {(e)=>{
+                            if (e.key === 'Enter') {
+                                loginCheck()
+                            }
+                        }}
                         placeholder="이메일 주소를 입력해주세요."/>
 
                         {/* 비밀번호 부분 */}
                     <input className='login-email-input'
                         onChange={(e)=>{
                             setPassword(e.target.value)
+                        }}
+                        onKeyPress = {(e)=>{
+                            if (e.key === 'Enter') {
+                                loginCheck()
+                            }
                         }}
                         type="password"
                         placeholder="비밀번호를 입력해주세요."/>

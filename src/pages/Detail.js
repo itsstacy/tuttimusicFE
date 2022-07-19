@@ -206,8 +206,14 @@ function Detail() {
             placeholder="댓글을 입력해주세요."
             value={myComment}
             onChange={(e)=>{
-             setMyComment(e.target.value)
-           }}
+              setMyComment(e.target.value)
+            }}
+              onKeyPress = {(e)=>{
+                if (e.key === 'Enter') {
+                  addNewComment();
+                  setMyComment("");  
+                }
+            }}
             />
             <button 
             className="primary btn btn-primary"
