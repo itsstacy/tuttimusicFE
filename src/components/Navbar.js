@@ -24,6 +24,7 @@ function Navbar() {
     setToggleState(false);
     localStorage.clear();
     navigate("/");
+    window.location.reload();
   }
 
   const ClickMyPage = () => {
@@ -34,18 +35,6 @@ function Navbar() {
   //search 
   const dispatch = useDispatch();
   const [searchValue, setSearchValue] = useState();
-
-
-
-React.useEffect(()=>{
-  if (!token) {
-    if (location.pathname === "/upload") {
-      window.alert("로그인이 필요합니다.")
-      navigate(-1);
-    }
-  }
-
-},[])
 
 
   return (
@@ -107,7 +96,7 @@ React.useEffect(()=>{
               <div className="logout-state">
 
                 <div className="user-login" onClick={() => { navigate('login') }}>로그인</div>
-                <div className="user-slash"> / </div>
+                <div className="user-slash">  </div>
                 <div className="user-signup" onClick={() => { navigate('signup') }}>회원가입</div>
 
               </div>}
