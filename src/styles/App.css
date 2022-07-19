@@ -1470,6 +1470,11 @@ font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, '
   cursor: pointer;
 }
 
+#signup-dot {
+  color:#8A51FB;
+  margin-left:2px;
+}
+
 /* SIGNUP PAGE END */
 
 
