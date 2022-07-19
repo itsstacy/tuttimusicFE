@@ -1,10 +1,13 @@
-import React, { useEffect, useState} from "react";
+import React, { useCallback, useEffect, useState} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import {getMusicFeed} from "../redux/modules/songSlice";
 
 import BeatLoader from "react-spinners/BeatLoader";
+
+import { useInView } from 'react-intersection-observer';
+
 
 
 function MusicFeed() {
@@ -15,6 +18,19 @@ function MusicFeed() {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
 
+
+
+  const [page, setPage] = useState(1)
+  const [limit, setLimit] = useState(12)
+
+  const [isLoding, setIsLoding] = useState(false);
+  
+  const [ref, inView] = useInView();
+
+  // const getItems = dispatch(getMusicFeed)
+  
+  
+
   useEffect(()=>{
     setLoading(true);
     setType("audio");
@@ -22,6 +38,8 @@ function MusicFeed() {
       token:token,
       type: _type,
       genre: "",
+      page:page,
+      limit:limit,
     }
     dispatch(getMusicFeed(data));
     setTimeout(()=> {
@@ -29,10 +47,37 @@ function MusicFeed() {
     },100)
     window.scrollTo(0,0);
   },[])
+  
+  
 
   const allList = useSelector((state) => state.Song.allList);
   console.log(allList);
   
+  const [totalList, setTotalList] = useState(null)
+  console.log('토탈리스트', totalList);
+
+  useEffect(() => {
+    if (allList) {
+      setTotalList(allList)
+      console.log(totalList)
+    }
+    if (inView && !isLoding) {
+      const data= {
+        token:token,
+        type: _type,
+        genre: "",
+        page:page,
+        limit:limit,
+      }
+      dispatch(getMusicFeed(data))
+      setPage(page + 1)
+      console.log(page)
+      setTotalList(totalList, allList)
+      console.log("추가된 리스트", totalList)
+    }
+  }, [inView, isLoding])
+
+
   const ClickType =(props)=>{
     setGenre(null);
     // if (props ==="오디오"){
@@ -194,7 +239,7 @@ function MusicFeed() {
         )
       
       }
-       
+      <div ref={ref}></div>
       </section>
     
     </div>
