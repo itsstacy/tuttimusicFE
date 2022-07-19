@@ -233,11 +233,6 @@ const SignUp = () => {
                                     onChange={(e)=>{
                                         setEmail(e.target.value)
                                     }}
-                                    onKeyPress = {(e)=>{
-                                        if (e.key === 'Enter') {
-                                            emailCheck()
-                                        }
-                                    }}
                                     type="text" 
                                     placeholder="실제 사용 중인 이메일을 입력하세요"
                                     name="email"
@@ -302,11 +297,6 @@ const SignUp = () => {
                             <input className='signup-email-input'
                                     onChange={(e)=>{
                                         setArtist(e.target.value)
-                                    }}
-                                    onKeyPress = {(e)=>{
-                                        if (e.key === 'Enter') {
-                                            artistCheck()
-                                        }
                                     }}
                                     type="text" 
                                     placeholder="닉네임을 입력하세요"
