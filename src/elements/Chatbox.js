@@ -11,6 +11,7 @@ const Chatbox = (props) => {
     console.log(props)
     const currentTime = moment().format();
     const [privateChats, setPrivateChats] = useState(new Map());     
+    const [publicChats1, setPublicChats1] = useState([]); 
     const [publicChats, setPublicChats] = useState([]); 
     const [tab,setTab] =useState("CHATROOM");
     const [userData, setUserData] = useState({
@@ -48,8 +49,9 @@ const Chatbox = (props) => {
     const onConnected = () => {
         setUserData({...userData,"connected": true, "master": props.streamer, "username": props.subscriber });
         console.log(userData);
-        stompClient.subscribe('/chatroom/public'+props.streamer, onMessageReceived);
         userJoin();
+        stompClient.subscribe('/chatroom/public'+props.streamer, onMessageReceived);
+        
     }
 
     const userJoin=()=>{
@@ -64,20 +66,21 @@ const Chatbox = (props) => {
     const onMessageReceived = (payload)=>{
         var payloadData = JSON.parse(payload.body);
         console.log(payloadData)
-        console.log(payloadData.status)
-        console.log(privateChats)
+        
+        // setPublicChats(payloadData);
+        // console.log(publicChats);
+
+
+        // eslint-disable-next-line default-case
         switch(payloadData.status){
-            case "JOIN":
-                // IF SENDER NAME IS NOT IN PRIVATE CHAT KEY, ADD SENDER NAME AS A KEY
-                if(!privateChats.get(payloadData.senderName)){
-                    privateChats.set(payloadData.senderName,[]);
-                    setPrivateChats(new Map(privateChats));
-                }
-                break;
             case "MESSAGE":
+                console.log(publicChats1)
                 publicChats.push(payloadData);
                 setPublicChats([...publicChats]);
                 break;
+            case undefined:
+                setPublicChats1(payloadData);
+                console.log(publicChats1);
         }
     }
 
@@ -123,7 +126,7 @@ const Chatbox = (props) => {
                 <div className="live-chat-list">
                     <p className="welcome-message">welcome to {props.streamer}'s live music! 😊🎵 </p>
                     <ul className="chat-messages">
-                        {publicChats.map((chat,index)=>(
+                    {publicChats1&&publicChats1.map((chat,index)=>(
                             <li className={`message ${chat.senderName === userData.username && "self"}`} key={index}>                               
                                     {chat.senderName !== userData.username && 
                                     <div className='message-flex-wrap'>
@@ -133,7 +136,7 @@ const Chatbox = (props) => {
                                             src={chat.profileImage} 
                                             alt={chat.senderName} />
                                             <div className="chat-name">{chat.senderName}</div>
-                                            {/* <div className="live-chat-list-time">2시간 전</div> */}
+                                            
                                         </div>
                                         <div className="message-data">{chat.message}</div>
                                     </div>
@@ -147,7 +150,38 @@ const Chatbox = (props) => {
                                             src={chat.profileImage} 
                                             alt={chat.senderName}/>
                                             <div className="chat-name self">{chat.senderName}</div>
-                                            <div className="live-chat-list-time">2시간 전</div>
+                                            
+                                        </div>
+                                        <div className="message-data">{chat.message}</div>
+                                    </div>
+                                    }
+                            </li>
+                        ))}
+                        {publicChats&&publicChats.map((chat,index)=>(
+                            <li className={`message ${chat.senderName === userData.username && "self"}`} key={index}>                               
+                                    {chat.senderName !== userData.username && 
+                                    <div className='message-flex-wrap'>
+                                        <div className="message-header">
+                                            <img 
+                                            className='chat-profile' 
+                                            src={chat.profileImage} 
+                                            alt={chat.senderName} />
+                                            <div className="chat-name">{chat.senderName}</div>
+                                            
+                                        </div>
+                                        <div className="message-data">{chat.message}</div>
+                                    </div>
+                                    }
+                                    
+                                    {chat.senderName === userData.username && 
+                                    <div className='message-flex-wrap self'>
+                                        <div className="message-header">
+                                            <img 
+                                            className='chat-profile' 
+                                            src={chat.profileImage} 
+                                            alt={chat.senderName}/>
+                                            <div className="chat-name self">{chat.senderName}</div>
+                                            
                                         </div>
                                         <div className="message-data">{chat.message}</div>
                                     </div>

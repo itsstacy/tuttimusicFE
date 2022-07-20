@@ -1798,6 +1798,16 @@ font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, '
   height: 42px;
 }
 
+.relative {
+  position: relative;
+}
+
+.live-absolute {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
 .facechat-live-pofileimg {
   width: 42px;
   height: 42px;
