@@ -17,10 +17,10 @@ export const getMainLists = createAsyncThunk("GET/getMainLists", async (token)=>
 export const getMusicFeed = createAsyncThunk("GET/getMusicFeed", async (props)=>{
   console.log(props)
   return axios
-  .get(`${SERVER_URL}/feeds?postType=${props.type}&genre=`+props.genre,{
+  .get(`${SERVER_URL}/feeds?postType=${props.type}&genre=${props.genre}&page=${props.page}&limit=${props.limit}`,{
     headers: {Authorization:props.token? props.token:""}
   })
-  .then((response)=> response.data.data);
+  .then((response)=> response.data.data.content);
 })
 
 //GET SONG DETAIL

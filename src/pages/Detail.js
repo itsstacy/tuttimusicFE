@@ -198,23 +198,39 @@ function Detail() {
             alt={userName?userName: "noUser"}
             src={userProfileUrl? userProfileUrl:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQF_h6thkbe0oON25G45kdMJU4UDYyC-1hDLK7uFobW9vL0__oa"}
             />
-            <input 
-            className="comment-input"
-            type="text"  
-            placeholder="댓글을 입력해주세요."
-            value={myComment}
-            onChange={(e)=>{
-             setMyComment(e.target.value)
-           }}
-            />
-            <button 
-            className="primary btn btn-primary"
-            onClick={()=>{
-              addNewComment();
-              setMyComment("");
-            }}>
-            등록
-            </button>
+
+              {token ? 
+              <input
+                className="comment-input"
+                type="text"
+                placeholder="댓글을 입력해주세요."
+                value={myComment}
+                onChange={(e) => {
+                  setMyComment(e.target.value)
+                }}
+              /> 
+              : 
+              <input
+                className="comment-input"
+                type="text"
+                placeholder="로그인 시 댓글 작성할 수 있습니다."
+                readOnly
+              />}
+
+              {token ? <button
+                className="primary btn btn-primary"
+                onClick={() => {
+                  addNewComment();
+                  setMyComment("");
+                }}>
+                등록
+              </button> 
+              :
+                <button
+                  className="primary btn btn-primary">
+                  등록
+                </button>}
+
           </div>
           <div className="all-comments">
             {commentsList&&commentsList.map((comment,index)=>{

@@ -4,6 +4,9 @@ import { useNavigate } from 'react-router-dom';
 
 import styled from 'styled-components';
 
+import { BsDot } from "react-icons/bs"
+
+
 const SignUp = () => {
 
     const navigate = useNavigate();
@@ -225,7 +228,7 @@ const SignUp = () => {
                     <div className='signup-email-box'>
 
                         <div className='signup-email-title-box'>
-                            <p className='signup-email-title'>이메일*</p>
+                            <p className='signup-email-title'>이메일<span id="signup-dot">*</span></p>
                         </div>
                         
                         <div className='signup-email-content'>
@@ -247,7 +250,7 @@ const SignUp = () => {
                     <div className='signup-pw-box'>
 
                         <div className='signup-pw-title-box'>
-                            <p className='signup-pw-title'>비밀번호*</p>
+                            <p className='signup-pw-title'>비밀번호<span id="signup-dot">*</span></p>
                         </div>
 
                         <div className='signup-pw-content'>
@@ -270,7 +273,7 @@ const SignUp = () => {
                     <div className='signup-pw-box'>
 
                         <div className='signup-pw-title-box'>
-                            <p className='signup-pw-title'>비밀번호 확인*</p>
+                            <p className='signup-pw-title'>비밀번호 확인<span id="signup-dot">*</span></p>
                         </div>
 
                         <div className='signup-pw-content'>
@@ -290,7 +293,7 @@ const SignUp = () => {
                     <div className='signup-email-box'>
 
                         <div className='signup-email-title-box'>
-                            <p className='signup-email-title'>닉네임*</p>
+                            <p className='signup-email-title'>닉네임<span id="signup-dot">*</span></p>
                         </div>
                         
                         <div className='signup-email-content'>
@@ -310,7 +313,7 @@ const SignUp = () => {
                     {/* 이미지 업로드 부분 */}
                     <div className='signup-profile-img-box'>
                         <div className='profile-title-box'>
-                            <p className='profile-title'>프로필 이미지*</p>
+                            <p className='profile-title'>프로필 이미지<span id="signup-dot">*</span></p>
                         </div>
                         <div className='profile-img-form'>
                             <img src={preview} className='profile-img-circle'/>
@@ -323,7 +326,7 @@ const SignUp = () => {
                     {/* 선호 장르 부분 */}
                     <div className='signup-genre-box'>
                         <div className='signup-genre-title-box'>
-                            <p className='signup-genre-title'>선호 장르*</p>
+                            <p className='signup-genre-title'>선호 장르<span id="signup-dot">*</span></p>
                         </div>
 
                         <div className='genre-container'>
@@ -354,7 +357,7 @@ const SignUp = () => {
                     {/* 소개글 부분 */}
                     <div className='signup-pw-box'>
                         <div className='signup-pw-title-box'>
-                            <p className='signup-pw-title'>소개글*</p>
+                            <p className='signup-pw-title'>소개글<span id="signup-dot">*</span></p>
                         </div>
                         
                         <input className='signup-pw-input'
