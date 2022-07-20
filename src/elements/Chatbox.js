@@ -27,7 +27,6 @@ const Chatbox = (props) => {
         connect()
 
         return()=>{
-            console.log("unmounted!")
             disconnect()
         }
     },[])

@@ -68,6 +68,7 @@ font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, '
 /* MAIN PAGE  */
 .main-container {
   min-height: 100vh;
+  margin-bottom: 120px;
 }
 
 .main-top {
@@ -215,7 +216,7 @@ font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, '
 /* MUSIC FEED */
 .musicfeed-container{
   max-width: var(--container-width);
-  margin: 50px auto;
+  margin: 50px auto 120px auto;
   position: relative;
 }
 
@@ -277,6 +278,7 @@ font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, '
   max-width: var(--container-width);
   margin: 50px auto 100px auto;
   position: relative;
+  min-height: 80vh;
 }
 .music-detail{
   display: flex;
@@ -652,7 +654,7 @@ font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, '
 
   max-width: 1280px;
   width: 100%;
-  margin: 50px auto;
+  margin: 50px auto 150px auto;
   position: relative;
   
 }
@@ -1698,15 +1700,10 @@ font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, '
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 50px 0px;
   gap: 40px;
-
   width: 1280px;
-  height: 1206px;
-  left: 320px;
-  top: 80px;
-
-  margin: 0px auto;
+  margin: 80px auto 100px auto;
+  min-height: 90vh;
 }
 
 .facechat-header {
@@ -1753,7 +1750,6 @@ font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, '
   gap: 40px;
 
   width: 1280px;
-  height: 1036px;
 }
 
 .facechat-live-list {
@@ -1859,6 +1855,7 @@ font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, '
 
 .upload-wrap {
   width: 1280px;
+  margin-bottom: 120px;
 }
 
 .upload-title {
@@ -2512,9 +2509,12 @@ input[type=radio] {
 }
 
 .chat-messages{
-  width: 100%;
+  max-width: 100%;
   padding: 0;
   margin: 0;
+  max-height: 65vh;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .message-header{
@@ -2529,6 +2529,7 @@ input[type=radio] {
   background-color: #F7F7FA;
   padding: 10px 20px;
   border-radius: 10px;
+  max-width: 300px;
 }
 
 .message-flex-wrap.self{
@@ -2538,6 +2539,8 @@ input[type=radio] {
 
 .message-data{
   padding: 5px;
+  white-space: pre-wrap;
+  max-width: 300px;
 }
 
 .welcome-message{

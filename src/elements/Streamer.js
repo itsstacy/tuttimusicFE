@@ -3,6 +3,7 @@ import { OpenVidu } from 'openvidu-browser';
 import React, { Component } from 'react';
 import UserVideoComponent from './UserVideoComponent';
 import BeatLoader from "react-spinners/BeatLoader";
+import { Navigate } from 'react-router-dom';
 
 const OPENVIDU_SERVER_URL = 'https://' + "rnrn.shop" ;
 const OPENVIDU_SERVER_SECRET = 'qlalfqjsgh';
@@ -41,6 +42,7 @@ class Streamers extends Component {
     componentWillUnmount() {
         this.leaveSession();
     }
+
 
     handleChangeSessionId(e) {
         this.setState({
@@ -206,7 +208,8 @@ class Streamers extends Component {
             havePermissions: false,
         });
         console.log(this.state);
-        this.navigation.navigate('/facechatlist');   
+        this.props.history.push('/facechatlist');
+
         })
         .catch((error)=>{
         console.log(error)
