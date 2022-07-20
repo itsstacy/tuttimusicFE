@@ -158,7 +158,13 @@ const Chatbox = (props) => {
                 </div>
 
                 <div className="live-chat-box">
-                    <input type="text" className="live-chat-user-input" placeholder="enter the message" value={userData.message} onChange={handleMessage} /> 
+                    <input type="text" className="live-chat-user-input" placeholder="enter the message" value={userData.message} onChange={handleMessage} 
+                    onKeyPress = {(e)=>{
+                        if (e.key === 'Enter') {
+                            sendValue()
+                        }
+                    }}
+                    /> 
                     <button type="button" className="live-chat-user-button" onClick={sendValue}>
                     <IconContext.Provider value={{ className: "send"  }}>
                         <IoPaperPlane/>

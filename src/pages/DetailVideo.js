@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef} from "react";
+import React, { useEffect, useState, useRef, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import {getSongDetail,postComment, SERVER_URL, likeSong} from "../redux/modules/songSlice"
@@ -22,6 +22,22 @@ function DetailVideo() {
   // console.log(moment.utc("2019-12-04 12:00:24").local().startOf('seconds').fromNow())
   // console.log(moment("2022-07-01T16:08:54+09:00").startOf('hour').fromNow())
   const currentTime = moment().format()
+
+  // const [isShowMore, setIsShowMore] = useState(false)
+  // const textLimit = useRef(20)
+
+  // const commenter = useMemo(()=>{
+  //   const shortReview = detail.description.slice(0, textLimit.current)
+
+  //   if (detail.description.length > textLimit.current) {
+  //     if (isShowMore) {
+  //       return detail.description
+  //     }
+  //     return shortReview;
+  //   }
+  //   return detail.description;
+  // }, [isShowMore])
+  
 
   useEffect(()=>{
   const token = localStorage.getItem("token");
@@ -165,14 +181,14 @@ function DetailVideo() {
           <div className="right-column">
 
             <p className="detail-song-detail">
-              {detail.description} <br/>
+              {detail.description}<br/>
               {/* 곡을 소개해주세요. 곡을 소개하는 부분입니다.<br/>
               소개글이 길어지면 이렇게 ellipsis처리가 될거에요<br/>
               곡을 소개하는 부분입니다.<br/>
               곡을 소개하는 부분입니다. */}
             </p>
             <p className="detail-more-detail">
-            더보기
+              더보기
             </p>
           </div>
         </section>
@@ -199,23 +215,39 @@ function DetailVideo() {
             alt={userName?userName: "noUser"}
             src={userProfileUrl? userProfileUrl:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQF_h6thkbe0oON25G45kdMJU4UDYyC-1hDLK7uFobW9vL0__oa"}
             />
-            <input 
-            className="comment-input"
-            type="text"  
-            placeholder="댓글을 입력해주세요."
-            value={myComment}
-            onChange={(e)=>{
-             setMyComment(e.target.value)
-           }}
-            />
-            <button 
-            className="primary btn btn-primary"
-            onClick={()=>{
-              addNewComment();
-              setMyComment("");
-            }}>
-            등록
-            </button>
+
+              {token ? 
+              <input
+                className="comment-input"
+                type="text"
+                placeholder="댓글을 입력해주세요."
+                value={myComment}
+                onChange={(e) => {
+                  setMyComment(e.target.value)
+                }}
+              /> 
+              : 
+              <input
+                className="comment-input"
+                type="text"
+                placeholder="로그인 시 댓글 작성할 수 있습니다."
+                readOnly
+              />}
+
+              {token ? <button
+                className="primary btn btn-primary"
+                onClick={() => {
+                  addNewComment();
+                  setMyComment("");
+                }}>
+                등록
+              </button> 
+              :
+                <button
+                  className="primary btn btn-primary">
+                  등록
+                </button>}
+
           </div>
           <div className="all-comments">
             {commentsList&&commentsList.map((comment,index)=>{

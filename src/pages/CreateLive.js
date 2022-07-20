@@ -19,55 +19,6 @@ function CreateLive() {
   const [imgName, setImgName] = useState(null);
   const [imgFile, setImgFlie] = useState(null);
 
-  const [textHeight, setTextHeight] =useState(0);
-  const imgName_ref = useRef(null);
-
-  const userName = localStorage.getItem("userName");
-
-  useEffect(() => {
-    console.log(imgName_ref.current.value.length)
-    if (imgName_ref.current.value.length <= 18) {
-      console.log("18 길이" );
-      setTextHeight(19);
-    } else if (19 < imgName_ref.current.value.length && imgName_ref.current.value.length <= 36) {
-      console.log("36 길이" );
-      setTextHeight(34);
-    } else if (37 < imgName_ref.current.value.length && imgName_ref.current.value.length <= 54) {
-      console.log("54 길이" );
-      setTextHeight(49);
-    } else if (55 < imgName_ref.current.value.length && imgName_ref.current.value.length <= 72) {
-      console.log("72 길이" );
-      setTextHeight(64);
-    } else if (73 < imgName_ref.current.value.length && imgName_ref.current.value.length <= 90) {
-      console.log("90 길이" );
-      setTextHeight(79);
-    } else if (91 < imgName_ref.current.value.length && imgName_ref.current.value.length <= 108) {
-      console.log("108 길이" );
-      setTextHeight(94);
-    } else if (109 < imgName_ref.current.value.length && imgName_ref.current.value.length <= 126) {
-      console.log("126 길이" );
-      setTextHeight(109);
-    } else if (127 < imgName_ref.current.value.length && imgName_ref.current.value.length <= 144) {
-      console.log("144 길이" );
-      setTextHeight(124);
-    } else if (145 < imgName_ref.current.value.length && imgName_ref.current.value.length <= 162) {
-      console.log("162 길이" );
-      setTextHeight(140);
-    } else if (163 < imgName_ref.current.value.length && imgName_ref.current.value.length <= 190) {
-      console.log("190 길이" );
-      setTextHeight(155);
-    } else if (191 < imgName_ref.current.value.length && imgName_ref.current.value.length <= 208) {
-      console.log("208 길이" );
-      setTextHeight(170);
-    } else if (209 < imgName_ref.current.value.length && imgName_ref.current.value.length <= 226) {
-      console.log("226 길이" );
-      setTextHeight(185);
-    } else if (227 < imgName_ref.current.value.length && imgName_ref.current.value.length <= 244) {
-      console.log("255 길이" );
-      setTextHeight(200);
-    }
-  })
-
   const onLoadImage = (e) => {
     let render = new FileReader()
     setImgName(e.target.files[0].name);
@@ -176,11 +127,6 @@ function CreateLive() {
           <div className="upload-image-box">
           <UploadImagePreview previewImg={previewImg}></UploadImagePreview>
           <label className="secondary upload-label-button" for="upload-image">이미지 업로드</label>
-          <UploadImageNameWrap className="upload-image-name-wrap" textHeight={textHeight}>
-            {/* <textarea id="upload-image-name" row="1" value={imgName} ref={imgName_ref} spellcheck="false" readOnly></textarea> */}
-
-
-            </UploadImageNameWrap>
           <input type="file" id="upload-image" accept='image/*' onChange={onLoadImage} />
           </div>
           </div>
@@ -217,12 +163,5 @@ let UploadImagePreview = styled.div`
   background-size:cover;
   background-position: 50% 50%;
 `
-
-let UploadImageNameWrap = styled.div`
-height: ${(props) => props.textHeight}px;
-`
-
-
-
 
 export default CreateLive;

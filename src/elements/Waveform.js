@@ -1,17 +1,17 @@
 
 import React, { useEffect, useRef, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import {likeSong} from "../redux/modules/songSlice";
-import {FaRegHeart, FaHeart} from "react-icons/fa";
-import { IconContext } from "react-icons";
 
 import WaveSurfer from "wavesurfer.js";
 import {ImPlay3} from "react-icons/im";
 import {IoMdPause} from "react-icons/io";
-import {FaVolumeUp, FaVolumeOff, FaVolumeDown} from "react-icons/fa";
+import { IconContext } from "react-icons";
+import {FaVolumeUp, FaVolumeOff, FaVolumeDown, FaRegHeart, FaHeart} from "react-icons/fa";
 import BeatLoader from "react-spinners/BeatLoader";
 
 import styled from "styled-components";
+import {playerPlay, addASong, playerVolume, playerTime, showPlayer} from "../redux/modules/playerSlice";
 
 import {Range, getTrackBackground} from "react-range";
 
@@ -22,8 +22,10 @@ function Waveform(props) {
 
   const waveformRef = useRef(null);
   const wavesurfer = useRef(null);
-  const [playing, setPlay] = useState(false);
+  const [playing, setPlaying] = useState(false);
   const [volume, setVolume] = useState(0.5);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [total, setTotal] = useState(null);
   // console.log(props.songUrl);
 
   // create new WaveSurfer
@@ -31,7 +33,7 @@ function Waveform(props) {
 
   const formWaveSurferOptions = ref => ({
     container: ref,
-    waveColor:"grey",
+    waveColor:"lightgrey",
     progressColor: props.detail.color,
     cursorColor: props.detail.color,
     barWidth:3,
@@ -46,11 +48,11 @@ function Waveform(props) {
 
   
   useEffect(()=>{
-    setPlay(false);
+    setPlaying(false);
     const options = formWaveSurferOptions(waveformRef.current);
     console.log(waveformRef.current);
     wavesurfer.current = WaveSurfer.create(options);
-
+    
     wavesurfer.current.load(props.songUrl);
 
     wavesurfer.current.on("ready", function(){
@@ -59,6 +61,19 @@ function Waveform(props) {
         setVolume(volume);
       }
     })
+    
+    dispatch(showPlayer());
+    dispatch(addASong(props.songUrl));
+    
+    // wavesurfer.current.on('audioprocess', function() {
+    //   if (wavesurfer.current.isPlaying()) {
+    //     let totalTime = Math.round(wavesurfer.current.getDuration());
+    //     let currentTime = Math.round(wavesurfer.current.getCurrentTime());
+    //     setTotal(totalTime);
+    //     setCurrent(currentTime);
+    //     console.log(currentTime);
+    // }
+    // })
     wavesurfer.current.on("finish", function() {
       console.log("finished playing!")
     })
@@ -67,9 +82,36 @@ function Waveform(props) {
 
 }, [props.songUrl]);
 
+const playerInfo = useSelector((state)=> state.Player.player);
+  const [ _playing, _volume, _time] = useSelector((state) => [
+    state.Player.player?.isPlaying,
+    state.Player.player?.volume,
+    state.Player.player?.currentTime,
+  ])
+  console.log( _time);
+  
+
+useEffect(()=>{
+  setPlaying(_playing);
+  setVolume(_volume);
+  
+},[playerInfo])
+
+useEffect(()=>{
+  wavesurfer.current?.playPause();
+},[playing])
+
+
+useEffect(()=>{
+  setCurrentTime(_time&&_time);
+  if (_time>0) {
+    wavesurfer.current?.play(_time)
+  }
+},[_time])
+
+
   const handlePlayPause = () => {
-    setPlay(!playing);
-    wavesurfer.current.playPause();
+    dispatch(playerPlay(playing));
   };
 
   const onvolumechange = e =>{
@@ -78,8 +120,18 @@ function Waveform(props) {
 
     if (newVolume) {
       setVolume(newVolume);
+      dispatch(playerVolume(newVolume))
       wavesurfer.current.setVolume(newVolume || 1);
     }
+  }
+
+  const onPlayTimeChange = () =>{
+    setTimeout(()=> {
+    let _currentTime = wavesurfer.current.getCurrentTime();
+    setCurrentTime(_currentTime);
+    console.log(_currentTime);
+    dispatch(playerTime(_currentTime));
+    },300);
   }
 
   const ClickEmptyHeart =()=>{
@@ -159,6 +211,7 @@ function Waveform(props) {
                 step="0.025"
                 onChange={onvolumechange}
                 defaultValue={volume}
+                value={volume}
               />       
             </Controls>
         </div> 
@@ -169,8 +222,11 @@ function Waveform(props) {
 
       <div className="detail-wavefom">
 
-        <div id="waveform" ref={waveformRef}/>
-        
+        <div 
+        id="waveform" 
+        ref={waveformRef}
+        onClick={onPlayTimeChange}
+        />
       </div>
     </>
     )}
