@@ -21,6 +21,8 @@ import Upload from './pages/Upload';
 import UploadVideo from './pages/UploadVideo';
 import UserPage from './pages/UserPage';
 import FaceChatList from './pages/FaceChatList';
+import Player from './components/Player';
+
 import NotFound from './pages/NotFound';
 
 
@@ -57,6 +59,7 @@ function App() {
             <Route path="/facechatlist" element={<FaceChatList/>}></Route>
           </Routes>
         </div>
+      <Player/>
       <Footer/>
     </div>
   );
