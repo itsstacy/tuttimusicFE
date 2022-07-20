@@ -73,7 +73,14 @@ function Navbar() {
           placeholder="곡명, 아티스트를 검색하세요." 
           onChange={(e)=>{
             setSearchValue(e.target.value)
-          }}></input>
+          }}
+            onKeyPress = {(e)=>{
+              if (e.key === 'Enter') {
+                dispatch(searchMusic(searchValue))
+                navigate('/search', {state: searchValue})  
+              }
+          }}
+          ></input>
           <BiSearchAlt2 
           id="search-icon"
           onClick={()=>{
