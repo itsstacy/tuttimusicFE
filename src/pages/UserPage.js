@@ -67,7 +67,7 @@ function UserPage() {
       setLoading(false);
     },500)
     window.scrollTo(0,0);
-  },[])
+  },[params.artist])
 
   const FollowThisArtist =()=>{
     const data = {
