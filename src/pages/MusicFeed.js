@@ -58,10 +58,13 @@ function MusicFeed() {
 
   useEffect(() => {
     if (allList) {
-      setTotalList(allList)
+      setTotalList(allList);
       console.log(totalList)
     }
     if (inView && !isLoding) {
+      // setPage(page + 1)
+      setLimit((prev)=> prev + 12)
+      console.log(limit)
       const data= {
         token:token,
         type: _type,
@@ -70,9 +73,8 @@ function MusicFeed() {
         limit:limit,
       }
       dispatch(getMusicFeed(data))
-      setPage(page + 1)
       console.log(page)
-      setTotalList(totalList, allList)
+      // setTotalList(totalList, allList)
       console.log("추가된 리스트", totalList)
     }
   }, [inView, isLoding])
