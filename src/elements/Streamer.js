@@ -30,22 +30,15 @@ class Streamers extends Component {
         this.switchCamera = this.switchCamera.bind(this);
         this.handleChangeSessionId = this.handleChangeSessionId.bind(this);
         this.handleMainVideoStream = this.handleMainVideoStream.bind(this);
-        this.onbeforeunload = this.onbeforeunload.bind(this);
+        // this.onbeforeunload = this.onbeforeunload.bind(this);
         this.giveAccess = this.giveAccess.bind(this);
     }
 
     componentDidMount() {
-        window.addEventListener('beforeunload', this.onbeforeunload);
         this.giveAccess();
-        
-        
     } 
 
     componentWillUnmount() {
-        window.removeEventListener('beforeunload', this.onbeforeunload);
-    }
-
-    onbeforeunload(event) {
         this.leaveSession();
     }
 
@@ -187,10 +180,15 @@ class Streamers extends Component {
 
     leaveSession() {
 
-        // --- 7) Leave the session by calling 'disconnect' method over the Session object ---
+        const token = localStorage.getItem("token");
 
-        const mySession = this.state.session;
-
+        axios
+        .delete(`https://seyeolpersonnal.shop/chatRoom/${this.props.streamer}`, {
+        headers: {Authorization:token? token:""}
+        })
+        .then((response)=>{
+        console.log(response);
+        
         if (mySession) {
             mySession.disconnect();
         }
@@ -198,14 +196,29 @@ class Streamers extends Component {
         // Empty all properties...
         this.OV = null;
         this.setState({
+            mySessionId: undefined,
+            myUserName: undefined,
             session: undefined,
-            subscribers: [],
-            mySessionId: this.props.session,
-            myUserName: this.props.streamer,
             mainStreamManager: undefined,
-            publisher: undefined
+            publisher: undefined,
+            subscribers: [],
+            streamers: [],
+            havePermissions: false,
         });
+        console.log(this.state);
+        this.navigation.navigate('/facechatlist');   
+        })
+        .catch((error)=>{
+        console.log(error)
+        })
+
+        // --- 7) Leave the session by calling 'disconnect' method over the Session object ---
+
+        const mySession = this.state.session;
+
+        
     }
+    
 
     async switchCamera() {
         try{
@@ -237,12 +250,10 @@ class Streamers extends Component {
                     });
                 }
             }
-          } catch (e) {
-            console.error(e);
-          }
+        } catch (e) {
+        console.error(e);
+        }
     }
-
-  
 
     render() {
         

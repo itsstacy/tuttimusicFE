@@ -25,6 +25,11 @@ const Chatbox = (props) => {
     console.log(publicChats)
     useEffect(()=>{
         connect()
+
+        return()=>{
+            console.log("unmounted!")
+            disconnect()
+        }
     },[])
 
     useEffect(() => {
@@ -37,8 +42,11 @@ const Chatbox = (props) => {
     // const registerUser=()=>{
     //     connect();
     // }
-    // https://15.164.102.62/wss
-    // http://13.124.152.65/ws
+
+    const disconnect=()=>{
+        stompClient.disconnect();
+        console.log("disconnect");
+    }
 
     const connect =()=>{
         let Sock = new SockJS('https://seyeolpersonnal.shop/wss');
