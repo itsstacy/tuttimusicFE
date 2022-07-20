@@ -62,30 +62,6 @@ function Upload() {
   const [imgName, setImgName] = React.useState(null);
   const [imgFile, setImgFlie] = React.useState(null);
 
-  const [textHeight, setTextHeight] =React.useState(0);
-  const imgName_ref = useRef(null);
-
-  React.useEffect(() => {
-    if (imgName_ref.current.value.length <= 42) {
-      console.log("42 길이" );
-      setTextHeight(19);
-    } else if (42 < imgName_ref.current.value.length && imgName_ref.current.value.length <= 84) {
-      console.log("84 길이" );
-      setTextHeight(34);
-    } else if (84 < imgName_ref.current.value.length && imgName_ref.current.value.length <= 128) {
-      console.log("42 길이" );
-      setTextHeight(49);
-    } else if (128 < imgName_ref.current.value.length && imgName_ref.current.value.length <= 172) {
-      console.log("42 길이" );
-      setTextHeight(64);
-    } else if (172 < imgName_ref.current.value.length && imgName_ref.current.value.length <= 216) {
-      console.log("42 길이" );
-      setTextHeight(79);
-    } else if (216 < imgName_ref.current.value.length && imgName_ref.current.value.length <= 260) {
-      console.log("216 길이" );
-      setTextHeight(94);
-    }
-  })
 
   const onLoadImage = (e) => {
     let render = new FileReader()
@@ -233,11 +209,6 @@ const [submit, setSubmit] = React.useState(false);
           <div className="upload-image-box">
           <UploadImagePreview previewImg={previewImg} className="uploa-image-preview"></UploadImagePreview>
           <label className="secondary upload-label-button" for="upload-image">이미지 업로드</label>
-          <UploadImageNameWrap className="upload-image-name-wrap" textHeight={textHeight}>
-            {/* <textarea id="upload-image-name" row="1" value={imgName} ref={imgName_ref} spellcheck="false" readOnly></textarea> */}
-            {/* <textarea id="upload-image-name" ref={imgName_ref} spellCheck="false"></textarea> */}
-
-            </UploadImageNameWrap>
           <input type="file" id="upload-image" accept='image/*' onChange={onLoadImage} />
           </div>
           </div>
@@ -326,13 +297,6 @@ let UploadColor = styled.div`
   margin-left: 20px;
   border-radius: 10px;
 `
-
-let UploadImageNameWrap = styled.div`
-height: ${(props) => props.textHeight}px;
-`
-
-
-
 
 
 export default Upload;

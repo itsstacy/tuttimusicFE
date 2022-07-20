@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 
+
 const Login = () => {
 
     const navigate = useNavigate();
@@ -48,6 +49,7 @@ const Login = () => {
                 localStorage.setItem("userName", artist);
                 localStorage.setItem("userProfileUrl", profileUrl);
                 navigate("/")
+                window.location.reload();
             })
             .catch((error) => {
                 console.log(error)
