@@ -33,7 +33,7 @@ function Waveform(props) {
 
   const formWaveSurferOptions = ref => ({
     container: ref,
-    waveColor:"grey",
+    waveColor:"lightgrey",
     progressColor: props.detail.color,
     cursorColor: props.detail.color,
     barWidth:3,
@@ -88,7 +88,7 @@ const playerInfo = useSelector((state)=> state.Player.player);
     state.Player.player?.volume,
     state.Player.player?.currentTime,
   ])
-  console.log( _playing, _volume);
+  console.log( _time);
   
 
 useEffect(()=>{
@@ -104,10 +104,9 @@ useEffect(()=>{
 
 useEffect(()=>{
   setCurrentTime(_time&&_time);
-  if (currentTime) {
-    wavesurfer.current?.play(currentTime)
+  if (_time>0) {
+    wavesurfer.current?.play(_time)
   }
-  
 },[_time])
 
 
@@ -130,6 +129,7 @@ useEffect(()=>{
     setTimeout(()=> {
     let _currentTime = wavesurfer.current.getCurrentTime();
     setCurrentTime(_currentTime);
+    console.log(_currentTime);
     dispatch(playerTime(_currentTime));
     },300);
   }
@@ -211,6 +211,7 @@ useEffect(()=>{
                 step="0.025"
                 onChange={onvolumechange}
                 defaultValue={volume}
+                value={volume}
               />       
             </Controls>
         </div> 

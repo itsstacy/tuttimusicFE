@@ -2583,13 +2583,13 @@ input[type=radio] {
 }
 
 .player-block-songinfo {
-  margin:10px;
+  margin:10px 30px 10px 10px;
   display: flex;
   flex-direction: row;
 }
 .player-songinfo-img{
-  width: 45px;
-  height: 45px;
+  width: 42x;
+  height: 42px;
   object-fit: contain;
   margin-right: 13px;
 }

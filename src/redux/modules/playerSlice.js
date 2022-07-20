@@ -18,39 +18,27 @@ const PlayerSlice = createSlice({
     showPlayer: (state,action) => {
       const new_list = {...current(state), display: true};
       state.player = new_list;
-      console.log(state.player);
     },
     
     addASong: (state,action) => {
-      console.log(action);
       console.log(current(state.player));
       const new_list2 = {...current(state.player), currentSong:action.payload};
       state.player = new_list2;
-      console.log(state.player);
     },
 
     playerPlay: (state,action) => {
-      console.log(action);
-      console.log(current(state.player));
-      const new_list = {...current(state.player), isPlaying:!action.payload}
+      const new_list = {...current(state.player), isPlaying:!action.payload};
       state.player = new_list;
-      console.log(state.player);
     },
 
     playerVolume: (state,action) => {
-      console.log(action);
-      console.log(current(state.player));
-      const new_list = {...current(state.player), volume:action.payload}
+      const new_list = {...current(state.player), volume:action.payload};
       state.player = new_list;
-      console.log(state.player);
     },
 
     playerTime: (state,action) => {
-      console.log(action);
-      console.log(current(state.player));
-      const new_list = {...current(state.player), currentTime:action.payload}
+      const new_list = {...current(state.player), currentTime:action.payload};
       state.player = new_list;
-      console.log(state.player);
     },
 
 
