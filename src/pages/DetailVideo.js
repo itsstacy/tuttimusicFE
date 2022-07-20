@@ -23,21 +23,8 @@ function DetailVideo() {
   // console.log(moment("2022-07-01T16:08:54+09:00").startOf('hour').fromNow())
   const currentTime = moment().format()
 
-  // const [isShowMore, setIsShowMore] = useState(false)
-  // const textLimit = useRef(20)
 
-  // const commenter = useMemo(()=>{
-  //   const shortReview = detail.description.slice(0, textLimit.current)
 
-  //   if (detail.description.length > textLimit.current) {
-  //     if (isShowMore) {
-  //       return detail.description
-  //     }
-  //     return shortReview;
-  //   }
-  //   return detail.description;
-  // }, [isShowMore])
-  
 
   useEffect(()=>{
   const token = localStorage.getItem("token");
@@ -187,7 +174,7 @@ function DetailVideo() {
               곡을 소개하는 부분입니다.<br/>
               곡을 소개하는 부분입니다. */}
             </p>
-            <p className="detail-more-detail">
+            <p className="detail-more-detail" >
               더보기
             </p>
           </div>
