@@ -2400,7 +2400,8 @@ input[type=radio] {
   outline:none;
   border-radius: 10px;
   text-align: center;
-  font-size: 15px;
+  font-size: 16px;
+  padding: 0;
 }
 
 .live-chat-list {
