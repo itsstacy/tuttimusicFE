@@ -387,14 +387,14 @@ font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, '
   margin-bottom: 34px;
   white-space: pre-wrap;
   
-  overflow: hidden;
+  /* overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
-  word-wrap:break-word; 
+  word-wrap:break-word;  */
   line-height: 22px;
-  height: 66px;
+  /* height: 66px; */
 }
 
 .detail-more-detail{
@@ -754,6 +754,8 @@ font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, '
   align-items: flex-start;
   padding: 0px;
   gap: 28px;
+
+  margin-left: 30px;
 
   width: 225px;
   height: 22px;

@@ -6,6 +6,7 @@ import styled from 'styled-components';
 
 import { BsDot } from "react-icons/bs"
 
+import {SERVER_URL} from "../redux/modules/songSlice";
 
 const SignUp = () => {
 
@@ -86,7 +87,7 @@ const SignUp = () => {
         let emailList = {email : email}
 
         axios
-            .post("https://seyeolpersonnal.shop/user/email",emailList)
+            .post(`${SERVER_URL}/user/email`,emailList)
             .then((response) => {
                 console.log(response)
                 if(response)
@@ -105,10 +106,10 @@ const SignUp = () => {
             return window.alert("닉네임을 입력하세요!")
         } else {
             axios
-            .post("https://seyeolpersonnal.shop/user/artist",{artist : artist})
+            .post(`${SERVER_URL}/user/artist`,{artist : artist})
             .then((response) => {
                 console.log(response)
-                if(response){window.alert("사용 가능한 닉네임입니다!")}    
+                if(response){window.alert("사용 가능한 닉네임입니다!")} 
             })
             .catch((error) => {
                 console.log(error)
@@ -171,7 +172,7 @@ const SignUp = () => {
 
 
         axios
-            .post("https://seyeolpersonnal.shop/user/signup", formData)
+            .post(`${SERVER_URL}/user/signup`, formData)
             .then((response) => {
                 console.log(response)
                 window.alert("가입이 완료되었어요!")

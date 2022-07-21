@@ -19,16 +19,11 @@ function MusicFeed() {
   const token = localStorage.getItem("token");
 
 
+  const [ref, inView] = useInView();
 
   const [page, setPage] = useState(1)
   const [limit, setLimit] = useState(24)
-
   const [isLoding, setIsLoding] = useState(false);
-  
-  const [ref, inView] = useInView();
-
-  // const getItems = dispatch(getMusicFeed)
-  
   
 
   useEffect(()=>{
@@ -61,7 +56,7 @@ function MusicFeed() {
     }
     if (inView && !isLoding) {
       // setPage(page + 1)
-      setLimit((prev)=> prev + 12)
+      setLimit((prev)=> prev + 18)
       console.log(limit)
       const data= {
         token:token,
@@ -78,15 +73,17 @@ function MusicFeed() {
   }, [inView])
 
 
-  // const ClickType =(props)=>{
-  //   setGenre(null);
-  //   // if (props ==="오디오"){
-  //   //   setType("audio");
-  //   // } 
-  //   // if (props ==="영상"){
-  //   //   setType("video");
-  //   // } 
-    
+
+  //    const ClickType =(props)=>{
+  //     setGenre(null);
+  //     setTotalList(null)
+    // if (props ==="오디오"){
+    //   setType("audio");
+    // } 
+    // if (props ==="영상"){
+    //   setType("video");
+    // } 
+
     
   //   console.log(_type);
   //     const data2= {
