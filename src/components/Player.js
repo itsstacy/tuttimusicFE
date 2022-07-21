@@ -50,7 +50,6 @@ function Player() {
     state.Player.player?.volume,
     state.Player.player?.currentTime,
   ])
-  console.log(_time);
     
   useEffect(()=>{
     setDisplay(_display);    
