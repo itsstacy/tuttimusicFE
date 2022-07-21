@@ -33,18 +33,17 @@ class Streamers extends Component {
         this.handleMainVideoStream = this.handleMainVideoStream.bind(this);
         // this.onbeforeunload = this.onbeforeunload.bind(this);
         this.giveAccess = this.giveAccess.bind(this);
-        // this.alertUser = this.alertUser.bind(this);
-        // this.handleGoBack = this.handleGoBack.bind(this);
-        // this.handleGoHome = this.handleGoHome.bind(this);
-        // this.unblock = this.unblock.bind(this);
         this.navigator = this.navigator.bind(this);
+        this.alertUser = this.alertUser.bind(this);
     }
 
     componentDidMount() {
+        window.addEventListener('beforeunload', this.alertUser)
         this.giveAccess();
     } 
 
     componentWillUnmount() {
+        window.addEventListener('beforeunload', this.alertUser)
         this.leaveSession();
     }
 
@@ -52,24 +51,12 @@ class Streamers extends Component {
         this.props.navigate('/facechatlist')
     }
 
-    // alertUser (e) {
-    //     e.preventDefault()
-    //     e.returnValue = 'reall?'
-    // }
-
-    // handleGoBack() {
-    // this.props.history.goBack();
-    // };
-
-    // // 홈으로 이동
-    // handleGoHome() {
-    // this.props.history.push("/");
-    // };
-
-    // unblock(){
-    // this.props.history.block("정말 떠나실 건가요?");   
-    // };
-
+    alertUser(e) {
+        e.preventDefault()
+        if(window.confirm("방을 나가시면 라이브가 종료됩니다. 라이브를 종료하시겠어요?")) {
+            this.leaveSession();
+        };
+    }
 
     handleChangeSessionId(e) {
         this.setState({
@@ -246,8 +233,6 @@ class Streamers extends Component {
         // --- 7) Leave the session by calling 'disconnect' method over the Session object ---
 
         const mySession = this.state.session;
-
-        
     }
     
 

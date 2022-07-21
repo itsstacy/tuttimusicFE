@@ -13,7 +13,7 @@ import { useInView } from 'react-intersection-observer';
 function MusicFeed() {
   const [loading, setLoading] = useState(true);
   const [_type, setType] = useState("audio");
-  const [_genre, setGenre] = useState(null);
+  const [_genre, setGenre] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
@@ -21,7 +21,7 @@ function MusicFeed() {
 
 
   const [page, setPage] = useState(1)
-  const [limit, setLimit] = useState(12)
+  const [limit, setLimit] = useState(24)
 
   const [isLoding, setIsLoding] = useState(false);
   
@@ -32,34 +32,32 @@ function MusicFeed() {
   
 
   useEffect(()=>{
+    setLimit(24)
     setLoading(true);
-    setType("audio");
+    
     const data= {
       token:token,
       type: _type,
-      genre: "",
+      genre: _genre?_genre:"",
       page:page,
-      limit:limit,
+      limit:24,
     }
+    console.log(data);
     dispatch(getMusicFeed(data));
     setTimeout(()=> {
       setLoading(false);
     },100)
     window.scrollTo(0,0);
-  },[])
-  
-  
+  },[_type,_genre])
+
 
   const allList = useSelector((state) => state.Song.allList);
-  console.log(allList);
-  
+  console.log(allList)
   const [totalList, setTotalList] = useState(null)
-  console.log('토탈리스트', totalList);
 
   useEffect(() => {
     if (allList) {
       setTotalList(allList);
-      console.log(totalList)
     }
     if (inView && !isLoding) {
       // setPage(page + 1)
@@ -68,7 +66,7 @@ function MusicFeed() {
       const data= {
         token:token,
         type: _type,
-        genre: "",
+        genre: _genre?_genre:"",
         page:page,
         limit:limit,
       }
@@ -77,40 +75,40 @@ function MusicFeed() {
       // setTotalList(totalList, allList)
       console.log("추가된 리스트", totalList)
     }
-  }, [inView, isLoding])
+  }, [inView])
 
 
-  const ClickType =(props)=>{
-    setGenre(null);
-    // if (props ==="오디오"){
-    //   setType("audio");
-    // } 
-    // if (props ==="영상"){
-    //   setType("video");
-    // } 
+  // const ClickType =(props)=>{
+  //   setGenre(null);
+  //   // if (props ==="오디오"){
+  //   //   setType("audio");
+  //   // } 
+  //   // if (props ==="영상"){
+  //   //   setType("video");
+  //   // } 
     
     
-    console.log(_type);
-      const data2= {
-        token: token,
-        type: props,
-        genre: "",
-        page:1,
-        limit:12,
-      }
-      dispatch(getMusicFeed(data2))
-    }
+  //   console.log(_type);
+  //     const data2= {
+  //       token: token,
+  //       type: props,
+  //       genre: "",
+  //       page:1,
+  //       limit:12,
+  //     }
+  //     dispatch(getMusicFeed(data2))
+  //   }
 
-  const ClickGenre =(props)=>{
-    const data3= {
-      token: token,
-      type: _type,
-      genre: props,
-      page:1,
-      limit:12,
-    }
-    dispatch(getMusicFeed(data3))
-  }
+  // const ClickGenre =(props)=>{
+  //   const data3= {
+  //     token: token,
+  //     type: _type,
+  //     genre: props,
+  //     page:1,
+  //     limit:12,
+  //   }
+  //   dispatch(getMusicFeed(data3))
+  // }
 
   const typeList =[
     {type: "오디오", eng: "audio"},
@@ -149,7 +147,9 @@ function MusicFeed() {
             className={`category ${index === typeBtn ? `click-category` : ''}`}
             onClick={()=>{
               setType(type.eng)
-              ClickType(type.eng)
+              // ClickType(type.eng)
+              setGenre(null)
+              setPage(1)
               setTypeBtn(index)
               setGenreBtn(null)
             }}>
@@ -170,8 +170,9 @@ function MusicFeed() {
             value={index}
             className={`category ${index === genreBtn ? `click-category` : ''}`}
             onClick={()=>{
-              setGenre(genre.genre)
-              ClickGenre(genre.postGenre)
+              setGenre(genre.postGenre)
+              setPage(1)
+              // ClickGenre(genre.postGenre)
               setGenreBtn(index)
             }}>
             {genre.genre}
