@@ -19,16 +19,11 @@ function MusicFeed() {
   const token = localStorage.getItem("token");
 
 
-
-  const [page, setPage] = useState(1)
-  const [limit, setLimit] = useState(12)
-
-  const [isLoding, setIsLoding] = useState(false);
-  
   const [ref, inView] = useInView();
 
-  // const getItems = dispatch(getMusicFeed)
-  
+  const [page, setPage] = useState(1)
+  const [limit, setLimit] = useState(24)
+  const [isLoding, setIsLoding] = useState(false);
   
 
   useEffect(()=>{
@@ -48,7 +43,6 @@ function MusicFeed() {
     window.scrollTo(0,0);
   },[])
   
-  
 
   const allList = useSelector((state) => state.Song.allList);
   console.log(allList);
@@ -63,7 +57,7 @@ function MusicFeed() {
     }
     if (inView && !isLoding) {
       // setPage(page + 1)
-      setLimit((prev)=> prev + 12)
+      setLimit((prev)=> prev + 18)
       console.log(limit)
       const data= {
         token:token,
@@ -80,8 +74,11 @@ function MusicFeed() {
   }, [inView, isLoding])
 
 
+
+
   const ClickType =(props)=>{
     setGenre(null);
+    setTotalList(null)
     // if (props ==="오디오"){
     //   setType("audio");
     // } 
