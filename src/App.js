@@ -56,7 +56,7 @@ function App() {
         
         eventSource = new EventSource(`https://seyeolpersonnal.shop/subscribe/${artist}`); //구독
   
-        // msetEventSource(eventSource);
+        msetEventSource(eventSource);
         console.log("eventSource", eventSource);
         console.log("eventSource 시간 ==> ", date);
   
@@ -70,6 +70,7 @@ function App() {
           console.log("result 시간 ==> ", date);
           setData(old => [...old, event.data]);
           setValue(event.data);
+          console.log("value ==>" , value.content);
         };
   
         eventSource.onerror = event => {
