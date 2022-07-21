@@ -3,7 +3,7 @@ import { OpenVidu } from 'openvidu-browser';
 import React, { Component } from 'react';
 import UserVideoComponent from './UserVideoComponent';
 import BeatLoader from "react-spinners/BeatLoader";
-import { Navigate } from 'react-router-dom';
+import {withRouter} from '../elements/withRouter';
 
 const OPENVIDU_SERVER_URL = 'https://' + "rnrn.shop" ;
 const OPENVIDU_SERVER_SECRET = 'qlalfqjsgh';
@@ -33,16 +33,30 @@ class Streamers extends Component {
         this.handleMainVideoStream = this.handleMainVideoStream.bind(this);
         // this.onbeforeunload = this.onbeforeunload.bind(this);
         this.giveAccess = this.giveAccess.bind(this);
+        this.navigator = this.navigator.bind(this);
+        this.alertUser = this.alertUser.bind(this);
     }
 
     componentDidMount() {
+        window.addEventListener('beforeunload', this.alertUser)
         this.giveAccess();
     } 
 
     componentWillUnmount() {
+        window.addEventListener('beforeunload', this.alertUser)
         this.leaveSession();
     }
 
+    navigator(){
+        this.props.navigate('/facechatlist')
+    }
+
+    alertUser(e) {
+        e.preventDefault()
+        if(window.confirm("방을 나가시면 라이브가 종료됩니다. 라이브를 종료하시겠어요?")) {
+            this.leaveSession();
+        };
+    }
 
     handleChangeSessionId(e) {
         this.setState({
@@ -208,7 +222,8 @@ class Streamers extends Component {
             havePermissions: false,
         });
         console.log(this.state);
-        this.props.history.push('/facechatlist');
+        
+        this.navigator()
 
         })
         .catch((error)=>{
@@ -218,8 +233,6 @@ class Streamers extends Component {
         // --- 7) Leave the session by calling 'disconnect' method over the Session object ---
 
         const mySession = this.state.session;
-
-        
     }
     
 
@@ -371,4 +384,4 @@ class Streamers extends Component {
     }
 }
 
-export default Streamers;
+export default withRouter(Streamers);

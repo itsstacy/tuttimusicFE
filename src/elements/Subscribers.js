@@ -175,7 +175,7 @@ class Subscribers extends Component {
     }
 
     leaveSession() {
-
+        this.navigator()
         // --- 7) Leave the session by calling 'disconnect' method over the Session object ---
 
         const mySession = this.state.session;
@@ -194,6 +194,7 @@ class Subscribers extends Component {
             mainStreamManager: undefined,
             publisher: undefined
         });
+
     }
 
     async switchCamera() {
