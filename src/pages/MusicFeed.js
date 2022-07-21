@@ -95,6 +95,8 @@ function MusicFeed() {
         token: token,
         type: props,
         genre: "",
+        page:1,
+        limit:12,
       }
       dispatch(getMusicFeed(data2))
     }
@@ -104,6 +106,8 @@ function MusicFeed() {
       token: token,
       type: _type,
       genre: props,
+      page:1,
+      limit:12,
     }
     dispatch(getMusicFeed(data3))
   }

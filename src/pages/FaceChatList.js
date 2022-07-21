@@ -5,13 +5,13 @@ import {SERVER_URL} from "../redux/modules/songSlice";
 import BeatLoader from "react-spinners/BeatLoader";
 import { BsBroadcast } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
+import styled from 'styled-components';
 
 
 function FaceChatList() {
     const navigate = useNavigate();
 
     const [loading, setLoading] = useState(true);
-    const liveList = ['live1', 'live2', 'live3', 'live4', 'live5', 'live6', 'live7'];
     const token = localStorage.getItem("token");
     const [roomList, setRoomList] = useState(null);
 
@@ -25,6 +25,7 @@ function FaceChatList() {
     .then((response) => {
     console.log(response.data.results);
     setRoomList(response.data.results);
+    
     window.scrollTo(0, 0);
     })
     .catch((error) => {
@@ -42,6 +43,8 @@ function FaceChatList() {
     const enterRoom=(params)=>{
         navigate(`/live/`+params)
     }
+    
+    console.log(roomList);
 
     return(
         <div>
@@ -74,7 +77,12 @@ function FaceChatList() {
                                 enterRoom(live.artist)
                             }}
                             >
-                                <div className="main-thumbnail">
+                                <div className="main-thumbnail relative">
+                                    <Live
+                                    id="live-info-user-live"
+                                    className='live-absolute'>
+                                        LIVE
+                                    </Live>
                                     <img 
                                     className='main-thumbnail'
                                     src={live.thumbnailImageUrl} 
@@ -107,3 +115,7 @@ function FaceChatList() {
 }
 
 export default FaceChatList;
+
+const Live = styled.div`
+    
+`
