@@ -23,23 +23,6 @@ function DetailVideo() {
   // console.log(moment("2022-07-01T16:08:54+09:00").startOf('hour').fromNow())
   const currentTime = moment().format()
 
-  //detail.description = commenter
-  const commenter = useSelector((state)=> state.Song.detail);
-  console.log(commenter)
-
-  // const [show, setShow] = useState(false);
-  // const textLimit = useRef(20);
-
-  // const showText = useMemo(()=>{
-  //   const shortText = commenter.slice(0, textLimit.current);
-
-  //   if(commenter.length > textLimit.current) {
-  //     if (show) {return commenter;} 
-  //     return shortText;
-  //   }
-  // }, [show])
-
-
   useEffect(()=>{
   const token = localStorage.getItem("token");
   setToken(token);
@@ -79,8 +62,26 @@ function DetailVideo() {
     feedid: detail.id,
     modifiedAt: currentTime,
     }));
-    
   }
+
+  //description 
+  const commenter = detail?.description
+  console.log(commenter)
+
+  const [show, setShow] = useState(false);
+  const textLimit = useRef(150);
+
+  const showText = useMemo(() => {
+    const shortText = commenter?.slice(0, textLimit.current);
+
+    if(commenter?.length > textLimit.current) {
+      if (show) {return commenter}
+      return shortText
+    }
+    return commenter;
+  })
+
+
 
 
   //go to Edit
@@ -182,20 +183,11 @@ function DetailVideo() {
           <div className="right-column">
 
             <p className="detail-song-detail">
-              {detail.description}
-              {/* {showText} */}
-              {/* 곡을 소개해주세요. 곡을 소개하는 부분입니다.<br/>
-              소개글이 길어지면 이렇게 ellipsis처리가 될거에요<br/>
-              곡을 소개하는 부분입니다.<br/>
-              곡을 소개하는 부분입니다. */}
+              {showText}
             </p>
 
-            {/* <p className="detail-more-detail" onClick={()=> setShow(!show)}>
+            <p className="detail-more-detail" onClick={()=> setShow(!show)}>
               {(commenter.length > textLimit.current) && (show ? '[닫기]' : '...[더보기]')}
-            </p> */}
-
-            <p className="detail-more-detail">
-              더보기
             </p>
           </div>
         </section>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef} from "react";
+import React, { useEffect, useState, useRef, useMemo} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import {getSongDetail,postComment, SERVER_URL, likeSong} from "../redux/modules/songSlice"
@@ -87,6 +87,25 @@ function Detail() {
       isLiked:detail.flag,
     }))
   }
+
+  //description 
+  const commenter = detail?.description
+  console.log(commenter)
+
+  const [show, setShow] = useState(false);
+  const textLimit = useRef(150);
+
+  const showText = useMemo(() => {
+    const shortText = commenter?.slice(0, textLimit.current);
+
+    if(commenter?.length > textLimit.current) {
+      if (show) {return commenter}
+      return shortText
+    }
+    return commenter;
+  })
+
+
   
   return (
     <div className="detail-container">
@@ -167,14 +186,10 @@ function Detail() {
             </div> */}
             
             <p className="detail-song-detail">
-              {detail.description} <br/>
-              {/* 곡을 소개해주세요. 곡을 소개하는 부분입니다.<br/>
-              소개글이 길어지면 이렇게 ellipsis처리가 될거에요<br/>
-              곡을 소개하는 부분입니다.<br/>
-              곡을 소개하는 부분입니다. */}
+              {showText}
             </p>
-            <p className="detail-more-detail">
-            더보기
+            <p className="detail-more-detail" onClick={()=> setShow(!show)}>
+              {(commenter.length > textLimit.current) && (show ? '[닫기]' : '...[더보기]')}
             </p>
             
           </div>
