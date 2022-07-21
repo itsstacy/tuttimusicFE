@@ -6,7 +6,6 @@ import styled from 'styled-components';
 
 import { BsDot } from "react-icons/bs"
 
-import {SERVER_URL} from "../redux/modules/songSlice";
 
 const SignUp = () => {
 
@@ -87,11 +86,11 @@ const SignUp = () => {
         let emailList = {email : email}
 
         axios
-            .post(`${SERVER_URL}/user/email`,emailList)
+            .post("https://seyeolpersonnal.shop/user/email",emailList)
             .then((response) => {
                 console.log(response)
                 if(response)
-                {window.alert("사용 가능한 이메일입니다!")}
+                {window.alert("인증 메일이 발송되었습니다. 메일함을 확인해주세요!")}
             })
             .catch((error) => {
                 console.log(error)
@@ -106,10 +105,10 @@ const SignUp = () => {
             return window.alert("닉네임을 입력하세요!")
         } else {
             axios
-            .post(`${SERVER_URL}/user/artist`,{artist : artist})
+            .post("https://seyeolpersonnal.shop/user/artist",{artist : artist})
             .then((response) => {
                 console.log(response)
-                if(response){window.alert("사용 가능한 닉네임입니다!")} 
+                if(response){window.alert("사용 가능한 닉네임입니다!")}    
             })
             .catch((error) => {
                 console.log(error)
@@ -136,7 +135,7 @@ const SignUp = () => {
         const nullList = [null, null, null, null]
 
         if (genre.toString() === nullList.toString()) {
-          return window.alert("장르를 최소 1개 선택해 주세요.")
+          return window.alert("장르를 최소 1개 선택해 주세요!")
           
         }
 
@@ -172,7 +171,7 @@ const SignUp = () => {
 
 
         axios
-            .post(`${SERVER_URL}/user/signup`, formData)
+            .post("https://seyeolpersonnal.shop/user/signup", formData)
             .then((response) => {
                 console.log(response)
                 window.alert("가입이 완료되었어요!")
