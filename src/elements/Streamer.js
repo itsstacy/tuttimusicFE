@@ -3,7 +3,7 @@ import { OpenVidu } from 'openvidu-browser';
 import React, { Component } from 'react';
 import UserVideoComponent from './UserVideoComponent';
 import BeatLoader from "react-spinners/BeatLoader";
-import { Navigate } from 'react-router-dom';
+import {withRouter} from '../elements/withRouter';
 
 const OPENVIDU_SERVER_URL = 'https://' + "rnrn.shop" ;
 const OPENVIDU_SERVER_SECRET = 'qlalfqjsgh';
@@ -33,6 +33,11 @@ class Streamers extends Component {
         this.handleMainVideoStream = this.handleMainVideoStream.bind(this);
         // this.onbeforeunload = this.onbeforeunload.bind(this);
         this.giveAccess = this.giveAccess.bind(this);
+        // this.alertUser = this.alertUser.bind(this);
+        // this.handleGoBack = this.handleGoBack.bind(this);
+        // this.handleGoHome = this.handleGoHome.bind(this);
+        // this.unblock = this.unblock.bind(this);
+        this.navigator = this.navigator.bind(this);
     }
 
     componentDidMount() {
@@ -42,6 +47,28 @@ class Streamers extends Component {
     componentWillUnmount() {
         this.leaveSession();
     }
+
+    navigator(){
+        this.props.navigate('/facechatlist')
+    }
+
+    // alertUser (e) {
+    //     e.preventDefault()
+    //     e.returnValue = 'reall?'
+    // }
+
+    // handleGoBack() {
+    // this.props.history.goBack();
+    // };
+
+    // // 홈으로 이동
+    // handleGoHome() {
+    // this.props.history.push("/");
+    // };
+
+    // unblock(){
+    // this.props.history.block("정말 떠나실 건가요?");   
+    // };
 
 
     handleChangeSessionId(e) {
@@ -208,7 +235,8 @@ class Streamers extends Component {
             havePermissions: false,
         });
         console.log(this.state);
-        this.props.history.push('/facechatlist');
+        
+        this.navigator()
 
         })
         .catch((error)=>{
@@ -371,4 +399,4 @@ class Streamers extends Component {
     }
 }
 
-export default Streamers;
+export default withRouter(Streamers);
