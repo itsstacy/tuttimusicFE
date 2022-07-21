@@ -1,6 +1,6 @@
 import './styles/App.css';
 
-import React from "react";
+import React, {useState} from "react";
 import { Routes, Route} from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -21,19 +21,77 @@ import Upload from './pages/Upload';
 import UploadVideo from './pages/UploadVideo';
 import UserPage from './pages/UserPage';
 import FaceChatList from './pages/FaceChatList';
-import Player from './components/Player';
-
 import NotFound from './pages/NotFound';
 
 
 function App() {
 
-  const [token, setToken] = React.useState(null);
+  const [token, setToken] = useState(localStorage.getItem("token"));
+  const [artist, setArtist] = useState(localStorage.getItem("userName"));
+
+  // React.useEffect(() => {
+  //   setToken(localStorage.getItem("token"));
+  //   setArtist(localStorage.getItem("userName"));
+  //   console.log("토큰 값 들어갔냐?" , token);
+  //   console.log("아티스트 값 들어갔냐?" , artist);
+  // },[])
+
+  const [listening, setListening] = useState(false);
+  const [data, setData] = useState([]);
+  const [value, setValue] = useState(null);
+
+  const [meventSource, msetEventSource] = useState(undefined);
+
+  let eventSource = undefined;
+
+  const date = new Date();
 
   React.useEffect(() => {
-    setToken(localStorage.getItem("token"));
-  },[])
 
+    console.log("매번 실행되는지");
+    console.log("listening", listening);
+
+    if (token) {
+      console.log("토큰이 있을 때 new Event");
+        
+        eventSource = new EventSource(`https://seyeolpersonnal.shop/subscribe/${artist}`); //구독
+  
+        // msetEventSource(eventSource);
+        console.log("eventSource", eventSource);
+        console.log("eventSource 시간 ==> ", date);
+  
+        eventSource.onopen = event => {
+          console.log("connection opened");
+          console.log("connection opened 시간 ==> ", date);
+        };
+  
+        eventSource.onmessage = event => {
+          console.log("result", event.data);
+          console.log("result 시간 ==> ", date);
+          setData(old => [...old, event.data]);
+          setValue(event.data);
+        };
+  
+        eventSource.onerror = event => {
+          console.log(event.target.readyState);
+          if (event.target.readyState === EventSource.CLOSED) {
+            console.log("eventsource closed (" + event.target.readyState + ")");
+          }
+          eventSource.close();
+        };
+
+
+    }
+
+    return () => {
+      eventSource.close();
+      console.log("eventsource closed");
+    };
+  }, []);
+
+
+
+    
 
   return (
     <div className="App">
@@ -59,7 +117,6 @@ function App() {
             <Route path="/facechatlist" element={<FaceChatList/>}></Route>
           </Routes>
         </div>
-      <Player/>
       <Footer/>
     </div>
   );
