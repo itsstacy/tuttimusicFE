@@ -44,6 +44,8 @@ function App() {
 
   let eventSource = undefined;
 
+  const date = new Date();
+
   React.useEffect(() => {
 
     console.log("매번 실행되는지");
@@ -51,19 +53,21 @@ function App() {
 
     if (token) {
       console.log("토큰이 있을 때 new Event");
-      if (!listening) {
         
         eventSource = new EventSource(`https://seyeolpersonnal.shop/subscribe/${artist}`); //구독
   
-        msetEventSource(eventSource);
+        // msetEventSource(eventSource);
         console.log("eventSource", eventSource);
+        console.log("eventSource 시간 ==> ", date);
   
         eventSource.onopen = event => {
           console.log("connection opened");
+          console.log("connection opened 시간 ==> ", date);
         };
   
         eventSource.onmessage = event => {
           console.log("result", event.data);
+          console.log("result 시간 ==> ", date);
           setData(old => [...old, event.data]);
           setValue(event.data);
         };
@@ -75,12 +79,9 @@ function App() {
           }
           eventSource.close();
         };
-  
-        setListening(true);
-      }
+
 
     }
-
 
     return () => {
       eventSource.close();
@@ -89,6 +90,8 @@ function App() {
   }, []);
 
 
+
+    
 
   return (
     <div className="App">
