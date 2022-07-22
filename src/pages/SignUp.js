@@ -90,7 +90,7 @@ const SignUp = () => {
             .then((response) => {
                 console.log(response)
                 if(response)
-                {window.alert("인증 메일이 발송되었습니다. 메일함을 확인해주세요!")}
+                {window.alert("인증 메일이 발송되었습니다. 메일함을 확인해 주세요!")}
             })
             .catch((error) => {
                 console.log(error)
@@ -135,8 +135,7 @@ const SignUp = () => {
         const nullList = [null, null, null, null]
 
         if (genre.toString() === nullList.toString()) {
-          return window.alert("장르를 최소 1개 선택해 주세요!")
-          
+            return window.alert("장르를 최소 1개 선택해 주세요!")
         }
 
       //비밀번호 양식이 다를 때
@@ -179,6 +178,7 @@ const SignUp = () => {
             })
             .catch((error) => {
                 console.log(error)
+                window.alert("이메일 인증 전입니다. 메일함을 확인해 주세요!")
             })   
             
             
@@ -239,8 +239,9 @@ const SignUp = () => {
                                     type="text" 
                                     placeholder="실제 사용 중인 이메일을 입력하세요"
                                     name="email"
+                                    value={email}
                             />
-                            <button className='secondary signup-button' onClick={(emailCheck)}>인증</button><br/>
+                            <button className='secondary signup-button' onClick={emailCheck}>인증</button><br/>
                         </div>
                         
                     </div>
@@ -303,7 +304,8 @@ const SignUp = () => {
                                     }}
                                     type="text" 
                                     placeholder="닉네임을 입력하세요"
-                                    name="email"
+                                    name="artist"
+                                    value={artist}
                             />
                             <button className='secondary signup-button' onClick={(artistCheck)}>중복 확인</button><br/>
                         </div>
