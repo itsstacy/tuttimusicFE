@@ -95,7 +95,7 @@ const SignUp = () => {
             .catch((error) => {
                 console.log(error)
                 window.alert("중복된 이메일입니다!")
-                setEmail("")
+                // setEmail("")
             })
     }
 
@@ -113,7 +113,7 @@ const SignUp = () => {
             .catch((error) => {
                 console.log(error)
                 window.alert("중복된 닉네임입니다!")
-                setArtist("")
+                // setArtist("")
             })
         }
 
