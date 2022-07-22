@@ -1631,16 +1631,12 @@ font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, '
 .result-name {
   font-size: 25px;
   font-weight: 500;
-
   margin: 30px 0px;
 }
 
 .result-sub-name {
   font-size: 16px;
   font-weight: 400;
-  margin-bottom: 20px;
-  margin-top: 20px;
-  
 }
 
 .result-none{
@@ -1649,6 +1645,26 @@ font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, '
   margin: 100px auto;
 }
 
+.search-flex{
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  margin-top: 40px;
+  justify-content: space-between;
+}
+.more-results{
+  color: grey;
+  margin-right: 10px;
+  cursor: pointer;
+  font-weight: 400;
+}
+
+.right-text{
+  text-align: right;
+  cursor: pointer;
+  font-weight: 400;
+  margin-bottom: 35px;
+}
 /* SEARCH PAGE END */
 
 
