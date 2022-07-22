@@ -6,7 +6,6 @@ import styled from 'styled-components';
 
 import { BsDot } from "react-icons/bs"
 
-import {SERVER_URL} from "../redux/modules/songSlice";
 
 const SignUp = () => {
 
@@ -87,16 +86,16 @@ const SignUp = () => {
         let emailList = {email : email}
 
         axios
-            .post(`${SERVER_URL}/user/email`,emailList)
+            .post("https://seyeolpersonnal.shop/user/email",emailList)
             .then((response) => {
                 console.log(response)
                 if(response)
-                {window.alert("사용 가능한 이메일입니다!")}
+                {window.alert("인증 메일이 발송되었습니다. 메일함을 확인해 주세요!")}
             })
             .catch((error) => {
                 console.log(error)
                 window.alert("중복된 이메일입니다!")
-                setEmail("")
+                // setEmail("")
             })
     }
 
@@ -106,15 +105,15 @@ const SignUp = () => {
             return window.alert("닉네임을 입력하세요!")
         } else {
             axios
-            .post(`${SERVER_URL}/user/artist`,{artist : artist})
+            .post("https://seyeolpersonnal.shop/user/artist",{artist : artist})
             .then((response) => {
                 console.log(response)
-                if(response){window.alert("사용 가능한 닉네임입니다!")} 
+                if(response){window.alert("사용 가능한 닉네임입니다!")}    
             })
             .catch((error) => {
                 console.log(error)
                 window.alert("중복된 닉네임입니다!")
-                setArtist("")
+                // setArtist("")
             })
         }
 
@@ -136,8 +135,7 @@ const SignUp = () => {
         const nullList = [null, null, null, null]
 
         if (genre.toString() === nullList.toString()) {
-          return window.alert("장르를 최소 1개 선택해 주세요.")
-          
+            return window.alert("장르를 최소 1개 선택해 주세요!")
         }
 
       //비밀번호 양식이 다를 때
@@ -172,7 +170,7 @@ const SignUp = () => {
 
 
         axios
-            .post(`${SERVER_URL}/user/signup`, formData)
+            .post("https://seyeolpersonnal.shop/user/signup", formData)
             .then((response) => {
                 console.log(response)
                 window.alert("가입이 완료되었어요!")
@@ -180,6 +178,7 @@ const SignUp = () => {
             })
             .catch((error) => {
                 console.log(error)
+                window.alert("이메일 인증 전입니다. 메일함을 확인해 주세요!")
             })   
             
             
@@ -240,8 +239,9 @@ const SignUp = () => {
                                     type="text" 
                                     placeholder="실제 사용 중인 이메일을 입력하세요"
                                     name="email"
+                                    value={email}
                             />
-                            <button className='secondary signup-button' onClick={(emailCheck)}>인증</button><br/>
+                            <button className='secondary signup-button' onClick={emailCheck}>인증</button><br/>
                         </div>
                         
                     </div>
@@ -304,7 +304,8 @@ const SignUp = () => {
                                     }}
                                     type="text" 
                                     placeholder="닉네임을 입력하세요"
-                                    name="email"
+                                    name="artist"
+                                    value={artist}
                             />
                             <button className='secondary signup-button' onClick={(artistCheck)}>중복 확인</button><br/>
                         </div>
