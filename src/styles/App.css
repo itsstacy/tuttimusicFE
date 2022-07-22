@@ -1868,6 +1868,16 @@ font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, '
   font-size: 20px;
 }
 
+.session-finished{
+  width: 100%;
+  height: 660px;
+  margin: auto;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
 /* FACECHATLIST PAGE END */
 
 /* Upload start */
@@ -2432,6 +2442,11 @@ input[type=radio] {
   overflow: auto;
 }
 
+.scroll-bottom {
+  height:700px;
+  width: 386px;
+}
+
 .live-chat-list-box {
   display: flex;
   flex-direction: row;
@@ -2563,8 +2578,10 @@ input[type=radio] {
 
 .message-data{
   padding: 5px;
-  white-space: pre-wrap;
+  white-space: normal;
   max-width: 300px;
+  word-wrap:break-word;
+  table-layout: fixed;
 }
 
 .welcome-message{
@@ -2591,10 +2608,17 @@ input[type=radio] {
 .btn-live{
   padding: 10px 20px;
   border-radius: 10px;
-  margin: 10px;
+  margin: 15px;
   background-color: var(--secondary-color);
   border: none;
   outline: none;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.font20{
+  font-size: 20px;
+  line-height: 30px;
 }
   
   /* LIVE CHAT ROOM END */
