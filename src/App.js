@@ -24,6 +24,7 @@ import UserPage from './pages/UserPage';
 import FaceChatList from './pages/FaceChatList';
 import NotFound from './pages/NotFound';
 import EmailCheck from './pages/EmailCheck';
+import Player from './components/Player';
 
 
 function App() {
@@ -176,6 +177,7 @@ function App() {
 
           </Routes>
         </div>
+      <Player/>
       <Footer/>
     </div>
   );
