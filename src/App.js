@@ -23,6 +23,7 @@ import UploadVideo from './pages/UploadVideo';
 import UserPage from './pages/UserPage';
 import FaceChatList from './pages/FaceChatList';
 import NotFound from './pages/NotFound';
+import EmailCheck from './pages/EmailCheck';
 
 
 function App() {
@@ -168,7 +169,11 @@ function App() {
             <Route path="/createlive" element={token ? <CreateLive /> : <NotFound />}></Route>
             <Route path="/search" element={<SearchResult />}></Route>
             <Route path="/facechatlist" element={<FaceChatList/>}></Route>
+
+            <Route path="/emailcheck" element={<EmailCheck/>}></Route>
+
             <Route path="*" element={<NotFound />}></Route>
+
           </Routes>
         </div>
       <Footer/>

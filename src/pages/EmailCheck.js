@@ -1,0 +1,13 @@
+import React from 'react'
+
+function EmailCheck() {
+    return (
+        <div className='not-wrap'>
+            <div className="not-404">tutti</div>
+            <div className="not-title">이메일 인증 완료!</div>
+            <div className="not-sub-title">이전 페이지로 돌아가 주세요!</div>
+        </div>
+    )
+}
+
+export default EmailCheck;

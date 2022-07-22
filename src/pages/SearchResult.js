@@ -119,13 +119,13 @@ function SearchResult() {
           {videoTitle.map((song,index)=>{
           return(
           <div 
-          className="feed-card"
+          className="video-card"
           onClick={()=>{
             navigate('/detail/'+song.id)
           }}>
             <img
             alt={song.title}
-            className="main-album-art" 
+            className="main-thumbnail" 
             src={song.albumImageUrl}
             />
             <div className="main-card-text">
@@ -162,13 +162,13 @@ function SearchResult() {
             {videoArtist.map((song,index)=>{
             return(
             <div 
-            className="feed-card"
+            className="video-card"
             onClick={()=>{
               navigate('/detail/'+song.id)
             }}>
               <img
               alt={song.title}
-              className="main-album-art" 
+              className="main-thumbnail" 
               src={song.albumImageUrl}
               />
               <div className="main-card-text">
