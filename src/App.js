@@ -1,4 +1,5 @@
 import './styles/App.css';
+import './styles/Mq_mobile.css';
 
 import React, {useState} from "react";
 import { Routes, Route} from "react-router-dom";
@@ -47,6 +48,51 @@ function App() {
 
   const date = new Date();
 
+  // React.useEffect(() => {
+
+  //   console.log("매번 실행되는지");
+  //   console.log("listening", listening);
+
+  //   if (token) {
+  //     console.log("토큰이 있을 때 new Event");
+        
+  //       eventSource = new EventSource(`https://seyeolpersonnal.shop/subscribe/${artist}`); //구독
+  
+  //       msetEventSource(eventSource);
+  //       console.log("eventSource", eventSource);
+  //       console.log("eventSource 시간 ==> ", date);
+  
+  //       eventSource.onopen = event => {
+  //         console.log("connection opened");
+  //         console.log("connection opened 시간 ==> ", date);
+  //       };
+  
+  //       eventSource.onmessage = event => {
+  //         console.log("result", event.data);
+  //         console.log("result 시간 ==> ", date);
+  //         setData(old => [...old, event.data]);
+  //         setValue(event.data);
+  //         console.log("value ==>" , value.content);
+  //       };
+  
+  //       eventSource.onerror = event => {
+  //         console.log(event.target.readyState);
+  //         if (event.target.readyState === EventSource.CLOSED) {
+  //           console.log("eventsource closed (" + event.target.readyState + ")");
+  //         }
+  //         eventSource.close();
+  //       };
+
+
+  //   }
+
+  //   return () => {
+  //     eventSource.close();
+  //     console.log("eventsource closed");
+  //   };
+  // }, []);
+
+
   React.useEffect(() => {
 
     console.log("매번 실행되는지");
@@ -60,29 +106,33 @@ function App() {
         msetEventSource(eventSource);
         console.log("eventSource", eventSource);
         console.log("eventSource 시간 ==> ", date);
-  
-        eventSource.onopen = event => {
+
+        eventSource.addEventListener('open', function(e) {
           console.log("connection opened");
           console.log("connection opened 시간 ==> ", date);
-        };
-  
-        eventSource.onmessage = event => {
-          console.log("result", event.data);
+        })
+
+        eventSource.addEventListener('message', function(e) {
+          console.log("result", e.data);
           console.log("result 시간 ==> ", date);
-          setData(old => [...old, event.data]);
-          setValue(event.data);
+          setData(old => [...old, e.data]);
+          setValue(e.data);
           console.log("value ==>" , value.content);
-        };
-  
-        eventSource.onerror = event => {
-          console.log(event.target.readyState);
-          if (event.target.readyState === EventSource.CLOSED) {
-            console.log("eventsource closed (" + event.target.readyState + ")");
+        })
+      
+        eventSource.addEventListener('Live', function (e){
+          let liveData = JSON.parse(e.data);
+          console.log(liveData);
+        }) 
+
+        eventSource.addEventListener('error', function(e) {
+          console.log(e.target.readyState);
+          if (e.target.readyState === EventSource.CLOSED) {
+            console.log("eventsource closed (" + e.target.readyState + ")");
           }
           eventSource.close();
-        };
-
-
+        })
+  
     }
 
     return () => {
@@ -91,7 +141,9 @@ function App() {
     };
   }, []);
 
-
+  React.useEffect(() => {
+    console.log("data: ", data);
+  }, [data]);
 
     
 
@@ -117,7 +169,11 @@ function App() {
             <Route path="/createlive" element={token ? <CreateLive /> : <NotFound />}></Route>
             <Route path="/search" element={<SearchResult />}></Route>
             <Route path="/facechatlist" element={<FaceChatList/>}></Route>
+
             <Route path="/emailcheck" element={<EmailCheck/>}></Route>
+
+            <Route path="*" element={<NotFound />}></Route>
+
           </Routes>
         </div>
       <Footer/>

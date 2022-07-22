@@ -2078,6 +2078,10 @@ input[type=radio] {
 
 /* Navbar start */
 
+.nav-mobile-wrap {
+  display: none;
+}
+
 .nav-wrap {
   display: flex;
   flex-direction: row;
