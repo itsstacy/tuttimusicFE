@@ -19,8 +19,8 @@
     --secondary-color: #E8E4FF;
   
     /* 앨범 커버 이미지 비율 1:1 */
-    --card-size: 190px;
-    --video-size: 300px;
+    --card-size: 140px;
+    --video-size: 250px;
   }
   
   .divider {
@@ -67,33 +67,6 @@
   
   
   /* MAIN PAGE  */
-  .main-container {
-    min-height: 100vh;
-    margin-bottom: 120px;
-  }
-  
-  .main-top {
-    width: 100%;
-  }
-  
-  .main-content {
-    max-width: var(--container-width);
-    margin: auto;
-    position: relative;
-    padding-bottom: 80px;
-  }
-  
-  .main-top-header {
-    width: 100%;
-    height: 300px;
-    background-color: lightgrey;
-  }
-  
-  .main-list-header {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
   
   .main-list {
     margin-bottom: 80px;
@@ -103,39 +76,16 @@
   }
   
   .main-list-title {
-    font-size: 25px;
-    margin-left: 10px;
-    margin-bottom: 40px;
-    margin-top: 60px;
+    font-size: 20px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    margin-top: 40px;
   }
   
   .main-list-subtitle {
-    font-size: 16px;
-    margin-left: 20px;
-    margin-bottom: 40px;
-    margin-top: 60px;
-    color: #7e7e7e;
-  
+    font-size: 14px;
   }
   
-  
-  .main-card {
-    display: flex;
-    flex-direction: column;
-    width: var(--card-size);
-    padding: 10px;  
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .video-card {
-    display: flex;
-    flex-direction: column;
-    width: var(--video-size);
-    padding: 10px;  
-    justify-content: center;
-    flex-wrap: wrap;
-  }
   
   .mypage-video-card{
     display: flex;
@@ -148,34 +98,16 @@
   }
   
   .main-album-art {
-    width: var(--card-size);
-    height: var(--card-size);
-    object-fit: cover;
-    border-radius:8px;
-    margin-right: 0;
-    margin-bottom: 16px;
-    background-color: #7e7e7e;
-    cursor: pointer;
+    margin-bottom: 13px;
   }
   
   .main-thumbnail {
-    width: var(--video-size);
-    height: 171px;
-    object-fit: cover;
-    border-radius:8px;
-    margin-right: 0;
-    margin-bottom: 16px;
-    background-color: #7e7e7e;
-    cursor: pointer;
+    margin-bottom: 13px;
   }
   
   .mypage-main-thumbnail {
     width: 100%;
     height: 171px;
-    object-fit: cover;
-    border-radius:8px;
-    background-color: #7e7e7e;
-    cursor: pointer;
   }
   
   .main-card-text {
@@ -183,33 +115,12 @@
   }
   
   .main-card-title {
-    font-size: 16px;
-    margin-bottom: 6px;
-    cursor: pointer;
-  
-    white-space: pre-wrap;
-    
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    word-wrap:break-word; 
-    line-height: 22px;
+    font-size: 14px;
+    margin-bottom: 5px;
   }
   
   .main-card-artist{
-    font-size: 14px;
-    color: #7e7e7e;
-    margin: 0;
-    cursor: pointer;
-  }
-  
-  .spinner-wrap{
-    width: 100%;
-    margin: 30px auto;
-    display: flex;
-    justify-content: center;
+    font-size: 12px;
   }
   
   /* MAIN PAGE END */

@@ -69,9 +69,24 @@ function Main() {
     arrows: true,
     // variableWidth: true,
     nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />
+    prevArrow: <SamplePrevArrow />,
     // autoplay: true,
     // autoplaySpeed: 3500,
+    responsive: [
+      {
+        breakpoint: 480,
+        settings: {
+          dots: false,
+          infinite: true,
+          speed: 500,
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          arrows: true,
+          nextArrow: <SampleNextArrow />,
+          prevArrow: <SamplePrevArrow />,
+        }
+      }
+    ]
   };
 
   // slider settings ->video
@@ -84,9 +99,24 @@ function Main() {
     arrows: true,
     // variableWidth: true,
     nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />
+    prevArrow: <SamplePrevArrow />,
     // autoplay: true,
     // autoplaySpeed: 3500,
+    responsive: [
+      {
+        breakpoint: 480,
+        settings: {
+          dots: false,
+          infinite: true,
+          speed: 500,
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          arrows: true,
+          nextArrow: <SampleNextArrow />,
+          prevArrow: <SamplePrevArrow />,
+        }
+      }
+    ]
   };
 
 
