@@ -168,6 +168,7 @@ function App() {
             <Route path="/createlive" element={token ? <CreateLive /> : <NotFound />}></Route>
             <Route path="/search" element={<SearchResult />}></Route>
             <Route path="/facechatlist" element={<FaceChatList/>}></Route>
+            <Route path="*" element={<NotFound />}></Route>
           </Routes>
         </div>
       <Footer/>
