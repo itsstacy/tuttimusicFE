@@ -1129,7 +1129,7 @@ font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, '
   align-items: flex-start;
   padding: 15px 30px;
   gap: 10px;
-  width: 700px;
+  width: 680px;
   height: 60px;
   background: #E8E8E8;
   border-radius: 10px;
@@ -1209,7 +1209,7 @@ font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, '
   padding: 25px 30px;
   gap: 10px;
   margin-left: -80px;
-  width: 840px;
+  width: 820px;
   height: 60px;
   background: #E8E8E8;
   border-radius: 10px;
@@ -1386,7 +1386,7 @@ font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, '
   padding: 0px;
   gap: 10px;
 
-  width: 840px;
+  width: 810px;
   height: 173px;
 }
 
@@ -1398,7 +1398,7 @@ font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, '
   padding: 0px;
   gap: 46px;
 
-  width: 800px;
+  width: 810px;
   height: 51px;
 
   flex-wrap: wrap;
@@ -2076,6 +2076,10 @@ input[type=radio] {
 
 
 /* Navbar start */
+
+.nav-mobile-wrap {
+  display: none;
+}
 
 .nav-wrap {
   display: flex;
