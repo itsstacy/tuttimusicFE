@@ -35,6 +35,6 @@ jobs:
         run: |
           aws s3 cp --recursive --region ${{ secrets.AWS_REGION }} build s3://${{ secrets.S3_BUCKET_NAME }}
           
-      - name: cloudfront
+      - name: cloudfront - https
         run: |
           aws cloudfront create-invalidation --distribution-id ${{ secrets.CDN_DISTRIBUTION_ID }} --paths "/*"
