@@ -6,10 +6,11 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout source code.   # 레포지토리 체크아웃
-        uses: actions/checkout@master
+      - uses: actions/checkout@master
+      - uses: awact/cloudfront-action@master
         
       - name: Cache node modules      # node modules 캐싱
         uses: actions/cache@v1
@@ -35,6 +36,6 @@ jobs:
         run: |
           aws s3 cp --recursive --region ${{ secrets.AWS_REGION }} build s3://${{ secrets.S3_BUCKET_NAME }}
           
-      - name: cloudfront - https
+      - name: cloudfront 
         run: |
-          aws cloudfront create-invalidation --distribution-id ${{ secrets.CDN_DISTRIBUTION_ID }} --paths "/*"
+          aws cloudfront --region create-invalidation --distribution-id ${{ secrets.CDN_DISTRIBUTION_ID }} --paths "/*"
