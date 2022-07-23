@@ -31,28 +31,25 @@ class Streamers extends Component {
         this.switchCamera = this.switchCamera.bind(this);
         this.handleChangeSessionId = this.handleChangeSessionId.bind(this);
         this.handleMainVideoStream = this.handleMainVideoStream.bind(this);
-        // this.onbeforeunload = this.onbeforeunload.bind(this);
+        this.onbeforeunload = this.onbeforeunload.bind(this);
         this.giveAccess = this.giveAccess.bind(this);
         this.navigator = this.navigator.bind(this);
-        this.alertUser = this.alertUser.bind(this);
     }
 
     componentDidMount() {
-        window.addEventListener('beforeunload', this.alertUser)
-        this.giveAccess();
+        window.addEventListener('beforeunload', this.onbeforeunload);
+        this.joinSession();
     } 
 
     componentWillUnmount() {
-        window.addEventListener('beforeunload', this.alertUser)
-        this.leaveSession();
+        window.removeEventListener('beforeunload', this.onbeforeunload);
     }
 
     navigator(){
         this.props.navigate('/facechatlist')
     }
 
-    alertUser(e) {
-        e.preventDefault()
+    onbeforeunload(event) {
         if(window.confirm("방을 나가시면 라이브가 종료됩니다. 라이브를 종료하시겠어요?")) {
             this.leaveSession();
         };

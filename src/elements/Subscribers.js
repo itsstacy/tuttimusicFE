@@ -3,6 +3,7 @@ import { OpenVidu } from 'openvidu-browser';
 import React, { Component } from 'react';
 import UserVideoComponent from './UserVideoComponent';
 import BeatLoader from "react-spinners/BeatLoader";
+import {withRouter} from '../elements/withRouter';
 
 const OPENVIDU_SERVER_URL = 'https://' + "rnrn.shop" ;
 
@@ -30,6 +31,7 @@ class Subscribers extends Component {
         this.handleChangeUserName = this.handleChangeUserName.bind(this);
         this.handleMainVideoStream = this.handleMainVideoStream.bind(this);
         this.onbeforeunload = this.onbeforeunload.bind(this);
+        this.navigator = this.navigator.bind(this);
     }
 
     componentDidMount() {
@@ -42,7 +44,14 @@ class Subscribers extends Component {
     }
 
     onbeforeunload(event) {
+        if(window.confirm("방을 나가시면 라이브가 종료됩니다. 라이브를 종료하시겠어요?")) {
+            this.leaveSession();
+        };
         this.leaveSession();
+    }
+
+    navigator(){
+        this.props.navigate('/facechatlist')
     }
 
     handleChangeSessionId(e) {
@@ -251,6 +260,24 @@ class Subscribers extends Component {
                             ))}                       
                     </div>
                 ) : null}
+
+                {this.state.subscribers.length === 0 ? (
+                    <div className="session-finished">
+                        <p className="font20"> 
+                            방송이 종료되었어요. <br/>
+                            다른 라이브 방송을 보러 가볼까요? 😋
+                        </p>
+                        <button
+                            className="btn-live"
+                            id="buttonLeaveSession"
+                            onClick={this.leaveSession}
+                        >
+                        라이브 목록으로 나가기
+                        </button>
+                    </div>
+                ): null}
+
+
             </div>
         );
     }
@@ -324,4 +351,4 @@ class Subscribers extends Component {
     }
 }
 
-export default Subscribers;
+export default withRouter(Subscribers);

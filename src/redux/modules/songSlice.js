@@ -232,11 +232,26 @@ const SongSlice = createSlice({
     [searchMusic.fulfilled]: (state, action) => {
       console.log("GET FULFILLED");
       console.log(action.payload);
+      // if (action.payload.musicArtist.length > 6) {
+      //   action.payload.musicArtist.pop();
+      // }
+      // if (action.payload.musicTitle.length > 6) {
+      //   action.payload.musicArtist.pop();
+      // }
+      // if (action.payload.videoArtist.length > 6) {
+      //   action.payload.musicArtist.pop();
+      // }
+      // if (action.payload.videoTitle.length > 6) {
+      //   action.payload.musicArtist.pop();
+      // }
+      
       state.result_musicArtist = action.payload.musicArtist;
       state.result_musicTitle = action.payload.musicTitle;
       state.result_videoArtist = action.payload.videoArtist;
       state.result_videoTitle = action.payload.videoTitle;
-      console.log(state.result_artist)
+
+      
+
     },
     [searchMusic.rejected]: (state, action) => {
       console.log("GET REJECTED");
