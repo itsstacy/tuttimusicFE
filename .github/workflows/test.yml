@@ -10,10 +10,7 @@ jobs:
     steps:
       - name: Checkout source code.   # 레포지토리 체크아웃
         uses: actions/checkout@master
-        
-      - name: Checkout2
-        uses: awact/cloudfront-action@master
-        
+
       - name: Cache node modules      # node modules 캐싱
         uses: actions/cache@v1
         with:
@@ -30,14 +27,16 @@ jobs:
         run: npm run build
         env: 
           CI: false
-        
-      - name: Deploy                  # Upload build file to S3
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.ACCESS_KEY }}
-        run: |
-          aws s3 cp --recursive --region ${{ secrets.AWS_REGION }} build s3://${{ secrets.S3_BUCKET_NAME }}
           
-      - name: cloudfront 
-        run: |
-          aws cloudfront --region create-invalidation --distribution-id ${{ secrets.CDN_DISTRIBUTION_ID }} --paths "/*"
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Deploy to S3
+        run: aws s3 sync ./dist s3://${{ secrets.S3_BUCKET_NAME }} --delete
+
+      - name: Invalidate CloudFront Cache
+        run: aws cloudfront create-invalidation --distribution-id ${{secrets.CDN_DISTRIBUTION_ID}} --paths "/*"
