@@ -36,7 +36,7 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Deploy to S3
-        run: aws s3 cp --recursive --region ${{ secrets.AWS_REGION }} build s3://${{ secrets.S3_BUCKET_NAME }} --delete
+        run: aws s3 cp --recursive --region ${{ secrets.AWS_REGION }} build s3://${{ secrets.S3_BUCKET_NAME }}
 
       - name: Invalidate CloudFront Cache
         run: aws cloudfront create-invalidation --distribution-id ${{secrets.CDN_DISTRIBUTION_ID}} --paths "/*"
