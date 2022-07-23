@@ -198,10 +198,10 @@ function MusicFeed() {
                 }}>
                   <img
                   alt={song.title}
-                  className="main-album-art" 
+                  className="main-album-art musicfeed-album-art" 
                   src={song.albumImageUrl}
                   />
-                  <div className="main-card-text">
+                  <div className="main-card-text musicfeed-card-text">
                     <p className="main-card-title">
                     {song.title}
                     </p>

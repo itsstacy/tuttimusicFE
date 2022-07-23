@@ -130,6 +130,7 @@
     max-width: var(--container-width);
     margin: 50px auto 120px auto;
     position: relative;
+    padding: 0 20px;
   }
   
   .feed-category{
@@ -137,7 +138,7 @@
   }
   
   .genre-text{
-    font-size: 22px;
+    font-size: 18px;
     font-weight: 600;
   }
   
@@ -146,19 +147,15 @@
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    justify-content: space-between;
+    gap: 10px;
   }
   
   .category {
-    width:238px;
-    height: 64px;
+    width:48%;
+    height: 43px;
     border-radius:10px;
-    font-size: 16px;
-    background-color: #F0F0F0;
-    padding: 16px 30px;
-    align-items: center;
-    display: flex;
-    cursor: pointer;
+    font-size: 14px;
   }
   
   .feed-list {
@@ -166,16 +163,25 @@
     display: flex;
     flex-wrap: wrap;
     margin: 0 auto;
-    gap:26px; 
+    justify-content: space-between;
   }
   
   .feed-card {
     display: flex;
     flex-direction: column;
-    width: var(--card-size);
+    width: 45%;
     align-items: center;
     justify-content: center;
     cursor: pointer;
+  }
+
+  .musicfeed-album-art {
+    width: 100%;
+    height:fit-content;
+  }
+
+  .musicfeed-card-text {
+    width:100%;
   }
   
   .click-category {
@@ -2001,7 +2007,7 @@
     width: 100%;
     height: 70px;
     padding:0 30px;
-    background-color: red;
+    background-color: #1A1B1E;
   }
 
   .nav-mobile-right{
