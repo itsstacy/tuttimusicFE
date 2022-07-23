@@ -26,6 +26,8 @@ jobs:
         with:
           AWS_ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+          mask-aws-account-id: true
           
       - name: Install Dependencies    # 의존 파일 설치
         run: npm install
@@ -36,6 +38,6 @@ jobs:
           CI: false
           
       - name: Push Contents to S3   
-        run: aws s3 cp --recursive --region ap-northeast-2 build s3://tuttimusic.shop
+        run: aws s3 sync ./dist s3://${{ secrets.S3_BUCKET_NAME }}
       - name: Invalidate CloudFront Cache
         run: aws cloudfront create-invalidation --distribution-id ${{ secrets.CDN_DISTRIBUTION_ID }} --paths "/*"
