@@ -5,11 +5,21 @@ on:
       - master
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-18.04
     steps:
       - name: Checkout source code.   # 레포지토리 체크아웃
         uses: actions/checkout@master
+
+      - name: Install AWS CLI
+        run: pip3 install awscli --upgrade --user
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+          mask-aws-account-id: true
 
       - name: Cache node modules      # node modules 캐싱
         uses: actions/cache@v1
@@ -19,16 +29,7 @@ jobs:
           restore-keys: |
             ${{ runner.OS }}-build-
             ${{ runner.OS }}-
-      - name: Install AWS CLI
-        run: pip3 install awscli --upgrade --user
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          AWS_ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
-          mask-aws-account-id: true
-          
+
       - name: Install Dependencies    # 의존 파일 설치
         run: npm install
 
@@ -36,8 +37,8 @@ jobs:
         run: npm run build
         env: 
           CI: false
-          
-      - name: Push Contents to S3   
+        
+      - name: Push Contents to S3
         run: aws s3 sync ./dist s3://${{ secrets.S3_BUCKET_NAME }}
       - name: Invalidate CloudFront Cache
         run: aws cloudfront create-invalidation --distribution-id ${{ secrets.CDN_DISTRIBUTION_ID }} --paths "/*"
