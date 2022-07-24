@@ -196,11 +196,13 @@ function MusicFeed() {
                 onClick={()=>{
                   navigate('/detail/'+song.id)
                 }}>
+                  <div className="musicfeed-album-box">
                   <img
                   alt={song.title}
                   className="main-album-art musicfeed-album-art" 
                   src={song.albumImageUrl}
                   />
+                  </div>
                   <div className="main-card-text musicfeed-card-text">
                     <p className="main-card-title">
                     {song.title}
