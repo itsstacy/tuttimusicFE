@@ -1764,7 +1764,7 @@
   .upload-wrap {
     width: 100%;
     padding:20px;
-    margin-bottom: 120px;
+    margin-bottom: 0;
   }
   
   .upload-title {

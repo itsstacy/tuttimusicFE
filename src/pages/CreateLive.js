@@ -162,6 +162,12 @@ let UploadImagePreview = styled.div`
   background-image:url(${(props) => props.previewImg});
   background-size:cover;
   background-position: 50% 50%;
+  
+  @media only screen and (max-width: 480px) {
+  width: 60%;
+  height: 100%;
+  aspect-ratio: 16 / 9;
+  }
 `
 
 export default CreateLive;
