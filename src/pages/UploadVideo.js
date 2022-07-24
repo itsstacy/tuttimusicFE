@@ -226,12 +226,13 @@ function UploadVideo() {
 
         <label className="upload-label">
           <span className="upload-label-span">컬러</span>
+          <div className="upload-mobile-color">
           <input type="text" className="upload-input" id="upload-input-color" onChange={ColorChange} ref={color_ref} placeholder="HEX 코드(#000000)를 입력하시거나 오른쪽 버튼을 눌러 색상을 골라주세요."/>
           <UploadColor color={color} onClick={() => setColorState(!colorState)}></UploadColor>
+          </div>
         </label>
 
         {colorState ? 
-        
         <HexColorPicker 
         className="hex-color"
         color={color} 
@@ -293,6 +294,13 @@ let UploadImagePreview = styled.div`
   background-image:url(${(props) => props.previewImg});
   background-size:cover;
   background-position: 50% 50%;
+
+  @media only screen and (max-width: 480px) {
+  width: 60%;
+  height: 100%;
+  aspect-ratio: 16 / 9;
+  }
+
 `
 
 let UploadColor = styled.div`
@@ -301,6 +309,14 @@ let UploadColor = styled.div`
   background-color:${(props) => props.color};
   margin-left: 20px;
   border-radius: 10px;
+
+  @media only screen and (max-width: 480px) {
+  width: 50px;
+  height: 50px;
+  margin-left:0;
+  aspect-ratio: 1 / 1;
+  }
+
 `
 
 

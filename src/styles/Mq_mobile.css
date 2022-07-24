@@ -1762,77 +1762,50 @@
   /* Upload start */
   
   .upload-wrap {
-    width: 1280px;
+    width: 100%;
+    padding:20px;
     margin-bottom: 120px;
   }
   
   .upload-title {
-    margin: 0;
-    margin-top: 50px;
-    font-size: 36px;
-    font-weight: bold;
-    color: #000;
+    margin-top: 10px;
+    font-size: 22px;
   }
   
   .upload-subtitle {
-    margin: 0;
-    margin-top: 16px;
-    margin-bottom: 60px;
-    font-size: 16px;
+    margin-bottom: 30px;
+    font-size: 14px;
   }
   
   .upload-form {
-    border-top: 1px solid #E8E8E8;
-    display: flex;
-    flex-direction: column;
-    padding: 50px 105px;
+    padding: 30px 0;
   }
   
   .upload-label {
-    position: relative;
-    margin-bottom: 70px;
-    display: flex;
-    flex-direction: row;
+    margin-bottom: 40px;
+    flex-direction: column;
   }
   
   .upload-label-span {
-    display: block;
-    width: 220px;
-    font-size: 20px;
+    font-size: 16px;
+    margin-bottom: 20px;
   }
   
   .upload-input {
-    width: 850px;
-    height: 60px;
-    background-color: #E8E8E8;
-    border: none;
-    outline: none;
-    border-radius: 10px;
-    padding: 0 30px;
-    font-size: 18px;
-  }
-  
-  .upload-input::placeholder {
-    color: #a8a8a8;
+    width: 100%;
+    height: 50px;
+    font-size: 15px;
   }
   
   .upload-label textarea {
-    padding-top: 15px;
-    height: 160px;
-    resize: none;
+    height: 110px;
   }
   
   .upload-selected {
-    width: 850px;
-    height: 60px;
-    background-color: #E8E8E8;
-    border: none;
-    outline: none;
-    border-radius: 10px;
-    padding: 0 30px;
-    font-size: 18px;
-    line-height: 60px;
-    color: #a8a8a8;
+    width: 100%;
+    height: 50px;
+    font-size: 15px;
+    line-height: 50px;
   }
   
   input[type=radio] {
@@ -1840,142 +1813,91 @@
   }
   
   .upload-select-option {
-    display: block;
-    width: 850px;
-    height: 60px;
-    background-color: #fff;
-    border: none;
-    outline: none;
-    border-radius: 10px;
-    padding: 0 30px;
-    font-size: 18px;
-    line-height: 60px;
-    color: #A8A8A8;
-    cursor: pointer;
+    width: 100%;
+    height: 50px;
+    font-size: 15px;
+    line-height: 50px;
   }
   
   .upload-options-container {
-    position: absolute;
-    border: 1px solid rgb(200, 202, 210);
-    border-top: none;
     background-color: #FFF;
-    width: 850px;
-    border-radius: 10px;
-    overflow: hidden;
-    z-index: 1;
-    box-shadow: 0 5px 10px -3px grey;
+    width: 100%;
   }
   
   .upload-image-wrap {
     display: flex;
-    margin-bottom: 70px;
+    margin-bottom: 40px;
+    flex-direction: column;
+  }
+
+  .upload-image-wrap > .upload-label {
+    margin-bottom: 0;
   }
   
   .upload-image-box {
-    width: 1060px;
+    width: 100%;
     display: flex;
-    align-items: flex-end;
-  
+    justify-content: space-between;  
   }
   
   .upload-label-button {
-    width: 180px;
-    height: 60px;
-    line-height: 60px;
-    border-radius: 10px;
-    font-size: 15px;
-    text-align: center;
-    margin-left: 40px;
-    cursor: pointer;
+    width: 35%;
+    height: 50px;
+    line-height: 50px;
+    font-size: 14px;
+    margin-left: 0;
   }
-  
-  
-  #upload-image {
-    display: none;
-  }
-  
-  
-  .upload-image-preview {
-    width: 290px;
-    height: 290px;
-    background-color: #E8E8E8;
-    border-radius: 10px;
-  }
-  
-  .upload-image-name-wrap {
-    width: 310px;
-    vertical-align: middle;
-    display: flex;
-    align-items: flex-end;
-  
-  }
-  
-  #upload-image-name {
-    margin-left: 10px;
-    width: 310px;
-    height: 100%;
-    resize: none;
-    border: none;
-    outline: none;
-    cursor: default;
-    vertical-align: center;
-  }
-  
-  #upload-input-color {
-    width: 770px;
-  }
-  
+
   .upload-color-wrap {
     position: relative;
   }
-  
-  .upload-color {
-    width: 60px;
-    height: 60px;
-    margin-left: 20px;
-    border-radius: 10px;
+
+  .upload-mobile-color {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
   }
   
+  #upload-input-color {
+    width:90%;
+    margin-right:20px;
+  }
+
   .hex-color {
     width: 200px;
     height: 200px;
     position: absolute;
     display: flex;
-    z-index: 22;
+    z-index: 33;
     bottom: 10px;
-    right: -220px;
+    left:25%;
+    top:0;
   }
   
   .upload-music-wrap {
     display: flex;
+    flex-direction: column;
     margin-bottom: 70px;
+  }
+
+  .upload-music-wrap > .upload-label {
+    margin-bottom: 0;
   }
   
   #upload-music-icon {
-    font-size: 24px;
-    color: #8A51FB;
-    position: absolute;
-    z-index: 22;
-    margin-top: 18px;
-    margin-left: 30px;
-    cursor: pointer;
+    font-size: 17px;
+    margin-top: 16px;
+    margin-left: 23px;
   }
-  
-  #upload-music {
-    display: none;
-  }
-  
+
   #upload-input-music {
-    padding: 0 70px;
+    padding: 0 57px;
   }
   
   .upload-button {
-    width: 200px;
-    height: 60px;
-    border: none;
-    border-radius: 10px;
-    font-size: 22px;
-    margin: 0 auto;
+    width: 150px;
+    height: 50px;
+    font-size: 15px;
   }
   
   /* Upload end */
