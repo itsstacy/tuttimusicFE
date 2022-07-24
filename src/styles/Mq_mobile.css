@@ -1718,6 +1718,46 @@
   }
   
   /* FACECHATLIST PAGE END */
+
+  /* UploadChoice start */
+  .choice-wrap {
+    width: 100%;
+    min-height: 80vh;
+    margin:0;
+    padding: 60px 20px;
+  }
+  
+  .choice-title {
+    font-size: 22px;
+    color: #000;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .choice-title-sub {
+    font-size: 14px;
+    color: #7e7e7e;
+  }
+  
+  .choice-button-wrap {
+    width: 100%;
+    margin-top: 40px;
+    height: 320px;
+    align-content: space-between;
+    flex-direction: column;
+  }
+  
+  .choice-button {
+    width: 90%;
+    height: 150px;
+    background-color: #E8E8E8;
+    font-size: 16px;
+  }
+  
+  #choice-icon {
+    font-size: 14px;
+  }
+  /* UploadChoice end */
   
   /* Upload start */
   
