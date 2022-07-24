@@ -192,6 +192,24 @@
     width:100%;
   }
   
+  .musicfeed-video-card {
+    width:100%;
+  }
+
+  .musicfeed-thumbnail-box {
+    width:100%;
+    border-radius: 10px;
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    margin-bottom:13px;
+  }
+
+  .musicfeed-thumbnail {
+    width:100%;
+    height:100%;
+    border-radius: 0;
+    margin-bottom:0;
+  }
   .click-category {
     background-color: #E8E4FF;
     color:#8A51FB;

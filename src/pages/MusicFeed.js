@@ -221,15 +221,17 @@ function MusicFeed() {
           <>{allList&&allList.map((song,index)=>{
               return(
                 <div 
-                className="video-card"
+                className="video-card musicfeed-video-card"
                 onClick={()=>{
                   navigate('/detail/video/'+song.id)
                 }}>
+                  <div className="musicfeed-thumbnail-box">
                   <img
                   alt={song.title}
-                  className="main-thumbnail" 
+                  className="main-thumbnail musicfeed-thumbnail" 
                   src={song.albumImageUrl}
                   />
+                  </div>
                   <div className="main-card-text">
                     <p className="main-card-title">
                     {song.title}
