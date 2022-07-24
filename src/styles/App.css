@@ -1854,6 +1854,56 @@ font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, '
 
 /* FACECHATLIST PAGE END */
 
+/* UploadChoice start */
+.choice-wrap {
+  width: 1050px;
+  min-height: 80vh;
+  margin: 60px auto;
+  display: flex;
+  align-items: left;
+  flex-direction: column;
+}
+
+.choice-title {
+  font-size: 36px;
+  color: #000;
+  margin-bottom: 16px;
+}
+
+.choice-title-sub {
+  font-size: 16px;
+  color: #7e7e7e;
+}
+
+.choice-button-wrap {
+  width: 100%;
+  margin-top: 110px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
+
+.choice-button {
+  width: 500px;
+height: 230px;
+  background-color: #E8E8E8;
+  color: #000;
+  border: none;
+  border-radius: 10px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+#choice-icon {
+  font-size: 24px;
+  margin-right: 8px;
+}
+/* UploadChoice end */
+
 /* Upload start */
 
 .upload-wrap {
