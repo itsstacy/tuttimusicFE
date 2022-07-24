@@ -77,18 +77,20 @@ function FaceChatList() {
                                 enterRoom(live.artist)
                             }}
                             >
-                                <div className="main-thumbnail relative">
+                                
                                     <Live
                                     id="live-info-user-live"
                                     className='live-absolute'>
                                         LIVE
                                     </Live>
+                                    <div className="musicfeed-thumbnail-box facechat-card">
                                     <img 
-                                    className='main-thumbnail'
+                                    className='main-thumbnail musicfeed-thumbnail'
                                     src={live.thumbnailImageUrl} 
                                     alt={live.roomTitle}
                                     />
-                                </div>
+                                    </div>
+                               
                                 <div className="facechat-live-info">
                                     <div className="facechat-live-pofileimg">
                                         <img 
