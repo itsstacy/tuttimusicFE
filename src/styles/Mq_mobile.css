@@ -2521,40 +2521,29 @@
   /* NOT FOUND START */ 
   
   .not-wrap {
-    width: 400px;
-    margin:180px auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    width: 100%;
+    margin:120px auto;
   }
   
   .not-title {
-    font-size: 36px;
-    font-weight: 500;
-    color:#18191B;
-    margin-bottom: 16px;
+    font-size: 26px;
+    margin-bottom: 10px;
   }
   
   .not-sub-title {
-    font-size: 16px;
-    color:#7a7c85;
-    margin-bottom: 40px;
+    font-size: 14px;
+    margin-bottom: 25px;
   }
   
   .not-404 {
-    font-size: 128px;
-    font-weight: 900;
-    color:#8a51fb;
-    margin-bottom: 70px;
-    cursor:default;
+    font-size: 70px;
+    margin-bottom: 45px;
   }
   
   .not-button {
-    width:240px;
-    height:60px;
-    border-radius: 10px;
-    font-size: 22px;
-    cursor: pointer;
+    width:150px;
+    height:50px;
+    font-size: 15px;
   }
   
   
